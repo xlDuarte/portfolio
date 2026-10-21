@@ -61,13 +61,13 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,11),21,31,61,86) or n>=101:continue
+            if n in (*range(1,21),21,31,61,86) or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
 
     def test_legacy_bad_parameter_rejected(self):
-        f=next(p for p in ROOT.glob('projetos/**/011-*/main.py'))
+        f=next(p for p in ROOT.glob('projetos/**/022-*/main.py'))
         spec=importlib.util.spec_from_file_location('generic',f)
         m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
         obj=m.IndustrialProjectPipeline()

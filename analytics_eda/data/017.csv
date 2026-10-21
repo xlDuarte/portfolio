@@ -1,0 +1,171 @@
+job_id,region,role,seniority,salary_monthly_brl,skills,posted_date
+JOB0000,Sao Paulo,Data Engineer,Junior,13025,AWS|SQL|Statistics,2026-02-06
+JOB0001,Campinas,Operations Analyst,Senior,9077,Excel|SAP,2026-03-02
+JOB0002,Campinas,BI Analyst,Junior,10282,Docker|Lean|PLC|Python,2026-01-02
+JOB0003,Vale do Paraiba,Operations Analyst,Mid,5714,Excel|PLC|Pandas|Power BI,2026-01-02
+JOB0004,Campinas,Data Engineer,Junior,11654,Docker|Python|SQL|Spark,2026-02-01
+JOB0005,Sao Paulo,BI Analyst,Junior,16416,Lean|Power BI|SAP,2026-03-27
+JOB0006,Vale do Paraiba,Data Analyst,Junior,9343,Excel|Lean|SAP|SQL|Spark,2026-03-10
+JOB0007,Vale do Paraiba,Operations Analyst,Junior,5538,Excel|Lean|Pandas,2026-01-03
+JOB0008,Sao Paulo,Engineer,Junior,6064,Lean|PLC|Statistics,2026-02-20
+JOB0009,Vale do Paraiba,Operations Analyst,Junior,3534,PLC|Pandas|SQL,2026-03-28
+JOB0010,Campinas,BI Analyst,Senior,15250,Docker|Excel,2026-03-07
+JOB0011,Sao Paulo,Engineer,Senior,8951,AWS|Lean,2026-03-12
+JOB0012,Vale do Paraiba,Engineer,Junior,15279,Excel|Pandas|Python|Statistics,2026-02-11
+JOB0013,Vale do Paraiba,Operations Analyst,Senior,17553,Excel|Lean|Python,2026-02-11
+JOB0014,Sao Paulo,BI Analyst,Junior,12438,AWS|Docker|Power BI|Python|SAP,2026-03-16
+JOB0015,Campinas,Operations Analyst,Mid,7845,Docker|Power BI|SAP|Statistics,2026-02-19
+JOB0016,Campinas,Engineer,Junior,13063,AWS|Docker|Spark|Statistics,2026-01-18
+JOB0017,Campinas,Data Engineer,Mid,7292,AWS|Excel|Python|SQL|Spark,2026-02-06
+JOB0018,Vale do Paraiba,Operations Analyst,Senior,11837,SAP|SQL|Spark,2026-01-19
+JOB0019,Sao Paulo,Data Engineer,Junior,17686,Docker|PLC|SAP|Spark|Statistics,2026-02-27
+JOB0020,Vale do Paraiba,BI Analyst,Mid,13302,AWS|Pandas|Statistics,2026-01-12
+JOB0021,Vale do Paraiba,Operations Analyst,Senior,7923,Docker|Excel|Lean|SAP|SQL,2026-01-21
+JOB0022,Sao Paulo,Engineer,Senior,11102,AWS|Docker|Excel|SAP,2026-03-27
+JOB0023,Campinas,BI Analyst,Mid,13700,PLC|Power BI|Python,2026-01-01
+JOB0024,Vale do Paraiba,Data Engineer,Senior,3588,SAP|Statistics,2026-01-26
+JOB0025,Sao Paulo,Engineer,Mid,15913,Excel|Lean|SQL,2026-02-25
+JOB0026,Sao Paulo,Operations Analyst,Mid,16442,AWS|Docker|PLC|Pandas|SAP,2026-01-30
+JOB0027,Vale do Paraiba,Data Engineer,Junior,7893,Excel|Statistics,2026-03-04
+JOB0028,Campinas,Operations Analyst,Senior,5225,Power BI|Python|Spark|Statistics,2026-03-22
+JOB0029,Sao Paulo,BI Analyst,Senior,4801,AWS|Lean|SAP,2026-03-05
+JOB0030,Sao Paulo,Engineer,Senior,13838,AWS|Lean|Power BI|Python,2026-03-08
+JOB0031,Campinas,Data Engineer,Mid,6439,AWS|Docker|PLC|Python|SQL,2026-03-11
+JOB0032,Campinas,Data Engineer,Senior,8770,Excel|Lean|Pandas|Power BI|SAP,2026-01-05
+JOB0033,Campinas,Operations Analyst,Junior,9932,AWS|Lean|PLC|Pandas|Power BI,2026-03-28
+JOB0034,Vale do Paraiba,BI Analyst,Senior,4084,Lean|Pandas|Python|SAP|Statistics,2026-03-05
+JOB0035,Vale do Paraiba,Data Engineer,Mid,4131,AWS|PLC|Pandas,2026-03-25
+JOB0036,Sao Paulo,Engineer,Mid,7106,Docker|SAP,2026-01-17
+JOB0037,Vale do Paraiba,Engineer,Mid,7416,Power BI|Python|SQL|Statistics,2026-03-22
+JOB0038,Vale do Paraiba,BI Analyst,Mid,9066,AWS|Lean,2026-03-14
+JOB0039,Sao Paulo,Operations Analyst,Senior,11176,Power BI|SAP|SQL|Statistics,2026-02-11
+JOB0040,Sao Paulo,Engineer,Junior,16311,Excel|Pandas,2026-01-19
+JOB0041,Campinas,Operations Analyst,Junior,7221,Python|SAP|SQL,2026-02-04
+JOB0042,Vale do Paraiba,Engineer,Senior,14624,Power BI|SAP,2026-02-09
+JOB0043,Vale do Paraiba,Data Analyst,Junior,11928,Excel|SAP,2026-03-11
+JOB0044,Vale do Paraiba,Engineer,Mid,13431,Power BI|Statistics,2026-02-18
+JOB0045,Campinas,Engineer,Senior,13029,AWS|Python|SQL|Spark|Statistics,2026-01-22
+JOB0046,Campinas,Operations Analyst,Mid,12508,Excel|Power BI,2026-03-05
+JOB0047,Sao Paulo,Data Analyst,Senior,7043,SQL|Spark|Statistics,2026-03-12
+JOB0048,Sao Paulo,BI Analyst,Senior,16513,PLC|Power BI|SQL|Statistics,2026-01-23
+JOB0049,Vale do Paraiba,BI Analyst,Junior,12660,AWS|Pandas|SQL,2026-02-04
+JOB0050,Sao Paulo,Operations Analyst,Senior,7097,Docker|Power BI|SAP,2026-02-28
+JOB0051,Campinas,Data Analyst,Mid,3934,Docker|Lean|SAP|SQL,2026-03-12
+JOB0052,Campinas,Engineer,Senior,6140,Excel|Lean|PLC|SQL,2026-02-09
+JOB0053,Sao Paulo,BI Analyst,Senior,6349,Docker|Pandas|SAP|SQL|Spark,2026-02-20
+JOB0054,Campinas,Data Engineer,Mid,9259,AWS|Excel|PLC,2026-03-28
+JOB0055,Vale do Paraiba,Data Analyst,Mid,10909,PLC|Python|SQL,2026-02-02
+JOB0056,Vale do Paraiba,BI Analyst,Junior,15953,Excel|PLC|Pandas|SAP,2026-02-27
+JOB0057,Vale do Paraiba,Data Engineer,Junior,3996,SQL|Statistics,2026-02-14
+JOB0058,Campinas,Data Analyst,Mid,4379,Docker|Lean|Pandas|Python|Statistics,2026-01-23
+JOB0059,Campinas,BI Analyst,Senior,15409,AWS|Excel|Pandas|Power BI|SAP,2026-03-29
+JOB0060,Vale do Paraiba,Operations Analyst,Senior,9112,PLC|SQL|Spark,2026-01-12
+JOB0061,Campinas,Operations Analyst,Mid,7128,Docker|Lean|Spark,2026-01-28
+JOB0062,Sao Paulo,Engineer,Senior,16522,AWS|Lean|Python|SAP,2026-03-12
+JOB0063,Campinas,Engineer,Mid,7709,PLC|Pandas|Python|Spark,2026-02-13
+JOB0064,Vale do Paraiba,Operations Analyst,Senior,15776,Excel|Pandas|SAP|Spark,2026-03-30
+JOB0065,Sao Paulo,Data Analyst,Senior,12631,Lean|SAP|Statistics,2026-01-05
+JOB0066,Campinas,Data Engineer,Senior,12436,Docker|PLC|Pandas|Power BI|SQL,2026-02-06
+JOB0067,Campinas,Operations Analyst,Senior,7808,Docker|Excel|Lean|Pandas|SQL,2026-03-09
+JOB0068,Vale do Paraiba,Data Engineer,Junior,10124,Lean|Power BI|SAP|Spark,2026-02-09
+JOB0069,Campinas,Engineer,Senior,14385,Lean|SQL|Statistics,2026-03-12
+JOB0070,Sao Paulo,Engineer,Junior,17971,Excel|Python|Spark|Statistics,2026-02-04
+JOB0071,Sao Paulo,Engineer,Mid,16992,AWS|PLC|Python|SQL,2026-01-20
+JOB0072,Campinas,Data Analyst,Junior,13705,Docker|Lean|PLC,2026-01-13
+JOB0073,Campinas,Data Analyst,Junior,10368,AWS|Excel|Python,2026-01-18
+JOB0074,Vale do Paraiba,Operations Analyst,Mid,9492,PLC|Python|SQL,2026-02-13
+JOB0075,Sao Paulo,BI Analyst,Mid,13108,Docker|Lean|PLC|SQL,2026-03-13
+JOB0076,Vale do Paraiba,Operations Analyst,Senior,14605,Excel|PLC|Pandas|Python,2026-02-07
+JOB0077,Sao Paulo,Operations Analyst,Junior,14132,Excel|Power BI|Spark,2026-03-11
+JOB0078,Vale do Paraiba,Engineer,Junior,16852,Docker|Lean|Power BI|SAP,2026-01-12
+JOB0079,Sao Paulo,Data Engineer,Senior,15955,Docker|Power BI|Spark|Statistics,2026-02-14
+JOB0080,Sao Paulo,Engineer,Senior,9882,Pandas|Spark,2026-03-12
+JOB0081,Campinas,Operations Analyst,Senior,9363,Docker|Excel|Power BI|Spark,2026-02-28
+JOB0082,Vale do Paraiba,Data Analyst,Mid,5443,Docker|Excel|Lean|Python|Statistics,2026-01-23
+JOB0083,Campinas,Data Engineer,Senior,7394,AWS|Lean|Pandas|SQL|Spark,2026-02-16
+JOB0084,Vale do Paraiba,Engineer,Junior,8386,Docker|Excel|Pandas|SAP,2026-02-23
+JOB0085,Campinas,BI Analyst,Junior,4976,Lean|PLC|Pandas|Python|SAP,2026-02-03
+JOB0086,Vale do Paraiba,Engineer,Mid,13041,AWS|PLC|SQL|Statistics,2026-01-24
+JOB0087,Campinas,Operations Analyst,Junior,13572,AWS|Docker,2026-01-17
+JOB0088,Vale do Paraiba,Operations Analyst,Senior,5429,Docker|SAP|SQL|Spark|Statistics,2026-01-04
+JOB0089,Vale do Paraiba,Data Engineer,Senior,11880,AWS|Docker|Pandas|Power BI|SAP,2026-01-26
+JOB0090,Campinas,Data Analyst,Junior,16968,Excel|Lean|Pandas,2026-01-20
+JOB0091,Campinas,BI Analyst,Mid,9020,Power BI|Python|SAP,2026-02-11
+JOB0092,Sao Paulo,BI Analyst,Mid,17840,AWS|Docker|PLC,2026-01-12
+JOB0093,Sao Paulo,Data Engineer,Mid,17526,AWS|Pandas,2026-01-04
+JOB0094,Sao Paulo,Data Engineer,Mid,5575,Docker|Excel|Python|SQL|Spark,2026-02-14
+JOB0095,Sao Paulo,Engineer,Junior,15733,AWS|Lean|SAP|SQL|Spark,2026-02-25
+JOB0096,Vale do Paraiba,Engineer,Mid,11192,AWS|Lean|Python|SAP|Statistics,2026-01-08
+JOB0097,Sao Paulo,Data Analyst,Junior,11150,Docker|PLC|Python|Spark|Statistics,2026-01-09
+JOB0098,Vale do Paraiba,Data Engineer,Mid,10829,Lean|Pandas|Spark|Statistics,2026-03-28
+JOB0099,Campinas,Data Analyst,Mid,10867,Docker|Power BI|SQL,2026-01-09
+JOB0100,Sao Paulo,Operations Analyst,Senior,6308,AWS|Docker|Lean|Power BI|Statistics,2026-02-18
+JOB0101,Vale do Paraiba,Data Engineer,Mid,16747,Pandas|SQL,2026-02-12
+JOB0102,Vale do Paraiba,Data Engineer,Junior,3933,Excel|PLC|Power BI|SAP|SQL,2026-03-09
+JOB0103,Campinas,Data Engineer,Senior,11599,Excel|PLC|Pandas|Spark,2026-01-26
+JOB0104,Vale do Paraiba,BI Analyst,Junior,6151,Python|SQL,2026-01-28
+JOB0105,Vale do Paraiba,Data Engineer,Junior,14268,Docker|Excel|Pandas|SAP|Statistics,2026-02-10
+JOB0106,Sao Paulo,Operations Analyst,Junior,6729,AWS|SQL|Spark,2026-03-31
+JOB0107,Sao Paulo,Data Analyst,Senior,7292,Docker|Power BI|SQL|Spark|Statistics,2026-01-20
+JOB0108,Campinas,Operations Analyst,Senior,5687,AWS|Docker|Lean|SQL|Spark,2026-03-02
+JOB0109,Campinas,BI Analyst,Senior,10226,AWS|Lean|SAP|SQL|Statistics,2026-03-27
+JOB0110,Sao Paulo,Operations Analyst,Mid,16129,Docker|Pandas|Power BI|SQL|Statistics,2026-02-08
+JOB0111,Campinas,BI Analyst,Senior,10564,Excel|Pandas|Power BI|SAP,2026-03-03
+JOB0112,Campinas,BI Analyst,Junior,11086,Excel|Lean|SQL|Spark|Statistics,2026-01-21
+JOB0113,Vale do Paraiba,Data Engineer,Senior,8220,AWS|Excel|Pandas|SAP|Statistics,2026-01-29
+JOB0114,Sao Paulo,Operations Analyst,Junior,8264,AWS|PLC|Spark|Statistics,2026-01-13
+JOB0115,Campinas,Data Engineer,Mid,16836,AWS|Pandas|SQL|Spark,2026-02-21
+JOB0116,Campinas,Operations Analyst,Mid,5211,Docker|SAP,2026-02-25
+JOB0117,Campinas,Data Engineer,Senior,14624,PLC|Power BI|SAP|Spark|Statistics,2026-02-21
+JOB0118,Campinas,Data Analyst,Senior,7036,Docker|Excel|Power BI,2026-02-28
+JOB0119,Vale do Paraiba,Engineer,Senior,15314,Docker|Lean|SAP|Statistics,2026-02-05
+JOB0120,Vale do Paraiba,Engineer,Mid,15766,Docker|Pandas,2026-02-25
+JOB0121,Campinas,Engineer,Junior,16117,Lean|PLC|Pandas|Python|SAP,2026-02-17
+JOB0122,Sao Paulo,Engineer,Senior,9804,Docker|Spark,2026-03-11
+JOB0123,Sao Paulo,Engineer,Mid,7478,PLC|Pandas,2026-01-29
+JOB0124,Campinas,Data Engineer,Mid,5935,Excel|PLC|Python,2026-03-14
+JOB0125,Campinas,Operations Analyst,Junior,10033,Excel|Python,2026-03-02
+JOB0126,Campinas,Data Engineer,Mid,13518,Excel|SQL,2026-03-24
+JOB0127,Sao Paulo,Data Analyst,Mid,11004,PLC|Pandas|SAP|Spark,2026-01-17
+JOB0128,Sao Paulo,Data Engineer,Senior,11230,Docker|Pandas|Python|SAP|Statistics,2026-03-21
+JOB0129,Vale do Paraiba,Data Engineer,Senior,16655,Docker|PLC|Power BI|Python|Spark,2026-03-06
+JOB0130,Campinas,Data Analyst,Junior,15149,Lean|PLC|Power BI,2026-03-04
+JOB0131,Sao Paulo,BI Analyst,Mid,5661,Lean|Power BI|SQL|Statistics,2026-02-16
+JOB0132,Campinas,Data Engineer,Mid,15117,PLC|Pandas|SAP|SQL|Spark,2026-03-10
+JOB0133,Sao Paulo,BI Analyst,Senior,11343,PLC|SAP|SQL,2026-02-21
+JOB0134,Campinas,Operations Analyst,Mid,6252,Docker|Lean|PLC|Power BI|Python,2026-02-08
+JOB0135,Sao Paulo,Operations Analyst,Senior,15731,Docker|SAP|SQL,2026-02-26
+JOB0136,Vale do Paraiba,BI Analyst,Junior,8818,Spark|Statistics,2026-02-26
+JOB0137,Vale do Paraiba,BI Analyst,Senior,6220,Excel|Lean|PLC|Power BI|Spark,2026-03-16
+JOB0138,Vale do Paraiba,Operations Analyst,Junior,9115,Excel|PLC|Power BI,2026-02-18
+JOB0139,Vale do Paraiba,Engineer,Senior,14655,Excel|Lean|Pandas|Statistics,2026-01-18
+JOB0140,Campinas,BI Analyst,Junior,15454,AWS|Docker|Excel|PLC|SQL,2026-01-13
+JOB0141,Vale do Paraiba,Data Analyst,Junior,10719,AWS|Power BI,2026-02-06
+JOB0142,Vale do Paraiba,Engineer,Junior,7766,PLC|Power BI,2026-03-07
+JOB0143,Sao Paulo,Data Analyst,Mid,17737,Pandas|Power BI|Python|SAP,2026-01-20
+JOB0144,Vale do Paraiba,BI Analyst,Senior,15492,Power BI|SAP|Spark|Statistics,2026-02-28
+JOB0145,Vale do Paraiba,Operations Analyst,Junior,3614,AWS|Docker|Lean|SAP|Spark,2026-02-27
+JOB0146,Sao Paulo,Data Engineer,Junior,7353,Docker|PLC|Power BI|SQL|Statistics,2026-03-10
+JOB0147,Campinas,Engineer,Junior,14707,AWS|PLC|Pandas,2026-03-17
+JOB0148,Vale do Paraiba,Engineer,Junior,6170,Python|Spark|Statistics,2026-03-02
+JOB0149,Campinas,BI Analyst,Senior,10336,Docker|Excel,2026-02-18
+JOB0150,Vale do Paraiba,Data Analyst,Junior,10918,Docker|Excel|Pandas|SQL,2026-01-15
+JOB0151,Sao Paulo,Data Engineer,Junior,10094,Excel|Lean|SAP,2026-02-07
+JOB0152,Vale do Paraiba,BI Analyst,Junior,17435,AWS|Docker|PLC|Power BI|SAP,2026-02-15
+JOB0153,Sao Paulo,BI Analyst,Junior,4977,Docker|Excel|Statistics,2026-02-19
+JOB0154,Vale do Paraiba,BI Analyst,Senior,16915,Power BI|SAP,2026-02-11
+JOB0155,Sao Paulo,Operations Analyst,Senior,6318,PLC|SQL|Spark,2026-03-13
+JOB0156,Sao Paulo,Engineer,Mid,11590,Excel|SQL,2026-03-16
+JOB0157,Campinas,Data Analyst,Senior,11542,Power BI|SAP|Spark,2026-03-05
+JOB0158,Vale do Paraiba,Data Analyst,Mid,15594,PLC|Power BI,2026-01-22
+JOB0159,Sao Paulo,BI Analyst,Mid,14543,Docker|Lean|Power BI,2026-03-03
+JOB0160,Sao Paulo,Data Analyst,Mid,5433,Docker|Excel|Lean|PLC|Statistics,2026-03-22
+JOB0161,Campinas,Operations Analyst,Junior,4331,Lean|PLC|SAP|Spark,2026-02-21
+JOB0162,Campinas,Data Engineer,Senior,8242,Pandas|SAP|SQL,2026-01-02
+JOB0163,Vale do Paraiba,BI Analyst,Junior,17597,Excel|SAP,2026-02-08
+JOB0164,Vale do Paraiba,Data Engineer,Junior,3576,Python|Statistics,2026-03-09
+JOB0165,Campinas,Data Engineer,Mid,13798,AWS|Excel|Power BI,2026-01-29
+JOB0166,Sao Paulo,Operations Analyst,Junior,12105,Docker|Pandas|Python,2026-01-23
+JOB0167,Campinas,Operations Analyst,Junior,12576,Power BI|Python|SAP|SQL,2026-02-27
+JOB0168,Sao Paulo,Data Engineer,Mid,8117,Docker|Excel|SQL,2026-01-19
+JOB0169,Campinas,Data Engineer,Junior,14773,AWS|Power BI,2026-03-12

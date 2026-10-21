@@ -1,27 +1,43 @@
-> **Status de implementação #019: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# Projeto #019 — Parts Dispatch & Lead-Time EDA
 
-# Project #019 — Tempos de Despacho e Logística Inbound/Outbound
-## Parts Dispatch & Lead-Time EDA
+**Status:** estudo de caso EDA reproduzível com **dados completamente sintéticos**. Não há integração com sistemas operacionais, mercado financeiro, registros de segurança reais ou telemetria oficial de automobilismo.
 
-- **Categoria / Route:** `/projetos/eda/19` (`02 / 10`)
-- **Diretório GitHub:** `projetos/02-eda/019-parts-dispatch-lead-time-eda`
-- **Benchmark de Referência:** `19 Food Delivery Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, Seaborn, Matplotlib, Plotly, SQL`
-- **Fluxo de Engenharia (How It Flows):** `Dataset Bruto -> Distribuições -> Correlações -> Diagnóstico` (`Dataset -> Distributions -> Correlations -> Findings`)
+## Problema
+Auditar prazos de despacho e entrega de peças em rotas industriais.
 
----
+## Metodologia implementada
+Lead time total e p90 em horas, intervalo até despacho e pontualidade por SLA.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Identificação de outliers em rotas de entrega, janelas de coleta e impacto climático no frete.
+Tecnologias **efetivamente utilizadas**: Pandas e NumPy para validação/cálculo; SQLite por consultas SQL via `sqlite3` e `pandas.read_sql_query`; Seaborn + Matplotlib para visualização SVG; Plotly para relatório HTML interativo (o JavaScript do Plotly depende da CDN na página exportada). Notebook Jupyter executa o mesmo código da CLI.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Outlier detection in delivery routes, pickup windows, and weather impact on freight lead times.
+## Fonte de dados
+`analytics_eda/data/019.csv` — criado por gerador com seed fixa (`analytics_eda/generate.py`). 190 registros sintéticos. Esquema obrigatório: order_id, origin, route, mode, order_created_utc, dispatched_utc, delivered_utc, promised_utc, quantity. Duplicidades de chaves, campos nulos, negativos, não finitos ou incoerências específicas são rejeitados.
 
----
-
-## 3. Como Executar / How to Run
-
+## Como reproduzir
+A partir da raiz do repositório:
 ```bash
-python3 main.py
+pip install -r requirements-eda.txt
+python projetos/02-eda/019-parts-dispatch-lead-time-eda/main.py
+python projetos/02-eda/019-parts-dispatch-lead-time-eda/main.py --report-dir /tmp/eda-019
+python -m unittest discover -s tests -v
 ```
+Relatório HTML interativo em `interactive.html` e gráfico acessível `chart.svg`. Notebook: `analytics_eda/notebooks/019.ipynb`.
+
+## Saídas verificáveis (somente sintéticas)
+- `orders`: 190
+- `median_dispatch_hours`: 8.0
+- `p90_total_lead_hours`: 89.0
+- `on_time_pct`: 66.32
+- `by_route`: [{'route': 'SP-RJ', 'orders': 72}, {'route': 'SP-MG', 'orders': 61}, {'route': 'SP-PR', 'orders': 57}]
+
+## Riscos metodológicos
+Cronologia UTC validada, diferenças de datas calculadas com fusos coerentes.
+
+## Recomendação operacional
+Investigar gargalos por modal e rota antes de renegociar SLA.
+
+## Limites
+O estudo é executável, mas não demonstra impacto empresarial observado, dados externos, causalidade, machine learning treinado ou BI em Power BI. A página de resultados serve dados estáticos da execução auditada; a interface não está conectada a uma API em tempo real.
+
+## Navegação
+[Estudo publicado](https://gabriel-automotive-industrial-lab.vercel.app/cases/019/) · [Arquivos do projeto](https://github.com/xlDuarte/portfolio/tree/main/projetos/02-eda/019-parts-dispatch-lead-time-eda)

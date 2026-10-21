@@ -1,0 +1,24 @@
+{
+  "project": 19,
+  "name": "Parts dispatch and promised delivery",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 190,
+  "orders": 190,
+  "median_dispatch_hours": 8.0,
+  "p90_total_lead_hours": 89.0,
+  "on_time_pct": 66.32,
+  "by_route": [
+    {
+      "route": "SP-RJ",
+      "orders": 72
+    },
+    {
+      "route": "SP-MG",
+      "orders": 61
+    },
+    {
+      "route": "SP-PR",
+      "orders": 57
+    }
+  ]
+}

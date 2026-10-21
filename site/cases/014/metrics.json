@@ -1,0 +1,48 @@
+{
+  "project": 14,
+  "name": "Motorsport lap and sector benchmarks",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 180,
+  "laps": 180,
+  "best_lap_s": 81.972,
+  "median_lap_s": 85.13,
+  "per_car": [
+    {
+      "car": "P01",
+      "laps": 24,
+      "best_lap_s": 81.972,
+      "avg_lap_s": 85.10441666666667
+    },
+    {
+      "car": "P06",
+      "laps": 31,
+      "best_lap_s": 82.43499999999999,
+      "avg_lap_s": 85.05803225806451
+    },
+    {
+      "car": "P05",
+      "laps": 28,
+      "best_lap_s": 82.536,
+      "avg_lap_s": 84.77621428571429
+    },
+    {
+      "car": "P03",
+      "laps": 33,
+      "best_lap_s": 82.725,
+      "avg_lap_s": 85.09424242424242
+    },
+    {
+      "car": "P02",
+      "laps": 31,
+      "best_lap_s": 82.74799999999999,
+      "avg_lap_s": 85.25258064516129
+    },
+    {
+      "car": "P04",
+      "laps": 33,
+      "best_lap_s": 82.868,
+      "avg_lap_s": 84.90466666666666
+    }
+  ],
+  "interpretation": "Descriptive comparison only; unbalanced tyres/session/track conditions, no causal ranking."
+}

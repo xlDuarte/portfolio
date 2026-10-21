@@ -186,3 +186,17 @@
 **9 projetos específicos implementados e testados** com Pandas, NumPy, Matplotlib e notebooks Jupyter, além de 9 CSVs artificiais versionados, testes de esquema e relatórios SVG. Veja [`analytics_batch1/README.md`](analytics_batch1/README.md), [`tests/test_analytics_batch1.py`](tests/test_analytics_batch1.py) e as páginas `site/cases/001/` a `site/cases/009/`.
 
 Os resultados são **inteiramente sintéticos** e Power BI continua **pendente de PBIX/PBIP testado**. **Os projetos #011–#100 ainda não estão todos completos**. O objetivo de 100/100 permanece aberto.
+
+
+## Lote EDA #011–#020 (outubro de 2026)
+
+Dez projetos independentes com métricas específicas, CSVs sintéticos versionados, Pandas/NumPy, consultas SQL SQLite, Seaborn/Matplotlib (SVG), Plotly (HTML), notebooks Jupyter e testes negativos. Catálogo online: `/cases/eda/`.
+
+```bash
+pip install -r requirements-case-studies.txt -r requirements-eda.txt
+python -m analytics_eda.generate
+python -m analytics_eda.engine 11 --report-dir /tmp/fleet-eda
+python -m unittest discover -s tests -v
+```
+
+**Limites:** dados sintéticos, sem inferência causal/observação empresarial real. Plotly HTML usa CDN para interatividade.

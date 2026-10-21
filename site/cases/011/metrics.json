@@ -1,0 +1,46 @@
+{
+  "project": 11,
+  "name": "Global fleet electrification by region",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 32,
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "regions": 4,
+  "latest_year": 2025,
+  "latest_ev_share_pct": 11.315,
+  "prior_ev_share_pct": 11.323,
+  "per_region": [
+    {
+      "region": "Asia",
+      "years": 8,
+      "last_year": 2025,
+      "reported_ev_observations": 26810730
+    },
+    {
+      "region": "Europe",
+      "years": 8,
+      "last_year": 2025,
+      "reported_ev_observations": 11785421
+    },
+    {
+      "region": "LATAM",
+      "years": 8,
+      "last_year": 2025,
+      "reported_ev_observations": 6306194
+    },
+    {
+      "region": "North America",
+      "years": 8,
+      "last_year": 2025,
+      "reported_ev_observations": 16245642
+    }
+  ]
+}

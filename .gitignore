@@ -9,3 +9,6 @@ node_modules/
 .DS_Store
 
 analytics_batch1/example_output/
+
+# Regenerable synthetic EDA outputs
+analytics_eda/outputs/
