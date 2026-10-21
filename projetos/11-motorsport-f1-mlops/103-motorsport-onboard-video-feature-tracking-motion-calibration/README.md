@@ -1,27 +1,31 @@
-> **Estado auditado #103: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+# 103 — Motorsport Onboard Video: OpenCV Feature Tracking
 
-# Project #103 — Visão Computacional Onboard (F1) — Rastreamento em Frenagem e Curvas
-## Motorsport Onboard Video Feature Tracking & Motion Calibration
+**Status:** validated synthetic optical-flow benchmark; not validation against real F1 footage.
 
-- **Categoria / Route:** `/projetos/motorsport-f1/103` (`11 / 11`)
-- **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/103-motorsport-onboard-video-feature-tracking-motion-calibration`
-- **Benchmark de Referência:** `F1 Skill 03 — Computer Vision (Motorsport Video Analysis)`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
-- **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
+## Problem and real implementation
 
----
+Measure apparent onboard-camera motion in grayscale frame pairs rather than
+inventing motion vectors. `motorsport/optical_flow.py` builds 220 reproducible
+trackside landmarks, generates frames with a known translation, detects corners
+with `cv2.goodFeaturesToTrack` and tracks them with
+`cv2.calcOpticalFlowPyrLK` (Lucas–Kanade). It applies median/MAD filtering,
+converts displacement to small-angle estimates using focal length, and
+reports endpoint error against the known simulation transform.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Rastreamento de feições visuais (OpenCV Optical Flow) em câmera onboard para analisar movimento aparente do carro em frenagens e curvas, documentando calibração e limitações físicas.
+## Run
 
-## 2. Industrial & Motorsport Context (EN-US)
-OpenCV optical-flow feature tracking on onboard footage to analyze apparent vehicle motion during braking and cornering, documenting calibration constraints and measurement limitations.
+Install `opencv-python-headless>=4.8,<5`, `numpy>=1.24,<3` with
+`requirements-case-studies.txt`, then run
+`python projetos/11-motorsport-f1-mlops/103-motorsport-onboard-video-feature-tracking-motion-calibration/main.py`
 
----
+Run regression tests: `python -m unittest discover -s tests -v`.
 
-## 3. Como Executar / How to Run
+## Limitations
 
-```bash
-python3 main.py
-```
+Apparent optical-flow pitch/yaw is not actual vehicle IMU yaw or calibrated
+camera rotational movement. Motion parallax, depth variations, dynamic
+objects, lens distortion, vibration, rolling shutter, and track geometry
+are not addressed. No external footage or inference over real race video is
+present. A real footage pipeline needs appropriate recording permissions,
+calibration, frame timestamps, stabilization, and independently reviewed
+reference labels.
