@@ -1,0 +1,35 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 1,
+  "operators": 180,
+  "training_hours_total": 2691.0,
+  "mean_pre": 58.44,
+  "mean_post": 65.62,
+  "paired_gain_pp": 7.17,
+  "bootstrap_95pct_ci_pp": [
+    6.06,
+    8.49
+  ],
+  "quality_gain_pp": 1.33,
+  "per_shift": [
+    {
+      "shift": "A",
+      "operators": 51,
+      "mean_gain": 9.667,
+      "quality_gain_pp": 1.647
+    },
+    {
+      "shift": "B",
+      "operators": 61,
+      "mean_gain": 6.59,
+      "quality_gain_pp": 1.32
+    },
+    {
+      "shift": "C",
+      "operators": 68,
+      "mean_gain": 5.824,
+      "quality_gain_pp": 1.091
+    }
+  ],
+  "interpretation": "Paired descriptive improvement on synthetic operators. NOT causal training impact."
+}

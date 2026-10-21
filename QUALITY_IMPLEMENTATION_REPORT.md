@@ -37,3 +37,12 @@
 **Conclusão:** avanço substancial e auditável, **não 100/100**. Falhas e limitações não são eliminadas por ajuste arbitrário de score.
 
 - #021: `XGBRegressor` adicional, efetivamente treinado e avaliado em holdout (dados sintéticos), comparado a baseline; não afirma uso de TensorFlow ou Power BI.
+
+
+## Lote incremental adicional #001–#009 — status posterior
+
+- Nove simuladores genéricos substituídos por análises específicas e testadas.
+- Novos artefatos: `analytics_batch1/`, nove notebooks, nove arquivos de dados, nove páginas estáticas com SVG, nove novos README e testes de regressão.
+- Os 111 scripts passaram em teste de execução básica após as mudanças. Todos os 9 notebooks executaram localmente via `nbclient`.
+- **Power BI não testado** e não está implementado nesses estudos; situação apresentada de forma explícita.
+- Relatório detalhado: `BATCH_001_009_REPORT.md`.

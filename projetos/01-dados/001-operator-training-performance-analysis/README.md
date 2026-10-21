@@ -1,27 +1,44 @@
-> **Status de implementação #001: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
-
 # Project #001 — Desempenho de Treinamento e Operadores
 ## Operator & Training Performance Analysis
 
-- **Categoria / Route:** `/projetos/dados/1` (`01 / 10`)
-- **Diretório GitHub:** `projetos/01-dados/001-operator-training-performance-analysis`
-- **Benchmark de Referência:** `01 Student Performance Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, NumPy, Matplotlib, Jupyter, Power BI`
-- **Fluxo de Engenharia (How It Flows):** `Ingestão SAP/CSV -> Limpeza ETL -> Exploração -> Insights KPI` (`Load Data -> Clean ETL -> Explore -> KPI Insights`)
+**Status:** estudo de caso executável sobre **dados 100% SINTÉTICOS**. Não é um projeto implantado, dado de SAP real, medição de valor realizado ou resultado empresarial mensurado.
 
----
+## Objetivo e solução
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Correlação entre horas de capacitação técnica, curva de aprendizado e produtividade em células de manufatura.
+Operadores: análise pareada de aprendizagem e qualidade, CI bootstrap. Implementação específica no módulo compartilhado [`analytics_batch1/engine.py`](../../../analytics_batch1/engine.py) (função do projeto #001); não reutiliza o simulador genérico de OEE.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Correlation between technical training hours, learning curve, and shop-floor cell productivity.
+## Stack efetivamente executada
 
----
+- **Python + Pandas + NumPy:** leitura CSV com esquema validado, transformação e métricas de negócio.
+- **Matplotlib:** geração de gráfico SVG sob comando `--report-dir` (e SVG incluído no site).
+- **Jupyter Notebook:** [notebook executável](../../../analytics_batch1/notebooks/001.ipynb), chama o mesmo motor validado.
+- **Power BI:** **NÃO implementado como PBIX/PBIP testado**. Os arquivos `validated_data.csv` do relatório e as medidas descritas são apenas fontes preparatórias. Falta construir e validar o relatório no Power BI Desktop.
 
-## 3. Como Executar / How to Run
+## Dados e fontes
+
+O dataset versionado [`analytics_batch1/data/001.csv`](../../../analytics_batch1/data/001.csv) foi gerado deterministicamente com `numpy.random.default_rng(20261021)`. Representa um cenário artificial, sem dados pessoais/industriais reais. O esquema é verificado (chaves, tipos, faltantes, limites e invariantes específicas). Execute `python -m analytics_batch1.generate` para regenerar.
+
+## Como executar
+
+A partir da raiz do repositório:
 
 ```bash
-python3 main.py
+pip install -r requirements-case-studies.txt
+python projetos/01-dados/001-operator-training-performance-analysis/main.py
+python projetos/01-dados/001-operator-training-performance-analysis/main.py --report-dir reports/001
+python -m unittest discover -s tests -v
 ```
+
+Para CSV próprio compatível:
+
+```bash
+python projetos/01-dados/001-operator-training-performance-analysis/main.py --source caminho/dados.csv
+```
+
+## Resultados verificáveis e limites
+
+As métricas são **calculadas pelo código** sobre observações sintéticas; todos os números se referem apenas aos dados fictícios. Sem ensaios controlados ou dados de campo, **não** é possível inferir causalidade ou ganho econômico real. Metodologia e testes: [`analytics_batch1/README.md`](../../../analytics_batch1/README.md). Exibição de demonstração: [página #001](../../../site/cases/001/index.html).
+
+## Próximo passo de produção
+
+Conectar dados de origem autorizados, conferir regras com área responsável, versionar as evidências de refresh, criar relatório Power BI verificável e executar homologação em contexto industrial.

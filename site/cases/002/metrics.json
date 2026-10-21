@@ -1,0 +1,120 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 2,
+  "orders": 320,
+  "net_revenue_brl": 1907525.67,
+  "gross_profit_brl": 617714.59,
+  "gross_margin_pct": 32.38,
+  "returned_units": 278,
+  "sku_abc": [
+    {
+      "sku": "PART-11",
+      "revenue": 224704.83,
+      "units": 628,
+      "gross_profit": 71071.04,
+      "ending_stock": 1641,
+      "share_cumulative": 0.118,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-12",
+      "revenue": 178976.7,
+      "units": 605,
+      "gross_profit": 48148.04,
+      "ending_stock": 1654,
+      "share_cumulative": 0.212,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-10",
+      "revenue": 176448.33,
+      "units": 519,
+      "gross_profit": 51256.95,
+      "ending_stock": 2007,
+      "share_cumulative": 0.304,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-04",
+      "revenue": 175791.7,
+      "units": 563,
+      "gross_profit": 53218.79,
+      "ending_stock": 1492,
+      "share_cumulative": 0.396,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-09",
+      "revenue": 175224.53,
+      "units": 552,
+      "gross_profit": 63314.14,
+      "ending_stock": 2287,
+      "share_cumulative": 0.488,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-02",
+      "revenue": 165903.91,
+      "units": 532,
+      "gross_profit": 55419.64,
+      "ending_stock": 1662,
+      "share_cumulative": 0.575,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-07",
+      "revenue": 162039.62,
+      "units": 554,
+      "gross_profit": 55307.36,
+      "ending_stock": 1737,
+      "share_cumulative": 0.66,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-06",
+      "revenue": 153999.52,
+      "units": 545,
+      "gross_profit": 56210.46,
+      "ending_stock": 1486,
+      "share_cumulative": 0.741,
+      "abc": "A"
+    },
+    {
+      "sku": "PART-03",
+      "revenue": 152004.09,
+      "units": 368,
+      "gross_profit": 48400.9,
+      "ending_stock": 1770,
+      "share_cumulative": 0.82,
+      "abc": "B"
+    },
+    {
+      "sku": "PART-05",
+      "revenue": 141946.33,
+      "units": 489,
+      "gross_profit": 47463.92,
+      "ending_stock": 1885,
+      "share_cumulative": 0.895,
+      "abc": "B"
+    },
+    {
+      "sku": "PART-01",
+      "revenue": 123725.87,
+      "units": 406,
+      "gross_profit": 41514.05,
+      "ending_stock": 1794,
+      "share_cumulative": 0.96,
+      "abc": "C"
+    },
+    {
+      "sku": "PART-08",
+      "revenue": 76760.24,
+      "units": 265,
+      "gross_profit": 26389.3,
+      "ending_stock": 913,
+      "share_cumulative": 1.0,
+      "abc": "C"
+    }
+  ],
+  "interpretation": "Synthetic transaction and inventory analytics; no ERP/SAP connection."
+}

@@ -1,0 +1,47 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 5,
+  "sessions": 300,
+  "active_operators": 89,
+  "article_views": 1334,
+  "self_service_session_pct": 42.33,
+  "support_ticket_sessions": 106,
+  "by_topic": [
+    {
+      "topic": "Data",
+      "sessions": 61,
+      "self_service_pct": 0.4262,
+      "feedback_mean": 3.0656,
+      "views": 242
+    },
+    {
+      "topic": "Maintenance",
+      "sessions": 58,
+      "self_service_pct": 0.3621,
+      "feedback_mean": 3.1897,
+      "views": 268
+    },
+    {
+      "topic": "PLC",
+      "sessions": 59,
+      "self_service_pct": 0.4576,
+      "feedback_mean": 2.678,
+      "views": 256
+    },
+    {
+      "topic": "Quality",
+      "sessions": 65,
+      "self_service_pct": 0.3846,
+      "feedback_mean": 3.4462,
+      "views": 280
+    },
+    {
+      "topic": "Safety",
+      "sessions": 57,
+      "self_service_pct": 0.4912,
+      "feedback_mean": 3.1579,
+      "views": 288
+    }
+  ],
+  "interpretation": "Self-service correlation in synthetic portal data, NOT measured helpdesk ticket reduction."
+}

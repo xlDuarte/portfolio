@@ -1,52 +1,30 @@
-# Rastreabilidade real de tecnologias — 111 projetos
+# Evidência tecnológica e lacunas restantes — atualizado após lote #001–#009
 
-**Estado:** branch de revisão, evidência derivada dos scripts executados e do código de `case_studies/`. **Não certifica habilidades externas ao repositório.**
+**Critérios:** uma stack só é "implementada" quando o código a invoca em teste reproduzível; aparecer em README, notebook ou arquivo de dependência isolado não prova uso. Todos os dados deste lote são sintéticos e não demonstram generalização corporativa. Este registro complementa `TECHNOLOGY_GAP_MATRIX.csv` (111 linhas).
 
-Os 111 `main.py` da versão analisada não importam diretamente bibliotecas externas. Cinco são wrappers de estudos analíticos reais, por intermédio de `case_studies`. Um deles, #021, agora executa **XGBRegressor** real além de Ridge. Os demais 106 scripts dependem essencialmente da biblioteca-padrão; 11 são simuladores especializados de Motorsport.
+## Mudanças efetivamente executadas no lote 1
 
-## Presença declarada versus execução demonstrada
+- **9 scripts originais** (#001–#009) substituídos por análises específicas; nenhum reutiliza o antigo simulador de telemetria.
+- **Pandas e NumPy:** utilizados nas nove funções da `analytics_batch1/engine.py`.
+- **Matplotlib:** 9 SVG calculados a partir dos CSVs e funções reais, sem gráficos de template inventados.
+- **Jupyter:** 9 `.ipynb` reproduzíveis que chamam as funções implementadas; a existência do notebook não comprova execução em Power BI.
+- **Power BI:** **zero relatórios PBIX/PBIP homologados**. Arquivo `analytics_batch1/POWER_BI_SPEC.md` registra o trabalho pendente.
+- **SQL/Scikit-learn/XGBoost:** permanecem implementados nos estudos analíticos prévios do pacote; não foram adicionados artificialmente aos nove novos estudos.
+- **OpenCV:** implementado no projeto Motorsport #103 em `motorsport/optical_flow.py`, com testes de tracking e frames sintéticos.
 
-| Tecnologia | Projetos com menção na stack | Projetos com uso real verificado neste pacote | Conclusão |
-|---|---:|---:|---|
-| Pandas | 56 | 5 | Executada apenas no(s) estudo(s) enumerado(s) na matriz |
-| Scikit-learn | 47 | 2 | Executada apenas no(s) estudo(s) enumerado(s) na matriz |
-| Power BI | 28 | 0 | Não comprovada / não implementada |
-| XGBoost | 20 | 1 | Executada apenas no(s) estudo(s) enumerado(s) na matriz |
-| TensorFlow | 11 | 0 | Não comprovada / não implementada |
-| SQL | 19 | 2 | Executada apenas no(s) estudo(s) enumerado(s) na matriz |
-| OpenCV | 11 | 0 | Não comprovada / não implementada |
-| PyTorch | 11 | 0 | Não comprovada / não implementada |
-| NumPy | 29 | 2 | Executada apenas no(s) estudo(s) enumerado(s) na matriz |
-| Matplotlib | 37 | 0 | Não comprovada / não implementada |
-| Plotly | 20 | 0 | Não comprovada / não implementada |
-| FastAPI | 11 | 0 | Não comprovada / não implementada |
-| MLflow | 1 | 0 | Não comprovada / não implementada |
-| SHAP | 0 | 0 | Não comprovada / não implementada |
-| SMOTE | 1 | 0 | Não comprovada / não implementada |
-| Seaborn | 10 | 0 | Não comprovada / não implementada |
-| LSTM | 1 | 0 | Não comprovada / não implementada |
-| Streamlit | 20 | 0 | Não comprovada / não implementada |
-| DAX | 9 | 0 | Não comprovada / não implementada |
-| Jupyter | 9 | 0 | Não comprovada / não implementada |
-| Docker | 11 | 0 | Não comprovada / não implementada |
+## Classificação individual atual — derive sempre da matriz CSV
 
-**Atenção:** Contagens de menções dependem da expressão de stack individual; nomes citados apenas em seções descritivas não entram na contagem. Tecnologia declarada não é prova de uso. Os CSVs sintéticos são demonstrativos, sem ROI corporativo observado.
-
-## Matriz individual
-
-A matriz completa está em [`TECHNOLOGY_GAP_MATRIX.csv`](TECHNOLOGY_GAP_MATRIX.csv).
-
-| Nº | Projeto | Estado | Implementação comprovada |
+| Nº | Projeto | Status | Evidência |
 |---|---|---|---|
-| 001 | Desempenho de Treinamento e Operadores | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 002 | Análise de Giro e Vendas de Reposição (Aftermarket) | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 003 | Catálogo de Documentação Técnica e Telemetria | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 004 | Espectro Acústico e Vibração Veicular (NVH) | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 005 | Engajamento em Trilhas de Capacitação Industrial | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 006 | Performance de Portal B2B e E-Procurement | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 007 | Comportamento de Requisições e Compras (OEM/Tier-1) | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 008 | Consumo de Utilidades e Operações de Turno | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 009 | Avaliação de Ativos Industriais e Imobilizado (CAPEX) | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
+| 001 | Desempenho de Treinamento e Operadores | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 002 | Análise de Giro e Vendas de Reposição (Aftermarket) | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 003 | Catálogo de Documentação Técnica e Telemetria | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 004 | Espectro Acústico e Vibração Veicular (NVH) | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 005 | Engajamento em Trilhas de Capacitação Industrial | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 006 | Performance de Portal B2B e E-Procurement | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 007 | Comportamento de Requisições e Compras (OEM/Tier-1) | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 008 | Consumo de Utilidades e Operações de Turno | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
+| 009 | Avaliação de Ativos Industriais e Imobilizado (CAPEX) | IMPLEMENTED ANALYTICS / SYNTHETIC DATA / POWER BI PENDING | Pandas, NumPy, Matplotlib, Jupyter; synthetic reproducible EDA |
 | 010 | Supply Chain Disruption Impact Analysis | IMPLEMENTED WITH SYNTHETIC DATA | Pandas, SQL (SQLite) |
 | 011 | Demografia de Frota Global e Eletrificação | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 012 | Clima Organizacional, Segurança e Ergonomia Fabril | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
@@ -140,7 +118,7 @@ A matriz completa está em [`TECHNOLOGY_GAP_MATRIX.csv`](TECHNOLOGY_GAP_MATRIX.c
 | 100 | Plataforma Corporativa End-to-End de Business Intelligence | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 101 | Estratégia Preditiva de Corrida (F1) & Simulador de Janela de Pit-Stop | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
 | 102 | Estimação de Estado em Dinâmica Veicular com Filtro de Kalman Estendido (EKF) | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
-| 103 | Visão Computacional Onboard (F1) — Rastreamento em Frenagem e Curvas | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
+| 103 | Visão Computacional Onboard (F1) — Rastreamento em Frenagem e Curvas | IMPLEMENTED COMPUTER VISION / SYNTHETIC DATA | OpenCV Lucas–Kanade, NumPy; synthetic frames |
 | 104 | Detecção de Anomalias em Vibração Mecânica com Rede LSTM vs. Baseline | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
 | 105 | Inspeção Radiográfica Industrial (Raio-X NDT) com CNN & Grad-CAM | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
 | 106 | Pipeline MLOps End-to-End com MLflow, Docker & Deploy FastAPI | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
@@ -149,15 +127,3 @@ A matriz completa está em [`TECHNOLOGY_GAP_MATRIX.csv`](TECHNOLOGY_GAP_MATRIX.c
 | 109 | Motor de Replay de Corrida F1 & Telemetria GPS em Tempo Real (Construído do Zero) | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
 | 110 | Suíte Completa de Engenharia de Performance em Motorsport (Pneus, FLIR, Setup, HH Timing & Laptime Sim) | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
 | 111 | F1 Predictive Intelligence Platform (F1-PIP) | PARTIAL DOMAIN SIMULATOR | Python stdlib; stand-alone motorsport simulation |
-
-## Critério para classificar um projeto como COMPLETO
-
-1. Tecnologia listada executada no caminho principal ou documentada como componente opcional testado.
-2. Dataset com proveniência, tipagem e qualidade; splits adequados e baseline.
-3. Métricas produzidas pelo código; relatório de avaliação reproduzível e sem vazamento.
-4. Testes automatizados positivos/negativos e E2E das páginas e links.
-5. Caso de BI: arquivo de Power BI (`.pbip`/`.pbix`) aberto e validado no Power BI Desktop, medidas DAX auditadas.
-6. Caso de TensorFlow: dependência instalada, treino/inferência realmente executados com dataset do problema e métrica de generalização.
-7. Dados sintéticos claramente separados de resultados externos; qualquer impacto em produção deve ter evidência verificável.
-
-**Nenhuma nota 100/100 é apropriada antes de todos os critérios relevantes serem demonstrados.**

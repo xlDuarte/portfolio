@@ -179,3 +179,10 @@
   - **[#108 — Explicabilidade de Modelos (SHAP) & Eventos Raros com SMOTE](./projetos/11-motorsport-f1-mlops/108-explainable-ai-shap-imbalanced-fault-risk-modeling-with-smote/)** (*Explainable AI (SHAP) & Imbalanced Fault/Risk Modeling with SMOTE* | Ref: `Data Mavericks Int 01/02/05 — Explainable AI (SHAP) & Imbalanced SMOTE`)
   - **[#109 — Motor de Replay de Corrida F1 & Telemetria GPS em Tempo Real (Construído do Zero)](./projetos/11-motorsport-f1-mlops/109-f1-telemetry-race-replay-live-gps-track-position-engine-built-from-scratch/)** (*F1 Telemetry Race Replay & Live GPS Track Position Engine (Built from Scratch)* | Ref: `Flagship #109 — Ground-Up 2D/3D Race Replay, Live Timing Tower & Delta Engine`)
   - **[#110 — Suíte Completa de Engenharia de Performance em Motorsport (Pneus, FLIR, Setup, HH Timing & Laptime Sim)](./projetos/11-motorsport-f1-mlops/110-complete-motorsport-performance-engineering-suite-tire-physics-flir-setup-hh-timing-laptime-sim/)** (*Complete Motorsport Performance Engineering Suite (Tire Physics, FLIR, Setup, HH Timing & Laptime Sim)* | Ref: `Flagship #110 — Full 5-Day Motorsport Performance Engineering Seminar Suite (Porsche Cup / WEC)`)
+
+
+## Auditoria incremental — lote Data Analysis #001–#009
+
+**9 projetos específicos implementados e testados** com Pandas, NumPy, Matplotlib e notebooks Jupyter, além de 9 CSVs artificiais versionados, testes de esquema e relatórios SVG. Veja [`analytics_batch1/README.md`](analytics_batch1/README.md), [`tests/test_analytics_batch1.py`](tests/test_analytics_batch1.py) e as páginas `site/cases/001/` a `site/cases/009/`.
+
+Os resultados são **inteiramente sintéticos** e Power BI continua **pendente de PBIX/PBIP testado**. **Os projetos #011–#100 ainda não estão todos completos**. O objetivo de 100/100 permanece aberto.

@@ -1,0 +1,33 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 8,
+  "readings": 270,
+  "total_kwh": 190439.56,
+  "units": 72956,
+  "weighted_kwh_per_unit": 2.6103,
+  "total_cost_brl": 155108.71,
+  "by_shift": [
+    {
+      "shift": "A",
+      "kwh": 63532.89,
+      "units": 25176,
+      "cost_brl": 47649.6675,
+      "kwh_per_unit": 2.5235
+    },
+    {
+      "shift": "B",
+      "kwh": 65511.48,
+      "units": 25386,
+      "cost_brl": 49133.61,
+      "kwh_per_unit": 2.5806
+    },
+    {
+      "shift": "C",
+      "kwh": 61395.19,
+      "units": 22394,
+      "cost_brl": 58325.4305,
+      "kwh_per_unit": 2.7416
+    }
+  ],
+  "interpretation": "Intensity denominator accounts for units; compare product mix before attributing causes."
+}

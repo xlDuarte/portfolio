@@ -1,0 +1,42 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 7,
+  "purchase_orders": 340,
+  "customers": 12,
+  "repeat_customer_pct": 100.0,
+  "total_spend_brl": 22208118.18,
+  "supplier_hhi": 0.2511,
+  "top_customers": [
+    {
+      "customer": "OEM-00",
+      "orders": 41,
+      "spend": 3186328.25
+    },
+    {
+      "customer": "OEM-08",
+      "orders": 31,
+      "spend": 2208545.06
+    },
+    {
+      "customer": "OEM-06",
+      "orders": 29,
+      "spend": 2193088.63
+    },
+    {
+      "customer": "OEM-01",
+      "orders": 37,
+      "spend": 1950007.97
+    },
+    {
+      "customer": "OEM-05",
+      "orders": 29,
+      "spend": 1867945.8
+    }
+  ],
+  "by_tier": {
+    "OEM": 7156660.48,
+    "Tier-1": 7213007.26,
+    "Tier-2": 7838450.44
+  },
+  "interpretation": "Synthetic purchase concentration; HHI based on spend shares, not market share."
+}
