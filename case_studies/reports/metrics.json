@@ -1,0 +1,101 @@
+{
+  "oee": {
+    "case": "OEE production reliability",
+    "dataset": "synthetic",
+    "records": 240,
+    "total_planned_hours": 1920.0,
+    "oee_weighted_pct": 77.46,
+    "lines": [
+      {
+        "line": "LINE-A",
+        "planned_min": 57600.0,
+        "oee_weighted": 0.77569,
+        "mean_unweighted_oee": 0.77569,
+        "scrap_units": 2463.0
+      },
+      {
+        "line": "LINE-B",
+        "planned_min": 57600.0,
+        "oee_weighted": 0.7736,
+        "mean_unweighted_oee": 0.7736,
+        "scrap_units": 2609.0
+      }
+    ],
+    "decision": "Investigate excess downtime and defects by line before setting improvement targets."
+  },
+  "supply": {
+    "case": "Supply chain OTIF",
+    "dataset": "synthetic",
+    "records": 420,
+    "otif_pct": 40.71,
+    "on_time_pct": 48.33,
+    "shortage_exposure_brl": 523094.0,
+    "late_mean_days": 1.36,
+    "by_carrier": [
+      {
+        "carrier": "B",
+        "orders": 140,
+        "otif_pct": 25.71,
+        "shortage_brl": 268198.0
+      },
+      {
+        "carrier": "C",
+        "orders": 140,
+        "otif_pct": 46.43,
+        "shortage_brl": 121815.0
+      },
+      {
+        "carrier": "A",
+        "orders": 140,
+        "otif_pct": 50.0,
+        "shortage_brl": 133081.0
+      }
+    ],
+    "decision": "Segment late and partial deliveries by carrier and material to prioritize supplier reviews."
+  },
+  "capex": {
+    "case": "CAPEX regression",
+    "dataset": "synthetic",
+    "rows_train": 288,
+    "rows_test": 72,
+    "features": [
+      "area_m2",
+      "robots",
+      "utilities_complexity"
+    ],
+    "split": "80/20 by project_id (synthetic index; not chronological)",
+    "mae_brl": 75359.6,
+    "rmse_brl": 93726.69,
+    "baseline_mae_brl": 405962.23,
+    "better_than_baseline": true,
+    "decision": "Compare predicted cost range against quotes; validate on real projects before procurement use."
+  },
+  "churn": {
+    "case": "B2B churn classification",
+    "dataset": "synthetic",
+    "rows_train": 384,
+    "rows_test": 96,
+    "positive_rate_train": 0.294,
+    "f1": 0.545,
+    "precision": 0.632,
+    "recall": 0.48,
+    "roc_auc": 0.812,
+    "average_precision": 0.665,
+    "brier": 0.1443,
+    "baseline_brier": 0.1937,
+    "decision": "Use calibrated churn risk for human-reviewed retention interventions, never automatic denial."
+  },
+  "forecast": {
+    "case": "Daily demand forecasting",
+    "dataset": "synthetic",
+    "rolling_test_days": 110,
+    "training_min_days": 150,
+    "method": "7-day seasonal naive, strictly past only",
+    "baseline": "last-observation persistence",
+    "mae_units": 10.27,
+    "baseline_mae_units": 12.72,
+    "wape_pct": 7.22,
+    "better_than_baseline": true,
+    "decision": "Apply rolling-origin assessment and compare inventory decisions against safety stock before deployment."
+  }
+}

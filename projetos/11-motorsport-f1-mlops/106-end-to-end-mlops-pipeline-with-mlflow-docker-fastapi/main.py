@@ -19,9 +19,9 @@ def run_mlops_pipeline_lifecycle():
             experiments.append({"lr": lr, "max_depth": depth, "val_f1": round(val_f1, 4)})
     best_run = max(experiments, key=lambda x: x["val_f1"])
     return {
-        "mlflow_runs_logged": len(experiments),
+        "simulated_experiments": len(experiments),
         "champion_model": best_run,
-        "registry_stage": "Production",
+        "registry_status": "NOT CONNECTED — SIMULATED",
         "fastapi_healthcheck": "HTTP 200 OK (/predict latency: 8.4 ms)"
     }
 

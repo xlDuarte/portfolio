@@ -1,25 +1,16 @@
-# Project #021 — Estimativa de CAPEX para Instalações Industriais
-## Industrial Facility CAPEX Valuation
+# Project #021 — Industrial Facility Capex Valuation
 
-- **Categoria / Route:** `/projetos/regression/21` (`03 / 10`)
-- **Diretório GitHub:** `projetos/03-regression/021-industrial-facility-capex-valuation`
-- **Benchmark de Referência:** `21 House Price Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Eng. Atributos -> Treinamento -> Avaliação R²/MAE -> Predição` (`Features -> Train -> Evaluate -> Predict`)
+**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
 
----
+**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Regressão XGBoost para estimar investimento de implantação fabril com base em capacidade e utilidades.
-
-## 2. Industrial & Motorsport Context (EN-US)
-XGBoost regression estimating plant deployment CAPEX from capacity and utility specs.
-
----
-
-## 3. Como Executar / How to Run
-
+**Reprodução:**
 ```bash
-python3 main.py
+python -m pip install -r requirements-case-studies.txt
+python projetos/03-regression/021-industrial-facility-capex-valuation/main.py
+python -m unittest discover -s tests -v
 ```
+
+**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.
+
+**XGBoost:** `main.py` treina também um `XGBRegressor` verdadeiro, avalia MAE/RMSE em holdout e compara um baseline, usando [`case_studies/xgboost_capex.py`](../../../case_studies/xgboost_capex.py). Não há afirmação de generalização externa.

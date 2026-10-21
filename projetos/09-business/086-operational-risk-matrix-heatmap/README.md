@@ -1,25 +1,14 @@
-# Project #086 — Matriz de Risco e Heatmap Operacional (Sistema Prontos)
-## Operational Risk Matrix & Heatmap
+# Project #086 — Operational Risk Matrix Heatmap
 
-- **Categoria / Route:** `/projetos/business/86` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/086-operational-risk-matrix-heatmap`
-- **Benchmark de Referência:** `86 Financial Risk Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
 
----
+**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Mapeamento crítico de probabilidade × impacto financeiro/operacional para governança.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Critical probability × financial/operational impact mapping for executive governance.
-
----
-
-## 3. Como Executar / How to Run
-
+**Reprodução:**
 ```bash
-python3 main.py
+python -m pip install -r requirements-case-studies.txt
+python projetos/09-business/086-operational-risk-matrix-heatmap/main.py
+python -m unittest discover -s tests -v
 ```
+
+**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.

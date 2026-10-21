@@ -1,3 +1,5 @@
+> **Estado auditado #105: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #105 — Inspeção Radiográfica Industrial (Raio-X NDT) com CNN & Grad-CAM
 ## Industrial X-Ray NDT Defect Detection with CNN & Grad-CAM
 

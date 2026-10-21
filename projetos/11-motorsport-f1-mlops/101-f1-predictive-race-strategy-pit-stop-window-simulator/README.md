@@ -1,3 +1,5 @@
+> **Estado auditado #101: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #101 — Estratégia Preditiva de Corrida (F1) & Simulador de Janela de Pit-Stop
 ## F1 Predictive Race Strategy & Pit-Stop Window Simulator
 

@@ -1,3 +1,5 @@
+> **Estado auditado #108: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #108 — Explicabilidade de Modelos (SHAP) & Eventos Raros com SMOTE
 ## Explainable AI (SHAP) & Imbalanced Fault/Risk Modeling with SMOTE
 

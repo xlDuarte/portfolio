@@ -1,3 +1,5 @@
+> **Status de implementação #048: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+
 # Project #048 — Scanner de Conformidade Ética e Governança Corporativa
 ## Compliance & Governance Text Scanner
 
@@ -5,7 +7,7 @@
 - **Diretório GitHub:** `projetos/05-nlp/048-compliance-governance-text-scanner`
 - **Benchmark de Referência:** `48 Toxic Comment Detection`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `NLTK, spaCy, Hugging Face, Scikit-learn`
+- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
 - **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
 
 ---

@@ -1,3 +1,5 @@
+> **Estado auditado #106: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #106 — Pipeline MLOps End-to-End com MLflow, Docker & Deploy FastAPI
 ## End-to-End MLOps Pipeline with MLflow, Docker & FastAPI
 

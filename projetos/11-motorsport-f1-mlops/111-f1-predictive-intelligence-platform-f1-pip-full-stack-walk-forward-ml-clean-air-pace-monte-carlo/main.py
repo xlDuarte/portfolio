@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-F1-PIP Walk-Forward Multi-Model Engine, Calibration & SHAP Explainability
+F1-PIP synthetic walk-forward ranking simulation; no external models trained, no SHAP
 Author: Gabriel Reis Duarte (@gabrielrduarte)
 """
 import math
 import statistics
+import random
+from datetime import datetime
 from typing import List, Dict, Any
 
 class WalkForwardPredictionEngine:
-    MODEL_CATALOG = [
+    PLANNED_MODEL_CATALOG_NOT_IMPLEMENTED = [
         "Baseline_Grid",
         "Baseline_Standings",
         "Ridge_Regularized",
@@ -32,10 +34,27 @@ class WalkForwardPredictionEngine:
         as_of_timestamp: str,
         horizon: str = "POST_QUALI"
     ) -> Dict[str, Any]:
+        def parse_tz(s):
+            try:
+                dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+            except (AttributeError, TypeError, ValueError) as exc:
+                raise ValueError("Timestamps must be ISO-8601 with timezone") from exc
+            if dt.tzinfo is None or dt.utcoffset() is None:
+                raise ValueError("Timezone required: timestamps must use Z or numeric offset")
+            return dt
+
+        as_of = parse_tz(as_of_timestamp)
+        if horizon not in ("PRE_QUALI", "POST_QUALI"):
+            raise ValueError("Unsupported prediction horizon")
+        if not target_event.get("entries"):
+            raise ValueError("At least one race entry required")
+        codes = [entry["driver_code"] for entry in target_event["entries"]]
+        if len(set(codes)) != len(codes):
+            raise ValueError("Duplicate driver codes")
         for ev in train_events:
-            if ev["event_timestamp_utc"] >= as_of_timestamp:
+            if parse_tz(ev["event_timestamp_utc"]) >= as_of:
                 raise ValueError(f"Look-ahead violation on {ev['event_id']}")
-        if target_event["snapshot_timestamp_utc"] > as_of_timestamp:
+        if parse_tz(target_event["snapshot_timestamp_utc"]) > as_of:
             raise ValueError("Target snapshot newer than as_of_timestamp")
 
         driver_hist: Dict[str, List[float]] = {}
@@ -68,7 +87,7 @@ class WalkForwardPredictionEngine:
             c_wea = 1.65 * weather_mod
             exp_pos = max(1.0, min(20.0, global_mean_pos + c_grid + c_pace + c_team + c_drv + c_wea))
 
-            shap_values = {
+            heuristic_values = {
                 "base_value_pos": global_mean_pos,
                 "grid_position_impact": round(c_grid, 3),
                 "clean_air_pace_impact": round(c_pace, 3),
@@ -76,27 +95,40 @@ class WalkForwardPredictionEngine:
                 "driver_skill_pooled_impact": round(c_drv, 3),
                 "weather_track_interaction": round(c_wea, 3),
             }
-            raw_latents.append((entry, exp_pos, shap_values))
+            raw_latents.append((entry, exp_pos, heuristic_values))
 
-        win_logits = [math.exp(-(pos - 1.0) / 1.45) for _, pos, _ in raw_latents]
-        sum_win = sum(win_logits) or 1.0
+        # Sequential Plackett-Luce simulated rankings: mutually exclusive results.
+        # win probabilities sum to 1, podium to min(3, starters), points to min(10, starters).
+        # These are CONDITIONAL ranking probabilities: DNF is reported separately,
+        # not simulated as an absorbing outcome. Real F1 points also depend on classification.
+        weights = [math.exp(-(pos - 1.0) / 3.2) for _, pos, _ in raw_latents]
+        counts = [[0, 0, 0] for _ in raw_latents]
+        sims = 20000
+        rng = random.Random(20261021)
+        for _ in range(sims):
+            # Exponential race is mathematically equivalent to PL weighted sampling without replacement.
+            ranking = sorted(range(len(weights)), key=lambda i: rng.expovariate(max(weights[i], 1e-15)))
+            for rank, i in enumerate(ranking):
+                if rank == 0: counts[i][0] += 1
+                if rank < 3: counts[i][1] += 1
+                if rank < 10: counts[i][2] += 1
         predictions = []
-        for (entry, exp_pos, shap_dict), w_l in zip(raw_latents, win_logits):
-            win_prob = round(w_l / sum_win, 4)
-            podium_prob = round(min(0.99, max(win_prob, cls._platt_sigmoid(exp_pos - 3.6, temp=1.35))), 4)
-            points_prob = round(min(0.995, max(podium_prob, cls._platt_sigmoid(exp_pos - 10.5, temp=1.85))), 4)
-            dnf_prob = round(min(0.35, max(0.02, float(entry.get("base_dnf_rate", 0.065)))), 4)
+        for i, (entry, exp_pos, attrib) in enumerate(raw_latents):
+            raw_dnf = float(entry.get("base_dnf_rate", 0.065))
+            if not math.isfinite(raw_dnf) or not 0 <= raw_dnf <= 1:
+                raise ValueError("base_dnf_rate must be within [0, 1]")
             predictions.append({
                 "driver_code": entry["driver_code"],
                 "driver_name": entry.get("driver_name", entry["driver_code"]),
                 "constructor": entry["constructor"],
                 "grid_pos": entry.get("grid_pos"),
                 "expected_finish_pos": round(exp_pos, 2),
-                "win_prob": win_prob,
-                "podium_prob": podium_prob,
-                "points_prob": points_prob,
-                "dnf_prob": dnf_prob,
-                "shap_explanation": shap_dict,
+                "win_prob": counts[i][0] / sims,
+                "podium_prob": counts[i][1] / sims,
+                "points_prob": counts[i][2] / sims,
+                "dnf_prob": round(raw_dnf, 4),
+                "heuristic_attributions": attrib,
+                "shap_explanation": attrib,  # Deprecated compatibility; NOT computed using SHAP.
             })
 
         predictions.sort(key=lambda x: x["expected_finish_pos"])
@@ -107,6 +139,8 @@ class WalkForwardPredictionEngine:
             "horizon": horizon,
             "as_of_timestamp": as_of_timestamp,
             "predictions": predictions,
+            "probability_basis": "Plackett-Luce Monte Carlo; conditional on classified finish; DNF independent",
+            "not_trained_models": cls.PLANNED_MODEL_CATALOG_NOT_IMPLEMENTED,
         }
 
 if __name__ == "__main__":

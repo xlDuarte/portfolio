@@ -1,3 +1,5 @@
+> **Estado auditado #107: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #107 — Assistente RAG Industrial — Chat com Manuais, SOPs e PDFs Técnicos
 ## Industrial RAG Chatbot — Chat with Engineering PDFs & SOPs
 

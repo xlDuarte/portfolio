@@ -24,6 +24,8 @@ class IndustrialProjectPipeline:
         self.seed = 3562
 
     def generate_telemetry_dataset(self, n_samples=120):
+        if not isinstance(n_samples, int) or not 2 <= n_samples <= 100_000:
+            raise ValueError("n_samples must be an integer between 2 and 100000")
         random.seed(self.seed)
         records = []
         for i in range(n_samples):
@@ -53,7 +55,7 @@ class IndustrialProjectPipeline:
             "max_thermal_c": round(max(therm_vals), 2),
             "anomaly_rate_pct": round((anomalies / len(data)) * 100, 2),
             "model_validation_status": "not evaluated (synthetic demonstration)",
-            "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
 
 
