@@ -1,0 +1,21 @@
+{
+  "python_files": 113,
+  "project_scripts": 111,
+  "passed": 111,
+  "failures": [],
+  "syntax_errors": [],
+  "broken_static_links": [
+    "${getProjGithubUrl(",
+    "${getProjGithubUrl(",
+    "${githubRepoBase}/${catFolder}",
+    "${ghUrl}",
+    "${ghUrl}",
+    "${ghUrl}"
+  ],
+  "secret_pattern_matches": [],
+  "original_f1_files": [
+    "f1-predictive-intelligence/main.py",
+    "f1-predictive-intelligence/ml/training/walk_forward_engine.py",
+    "f1-predictive-intelligence/apps/web/index.html"
+  ]
+}
