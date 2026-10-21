@@ -1845,7 +1845,7 @@
         let f1PipMcRuns = 10000; // 1000 | 10000 | 100000
         let f1PipSeed = 2026;
         let f1PipActiveTab = 'exec'; // 'exec' | 'pace' | 'sim' | 'ml' | 'gov'
-        let githubRepoBase = 'https://github.com/xlDuarte/automotive-industrial-lab/tree/main/projetos';
+        let githubRepoBase = 'https://github.com/xlDuarte/portfolio/tree/main/projetos';
         let projSearchQuery = '';
 
         const catFolderMap = {
@@ -3092,9 +3092,9 @@
             const ghInput = document.getElementById('gh-base-input');
             if (ghInput) {
                 ghInput.addEventListener('change', (e) => {
-                    githubRepoBase = e.target.value.trim() || 'https://github.com/xlDuarte/automotive-industrial-lab/tree/main/projetos';
+                    githubRepoBase = e.target.value.trim() || 'https://github.com/xlDuarte/portfolio/tree/main/projetos';
                     renderProjetosPage();
-                    showToast(t('URL base do GitHub atualizada para todos os 100 projetos!', 'GitHub base URL updated across all 100 projects!'));
+                    showToast(t('URL base do GitHub atualizada para todos os 111 projetos!', 'GitHub base URL updated across all 111 projects!'));
                 });
             }
 
@@ -3197,8 +3197,8 @@ ${t(p[4], p[5])}
 
 ## ${t('2. Como Executar Localmente', '2. How to Run Locally')}
 \`\`\`bash
-git clone https://github.com/gabrielrduarte/automotive-industrial-lab.git
-cd automotive-industrial-lab/projetos/${catFolderMap[cat.slug]}/${folderSlug}
+git clone https://github.com/xlDuarte/portfolio.git
+cd portfolio/projetos/${catFolderMap[cat.slug]}/${folderSlug}
 pip install -r ../../../requirements.txt
 python3 main.py
 \`\`\``;
@@ -3257,8 +3257,8 @@ python3 main.py
                         <div class="grid-4" style="margin-bottom:1rem;">
                             <div class="kpi-box">
                                 <div class="kpi-value" id="pdet-kpi-1" style="color:#10B981;">${r2Score}</div>
-                                <div class="kpi-label">${t('Score do Modelo (R² / F1)', 'Model Score (R² / F1)')}</div>
-                                <div class="kpi-desc">${foundCat.tools[0]} • Validated</div>
+                                <div class="kpi-label">${t('Índice sintético (não validado)', 'Synthetic index (not validated)')}</div>
+                                <div class="kpi-desc">${foundCat.tools[0]} • DEMO / NOT VALIDATED</div>
                             </div>
                             <div class="kpi-box">
                                 <div class="kpi-value" id="pdet-kpi-2">${simOee}%</div>
@@ -3287,9 +3287,9 @@ python3 main.py
                     <div class="lab-card">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
                             <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-color);">📄 projetos/${catFolder}/${folderSlug}/main.py</span>
-                            <button type="button" class="filter-btn" id="copy-py-code-btn">📋 ${t('Copiar Código Python (main.py)', 'Copy Python Code (main.py)')}</button>
+                            <button type="button" class="filter-btn" id="copy-py-code-btn">📋 ${t('Copiar exemplo gerado', 'Copy generated example')}</button>
                         </div>
-                        <pre class="code-viewer-box" id="py-code-pre"></pre>
+                        <p style="font-size:.8rem; margin:0 0 .7rem; color:#B2C3D1;">${t('Demonstração gerada para navegação. Consulte o arquivo exato no GitHub:','Generated illustration for navigation. Read the exact file on GitHub:')} <a href="${ghUrl.replace("/tree/main/", "/blob/main/")}/main.py" target="_blank" rel="noopener noreferrer">main.py ↗</a></p><pre class="code-viewer-box" id="py-code-pre"></pre>
                     </div>
                 `;
             } else {
@@ -3297,9 +3297,9 @@ python3 main.py
                     <div class="lab-card">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
                             <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-color);">📘 projetos/${catFolder}/${folderSlug}/README.md</span>
-                            <button type="button" class="filter-btn" id="copy-md-code-btn">📋 ${t('Copiar README.md', 'Copy README.md')}</button>
+                            <button type="button" class="filter-btn" id="copy-md-code-btn">📋 ${t('Copiar resumo gerado', 'Copy generated summary')}</button>
                         </div>
-                        <pre class="code-viewer-box" id="md-code-pre"></pre>
+                        <p style="font-size:.8rem; margin:0 0 .7rem; color:#B2C3D1;">${t('Resumo demonstrativo. Consulte o documento original:','Illustrative summary. Read the original documentation:')} <a href="${ghUrl.replace("/tree/main/", "/blob/main/")}/README.md" target="_blank" rel="noopener noreferrer">README.md ↗</a></p><pre class="code-viewer-box" id="md-code-pre"></pre>
                     </div>
                 `;
             }
@@ -3317,6 +3317,7 @@ python3 main.py
                     </div>
                 </div>
 
+                <p class="notice" style="border-left:3px solid #13C3C3; padding:10px 14px; margin-bottom:1rem; background:rgba(20,180,186,.08); font-size:.82rem;">${t('Demonstração com dados sintéticos: indicadores e gráficos não são avaliações empíricas de modelos. Código e README reais estão no GitHub.','Synthetic-data demonstration: scores and charts are not empirical model evaluations. Real source and README are on GitHub.')}</p>
                 <div class="lab-card" style="margin-bottom:1.35rem; border-color:var(--accent-color);">
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
                         <div>
@@ -3358,10 +3359,10 @@ python3 main.py
                         ⚡ ${t('Simulador Interativo & Telemetria', 'Interactive Simulator & Telemetry')}
                     </button>
                     <button type="button" class="filter-btn ${activeProjDetailTab === 'code' ? 'active' : ''}" data-pdtab="code">
-                        🐍 ${t('Código Fonte (main.py)', 'Source Code (main.py)')}
+                        🐍 ${t('Exemplo gerado (ver fonte real no GitHub)', 'Generated example (see real source on GitHub)')}
                     </button>
                     <button type="button" class="filter-btn ${activeProjDetailTab === 'readme' ? 'active' : ''}" data-pdtab="readme">
-                        📘 ${t('Documentação GitHub (README.md)', 'GitHub Docs (README.md)')}
+                        📘 ${t('Resumo gerado (ver README real no GitHub)', 'Generated summary (see real README on GitHub)')}
                     </button>
                 </div>
 
@@ -4457,7 +4458,7 @@ python3 main.py
             }
             ctx.stroke();
             ctx.fillStyle = '#10B981';
-            ctx.fillText('Reliability Diagram (ECE = 0.021 | Brier = 0.084)', rx + 12, ry + 18);
+            ctx.fillText('Reliability curve — illustrative only (ECE/Brier not measured)', rx + 12, ry + 18);
         }
 
         function renderF1RacingPage() {
