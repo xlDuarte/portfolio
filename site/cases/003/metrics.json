@@ -1,0 +1,36 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 3,
+  "documents": 160,
+  "active_documents": 142,
+  "metadata_completeness_pct": 78.68,
+  "stale_documents": 84,
+  "mapped_telemetry_pct": 100.0,
+  "by_type": [
+    {
+      "doc_type": "engineering_spec",
+      "count": 37,
+      "complete_pct": 0.2432,
+      "stale_pct": 0.4324
+    },
+    {
+      "doc_type": "maintenance_manual",
+      "count": 54,
+      "complete_pct": 0.1296,
+      "stale_pct": 0.537
+    },
+    {
+      "doc_type": "telemetry_map",
+      "count": 34,
+      "complete_pct": 0.2059,
+      "stale_pct": 0.5
+    },
+    {
+      "doc_type": "work_instruction",
+      "count": 35,
+      "complete_pct": 0.2286,
+      "stale_pct": 0.6286
+    }
+  ],
+  "interpretation": "Metadata quality and tag mapping on synthetic catalog; no deployed document index."
+}

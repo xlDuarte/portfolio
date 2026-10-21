@@ -1,0 +1,29 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 4,
+  "samples": 2048,
+  "sample_rate_hz": 2048.0,
+  "nyquist_hz": 1024.0,
+  "rms_g": 0.26069,
+  "firing_hz": 100.0,
+  "dominant_peak_hz": 100.0,
+  "dominant_amplitude_g": 0.32091,
+  "harmonics": [
+    {
+      "order": 1,
+      "expected_hz": 100.0,
+      "amplitude_g": 0.32091
+    },
+    {
+      "order": 2,
+      "expected_hz": 200.0,
+      "amplitude_g": 0.1598
+    },
+    {
+      "order": 3,
+      "expected_hz": 300.0,
+      "amplitude_g": 0.07889
+    }
+  ],
+  "interpretation": "Actual Hann-window FFT of synthetic engine vibration; not a calibrated test-bench measurement."
+}

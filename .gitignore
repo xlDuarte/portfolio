@@ -7,3 +7,5 @@ __pycache__/
 node_modules/
 .vercel/
 .DS_Store
+
+analytics_batch1/example_output/

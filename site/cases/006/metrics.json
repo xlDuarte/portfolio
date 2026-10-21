@@ -1,0 +1,37 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 6,
+  "requests_received": 220,
+  "average_cycle_days": 23.2,
+  "p90_cycle_days": 35.0,
+  "requested_brl": 4572985.99,
+  "received_brl": 4128348.31,
+  "estimated_quote_savings_brl": 460912.97,
+  "by_department": [
+    {
+      "department": "Assembly",
+      "orders": 50,
+      "cycle_days_mean": 21.58,
+      "spend": 1063664.47
+    },
+    {
+      "department": "Facility",
+      "orders": 60,
+      "cycle_days_mean": 23.567,
+      "spend": 1040267.28
+    },
+    {
+      "department": "MRO",
+      "orders": 63,
+      "cycle_days_mean": 24.27,
+      "spend": 1170110.66
+    },
+    {
+      "department": "Machining",
+      "orders": 47,
+      "cycle_days_mean": 23.043,
+      "spend": 854305.9
+    }
+  ],
+  "interpretation": "Synthetic completed-funnel analytics; unapproved/cancelled requests require a separate cohort."
+}

@@ -1,0 +1,336 @@
+{
+  "dataset": "synthetic / reproducible, not operational evidence",
+  "project": 9,
+  "assets": 65,
+  "gross_book_cost_brl": 87742811.48,
+  "depreciated_book_value_brl": 51873745.34,
+  "illustrative_future_cashflow_pv_brl": 48197708.91,
+  "by_asset": [
+    {
+      "asset_id": "AST-0000",
+      "book_value_brl": 804725.65,
+      "illustrative_cashflow_pv_brl": 857343.62
+    },
+    {
+      "asset_id": "AST-0001",
+      "book_value_brl": 1576803.23,
+      "illustrative_cashflow_pv_brl": 714071.66
+    },
+    {
+      "asset_id": "AST-0002",
+      "book_value_brl": 344284.39,
+      "illustrative_cashflow_pv_brl": 546533.38
+    },
+    {
+      "asset_id": "AST-0003",
+      "book_value_brl": 173214.59,
+      "illustrative_cashflow_pv_brl": 144652.65
+    },
+    {
+      "asset_id": "AST-0004",
+      "book_value_brl": 1374799.62,
+      "illustrative_cashflow_pv_brl": 1151777.3
+    },
+    {
+      "asset_id": "AST-0005",
+      "book_value_brl": 740622.33,
+      "illustrative_cashflow_pv_brl": 571568.54
+    },
+    {
+      "asset_id": "AST-0006",
+      "book_value_brl": 348452.55,
+      "illustrative_cashflow_pv_brl": 165076.93
+    },
+    {
+      "asset_id": "AST-0007",
+      "book_value_brl": 832787.06,
+      "illustrative_cashflow_pv_brl": 933545.84
+    },
+    {
+      "asset_id": "AST-0008",
+      "book_value_brl": 1047010.35,
+      "illustrative_cashflow_pv_brl": 719220.32
+    },
+    {
+      "asset_id": "AST-0009",
+      "book_value_brl": 577505.95,
+      "illustrative_cashflow_pv_brl": 951565.35
+    },
+    {
+      "asset_id": "AST-0010",
+      "book_value_brl": 996415.48,
+      "illustrative_cashflow_pv_brl": 1533237.67
+    },
+    {
+      "asset_id": "AST-0011",
+      "book_value_brl": 531403.51,
+      "illustrative_cashflow_pv_brl": 399320.88
+    },
+    {
+      "asset_id": "AST-0012",
+      "book_value_brl": 275448.62,
+      "illustrative_cashflow_pv_brl": 300038.06
+    },
+    {
+      "asset_id": "AST-0013",
+      "book_value_brl": 1132857.49,
+      "illustrative_cashflow_pv_brl": 1051166.72
+    },
+    {
+      "asset_id": "AST-0014",
+      "book_value_brl": 1552664.43,
+      "illustrative_cashflow_pv_brl": 1410773.81
+    },
+    {
+      "asset_id": "AST-0015",
+      "book_value_brl": 237047.56,
+      "illustrative_cashflow_pv_brl": 301296.73
+    },
+    {
+      "asset_id": "AST-0016",
+      "book_value_brl": 963517.19,
+      "illustrative_cashflow_pv_brl": 451250.41
+    },
+    {
+      "asset_id": "AST-0017",
+      "book_value_brl": 959513.57,
+      "illustrative_cashflow_pv_brl": 1007497.36
+    },
+    {
+      "asset_id": "AST-0018",
+      "book_value_brl": 1208829.24,
+      "illustrative_cashflow_pv_brl": 2249398.8
+    },
+    {
+      "asset_id": "AST-0019",
+      "book_value_brl": 673885.41,
+      "illustrative_cashflow_pv_brl": 829248.43
+    },
+    {
+      "asset_id": "AST-0020",
+      "book_value_brl": 2104830.03,
+      "illustrative_cashflow_pv_brl": 2589858.98
+    },
+    {
+      "asset_id": "AST-0021",
+      "book_value_brl": 198025.39,
+      "illustrative_cashflow_pv_brl": 288970.74
+    },
+    {
+      "asset_id": "AST-0022",
+      "book_value_brl": 644515.56,
+      "illustrative_cashflow_pv_brl": 790336.89
+    },
+    {
+      "asset_id": "AST-0023",
+      "book_value_brl": 635035.33,
+      "illustrative_cashflow_pv_brl": 707590.01
+    },
+    {
+      "asset_id": "AST-0024",
+      "book_value_brl": 152603.12,
+      "illustrative_cashflow_pv_brl": 160704.0
+    },
+    {
+      "asset_id": "AST-0025",
+      "book_value_brl": 258801.67,
+      "illustrative_cashflow_pv_brl": 227931.37
+    },
+    {
+      "asset_id": "AST-0026",
+      "book_value_brl": 490816.88,
+      "illustrative_cashflow_pv_brl": 400408.38
+    },
+    {
+      "asset_id": "AST-0027",
+      "book_value_brl": 827197.22,
+      "illustrative_cashflow_pv_brl": 942154.72
+    },
+    {
+      "asset_id": "AST-0028",
+      "book_value_brl": 480778.55,
+      "illustrative_cashflow_pv_brl": 510439.29
+    },
+    {
+      "asset_id": "AST-0029",
+      "book_value_brl": 610248.22,
+      "illustrative_cashflow_pv_brl": 464797.33
+    },
+    {
+      "asset_id": "AST-0030",
+      "book_value_brl": 1605672.71,
+      "illustrative_cashflow_pv_brl": 672233.22
+    },
+    {
+      "asset_id": "AST-0031",
+      "book_value_brl": 455454.05,
+      "illustrative_cashflow_pv_brl": 369315.46
+    },
+    {
+      "asset_id": "AST-0032",
+      "book_value_brl": 57707.35,
+      "illustrative_cashflow_pv_brl": 44925.67
+    },
+    {
+      "asset_id": "AST-0033",
+      "book_value_brl": 67094.18,
+      "illustrative_cashflow_pv_brl": 111364.72
+    },
+    {
+      "asset_id": "AST-0034",
+      "book_value_brl": 59778.75,
+      "illustrative_cashflow_pv_brl": 89209.9
+    },
+    {
+      "asset_id": "AST-0035",
+      "book_value_brl": 932255.14,
+      "illustrative_cashflow_pv_brl": 599617.71
+    },
+    {
+      "asset_id": "AST-0036",
+      "book_value_brl": 1751085.13,
+      "illustrative_cashflow_pv_brl": 715021.94
+    },
+    {
+      "asset_id": "AST-0037",
+      "book_value_brl": 903957.91,
+      "illustrative_cashflow_pv_brl": 716850.26
+    },
+    {
+      "asset_id": "AST-0038",
+      "book_value_brl": 972050.97,
+      "illustrative_cashflow_pv_brl": 1411316.55
+    },
+    {
+      "asset_id": "AST-0039",
+      "book_value_brl": 714498.82,
+      "illustrative_cashflow_pv_brl": 1039272.3
+    },
+    {
+      "asset_id": "AST-0040",
+      "book_value_brl": 194976.15,
+      "illustrative_cashflow_pv_brl": 306602.26
+    },
+    {
+      "asset_id": "AST-0041",
+      "book_value_brl": 405382.62,
+      "illustrative_cashflow_pv_brl": 587024.23
+    },
+    {
+      "asset_id": "AST-0042",
+      "book_value_brl": 47855.44,
+      "illustrative_cashflow_pv_brl": 37632.73
+    },
+    {
+      "asset_id": "AST-0043",
+      "book_value_brl": 938494.61,
+      "illustrative_cashflow_pv_brl": 649183.19
+    },
+    {
+      "asset_id": "AST-0044",
+      "book_value_brl": 1028476.24,
+      "illustrative_cashflow_pv_brl": 910803.44
+    },
+    {
+      "asset_id": "AST-0045",
+      "book_value_brl": 1340906.86,
+      "illustrative_cashflow_pv_brl": 1408494.37
+    },
+    {
+      "asset_id": "AST-0046",
+      "book_value_brl": 120072.06,
+      "illustrative_cashflow_pv_brl": 114104.62
+    },
+    {
+      "asset_id": "AST-0047",
+      "book_value_brl": 714290.54,
+      "illustrative_cashflow_pv_brl": 603743.06
+    },
+    {
+      "asset_id": "AST-0048",
+      "book_value_brl": 639638.22,
+      "illustrative_cashflow_pv_brl": 401114.74
+    },
+    {
+      "asset_id": "AST-0049",
+      "book_value_brl": 1847377.75,
+      "illustrative_cashflow_pv_brl": 2319434.69
+    },
+    {
+      "asset_id": "AST-0050",
+      "book_value_brl": 1375575.69,
+      "illustrative_cashflow_pv_brl": 1567251.49
+    },
+    {
+      "asset_id": "AST-0051",
+      "book_value_brl": 1406423.38,
+      "illustrative_cashflow_pv_brl": 1534086.95
+    },
+    {
+      "asset_id": "AST-0052",
+      "book_value_brl": 1248829.41,
+      "illustrative_cashflow_pv_brl": 579411.23
+    },
+    {
+      "asset_id": "AST-0053",
+      "book_value_brl": 1741010.73,
+      "illustrative_cashflow_pv_brl": 2027386.9
+    },
+    {
+      "asset_id": "AST-0054",
+      "book_value_brl": 780124.58,
+      "illustrative_cashflow_pv_brl": 426302.46
+    },
+    {
+      "asset_id": "AST-0055",
+      "book_value_brl": 1240219.98,
+      "illustrative_cashflow_pv_brl": 442985.12
+    },
+    {
+      "asset_id": "AST-0056",
+      "book_value_brl": 259322.53,
+      "illustrative_cashflow_pv_brl": 418598.15
+    },
+    {
+      "asset_id": "AST-0057",
+      "book_value_brl": 1684588.1,
+      "illustrative_cashflow_pv_brl": 1214087.77
+    },
+    {
+      "asset_id": "AST-0058",
+      "book_value_brl": 859381.85,
+      "illustrative_cashflow_pv_brl": 656026.16
+    },
+    {
+      "asset_id": "AST-0059",
+      "book_value_brl": 1274815.22,
+      "illustrative_cashflow_pv_brl": 668887.47
+    },
+    {
+      "asset_id": "AST-0060",
+      "book_value_brl": 230022.37,
+      "illustrative_cashflow_pv_brl": 238317.13
+    },
+    {
+      "asset_id": "AST-0061",
+      "book_value_brl": 69768.79,
+      "illustrative_cashflow_pv_brl": 197655.26
+    },
+    {
+      "asset_id": "AST-0062",
+      "book_value_brl": 483423.85,
+      "illustrative_cashflow_pv_brl": 484896.22
+    },
+    {
+      "asset_id": "AST-0063",
+      "book_value_brl": 635891.67,
+      "illustrative_cashflow_pv_brl": 551134.05
+    },
+    {
+      "asset_id": "AST-0064",
+      "book_value_brl": 1032681.52,
+      "illustrative_cashflow_pv_brl": 711641.32
+    }
+  ],
+  "interpretation": "Discounted illustrative net cashflows exclude purchase price as sunk cost; NOT external market valuation."
+}
