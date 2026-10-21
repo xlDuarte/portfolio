@@ -1,0 +1,36 @@
+{
+  "project": 15,
+  "name": "Supplier and batch quality",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 180,
+  "batches": 180,
+  "defects": 1172,
+  "inspected": 30882,
+  "weighted_defect_rate_pct": 3.795,
+  "by_supplier": [
+    {
+      "supplier": "Supplier-B",
+      "defects": 319,
+      "inspected": 7783,
+      "defect_rate_pct": 4.1
+    },
+    {
+      "supplier": "Supplier-D",
+      "defects": 305,
+      "inspected": 8042,
+      "defect_rate_pct": 3.79
+    },
+    {
+      "supplier": "Supplier-C",
+      "defects": 278,
+      "inspected": 7705,
+      "defect_rate_pct": 3.61
+    },
+    {
+      "supplier": "Supplier-A",
+      "defects": 270,
+      "inspected": 7352,
+      "defect_rate_pct": 3.67
+    }
+  ]
+}

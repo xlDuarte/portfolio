@@ -1,0 +1,27 @@
+{
+  "project": 13,
+  "name": "Warehouse capacity and dock utilisation",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 144,
+  "snapshots": 144,
+  "mean_occupancy_pct": 72.06,
+  "near_capacity_count": 30,
+  "mean_dock_utilisation_pct": 52.14,
+  "by_hub": [
+    {
+      "hub": "Hub-RJ",
+      "snapshots": 43,
+      "avg_occupancy_pct": 74.05650055370985
+    },
+    {
+      "hub": "Hub-MG",
+      "snapshots": 45,
+      "avg_occupancy_pct": 72.55639417989418
+    },
+    {
+      "hub": "Hub-SP",
+      "snapshots": 56,
+      "avg_occupancy_pct": 70.14008290816327
+    }
+  ]
+}

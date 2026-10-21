@@ -1,0 +1,49 @@
+{
+  "project": 16,
+  "name": "SMED setup-time improvement",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 120,
+  "changeovers": 120,
+  "median_before_min": 29.01,
+  "median_after_min": 27.13,
+  "median_reduction_pct": 6.48,
+  "by_operation_phase": [
+    {
+      "operation": "Die",
+      "phase": "After",
+      "events": 23,
+      "mean_setup_min": 25.56
+    },
+    {
+      "operation": "Die",
+      "phase": "Before",
+      "events": 18,
+      "mean_setup_min": 30.474444444444444
+    },
+    {
+      "operation": "Tool",
+      "phase": "After",
+      "events": 25,
+      "mean_setup_min": 26.2108
+    },
+    {
+      "operation": "Tool",
+      "phase": "Before",
+      "events": 25,
+      "mean_setup_min": 30.4088
+    },
+    {
+      "operation": "Wheel",
+      "phase": "After",
+      "events": 12,
+      "mean_setup_min": 28.94666666666667
+    },
+    {
+      "operation": "Wheel",
+      "phase": "Before",
+      "events": 17,
+      "mean_setup_min": 33.67764705882353
+    }
+  ],
+  "interpretation": "Observational before/after synthetic sample; changes in job mix can confound estimates."
+}

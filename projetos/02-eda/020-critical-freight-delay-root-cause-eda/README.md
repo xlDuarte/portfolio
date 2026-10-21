@@ -1,27 +1,43 @@
-> **Status de implementação #020: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# Projeto #020 — Critical Freight Delay Root-Cause EDA
 
-# Project #020 — Causas-Raiz de Atrasos em Fretes Críticos e Aéreos
-## Critical Freight Delay Root-Cause EDA
+**Status:** estudo de caso EDA reproduzível com **dados completamente sintéticos**. Não há integração com sistemas operacionais, mercado financeiro, registros de segurança reais ou telemetria oficial de automobilismo.
 
-- **Categoria / Route:** `/projetos/eda/20` (`02 / 10`)
-- **Diretório GitHub:** `projetos/02-eda/020-critical-freight-delay-root-cause-eda`
-- **Benchmark de Referência:** `20 Flight Delay Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, Seaborn, Matplotlib, Plotly, SQL`
-- **Fluxo de Engenharia (How It Flows):** `Dataset Bruto -> Distribuições -> Correlações -> Diagnóstico` (`Dataset -> Distributions -> Correlations -> Findings`)
+## Problema
+Descrever e priorizar categorias de atraso de fretes críticos.
 
----
+## Metodologia implementada
+Pareto de minutos atrasados e gasto expresso associado por causa reportada.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Decomposição de atrasos logísticos por modal, desembaraço fiscal e gargalos de terminal.
+Tecnologias **efetivamente utilizadas**: Pandas e NumPy para validação/cálculo; SQLite por consultas SQL via `sqlite3` e `pandas.read_sql_query`; Seaborn + Matplotlib para visualização SVG; Plotly para relatório HTML interativo (o JavaScript do Plotly depende da CDN na página exportada). Notebook Jupyter executa o mesmo código da CLI.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Breakdown of logistics delays by transport mode, tax clearance, and terminal bottlenecks.
+## Fonte de dados
+`analytics_eda/data/020.csv` — criado por gerador com seed fixa (`analytics_eda/generate.py`). 200 registros sintéticos. Esquema obrigatório: shipment_id, carrier, route, freight_mode, cause, delay_minutes, expedited_cost_brl, criticality. Duplicidades de chaves, campos nulos, negativos, não finitos ou incoerências específicas são rejeitados.
 
----
-
-## 3. Como Executar / How to Run
-
+## Como reproduzir
+A partir da raiz do repositório:
 ```bash
-python3 main.py
+pip install -r requirements-eda.txt
+python projetos/02-eda/020-critical-freight-delay-root-cause-eda/main.py
+python projetos/02-eda/020-critical-freight-delay-root-cause-eda/main.py --report-dir /tmp/eda-020
+python -m unittest discover -s tests -v
 ```
+Relatório HTML interativo em `interactive.html` e gráfico acessível `chart.svg`. Notebook: `analytics_eda/notebooks/020.ipynb`.
+
+## Saídas verificáveis (somente sintéticas)
+- `shipments`: 200
+- `delayed_shipments`: 153
+- `total_delay_hours`: 260.57
+- `expedite_cost_brl`: 1941194.23
+- `cause_pareto`: [{'cause': 'Carrier', 'legs': 73, 'delay_minutes': 7265, 'expedite_cost_brl': 741610.21, 'cumulative_delay_share_pct': 46.47}, {'cause': 'Customs', 'l
+
+## Riscos metodológicos
+A classificação de causas já foi atribuída sinteticamente; não implica causalidade.
+
+## Recomendação operacional
+Investigar evidência documental e relações contratuais antes de concluir causa-raiz.
+
+## Limites
+O estudo é executável, mas não demonstra impacto empresarial observado, dados externos, causalidade, machine learning treinado ou BI em Power BI. A página de resultados serve dados estáticos da execução auditada; a interface não está conectada a uma API em tempo real.
+
+## Navegação
+[Estudo publicado](https://gabriel-automotive-industrial-lab.vercel.app/cases/020/) · [Arquivos do projeto](https://github.com/xlDuarte/portfolio/tree/main/projetos/02-eda/020-critical-freight-delay-root-cause-eda)

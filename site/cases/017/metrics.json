@@ -1,0 +1,40 @@
+{
+  "project": 17,
+  "name": "Industrial and technology skills market",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 170,
+  "postings": 170,
+  "skills_frequency": {
+    "SAP": 61,
+    "Docker": 58,
+    "SQL": 57,
+    "Excel": 54,
+    "Power BI": 52,
+    "PLC": 51,
+    "Lean": 50,
+    "Statistics": 49,
+    "Pandas": 48,
+    "Spark": 46,
+    "AWS": 43,
+    "Python": 41
+  },
+  "salary_median_brl": 10888.0,
+  "by_region": [
+    {
+      "region": "Campinas",
+      "postings": 59,
+      "mean_advertised_salary_brl": 10455.186440677966
+    },
+    {
+      "region": "Vale do Paraiba",
+      "postings": 58,
+      "mean_advertised_salary_brl": 10577.948275862069
+    },
+    {
+      "region": "Sao Paulo",
+      "postings": 53,
+      "mean_advertised_salary_brl": 11481.66037735849
+    }
+  ],
+  "interpretation": "SYNTHETIC job advertisements; not evidence of actual vacancies or labor-market salaries."
+}

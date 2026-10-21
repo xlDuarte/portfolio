@@ -1,69 +1,20 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Project #020: Critical Freight Delay Root-Cause EDA (Causas-Raiz de Atrasos em Fretes Críticos e Aéreos)
-Category: Exploratory Data Analysis (EDA) (/projetos/eda)
-Original Benchmark: 20 Flight Delay Analysis
-Author: Gabriel Reis Duarte (@gabrielrduarte)
-Stack: Pandas, Seaborn, Matplotlib, Plotly, SQL
-"""
+"""#020 Critical Freight Delay Root-Cause EDA — real EDA computations on reproducible SYNTHETIC data."""
+import argparse
+import json
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+from analytics_eda.engine import run, save_report
 
-import math
-import random
-import statistics
-from datetime import datetime, timezone
+def main():
+    parser=argparse.ArgumentParser(description="EDA #020: Critical Freight Delay Root-Cause EDA")
+    parser.add_argument('--source',help='Optional CSV with the documented case schema')
+    parser.add_argument('--report-dir',help='Output directory for SVG, Plotly HTML, CSV and metrics')
+    args=parser.parse_args()
+    if args.source and args.report_dir:
+        parser.error('--report-dir uses versioned fixture; to evaluate your own CSV use --source')
+    result=save_report(20,args.report_dir) if args.report_dir else run(20,args.source)
+    print(json.dumps(result,ensure_ascii=False,indent=2,default=str))
 
-
-class IndustrialProjectPipeline:
-    def __init__(self):
-        self.project_id = 20
-        self.title_pt = 'Causas-Raiz de Atrasos em Fretes Críticos e Aéreos'
-        self.title_en = 'Critical Freight Delay Root-Cause EDA'
-        self.category = 'eda'
-        self.tools = ['Pandas', 'Seaborn', 'Matplotlib', 'Plotly', 'SQL']
-        self.seed = 2740
-
-    def generate_telemetry_dataset(self, n_samples=120):
-        if not isinstance(n_samples, int) or not 2 <= n_samples <= 100_000:
-            raise ValueError("n_samples must be an integer between 2 and 100000")
-        random.seed(self.seed)
-        records = []
-        for i in range(n_samples):
-            load_factor = 0.55 + 0.35 * math.sin(i * 0.15) + random.uniform(-0.05, 0.05)
-            thermal_c = 72.0 + load_factor * 24.5 + random.uniform(-1.5, 1.5)
-            oee_score = max(0.50, min(0.99, 0.92 - (thermal_c - 85.0) * 0.004 + random.uniform(-0.02, 0.02)))
-            records.append({
-                "cycle_id": i + 1,
-                "load_factor": round(load_factor, 4),
-                "thermal_c": round(thermal_c, 2),
-                "oee_kpi": round(oee_score * 100, 2),
-                "anomaly_flag": 1 if thermal_c > 94.0 or oee_score < 0.78 else 0
-            })
-        return records
-
-    def run_pipeline(self):
-        data = self.generate_telemetry_dataset()
-        oee_vals = [r["oee_kpi"] for r in data]
-        therm_vals = [r["thermal_c"] for r in data]
-        anomalies = sum(r["anomaly_flag"] for r in data)
-
-        return {
-            "project_id": f"#{self.project_id:03d}",
-            "route": f"/projetos/{self.category}/020-critical-freight-delay-root-cause-eda",
-            "mean_oee_pct": round(statistics.mean(oee_vals), 2),
-            "std_oee_pct": round(statistics.stdev(oee_vals), 2),
-            "max_thermal_c": round(max(therm_vals), 2),
-            "anomaly_rate_pct": round((anomalies / len(data)) * 100, 2),
-            "model_validation_status": "not evaluated (synthetic demonstration)",
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        }
-
-
-if __name__ == "__main__":
-    pipeline = IndustrialProjectPipeline()
-    result = pipeline.run_pipeline()
-    print("=" * 72)
-    print(f"[AUTOMOTIVE & INDUSTRIAL LAB] Project {result['project_id']}: Critical Freight Delay Root-Cause EDA")
-    for k, v in result.items():
-        print(f"  -> {k:<20}: {v}")
-    print("=" * 72)
+if __name__=='__main__': main()

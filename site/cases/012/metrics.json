@@ -1,0 +1,40 @@
+{
+  "project": 12,
+  "name": "Workplace safety and ergonomic risk",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 240,
+  "incidents": 41,
+  "total_exposure_hours": 406979,
+  "incident_rate_per_200k_hours": 20.15,
+  "ergonomic_risk_median": 43.83,
+  "by_site": [
+    {
+      "site": "Assembly",
+      "incidents": 13,
+      "exposure_hours": 96381,
+      "near_misses": 42,
+      "incident_rate_per_200k_hours": 26.98
+    },
+    {
+      "site": "Forge",
+      "incidents": 14,
+      "exposure_hours": 121890,
+      "near_misses": 52,
+      "incident_rate_per_200k_hours": 22.97
+    },
+    {
+      "site": "Machining",
+      "incidents": 8,
+      "exposure_hours": 106604,
+      "near_misses": 42,
+      "incident_rate_per_200k_hours": 15.01
+    },
+    {
+      "site": "Warehouse",
+      "incidents": 6,
+      "exposure_hours": 82104,
+      "near_misses": 30,
+      "incident_rate_per_200k_hours": 14.62
+    }
+  ]
+}

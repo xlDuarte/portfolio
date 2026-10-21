@@ -1,0 +1,48 @@
+{
+  "project": 20,
+  "name": "Critical freight delay decomposition",
+  "data_provenance": "FIXED-SEED SYNTHETIC — NOT REAL BUSINESS DATA",
+  "records": 200,
+  "shipments": 200,
+  "delayed_shipments": 153,
+  "total_delay_hours": 260.57,
+  "expedite_cost_brl": 1941194.23,
+  "cause_pareto": [
+    {
+      "cause": "Carrier",
+      "legs": 73,
+      "delay_minutes": 7265,
+      "expedite_cost_brl": 741610.21,
+      "cumulative_delay_share_pct": 46.47
+    },
+    {
+      "cause": "Customs",
+      "legs": 51,
+      "delay_minutes": 3206,
+      "expedite_cost_brl": 487845.56,
+      "cumulative_delay_share_pct": 66.98
+    },
+    {
+      "cause": "Capacity",
+      "legs": 34,
+      "delay_minutes": 2714,
+      "expedite_cost_brl": 315374.51,
+      "cumulative_delay_share_pct": 84.34
+    },
+    {
+      "cause": "Weather",
+      "legs": 28,
+      "delay_minutes": 1719,
+      "expedite_cost_brl": 252454.85,
+      "cumulative_delay_share_pct": 95.33
+    },
+    {
+      "cause": "Documentation",
+      "legs": 14,
+      "delay_minutes": 730,
+      "expedite_cost_brl": 143909.1,
+      "cumulative_delay_share_pct": 100.0
+    }
+  ],
+  "interpretation": "Cause labels are synthetic assumptions; descriptive Pareto does not prove root causality."
+}

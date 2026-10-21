@@ -1,3 +1,8 @@
+# Evidência tecnológica — lotes #001–#020
+
+Os projetos #011–#020 utilizam efetivamente **Pandas, NumPy, SQL SQLite, Seaborn, Matplotlib, Plotly e Jupyter**, com 10 CSVs sintéticos, notebooks executados, SVGs e Plotly HTML. A implementação demonstrativa não equivale a validação com dados reais. Nenhuma integração Power BI ou ERP é reivindicada.
+
+## Estado antes da nova etapa
 # Evidência tecnológica e lacunas restantes — atualizado após lote #001–#009
 
 **Critérios:** uma stack só é "implementada" quando o código a invoca em teste reproduzível; aparecer em README, notebook ou arquivo de dependência isolado não prova uso. Todos os dados deste lote são sintéticos e não demonstram generalização corporativa. Este registro complementa `TECHNOLOGY_GAP_MATRIX.csv` (111 linhas).
@@ -12,7 +17,7 @@
 - **SQL/Scikit-learn/XGBoost:** permanecem implementados nos estudos analíticos prévios do pacote; não foram adicionados artificialmente aos nove novos estudos.
 - **OpenCV:** implementado no projeto Motorsport #103 em `motorsport/optical_flow.py`, com testes de tracking e frames sintéticos.
 
-## Classificação individual atual — derive sempre da matriz CSV
+## Classificação histórica (lote anterior); consultar TECHNOLOGY_GAP_MATRIX.csv para status atual
 
 | Nº | Projeto | Status | Evidência |
 |---|---|---|---|
