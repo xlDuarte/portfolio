@@ -1,0 +1,59 @@
+{
+  "project_id": 25,
+  "project": "Occupational Safety Cost Prediction",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/025.csv (deterministically generated, synthetic)",
+  "features": [
+    "exposed_workers",
+    "hazard_index",
+    "historic_near_misses",
+    "training_coverage_pct",
+    "machine_age_years",
+    "shift_hours",
+    "process"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 101798.1569,
+  "ridge_mae": 31281.1466,
+  "xgboost_mae": 23729.6073,
+  "xgboost_rmse": 29375.0549,
+  "xgboost_r2": 0.9428,
+  "xgboost_wape_pct": 9.011,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9167,
+  "interval_width": 98989.16,
+  "unit": "BRL/year",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__exposed_workers",
+      "importance": 0.4187
+    },
+    {
+      "feature": "number__hazard_index",
+      "importance": 0.36008
+    },
+    {
+      "feature": "number__training_coverage_pct",
+      "importance": 0.10174
+    },
+    {
+      "feature": "number__historic_near_misses",
+      "importance": 0.06701
+    },
+    {
+      "feature": "number__machine_age_years",
+      "importance": 0.02248
+    }
+  ]
+}

@@ -200,3 +200,16 @@ python -m unittest discover -s tests -v
 ```
 
 **Limites:** dados sintéticos, sem inferência causal/observação empresarial real. Plotly HTML usa CDN para interatividade.
+
+
+## Regressão #021–#030 — lote reproduzível
+
+Nove estudos #022–#030 receberam implementações próprias de regressão treinada com Pandas, Scikit-learn, XGBoost e Matplotlib, bases sintéticas distintas, separações explícitas e métricas em holdout. O modelo #021 foi preservado e passou a ter página. Veja [catálogo de regressão](site/cases/regression/index.html), [relatório técnico](BATCH_021_030_REPORT.md) e [código](regression_batch/engine.py).
+
+```bash
+python -m pip install -r requirements-regression.txt
+python -m unittest discover -s tests -v
+python -m regression_batch.engine 22 --save
+```
+
+Resultados sintéticos não equivalem a validação em dados do mundo real ou benefícios empresariais observados.

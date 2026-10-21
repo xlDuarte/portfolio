@@ -1,27 +1,25 @@
-> **Status de implementação #029: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #029 — Furnace & Machining Power Consumption
 
-# Project #029 — Predição de Consumo Elétrico em Fornos e Usinagem
-## Furnace & Machining Power Consumption
+**Status:** implementation of a real regression training/evaluation workflow on a fully **SYNTHETIC** deterministic fixture; no industrial, financial, medical, educational or customer data were observed.
 
-- **Categoria / Route:** `/projetos/regression/29` (`03 / 10`)
-- **Diretório GitHub:** `projetos/03-regression/029-furnace-machining-power-consumption`
-- **Benchmark de Referência:** `29 Electricity Consumption Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Eng. Atributos -> Treinamento -> Avaliação R²/MAE -> Predição` (`Features -> Train -> Evaluate -> Predict`)
+## Business question
+Forecast daily electrical consumption from production plans, ambient temperature and planned loading, not realized energy.
 
----
+## Reproducible implementation
+- **Input:** [`regression_batch/data/029.csv`](../../../regression_batch/data/029.csv); `029` uniquely generated scenarios; row-level data dictionary in [`regression_batch/DATA_DICTIONARY.md`](../../../regression_batch/DATA_DICTIONARY.md).
+- **Features known at prediction time:** planned_furnace_hours, planned_machine_hours, planned_tonnage, ambient_temp_c, furnace_load_pct, tariff_period_index, process.
+- **Target:** `target_value` in kWh/day.
+- **Actual libraries:** Pandas, NumPy, Scikit-learn (`DummyRegressor`, `Ridge`, preprocessing), XGBoost (`XGBRegressor`), Matplotlib.
+- **Holdouts:** chronological, 60% train, 20% calibration, 20% untouched test. All fitted preprocessing is restricted to training rows. Conformal-style residual quantile uses calibration split only.
+- **Metrics:** holdout MAE, RMSE, R², WAPE, interval width and empirical coverage; naive median and Ridge baseline MAE are included; no predetermined claims of superiority.
+- **Outputs:** [`regression_batch/reports/029.json`](../../../regression_batch/reports/029.json), [`regression_batch/reports/029_predictions.csv`](../../../regression_batch/reports/029_predictions.csv), [`regression_batch/figures/029.svg`](../../../regression_batch/figures/029.svg), notebook and [site page](../../../site/cases/029/index.html).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Regressão multivariada para prever MWh por lote produtivo e evitar ultrapassagem de tarifa ponta.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Multivariate regression predicting MWh per batch to prevent peak-tariff penalties.
-
----
-
-## 3. Como Executar / How to Run
-
+## Run
 ```bash
-python3 main.py
+python -m pip install -r requirements-regression.txt
+python projetos/03-regression/029-furnace-machining-power-consumption/main.py
+python -m regression_batch.engine 29 --save
 ```
+
+## Limitations
+Synthetic causal relationships were explicitly written by the generator and therefore **do not establish predictive performance on real-world data**. Future real sources require license/privacy clearance, missingness & drift checks, entity/time-safe splitting, recalibration and a human-reviewed model card. In project #024, predictions must not drive hiring or certification decisions; #026 is **not** a legally valid insurance quotation.

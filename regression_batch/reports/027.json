@@ -1,0 +1,59 @@
+{
+  "project_id": 27,
+  "project": "Industrial Forgings Sales Regression",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/027.csv (deterministically generated, synthetic)",
+  "features": [
+    "lag1_sales",
+    "lag7_sales",
+    "past7_mean",
+    "announced_price_index",
+    "capacity_units",
+    "month_sin",
+    "month_cos"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "forward chronological 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 90.1321,
+  "ridge_mae": 9.4076,
+  "xgboost_mae": 19.855,
+  "xgboost_rmse": 25.2287,
+  "xgboost_r2": 0.6757,
+  "xgboost_wape_pct": 13.932,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 1.0,
+  "interval_width": 185.722,
+  "unit": "units/day",
+  "temporal_holdout_start": "2024-12-09",
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__lag1_sales",
+      "importance": 0.39755
+    },
+    {
+      "feature": "number__past7_mean",
+      "importance": 0.34885
+    },
+    {
+      "feature": "number__month_sin",
+      "importance": 0.19122
+    },
+    {
+      "feature": "number__month_cos",
+      "importance": 0.03045
+    },
+    {
+      "feature": "number__lag7_sales",
+      "importance": 0.01457
+    }
+  ]
+}

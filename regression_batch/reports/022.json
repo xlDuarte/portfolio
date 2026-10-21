@@ -1,0 +1,59 @@
+{
+  "project_id": 22,
+  "project": "Fleet & Vehicle Residual Value Model",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/022.csv (deterministically generated, synthetic)",
+  "features": [
+    "age_years",
+    "odometer_km",
+    "service_score",
+    "incident_count",
+    "battery_health_pct",
+    "original_price_brl",
+    "powertrain"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 39257.0871,
+  "ridge_mae": 12946.1432,
+  "xgboost_mae": 10134.2802,
+  "xgboost_rmse": 12322.4749,
+  "xgboost_r2": 0.9369,
+  "xgboost_wape_pct": 11.209,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.8929,
+  "interval_width": 41515.436,
+  "unit": "BRL",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__original_price_brl",
+      "importance": 0.42068
+    },
+    {
+      "feature": "number__age_years",
+      "importance": 0.39778
+    },
+    {
+      "feature": "number__incident_count",
+      "importance": 0.06045
+    },
+    {
+      "feature": "number__odometer_km",
+      "importance": 0.0528
+    },
+    {
+      "feature": "category__powertrain_electric",
+      "importance": 0.02875
+    }
+  ]
+}

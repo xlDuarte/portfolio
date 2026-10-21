@@ -61,21 +61,21 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,21),21,31,61,86) or n>=101:continue
+            if n in (*range(1,31),31,61,86) or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
 
-    def test_legacy_bad_parameter_rejected(self):
-        f=next(p for p in ROOT.glob('projetos/**/022-*/main.py'))
-        spec=importlib.util.spec_from_file_location('generic',f)
-        m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-        obj=m.IndustrialProjectPipeline()
-        for count in (0,1,-5,1.5,None,100001):
-            with self.subTest(n_samples=count),self.assertRaises(ValueError):obj.generate_telemetry_dataset(count)
-        ts=obj.run_pipeline()['timestamp']
-        from datetime import datetime
-        self.assertIsNotNone(datetime.fromisoformat(ts).tzinfo)
+    def test_regression_022_bad_parameter_rejected(self):
+        from regression_batch.engine import synthetic_data, partitions, validate_data
+        for count in (0, 1, -5, 1.5, None, 100001):
+            with self.subTest(n_samples=count), self.assertRaises(ValueError):
+                synthetic_data(22, n=count)
+        d=synthetic_data(22)
+        validate_data(22,d)
+        tr,cal,te=partitions(22,d)
+        self.assertFalse(set(tr.sample_id) & set(te.sample_id))
+        self.assertFalse(set(cal.sample_id) & set(te.sample_id))
 
     def test_f1_race_probability_sums_and_guards(self):
         p=ROOT/'f1-predictive-intelligence/ml/training/walk_forward_engine.py'
