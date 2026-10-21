@@ -1,27 +1,25 @@
-> **Status de implementação #027: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #027 — Industrial Forgings Sales Regression
 
-# Project #027 — Previsão de Volume de Vendas de Forjados e Cilindros
-## Industrial Forgings Sales Regression
+**Status:** implementation of a real regression training/evaluation workflow on a fully **SYNTHETIC** deterministic fixture; no industrial, financial, medical, educational or customer data were observed.
 
-- **Categoria / Route:** `/projetos/regression/27` (`03 / 10`)
-- **Diretório GitHub:** `projetos/03-regression/027-industrial-forgings-sales-regression`
-- **Benchmark de Referência:** `27 Sales Forecasting`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Eng. Atributos -> Treinamento -> Avaliação R²/MAE -> Predição` (`Features -> Train -> Evaluate -> Predict`)
+## Business question
+One-step-ahead daily forgings demand forecast using lagged sales and announced production plan; forward holdout.
 
----
+## Reproducible implementation
+- **Input:** [`regression_batch/data/027.csv`](../../../regression_batch/data/027.csv); `027` uniquely generated scenarios; row-level data dictionary in [`regression_batch/DATA_DICTIONARY.md`](../../../regression_batch/DATA_DICTIONARY.md).
+- **Features known at prediction time:** lag1_sales, lag7_sales, past7_mean, announced_price_index, capacity_units, month_sin, month_cos.
+- **Target:** `target_value` in units/day.
+- **Actual libraries:** Pandas, NumPy, Scikit-learn (`DummyRegressor`, `Ridge`, preprocessing), XGBoost (`XGBRegressor`), Matplotlib.
+- **Holdouts:** chronological, 60% train, 20% calibration, 20% untouched test. All fitted preprocessing is restricted to training rows. Conformal-style residual quantile uses calibration split only.
+- **Metrics:** holdout MAE, RMSE, R², WAPE, interval width and empirical coverage; naive median and Ridge baseline MAE are included; no predetermined claims of superiority.
+- **Outputs:** [`regression_batch/reports/027.json`](../../../regression_batch/reports/027.json), [`regression_batch/reports/027_predictions.csv`](../../../regression_batch/reports/027_predictions.csv), [`regression_batch/figures/027.svg`](../../../regression_batch/figures/027.svg), notebook and [site page](../../../site/cases/027/index.html).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Modelo preditivo de demanda comercial integrando carteira de pedidos, cotas e indicadores setoriais.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Commercial demand regression integrating order backlog, quotas, and sector indices.
-
----
-
-## 3. Como Executar / How to Run
-
+## Run
 ```bash
-python3 main.py
+python -m pip install -r requirements-regression.txt
+python projetos/03-regression/027-industrial-forgings-sales-regression/main.py
+python -m regression_batch.engine 27 --save
 ```
+
+## Limitations
+Synthetic causal relationships were explicitly written by the generator and therefore **do not establish predictive performance on real-world data**. Future real sources require license/privacy clearance, missingness & drift checks, entity/time-safe splitting, recalibration and a human-reviewed model card. In project #024, predictions must not drive hiring or certification decisions; #026 is **not** a legally valid insurance quotation.

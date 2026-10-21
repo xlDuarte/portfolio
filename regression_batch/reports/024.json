@@ -1,0 +1,59 @@
+{
+  "project_id": 24,
+  "project": "Technical Certification Score Prediction",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/024.csv (deterministically generated, synthetic)",
+  "features": [
+    "training_hours",
+    "practice_score",
+    "prior_score",
+    "study_weeks",
+    "attendance_pct",
+    "difficulty_index",
+    "certification_track"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 13.5911,
+  "ridge_mae": 5.2766,
+  "xgboost_mae": 5.9588,
+  "xgboost_rmse": 7.3976,
+  "xgboost_r2": 0.7908,
+  "xgboost_wape_pct": 10.083,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9524,
+  "interval_width": 30.018,
+  "unit": "score points",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__practice_score",
+      "importance": 0.23856
+    },
+    {
+      "feature": "number__prior_score",
+      "importance": 0.2287
+    },
+    {
+      "feature": "number__attendance_pct",
+      "importance": 0.15892
+    },
+    {
+      "feature": "number__difficulty_index",
+      "importance": 0.15408
+    },
+    {
+      "feature": "number__training_hours",
+      "importance": 0.09654
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "22": {
+    "title": "Fleet & Vehicle Residual Value Model",
+    "description": "Estimated vehicle residual value using age, odometer, maintenance and powertrain; simulated market in Brazil.",
+    "unit": "BRL",
+    "task": "Vehicle residual value",
+    "numerics": [
+      "age_years",
+      "odometer_km",
+      "service_score",
+      "incident_count",
+      "battery_health_pct",
+      "original_price_brl"
+    ],
+    "categories": [
+      "powertrain"
+    ],
+    "temporal": false,
+    "slug": "022-fleet-vehicle-residual-value-model"
+  },
+  "23": {
+    "title": "Engineering Compensation & Cost Model",
+    "description": "Estimated employer monthly labor cost from measurable role experience, qualifications and location cost index; not a salary recommendation.",
+    "unit": "BRL/month",
+    "task": "Engineering labor cost",
+    "numerics": [
+      "experience_years",
+      "certifications",
+      "responsibility_level",
+      "local_cost_index",
+      "leadership_years",
+      "overtime_hours"
+    ],
+    "categories": [
+      "specialty"
+    ],
+    "temporal": false,
+    "slug": "023-engineering-compensation-cost-model"
+  },
+  "24": {
+    "title": "Technical Certification Score Prediction",
+    "description": "Estimated technical certification outcome for simulated trainees; should never be used for real hiring decisions.",
+    "unit": "score points",
+    "task": "Certification score",
+    "numerics": [
+      "training_hours",
+      "practice_score",
+      "prior_score",
+      "study_weeks",
+      "attendance_pct",
+      "difficulty_index"
+    ],
+    "categories": [
+      "certification_track"
+    ],
+    "temporal": false,
+    "slug": "024-technical-certification-score-prediction"
+  },
+  "25": {
+    "title": "Occupational Safety Cost Prediction",
+    "description": "Estimated occupational risk-prevention and incident costs for hypothetical plants (not medical records).",
+    "unit": "BRL/year",
+    "task": "Occupational safety costs",
+    "numerics": [
+      "exposed_workers",
+      "hazard_index",
+      "historic_near_misses",
+      "training_coverage_pct",
+      "machine_age_years",
+      "shift_hours"
+    ],
+    "categories": [
+      "process"
+    ],
+    "temporal": false,
+    "slug": "025-occupational-safety-cost-prediction"
+  },
+  "26": {
+    "title": "Industrial Equipment Insurance Pricing",
+    "description": "Estimated synthetic insurance premium for machinery and fleets; cannot be used for real underwriting.",
+    "unit": "BRL/year",
+    "task": "Insurance premium",
+    "numerics": [
+      "replacement_value_brl",
+      "equipment_age_years",
+      "annual_use_hours",
+      "maintenance_score",
+      "deductible_pct",
+      "security_score"
+    ],
+    "categories": [
+      "equipment_type"
+    ],
+    "temporal": false,
+    "slug": "026-industrial-equipment-insurance-pricing"
+  },
+  "27": {
+    "title": "Industrial Forgings Sales Regression",
+    "description": "One-step-ahead daily forgings demand forecast using lagged sales and announced production plan; forward holdout.",
+    "unit": "units/day",
+    "task": "Forgings demand",
+    "numerics": [
+      "lag1_sales",
+      "lag7_sales",
+      "past7_mean",
+      "announced_price_index",
+      "capacity_units",
+      "month_sin",
+      "month_cos"
+    ],
+    "categories": [],
+    "temporal": true,
+    "slug": "027-industrial-forgings-sales-regression"
+  },
+  "28": {
+    "title": "Edge & Workstation Hardware Cost Model",
+    "description": "Predicted procurement cost of rugged industrial edge workstations from hardware BOM specification.",
+    "unit": "BRL",
+    "task": "Edge hardware procurement",
+    "numerics": [
+      "cpu_cores",
+      "ram_gb",
+      "ssd_tb",
+      "gpu_tflops",
+      "ruggedness_rating",
+      "warranty_years",
+      "device_quantity"
+    ],
+    "categories": [
+      "deployment_class"
+    ],
+    "temporal": false,
+    "slug": "028-edge-workstation-hardware-cost-model"
+  },
+  "29": {
+    "title": "Furnace & Machining Power Consumption",
+    "description": "Forecast daily electrical consumption from production plans, ambient temperature and planned loading, not realized energy.",
+    "unit": "kWh/day",
+    "task": "Industrial energy load",
+    "numerics": [
+      "planned_furnace_hours",
+      "planned_machine_hours",
+      "planned_tonnage",
+      "ambient_temp_c",
+      "furnace_load_pct",
+      "tariff_period_index"
+    ],
+    "categories": [
+      "process"
+    ],
+    "temporal": true,
+    "slug": "029-furnace-machining-power-consumption"
+  },
+  "30": {
+    "title": "Logistics Delivery Time (ETA) Prediction",
+    "description": "Predicted time to delivery from shipment attributes available at dispatch; forward holdout.",
+    "unit": "hours",
+    "task": "Logistics ETA",
+    "numerics": [
+      "route_distance_km",
+      "forecast_traffic_index",
+      "stops_planned",
+      "cargo_weight_tons",
+      "forecast_rain_mm",
+      "dispatch_hour",
+      "border_crossings"
+    ],
+    "categories": [
+      "transport_mode"
+    ],
+    "temporal": true,
+    "slug": "030-logistics-delivery-time-eta-prediction"
+  }
+}

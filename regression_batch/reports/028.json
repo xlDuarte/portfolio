@@ -1,0 +1,60 @@
+{
+  "project_id": 28,
+  "project": "Edge & Workstation Hardware Cost Model",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/028.csv (deterministically generated, synthetic)",
+  "features": [
+    "cpu_cores",
+    "ram_gb",
+    "ssd_tb",
+    "gpu_tflops",
+    "ruggedness_rating",
+    "warranty_years",
+    "device_quantity",
+    "deployment_class"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 112908.1415,
+  "ridge_mae": 21378.5591,
+  "xgboost_mae": 17944.208,
+  "xgboost_rmse": 23361.9395,
+  "xgboost_r2": 0.9676,
+  "xgboost_wape_pct": 9.453,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9167,
+  "interval_width": 80198.291,
+  "unit": "BRL",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__device_quantity",
+      "importance": 0.55762
+    },
+    {
+      "feature": "number__ram_gb",
+      "importance": 0.11252
+    },
+    {
+      "feature": "number__cpu_cores",
+      "importance": 0.10538
+    },
+    {
+      "feature": "number__ruggedness_rating",
+      "importance": 0.07216
+    },
+    {
+      "feature": "number__gpu_tflops",
+      "importance": 0.0655
+    }
+  ]
+}

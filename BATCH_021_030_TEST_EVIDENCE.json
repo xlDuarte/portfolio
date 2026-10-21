@@ -1,0 +1,97 @@
+{
+  "projects_ok": 111,
+  "projects_total": 111,
+  "python_ast_ok": 129,
+  "notebooks": [
+    {
+      "project": 22,
+      "method": "Jupyter kernel and isolated Python cell run",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 23,
+      "method": "Jupyter kernel and isolated Python cell run",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 24,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 25,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 26,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 27,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 28,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 29,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    },
+    {
+      "project": 30,
+      "method": "isolated Python cell run only",
+      "status": "PASS",
+      "code_cells": 2
+    }
+  ],
+  "js": [
+    {
+      "path": "index.html",
+      "inline_script": 0,
+      "status": "PASS",
+      "stderr": ""
+    },
+    {
+      "path": "site/index.html",
+      "inline_script": 0,
+      "status": "PASS",
+      "stderr": ""
+    },
+    {
+      "path": "site/f1/index.html",
+      "inline_script": 0,
+      "status": "PASS",
+      "stderr": ""
+    },
+    {
+      "path": "gabriel_duarte_automotive_lab.html",
+      "inline_script": 0,
+      "status": "PASS",
+      "stderr": ""
+    },
+    {
+      "path": "f1-predictive-intelligence/apps/web/index.html",
+      "inline_script": 0,
+      "status": "PASS",
+      "stderr": ""
+    }
+  ],
+  "limitations": [
+    "Notebook cell execution outside Jupyter kernel for projects #024–#030 because Jupyter kernel startup timed out in this environment. Project #022–#023 succeeded in Jupyter before timeout.",
+    "No browser E2E, Power BI integration or validation using real business data."
+  ]
+}

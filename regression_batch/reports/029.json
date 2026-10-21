@@ -1,0 +1,59 @@
+{
+  "project_id": 29,
+  "project": "Furnace & Machining Power Consumption",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/029.csv (deterministically generated, synthetic)",
+  "features": [
+    "planned_furnace_hours",
+    "planned_machine_hours",
+    "planned_tonnage",
+    "ambient_temp_c",
+    "furnace_load_pct",
+    "tariff_period_index",
+    "process"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "forward chronological 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 2026.6452,
+  "ridge_mae": 572.064,
+  "xgboost_mae": 476.2376,
+  "xgboost_rmse": 612.2566,
+  "xgboost_r2": 0.9403,
+  "xgboost_wape_pct": 7.093,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9286,
+  "interval_width": 2443.985,
+  "unit": "kWh/day",
+  "temporal_holdout_start": "2024-12-02",
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__planned_furnace_hours",
+      "importance": 0.53678
+    },
+    {
+      "feature": "number__furnace_load_pct",
+      "importance": 0.25836
+    },
+    {
+      "feature": "number__planned_machine_hours",
+      "importance": 0.07389
+    },
+    {
+      "feature": "number__planned_tonnage",
+      "importance": 0.05913
+    },
+    {
+      "feature": "number__tariff_period_index",
+      "importance": 0.03442
+    }
+  ]
+}

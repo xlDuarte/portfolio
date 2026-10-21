@@ -1,0 +1,60 @@
+{
+  "project_id": 30,
+  "project": "Logistics Delivery Time (ETA) Prediction",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/030.csv (deterministically generated, synthetic)",
+  "features": [
+    "route_distance_km",
+    "forecast_traffic_index",
+    "stops_planned",
+    "cargo_weight_tons",
+    "forecast_rain_mm",
+    "dispatch_hour",
+    "border_crossings",
+    "transport_mode"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "forward chronological 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 9.7736,
+  "ridge_mae": 2.7881,
+  "xgboost_mae": 1.6015,
+  "xgboost_rmse": 2.1342,
+  "xgboost_r2": 0.9665,
+  "xgboost_wape_pct": 6.354,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9524,
+  "interval_width": 8.249,
+  "unit": "hours",
+  "temporal_holdout_start": "2024-12-02",
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__route_distance_km",
+      "importance": 0.49858
+    },
+    {
+      "feature": "number__forecast_traffic_index",
+      "importance": 0.23618
+    },
+    {
+      "feature": "category__transport_mode_truck",
+      "importance": 0.06004
+    },
+    {
+      "feature": "number__cargo_weight_tons",
+      "importance": 0.0555
+    },
+    {
+      "feature": "number__border_crossings",
+      "importance": 0.05485
+    }
+  ]
+}

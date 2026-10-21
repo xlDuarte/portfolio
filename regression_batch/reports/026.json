@@ -1,0 +1,59 @@
+{
+  "project_id": 26,
+  "project": "Industrial Equipment Insurance Pricing",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/026.csv (deterministically generated, synthetic)",
+  "features": [
+    "replacement_value_brl",
+    "equipment_age_years",
+    "annual_use_hours",
+    "maintenance_score",
+    "deductible_pct",
+    "security_score",
+    "equipment_type"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 106011.954,
+  "ridge_mae": 33328.2662,
+  "xgboost_mae": 22919.8396,
+  "xgboost_rmse": 28889.2055,
+  "xgboost_r2": 0.9485,
+  "xgboost_wape_pct": 13.145,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.9286,
+  "interval_width": 100150.523,
+  "unit": "BRL/year",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__replacement_value_brl",
+      "importance": 0.53331
+    },
+    {
+      "feature": "number__maintenance_score",
+      "importance": 0.32842
+    },
+    {
+      "feature": "number__equipment_age_years",
+      "importance": 0.06115
+    },
+    {
+      "feature": "number__annual_use_hours",
+      "importance": 0.02997
+    },
+    {
+      "feature": "number__deductible_pct",
+      "importance": 0.02415
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "project_id": 23,
+  "project": "Engineering Compensation & Cost Model",
+  "status": "real estimators on generated SYNTHETIC fixture, NOT industrial performance",
+  "source": "regression_batch/data/023.csv (deterministically generated, synthetic)",
+  "features": [
+    "experience_years",
+    "certifications",
+    "responsibility_level",
+    "local_cost_index",
+    "leadership_years",
+    "overtime_hours",
+    "specialty"
+  ],
+  "models": [
+    "DummyRegressor",
+    "Ridge",
+    "XGBRegressor"
+  ],
+  "split": "unique-record seeded random 60/20/20",
+  "train_rows": 252,
+  "calibration_rows": 84,
+  "test_rows": 84,
+  "baseline_mae": 6739.797,
+  "ridge_mae": 1352.5843,
+  "xgboost_mae": 1872.0629,
+  "xgboost_rmse": 2328.8984,
+  "xgboost_r2": 0.9243,
+  "xgboost_wape_pct": 7.294,
+  "interval_nominal_coverage": 0.9,
+  "interval_empirical_coverage": 0.8929,
+  "interval_width": 7730.621,
+  "unit": "BRL/month",
+  "temporal_holdout_start": null,
+  "no_real_client_data": true,
+  "no_claim_of_business_impact": true,
+  "top_model_features": [
+    {
+      "feature": "number__local_cost_index",
+      "importance": 0.44581
+    },
+    {
+      "feature": "number__responsibility_level",
+      "importance": 0.2524
+    },
+    {
+      "feature": "number__experience_years",
+      "importance": 0.11013
+    },
+    {
+      "feature": "number__overtime_hours",
+      "importance": 0.06221
+    },
+    {
+      "feature": "number__certifications",
+      "importance": 0.04242
+    }
+  ]
+}
