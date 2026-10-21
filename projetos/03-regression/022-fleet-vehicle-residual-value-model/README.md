@@ -1,3 +1,5 @@
+> **Status de implementação #022: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+
 # Project #022 — Valor Residual e Depreciação de Frota Automotiva
 ## Fleet & Vehicle Residual Value Model
 
@@ -5,7 +7,7 @@
 - **Diretório GitHub:** `projetos/03-regression/022-fleet-vehicle-residual-value-model`
 - **Benchmark de Referência:** `22 Used Car Price Prediction`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Scikit-learn, Pandas, XGBoost, Matplotlib`
+- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
 - **Fluxo de Engenharia (How It Flows):** `Eng. Atributos -> Treinamento -> Avaliação R²/MAE -> Predição` (`Features -> Train -> Evaluate -> Predict`)
 
 ---

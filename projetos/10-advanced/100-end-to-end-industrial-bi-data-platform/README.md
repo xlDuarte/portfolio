@@ -1,3 +1,5 @@
+> **Status de implementação #100: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+
 # Project #100 — Plataforma Corporativa End-to-End de Business Intelligence
 ## End-to-End Industrial BI & Data Platform
 
@@ -5,7 +7,7 @@
 - **Diretório GitHub:** `projetos/10-advanced/100-end-to-end-industrial-bi-data-platform`
 - **Benchmark de Referência:** `100 End-to-End Business Intelligence Platform`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Docker, FastAPI, Kafka, Streamlit, Power BI`
+- **Stack proposta (não implementada no script):** `Docker, FastAPI, Kafka, Streamlit, Power BI`
 - **Fluxo de Engenharia (How It Flows):** `Stream IIoT/SAP -> Pipeline ETL -> Modelo IA/BI -> Deploy Prod` (`Data Stream -> Pipeline -> Model -> Deploy`)
 
 ---

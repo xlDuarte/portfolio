@@ -1,7 +1,9 @@
+> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+
 > **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
 
-# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
-**Author:** Gabriel Reis Duarte (`@xlDuarte`)  
+# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+**Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
 
@@ -177,13 +179,3 @@
   - **[#108 — Explicabilidade de Modelos (SHAP) & Eventos Raros com SMOTE](./projetos/11-motorsport-f1-mlops/108-explainable-ai-shap-imbalanced-fault-risk-modeling-with-smote/)** (*Explainable AI (SHAP) & Imbalanced Fault/Risk Modeling with SMOTE* | Ref: `Data Mavericks Int 01/02/05 — Explainable AI (SHAP) & Imbalanced SMOTE`)
   - **[#109 — Motor de Replay de Corrida F1 & Telemetria GPS em Tempo Real (Construído do Zero)](./projetos/11-motorsport-f1-mlops/109-f1-telemetry-race-replay-live-gps-track-position-engine-built-from-scratch/)** (*F1 Telemetry Race Replay & Live GPS Track Position Engine (Built from Scratch)* | Ref: `Flagship #109 — Ground-Up 2D/3D Race Replay, Live Timing Tower & Delta Engine`)
   - **[#110 — Suíte Completa de Engenharia de Performance em Motorsport (Pneus, FLIR, Setup, HH Timing & Laptime Sim)](./projetos/11-motorsport-f1-mlops/110-complete-motorsport-performance-engineering-suite-tire-physics-flir-setup-hh-timing-laptime-sim/)** (*Complete Motorsport Performance Engineering Suite (Tire Physics, FLIR, Setup, HH Timing & Laptime Sim)* | Ref: `Flagship #110 — Full 5-Day Motorsport Performance Engineering Seminar Suite (Porsche Cup / WEC)`)
-
-
-## Qualidade e escopo técnico — auditoria de outubro de 2026
-
-- O catálogo contém 111 protótipos Python com documentação individual. Testes de fumaça verificam execução sem erro, **não** acurácia preditiva.
-- O site é uma SPA com rotas `#/projetos/categoria/id`; **não** contém 111 páginas HTML pré-renderizadas.
-- Códigos e resumos na interface são **exemplos gerados**; os arquivos exatos estão disponíveis nos links GitHub em cada página.
-- Métricas sintéticas e curvas de calibração ilustrativas **não** são resultados de treino ou validação real.
-- O motor F1-PIP é prova de conceito parcial sem integração de dados reais ou benchmarking walk-forward robusto.
-- Testes automatizados: `python -m unittest discover -s tests -v`.

@@ -1,3 +1,5 @@
+> **Status de implementação #070: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+
 # Project #070 — Previsão de Taxa de Consumo (Burn-Rate) de Insumos Químicos
 ## Consumables Burn-Rate Forecasting
 
@@ -5,7 +7,7 @@
 - **Diretório GitHub:** `projetos/07-timeseries/070-consumables-burn-rate-forecasting`
 - **Benchmark de Referência:** `70 Food Demand Forecasting`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Pandas, Statsmodels, Prophet, Plotly`
+- **Stack proposta (não implementada no script):** `Pandas, Statsmodels, Prophet, Plotly`
 - **Fluxo de Engenharia (How It Flows):** `Série Histórica -> Tendência + Sazonal -> Forecast -> Erro MAPE` (`Time Data -> Trend + Season -> Forecast -> MAPE Error`)
 
 ---

@@ -1,25 +1,14 @@
-# Project #031 — Predição de Churn em Contratos B2B Industriais
-## B2B Industrial Contract Churn Prediction
+# Project #031 — B2B Industrial Contract Churn Prediction
 
-- **Categoria / Route:** `/projetos/classification/31` (`04 / 10`)
-- **Diretório GitHub:** `projetos/04-classification/031-b2b-industrial-contract-churn-prediction`
-- **Benchmark de Referência:** `31 Customer Churn Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Atributos -> Treino Modelo -> Matriz Confusão -> Classe Alvo` (`Features -> Train -> Confusion Matrix -> Label`)
+**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
 
----
+**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Identificação preventiva de contas corporativas com risco de redução de volume ou migração.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Early identification of corporate accounts at risk of volume drop or churn.
-
----
-
-## 3. Como Executar / How to Run
-
+**Reprodução:**
 ```bash
-python3 main.py
+python -m pip install -r requirements-case-studies.txt
+python projetos/04-classification/031-b2b-industrial-contract-churn-prediction/main.py
+python -m unittest discover -s tests -v
 ```
+
+**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.

@@ -1,3 +1,5 @@
+> **Estado auditado #104: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #104 — Detecção de Anomalias em Vibração Mecânica com Rede LSTM vs. Baseline
 ## Mechanical Vibration Time-Series Anomaly Detection (LSTM vs. Baseline)
 

@@ -1,25 +1,14 @@
-# Project #061 — Forecasting de Preços de Aço, Ligas Metálicas e Insumos
-## Steel & Alloy Commodity Forecasting
+# Project #061 — Steel Alloy Commodity Forecasting
 
-- **Categoria / Route:** `/projetos/timeseries/61` (`07 / 10`)
-- **Diretório GitHub:** `projetos/07-timeseries/061-steel-alloy-commodity-forecasting`
-- **Benchmark de Referência:** `61 Stock Price Analysis & Forecasting`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Pandas, Statsmodels, Prophet, Plotly`
-- **Fluxo de Engenharia (How It Flows):** `Série Histórica -> Tendência + Sazonal -> Forecast -> Erro MAPE` (`Time Data -> Trend + Season -> Forecast -> MAPE Error`)
+**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
 
----
+**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Modelagem ARIMA/Prophet de custos de matérias-primas siderúrgicas para planejamento de compras.
-
-## 2. Industrial & Motorsport Context (EN-US)
-ARIMA/Prophet modeling of metallurgical raw material costs for procurement planning.
-
----
-
-## 3. Como Executar / How to Run
-
+**Reprodução:**
 ```bash
-python3 main.py
+python -m pip install -r requirements-case-studies.txt
+python projetos/07-timeseries/061-steel-alloy-commodity-forecasting/main.py
+python -m unittest discover -s tests -v
 ```
+
+**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.

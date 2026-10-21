@@ -1,3 +1,5 @@
+> **Estado auditado #102: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+
 # Project #102 — Estimação de Estado em Dinâmica Veicular com Filtro de Kalman Estendido (EKF)
 ## Vehicle Dynamics State Estimation via Extended Kalman Filter (EKF)
 

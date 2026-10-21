@@ -1,3 +1,5 @@
+> **Status de implementação #038: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+
 # Project #038 — Detecção de Anomalias e Fraudes em Compras (SAP/SOX)
 ## SAP Procurement Anomaly Detection
 
@@ -5,7 +7,7 @@
 - **Diretório GitHub:** `projetos/04-classification/038-sap-procurement-anomaly-detection`
 - **Benchmark de Referência:** `38 Fraud Transaction Detection`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Scikit-learn, Pandas, XGBoost, Matplotlib`
+- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
 - **Fluxo de Engenharia (How It Flows):** `Atributos -> Treino Modelo -> Matriz Confusão -> Classe Alvo` (`Features -> Train -> Confusion Matrix -> Label`)
 
 ---
