@@ -4627,8 +4627,7 @@ python3 main.py
                 btn.addEventListener('click', () => {
                     activeProtoKey = btn.getAttribute('data-pkey');
                     faultInjected = false;
-                    renderF1RacingPage();
-            renderAutoLabPage();
+                    renderAutoLabPage();
                 });
             });
 
@@ -4967,6 +4966,14 @@ python3 main.py
             renderCasesPage();
             renderProjetosPage();
             renderProjetoDetalhePage();
+            // Render the F1 hub only on its route. Without this call its page is blank.
+            // Unmount on other routes to prevent duplicate controls with project #111.
+            const f1Container = document.getElementById('f1-racing-container');
+            if (currentRoute === '#/f1-racing') {
+                renderF1RacingPage();
+            } else if (f1Container && f1Container.childElementCount) {
+                f1Container.replaceChildren();
+            }
             renderAutoLabPage();
             renderEstrategiaPage();
             renderContatoPage();
@@ -5463,7 +5470,9 @@ python3 main.py
         });
 
         // Initial Render & Route Resolution
-        navigateTo(window.location.hash || '#/home');
+        // Direct visits to /f1 or /f1/ must open F1, not the generic home page.
+        const defaultRoute = /\/f1(?:\/|\/index\.html)?$/.test(window.location.pathname) ? '#/f1-racing' : '#/home';
+        navigateTo(window.location.hash || defaultRoute);
     </script>
 </body>
 </html>
