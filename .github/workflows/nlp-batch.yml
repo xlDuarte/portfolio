@@ -1,0 +1,59 @@
+name: NLP projects 041–050 verification
+
+on:
+  pull_request:
+    paths:
+      - 'nlp_batch/**'
+      - 'projetos/05-nlp/**'
+      - 'tests/test_nlp_batch.py'
+      - 'requirements-nlp.txt'
+      - '.github/workflows/nlp-batch.yml'
+      - 'site/cases/nlp/**'
+  push:
+    branches: [main, batch-041-050-industrial-nlp]
+    paths:
+      - 'nlp_batch/**'
+      - 'projetos/05-nlp/**'
+      - 'tests/test_nlp_batch.py'
+      - 'requirements-nlp.txt'
+      - '.github/workflows/nlp-batch.yml'
+      - 'site/cases/nlp/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nlp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-nlp.txt
+      - name: Install NLP dependencies (no model download)
+        run: python -m pip install -r requirements-nlp.txt
+      - name: Compile sources
+        run: python -m compileall -q nlp_batch projetos/05-nlp tests/test_nlp_batch.py
+      - name: Train classifiers and test evidence workflows
+        run: python -m unittest discover -s tests -p test_nlp_batch.py -v
+      - name: Generate synthetic evidence exports
+        run: |
+          python -m nlp_batch.engine 41 --save > /dev/null
+          python -m nlp_batch.engine 43 --evidence-file nlp_batch/examples/evidence.json --save > /dev/null
+          python -m nlp_batch.engine 50 --text-file nlp_batch/examples/sop.txt --save > /dev/null
+      - name: Publish reproducibility artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-nlp-reports
+          path: |
+            nlp_batch/reports/*.json
+            nlp_batch/data/*.csv
+          if-no-files-found: error
