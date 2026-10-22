@@ -1,0 +1,4 @@
+reports/*.json
+reports/*.sqlite3
+reports/*.csv
+__pycache__/
