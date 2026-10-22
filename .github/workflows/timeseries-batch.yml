@@ -48,7 +48,7 @@ jobs:
             python -m timeseries_batch.engine "$id" --save > /dev/null
           done
       - name: Upload synthetic plots and evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: synthetic-forecast-evidence
           path: |

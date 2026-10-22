@@ -43,7 +43,7 @@ jobs:
           assert len(a.exception)==0, a.exception
           assert len(a.json)>0
           PY
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: synthetic-business-finance-reports
           path: |
