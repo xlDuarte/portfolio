@@ -6,7 +6,7 @@ A branch de integração parte da `main` e incorpora **349 objetos de arquivo es
 
 | Escopo | Evidência | Estado |
 |---|---|---|
-| #001–#030 | Código original na `main`; testes específicos de análise e regressão existentes | Preservado; sem homologação externa |
+| #001–#030 | `analytics_batch1`, `case_studies`, `analytics_eda`, `regression_batch`: testes específicos de domínio presentes | Demonstrativos testados, sem homologação externa |
 | #031–#040 | `classification_batch`, dez `main.py` corretos, train/cal/test, Scikit-learn | Demonstrativo, rótulos sintéticos |
 | #041–#050 | `nlp_batch`, treino de texto e NLP local | Demonstrativo; nenhum LLM treinado |
 | #051–#060 | `recommendation_batch`, algoritmos por caso | Demonstrativo; sem engajamento real |
