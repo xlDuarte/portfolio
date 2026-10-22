@@ -2,8 +2,6 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import average_precision_score,roc_auc_score
-from xgboost import XGBClassifier
-from imblearn.over_sampling import SMOTE
 
 FEATURES=["vibration_rms","bearing_temp_c","kurtosis","oil_metal_ppm"]
 def generate(seed=108,n=480):
@@ -18,6 +16,8 @@ def generate(seed=108,n=480):
 
 def evaluate(seed=108):
     import shap
+    from xgboost import XGBClassifier
+    from imblearn.over_sampling import SMOTE
     x,y=generate(seed)
     tr,te=train_test_split(np.arange(len(y)),test_size=.25,stratify=y,random_state=seed)
     scaler=None # XGBoost operates in the original unit and does not require scaling
