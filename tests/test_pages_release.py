@@ -44,7 +44,12 @@ class TestPagesReleaseBuild(unittest.TestCase):
             ET.parse(dist/"sitemap.xml")
             self.assertIn("https://xlduarte.github.io/portfolio/sitemap.xml",(dist/"robots.txt").read_text())
     def test_real_site_index_and_routes(self):
-        index=(ROOT/"site"/"index.html").read_text(encoding="utf-8")
+        homepage=(ROOT/"site"/"index.html").read_text(encoding="utf-8")
+        self.assertIn('href="./industry/"',homepage)
+        self.assertIn('href="./motorsport/"',homepage)
+        self.assertIn('Gabriel',homepage)
+        self.assertTrue((ROOT/"site"/"motorsport"/"index.html").is_file())
+        index=(ROOT/"site"/"industry"/"index.html").read_text(encoding="utf-8")
         self.assertIn('href="/docs/"',index)
         self.assertIn('href="/cases/"',index)
         self.assertIn('href="/about/"',index)
