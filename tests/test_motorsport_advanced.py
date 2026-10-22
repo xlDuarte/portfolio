@@ -35,9 +35,9 @@ class TestRealAdvancedModels(unittest.TestCase):
             self.assertEqual(r["experiments_run"],2)
             self.assertTrue(r["model_reloaded"])
             self.assertGreaterEqual(r["psi_synthetic_shift"],0)
-            self.assertEqual(r["tracking_store"],"real local MLflow file store")
+            self.assertEqual(r["tracking_store"],"real local MLflow SQLite tracking store")
             self.assertFalse(r["registry_configured"])
-            self.assertTrue((Path(directory)/"mlruns").is_dir())
+            self.assertTrue((Path(directory)/"mlflow.db").is_file())
     @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_ADVANCED")=="1","requires MLflow/RAG/SHAP CI job")
     def test_107_actual_pdfs_and_langchain_runnable(self):
         from motorsport_batch.rag import build_demo_pdfs,ingest_pdfs,runnable
