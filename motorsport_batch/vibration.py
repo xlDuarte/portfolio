@@ -20,8 +20,6 @@ def sequences(seed=104,n_normal=200,n_fault=72,width=32):
 def evaluate(seed=104,epochs=3):
     import tensorflow as tf
     tf.keras.utils.set_random_seed(seed)
-    tf.config.threading.set_intra_op_parallelism_threads(1)
-    tf.config.threading.set_inter_op_parallelism_threads(1)
     normal,faulty=sequences(seed)
     train=normal[:144]
     valid=normal[144:172]
