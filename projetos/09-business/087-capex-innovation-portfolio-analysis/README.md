@@ -15,6 +15,6 @@ python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v
 ```
 
-**Dados/relatórios gerados:** `business_batch/exports/87_query.csv`, `business_batch/reports/87.json`, `business_batch/figures/87.png`. O arquivo [SQL](../../../business_batch/sql/87.sql) é executado com SQLite; a fonte de dados é gerada pelo [motor](../../../business_batch/engine.py).
+**Dados/relatórios gerados:** `business_batch/exports/87_query.csv`, `business_batch/reports/87.json`, `business_batch/figures/87.png`. O arquivo [SQL](../../../business_batch/sql/087.sql) é executado com SQLite; a fonte de dados é gerada pelo [motor](../../../business_batch/engine.py).
 
 **Limitações:** Compara 2¹² = 4.096 subconjuntos para maximizar VPL, rejeita propostas que excedam orçamento e retorna IDs selecionados. Templates [DAX](../../../business_batch/powerbi/Measures.dax) só foram escritos; nenhuma execução via Power BI Desktop. Não há dados SAP reais nem conclusão de compliance.
