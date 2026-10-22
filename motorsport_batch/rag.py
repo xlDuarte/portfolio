@@ -9,12 +9,8 @@ from pathlib import Path
 import re
 from typing import Any
 import numpy as np
-from langchain_core.documents import Document
-from langchain_core.runnables import RunnableLambda
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from pypdf import PdfReader
 
 CORPUS={
     "fictional-pump-maintenance.pdf":[
@@ -52,6 +48,9 @@ def build_demo_pdfs(destination:str|Path)->list[Path]:
 
 def ingest_pdfs(paths:list[Path])->list[Document]:
     if not paths:raise ValueError("Provide existing PDF files")
+    from langchain_core.documents import Document
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from pypdf import PdfReader
     docs=[]
     for path in paths:
         file=Path(path)
@@ -88,6 +87,7 @@ def answer(question:str,pdf_files:list[str|Path],top_k:int=3)->dict[str,Any]:
             "limitations":"Extractive only. Relevance is lexical and synthetic PDFs are NOT corporate manuals."}
 
 def runnable(files:list[str|Path]):
+    from langchain_core.runnables import RunnableLambda
     return RunnableLambda(lambda question:answer(question,files))
 
 def demo(output_dir:str|Path)->dict:
