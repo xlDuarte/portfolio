@@ -1,0 +1,54 @@
+name: Business finance and BI 081–090 verification
+on:
+  pull_request:
+    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements-business.txt','.github/workflows/business-batch.yml','site/cases/business/**']
+  push:
+    branches: [main,batch-081-090-business-finance-bi]
+    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements-business.txt','.github/workflows/business-batch.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  business:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-business.txt
+      - name: Install Python, SQL and Streamlit dependencies
+        run: python -m pip install -r requirements-business.txt
+      - name: Compile finance analytics sources
+        run: python -m compileall -q business_batch projetos/09-business tests/test_business_batch.py
+      - name: SQL, ML, reconciliation, finance and DAX-template acceptance
+        run: python -m unittest discover -s tests -p test_business_batch.py -v
+      - name: Execute all ten cases and export synthetic evidence
+        run: |
+          for id in $(seq 81 90); do python -m business_batch.engine "$id" --save > /dev/null; done
+      - name: Run interactive Streamlit dashboard
+        run: |
+          python - <<'PY'
+          from streamlit.testing.v1 import AppTest
+          a=AppTest.from_file("business_batch/app.py",default_timeout=45).run()
+          assert len(a.exception)==0, a.exception
+          assert len(a.selectbox)>0
+          a.button[0].click().run()
+          assert len(a.exception)==0, a.exception
+          assert len(a.json)>0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-business-finance-reports
+          path: |
+            business_batch/reports/*.json
+            business_batch/exports/*.csv
+            business_batch/exports/raw/*.csv
+            business_batch/figures/*.png
+          if-no-files-found: error
