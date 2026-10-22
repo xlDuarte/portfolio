@@ -146,7 +146,9 @@ def analyze_surface(image):
         area=float(cv2.contourArea(cnt))
         if area<10:continue
         x,y,w,h=cv2.boundingRect(cnt)
-        elongation=max(w,h)/max(1,min(w,h))
+        rotated=cv2.minAreaRect(cnt)
+        lengths=sorted(rotated[1])
+        elongation=lengths[1]/max(lengths[0],1)
         if elongation>4 and area>40:long_contours.append([x,y,w,h])
         elif .4<area/(w*h)<.95 and 30<area<200:pores.append([x,y,w,h])
     verdict=("oxidation" if rust_ratio>.08 else "crack" if long_contours
