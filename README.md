@@ -1,8 +1,8 @@
-> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+> **Situação da auditoria por lotes (branch NLP):** projetos #041–#050 agora processam texto de maneira executável; sete tarefas treinam modelos Scikit-learn sobre exemplos artificiais e três realizam operações documentais determinísticas. Houve implementação de lotes anteriores, mas **111 entradas não estão integralmente homologadas**. Não interpretar status de código como implantação, performance em dados reais ou nota 100/100. Ver [lote NLP](nlp_batch/README.md), [roadmap](QUALITY_ROADMAP.md) e respectivos testes.
 
-> **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
+> **Aviso técnico:** dados sintéticos são artificiais, e o tokenizador Hugging Face WordPiece é treinado localmente — nenhum Transformer pré-treinado foi executado neste lote. O módulo F1-PIP permanece parcial.
 
-# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
 **Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
