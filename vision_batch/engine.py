@@ -250,7 +250,7 @@ def track_yard(frames):
                 trajectories[next_id]=[list(center)]
                 next_id+=1
         previous=current
-    return {"unique_tracks":len(trajectories),"track_paths":trajectories,
+    return {"unique_tracks":len(trajectories),"track_paths":{str(k):v for k,v in trajectories.items()},
             "frames":len(frames),"method":"OpenCV detections + nearest centroid association",
             "real_vehicle_identity":False}
 
