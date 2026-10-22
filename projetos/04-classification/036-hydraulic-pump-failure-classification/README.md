@@ -1,27 +1,15 @@
-> **Status de implementação #036: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #036 — Hydraulic Pump Failure Classification
 
-# Project #036 — Diagnóstico de Falha Crítica em Bombas e Atuadores
-## Hydraulic Pump Failure Classification
+**Escopo comprovável:** classificador industrial de demonstração treinado em observações e rótulos **100% sintéticos**.
 
-- **Categoria / Route:** `/projetos/classification/36` (`04 / 10`)
-- **Diretório GitHub:** `projetos/04-classification/036-hydraulic-pump-failure-classification`
-- **Benchmark de Referência:** `36 Heart Disease Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Atributos -> Treino Modelo -> Matriz Confusão -> Classe Alvo` (`Features -> Train -> Confusion Matrix -> Label`)
-
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Classificação de saúde de sistemas hidráulicos de alta pressão a partir de pressão, vazão e vibração.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Health classification of high-pressure hydraulic systems from pressure, flow, and vibration.
-
----
-
-## 3. Como Executar / How to Run
+Este projeto carrega explicitamente as variáveis numéricas `vibration_mm_s`, `oil_temp_c`, `pressure_variation`, `maintenance_age_days`, `particle_count` e a variável categórica `pump_type`. Usa Pandas/NumPy, StandardScaler e OneHotEncoder, Scikit-learn LogisticRegression, HistGradientBoostingClassifier e DummyClassifier. O código aplica divisão treino/calibração/teste 60/20/20, seleciona o limiar na calibração e calcula ROC-AUC, F1, average precision, Brier e matriz de confusão no teste.
 
 ```bash
-python3 main.py
+python -m pip install -r requirements-classification.txt
+python projetos/04-classification/036-hydraulic-pump-failure-classification/main.py
+python -m unittest discover -s tests -p test_classification_batch.py -v
 ```
+
+**Fontes:** [motor](../../../classification_batch/engine.py) · [configuração específica](../../../classification_batch/config.json) · [auditoria integrada](../../../INTEGRATION_AUDIT.md).
+
+**Limites:** sem SAP, XGBoost, TensorFlow, serviço externo, dados corporativos, impacto de negócio validado ou decisões automatizadas. O resultado não qualifica modelos comerciais/de crédito/segurança como homologados.

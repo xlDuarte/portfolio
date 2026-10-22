@@ -3,6 +3,29 @@ No observed business data, deployed decisioning or demonstrated business impact.
 """
 from __future__ import annotations
 import json
+import ast
+
+# Allow only elementary arithmetic in versioned simulated-risk equations.
+# Never execute arbitrary Python from a configuration file.
+def evaluate_formula(expression,values):
+    node=ast.parse(expression,mode="eval").body
+    import operator
+    binary={ast.Add:operator.add,ast.Sub:operator.sub,ast.Mult:operator.mul,ast.Div:operator.truediv}
+    unary={ast.UAdd:operator.pos,ast.USub:operator.neg}
+    def walk(item):
+        if isinstance(item,ast.Constant) and isinstance(item.value,(float,int)) and not isinstance(item.value,bool):
+            return float(item.value)
+        if isinstance(item,ast.Name) and item.id in values and item.id in RANGES:
+            return values[item.id]
+        if isinstance(item,ast.BinOp) and type(item.op) in binary:
+            return binary[type(item.op)](walk(item.left),walk(item.right))
+        if isinstance(item,ast.UnaryOp) and type(item.op) in unary:
+            return unary[type(item.op)](walk(item.operand))
+        raise ValueError("Unsupported synthetic risk formula expression")
+    result=walk(node)
+    if not np.isfinite(result).all():raise ValueError("Nonfinite simulated risk formula")
+    return result
+
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -40,8 +63,8 @@ def synthetic_data(project:int,n:int=600,seed:int=2026)->pd.DataFrame:
     cfg=CONFIG[project]; rng=np.random.default_rng(seed+project)
     d={name:rng.uniform(*RANGES[name],size=n) for name in cfg["numerics"]}
     d[cfg["categorical"]]=rng.choice(CATEGORIES[cfg["categorical"]],size=n)
-    # Equation contains only known generated feature names, evaluated without builtins.
-    z=eval(cfg["equation"],{"__builtins__":{}},d)
+    # Equation is parsed as a restricted AST, never run with eval().
+    z=evaluate_formula(cfg["equation"],d)
     z=(z-np.median(z))/max(np.std(z),1e-9)
     probability=1/(1+np.exp(-np.clip(z,-12,12)))
     y=rng.binomial(1,probability)

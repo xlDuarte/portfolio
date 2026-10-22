@@ -1,27 +1,15 @@
-> **Status de implementação #037: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #037 — Lubricant Degradation Classification
 
-# Project #037 — Classificação de Degradação Química de Lubrificantes
-## Lubricant Degradation Classifier
+**Escopo comprovável:** classificador industrial de demonstração treinado em observações e rótulos **100% sintéticos**.
 
-- **Categoria / Route:** `/projetos/classification/37` (`04 / 10`)
-- **Diretório GitHub:** `projetos/04-classification/037-lubricant-degradation-classifier`
-- **Benchmark de Referência:** `37 Diabetes Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Scikit-learn, Pandas, XGBoost, Matplotlib`
-- **Fluxo de Engenharia (How It Flows):** `Atributos -> Treino Modelo -> Matriz Confusão -> Classe Alvo` (`Features -> Train -> Confusion Matrix -> Label`)
-
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Análise físico-química de óleo industrial (viscosidade, partículas, acidez) para troca preditiva.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Physicochemical oil analysis (viscosity, particles, acidity) for predictive oil change.
-
----
-
-## 3. Como Executar / How to Run
+Este projeto carrega explicitamente as variáveis numéricas `viscosity_change_pct`, `water_ppm`, `particle_count`, `oxidation_index`, `running_hours` e a variável categórica `lubricant_grade`. Usa Pandas/NumPy, StandardScaler e OneHotEncoder, Scikit-learn LogisticRegression, HistGradientBoostingClassifier e DummyClassifier. O código aplica divisão treino/calibração/teste 60/20/20, seleciona o limiar na calibração e calcula ROC-AUC, F1, average precision, Brier e matriz de confusão no teste.
 
 ```bash
-python3 main.py
+python -m pip install -r requirements-classification.txt
+python projetos/04-classification/037-lubricant-degradation-classifier/main.py
+python -m unittest discover -s tests -p test_classification_batch.py -v
 ```
+
+**Fontes:** [motor](../../../classification_batch/engine.py) · [configuração específica](../../../classification_batch/config.json) · [auditoria integrada](../../../INTEGRATION_AUDIT.md).
+
+**Limites:** sem SAP, XGBoost, TensorFlow, serviço externo, dados corporativos, impacto de negócio validado ou decisões automatizadas. O resultado não qualifica modelos comerciais/de crédito/segurança como homologados.
