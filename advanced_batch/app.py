@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 import httpx
 import streamlit as st
-from .engine import SPECS
+from advanced_batch.engine import SPECS
 
 def run_app(default_project:int=91)->None:
     if default_project not in SPECS:raise ValueError("Invalid project")
