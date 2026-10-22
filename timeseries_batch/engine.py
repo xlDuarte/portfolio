@@ -256,13 +256,63 @@ def evaluate(project: int,frame: pd.DataFrame | None=None,save: bool=False) -> d
                           include_plotlyjs=True,full_html=True)
     return result
 
+
+def forecast_future(project: int, frame: pd.DataFrame | None=None,
+                    horizon: int=HORIZON, save: bool=False) -> dict:
+    """Forecast FUTURE weeks beyond observed history with models fitted only on past."""
+    if not isinstance(horizon,int) or isinstance(horizon,bool) or not 1<=horizon<=HORIZON:
+        raise ValueError("Future forecasting horizon must be between 1 and 8 weeks")
+    frame=synthetic_series(project) if frame is None else frame.copy()
+    frame["observation_date"]=pd.to_datetime(frame["observation_date"])
+    validate_frame(project,frame)
+    if len(frame)!=PERIODS:
+        raise ValueError("This benchmark expects 240 weekly observations")
+    val= splits(frame)
+    validation_mae={}
+    for model in ("seasonal_naive","statsmodels_ets"):
+        scores=[]
+        for train,actual,_ in val:
+            pred=(seasonal_naive(train,HORIZON) if model=="seasonal_naive"
+                  else statsmodels_forecast(train,HORIZON,project))
+            scores.append(float(np.mean(np.abs(actual-_clip(project,pred)))))
+        validation_mae[model]=round(float(np.mean(scores)),5)
+    selected=min(validation_mae,key=lambda name:(validation_mae[name],name))
+    history=frame.target_value.to_numpy(dtype=float)
+    fitted={
+        "seasonal_naive":_clip(project,seasonal_naive(history,horizon)),
+        "statsmodels_ets":statsmodels_forecast(history,horizon,project),
+        "prophet":prophet_forecast(frame,horizon,project),
+    }
+    dates=pd.date_range(frame.observation_date.iloc[-1]+pd.Timedelta(days=7),
+                        periods=horizon,freq="W-MON")
+    result={
+        "project_id":project,"data_origin":"SYNTHETIC",
+        "forecast_origin_date":str(frame.observation_date.iloc[-1].date()),
+        "future_dates":dates.strftime("%Y-%m-%d").tolist(),
+        "selected_model":selected,
+        "selection_validation_mae":validation_mae,
+        "selected_forecast":np.round(fitted[selected],5).tolist(),
+        "prophet_forecast":np.round(fitted["prophet"]["forecast"],5).tolist(),
+        "prophet_uncalibrated_lower":np.round(fitted["prophet"]["lower"],5).tolist(),
+        "prophet_uncalibrated_upper":np.round(fitted["prophet"]["upper"],5).tolist(),
+        "actual_values_available":False,
+        "limitations":"Simulated weekly series; forecast is not verified against future measurements",
+    }
+    if save:
+        (ROOT/"reports").mkdir(exist_ok=True)
+        (ROOT/"reports"/f"{project:03d}_future.json").write_text(
+            json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    return result
+
 def cli(project: int | None=None):
     parser=argparse.ArgumentParser(description="10 real forecasts of synthetic time series")
     if project is None:
         parser.add_argument("project",type=int,choices=sorted(CONFIG))
     parser.add_argument("--save",action="store_true")
+    parser.add_argument("--future",action="store_true",help="Forecast eight future weeks beyond synthetic history")
     args=parser.parse_args()
-    result=evaluate(project if project is not None else args.project,save=args.save)
+    chosen=project if project is not None else args.project
+    result=(forecast_future(chosen,save=args.save) if args.future else evaluate(chosen,save=args.save))
     print(json.dumps(result,ensure_ascii=False,indent=2))
 
 if __name__=="__main__":
