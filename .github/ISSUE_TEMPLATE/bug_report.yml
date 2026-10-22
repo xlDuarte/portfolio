@@ -1,0 +1,25 @@
+name: Erro reproduzível
+description: Problema de código, documentação, CI ou Pages sem dados sensíveis
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Projeto/ID afetado
+      description: "Exemplo: #105 Grad-CAM, site/cases/vision/075 ou GitHub Pages"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      description: Nunca inclua segredos ou informações privadas de terceiros.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Resultado observado e esperado
+    validations:
+      required: true
