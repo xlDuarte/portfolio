@@ -1,3 +1,15 @@
+> **Auditoria do lote #101–#110:** Lucas–Kanade optical flow de pares de quadros criados com transformação afim conhecida; cálculo do erro de deslocamento. **Tecnologias comprováveis neste projeto:** OpenCV, NumPy, rastreamento de features; não calibração de câmera real. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
+
+## Como executar a implementação atual
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python projetos/11-motorsport-f1-mlops/103-motorsport-onboard-video-feature-tracking-motion-calibration/main.py
+python -m unittest discover -s tests -p test_motorsport_batch.py -v
+```
+
+**Evidência técnica:** [pacote de implementação](../../../motorsport_batch/README.md), [código especializado](../../../motorsport_batch/) e [testes avançados](../../../tests/test_motorsport_advanced.py). 
+
 # 103 — Motorsport Onboard Video: OpenCV Feature Tracking
 
 **Status:** validated synthetic optical-flow benchmark; not validation against real F1 footage.
