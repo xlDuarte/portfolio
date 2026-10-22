@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Business #85: SOX Payment Audit & Anomaly Detection. Executable SQLite/Python analysis, entirely synthetic."""
+"""Project #85: real SQL and Python financial analysis on synthetic data."""
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
