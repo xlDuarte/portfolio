@@ -1,27 +1,20 @@
-> **Status de implementação #060: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #060 — Automated BOM & Maintenance Kit Engine
 
-# Project #060 — Otimizador de Lotes de Compra e Kits de Manutenção
-## Automated BOM & Maintenance Kit Engine
+**Status:** motor funcional de listas de materiais para manutenção sobre BOM e estoque **100% sintéticos**. Não executa ordens de compra nem consulta SAP/Ariba.
 
-- **Categoria / Route:** `/projetos/recommendation/60` (`06 / 10`)
-- **Diretório GitHub:** `projetos/06-recommendation/060-automated-bom-maintenance-kit-engine`
-- **Benchmark de Referência:** `60 Personalized Shopping Recommendation`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, NumPy, Scikit-learn, Streamlit`
-- **Fluxo de Engenharia (How It Flows):** `Perfil / Ativo -> Similaridade -> Ranking -> Top-N Ações` (`Asset Data -> Similarity -> Rank -> Top-N`)
+## Escopo implementado
+Explosão recursiva de conjuntos e subconjuntos, multiplicação por quantidade de equipamentos, verificação de integridade e ciclos, exigência de itens aprovados, cálculo de quantidades necessárias, subtração do estoque disponível, arredondamento por múltiplos de embalagem e estimativa de custo de reposição artificial. **O parâmetro `--top-k` não remove nenhum item obrigatório** da BOM.
 
----
+**Stack efetiva:** Python e cálculos matemáticos de BOM; Pandas, NumPy e Scikit-learn são empregados em outros modelos do lote, não são necessários para o cálculo de BOM. Streamlit fornece visualização e filtros executáveis.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Geração automática de listas de materiais (BOM) completas para paradas programadas.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Automated generation of complete Bill-of-Materials (BOM) kits for scheduled shutdowns.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-recommendation.txt
+python projetos/06-recommendation/060-automated-bom-maintenance-kit-engine/main.py --query PUMP-100 --filters-json '{"units":2,"pack_size":5}' --save
+python -m streamlit run projetos/06-recommendation/060-automated-bom-maintenance-kit-engine/streamlit_app.py
+python -m unittest discover -s tests -p test_recommendation_batch.py -v
 ```
+
+**Entradas**: BOMs, peças, quantidades, estoque, custos e aprovações da fixture [fixtures.json](../../../recommendation_batch/fixtures.json). **Saída:** JSON de componentes completos, shortfall e quantidade sugerida de reposição.
+
+**Limitações:** manutenção, estoque e custo são fictícios. A correção de engenharia da lista de materiais, revisão do cadastro mestre, múltiplos reais de fornecimento e geração de pedidos permanecem fora da implementação. Nenhuma homologação industrial foi demonstrada.

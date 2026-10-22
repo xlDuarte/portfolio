@@ -1,27 +1,20 @@
-> **Status de implementação #068: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #68 — FX Volatility Analysis for Imports
 
-# Project #068 — Análise de Volatilidade Cambial em Importação de Insumos
-## FX Volatility Analysis for Imports
+**Status:** motor de previsão executável; observações são 100% sintéticas, métricas não constituem acurácia de produção.
 
-- **Categoria / Route:** `/projetos/timeseries/68` (`07 / 10`)
-- **Diretório GitHub:** `projetos/07-timeseries/068-fx-volatility-analysis-for-imports`
-- **Benchmark de Referência:** `68 Cryptocurrency Price Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, Statsmodels, Prophet, Plotly`
-- **Fluxo de Engenharia (How It Flows):** `Série Histórica -> Tendência + Sazonal -> Forecast -> Erro MAPE` (`Time Data -> Trend + Season -> Forecast -> MAPE Error`)
+## Escopo concluído
+Volatilidade de câmbio sintética, não previsão de preços FX. Unidade alvo: **percent_weekly_realized_volatility**. Série determinística, semanal, com 240 registros; controles para valores negativos, buracos e duplicidades temporais e limite de 100% para ocupação (#067).
 
----
+**Técnica:** Statsmodels ETS (tendência, sazonalidade semanal de período 13), Prophet (com sazonalidade anual), NumPy/Pandas, gráficos Plotly e baseline sazonal ingênuo. Backtest expanding-window em 168, 192, 216 observações e 8 semanas por origem; holdout intocado de 8 semanas finais. Seleção de baseline ou ETS pelo MAE da validação e avaliação adicional do Prophet sem selecionar pelo teste. Inclui MAE, RMSE, WAPE, MAPE e sMAPE e cálculo descritivo de cobertura de intervalos.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Modelagem de séries temporais de alta frequência para proteção cambial (hedge) em compras.
-
-## 2. Industrial & Motorsport Context (EN-US)
-High-frequency time-series modeling for currency hedging in international procurement.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-timeseries.txt
+python projetos/07-timeseries/068-fx-volatility-analysis-for-imports/main.py --save
+python projetos/07-timeseries/068-fx-volatility-analysis-for-imports/main.py --future --save
+python -m unittest discover -s tests -p test_timeseries_batch.py -v
 ```
+
+**Arquivos:** dados `timeseries_batch/data/68.csv`, relatório `timeseries_batch/reports/68.json`, previsões `timeseries_batch/reports/68_predictions.csv`, futuro `timeseries_batch/reports/68_future.json`, gráfico `timeseries_batch/figures/68.html` (Plotly offline).
+
+**Limitações:** gerador artificial, ausência de dados autorizados reais, benchmarking de produção, atualizações de fonte, auditoria ESG, APIs climáticas ou cambiais; uso depende de validação e controles do domínio.

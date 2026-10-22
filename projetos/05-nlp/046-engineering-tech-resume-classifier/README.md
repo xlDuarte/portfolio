@@ -1,27 +1,22 @@
-> **Status de implementação #046: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #46 — Engineering & Tech Resume Classifier
 
-# Project #046 — Triagem Semântica de Currículos de Engenharia e TI
-## Engineering & Tech Resume Classifier
+**Status:** classificação NLP com treinamento, teste e inferência reais sobre texto 100% sintético. Implementação: [motor NLP](../../../nlp_batch/engine.py); [templates artificiais](../../../nlp_batch/specs.json).
 
-- **Categoria / Route:** `/projetos/nlp/46` (`05 / 10`)
-- **Diretório GitHub:** `projetos/05-nlp/046-engineering-tech-resume-classifier`
-- **Benchmark de Referência:** `46 Resume Classification`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
-- **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
+## Escopo efetivamente implementado
+Identificação de áreas técnicas em currículos fictícios: dados, software, mecânica e automação. Não pontua candidatos nem toma decisões de recrutamento.
 
----
+**Classes:** data, software, mechanical, automation.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Alinhamento automatizado de perfis técnicos às matrizes de competência industrial.
+**Tecnologia executada:** NLTK TweetTokenizer; Hugging Face Tokenizers WordPiece local (sem pesos de Transformers); Scikit-learn TF-IDF (caracteres e WordPiece), LogisticRegression e baseline DummyClassifier. Holdout isolado por *sentence template* (treino/calibração/teste = 3/1/1 templates por classe). Métricas: acurácia, macro-F1, relatório por classe e baseline.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Automated matching of technical profiles against industrial competency matrices.
-
----
-
-## 3. Como Executar / How to Run
-
+## Reprodução
 ```bash
-python3 main.py
+python -m pip install -r requirements-nlp.txt
+python projetos/05-nlp/046-engineering-tech-resume-classifier/main.py --text "Experiência técnica com SQL dashboards e análise de dados" --save
+python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
+
+**Saídas locais:** `nlp_batch/reports/46.json` e `nlp_batch/data/46.csv`. Não há download de modelos pré-treinados.
+
+## Limitações
+Templates sintéticos e variações contextuais não constituem observações independentes. Sem evidência de desempenho com dados reais, revisão de especialistas ou monitoramento em produção. A classificação de áreas profissionais não pode servir como avaliação individual, rejeição automática nem inferência sobre atributos pessoais.

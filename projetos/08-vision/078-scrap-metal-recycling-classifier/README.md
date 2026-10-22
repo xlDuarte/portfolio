@@ -1,27 +1,16 @@
-> **Status de implementação #078: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #78 — Scrap metal category classifier
 
-# Project #078 — Classificação Automática de Sucata Metálica e Resíduos
-## Scrap Metal & Recycling Classifier
+**Implementação executável:** Classificação por histograma de cores de sucata fictícia. A entrada de demonstração é imagem sintética criada por OpenCV; não houve teste industrial.
 
-- **Categoria / Route:** `/projetos/vision/78` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/078-scrap-metal-recycling-classifier`
-- **Benchmark de Referência:** `78 Waste Classification`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+**Tecnologias efetivas:** OpenCV color histogram, NumPy. Histogramas de cor com comparação cosseno ranqueiam amostras simuladas; cor não verifica composição química de metais.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Separação visual de cavacos, ligas ferrosas/não-ferrosas e resíduos industriais.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Visual sorting of machining swarf, ferrous/non-ferrous alloys, and industrial waste.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/078-scrap-metal-recycling-classifier/main.py --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+Relatórios e imagens em `vision_batch/reports/78.json` e `vision_batch/reports/78.png`. [Motor](../../../vision_batch/engine.py), [documentação](../../../vision_batch/README.md).
+
+**Limites:** apenas padrões desenhados artificialmente, sem métricas reais de acurácia, sem certificação, sem controles ou decisões automatizadas.

@@ -1,0 +1,72 @@
+{
+  "91": {
+    "slug": "091-end-to-end-vendor-governance-risk-engine",
+    "title": "Vendor Governance & Risk Engine",
+    "kind": "vendor_risk",
+    "description": "Avaliação de fornecedores, aprovações e risco auditável",
+    "source": "synthetic events; not production industrial data"
+  },
+  "92": {
+    "slug": "092-real-time-erp-ot-anomaly-detection",
+    "title": "Real-Time ERP/OT Anomaly Detection",
+    "kind": "anomaly",
+    "description": "Detecção incremental de desvios ERP/OT com IsolationForest",
+    "source": "synthetic events; not production industrial data"
+  },
+  "93": {
+    "slug": "093-ai-technical-competency-screening-platform",
+    "title": "Technical Competency Matching Platform",
+    "kind": "skills",
+    "description": "Correspondência entre projetos e perfis técnicos simulados, sem triagem decisória",
+    "source": "synthetic events; not production industrial data"
+  },
+  "94": {
+    "slug": "094-integrated-s-op-ics-demand-system",
+    "title": "Integrated S&OP & ICS Demand System",
+    "kind": "forecast",
+    "description": "Previsão de demanda e ponto de reposição de estoque crítico",
+    "source": "synthetic events; not production industrial data"
+  },
+  "95": {
+    "slug": "095-enterprise-b2b-contract-retention-platform",
+    "title": "B2B Contract Retention Platform",
+    "kind": "churn",
+    "description": "Classificação de risco de churn contratual e trilha de evidências",
+    "source": "synthetic events; not production industrial data"
+  },
+  "96": {
+    "slug": "096-real-time-mes-setup-recommendation-engine",
+    "title": "MES Setup Recommendation Engine",
+    "kind": "mes",
+    "description": "Sugestão de parâmetros de setup dentro de limites artificiais de máquina",
+    "source": "synthetic events; not production industrial data"
+  },
+  "97": {
+    "slug": "097-cyber-physical-predictive-maintenance-system",
+    "title": "Cyber-Physical Predictive Maintenance",
+    "kind": "rul",
+    "description": "Estimativa de vida útil remanescente com regressão supervisionada",
+    "source": "synthetic events; not production industrial data"
+  },
+  "98": {
+    "slug": "098-ai-engineering-document-invoice-classifier",
+    "title": "Engineering Document & Invoice Classifier",
+    "kind": "documents",
+    "description": "Classificação de textos documentais artificiais com TF-IDF",
+    "source": "synthetic events; not production industrial data"
+  },
+  "99": {
+    "slug": "099-real-time-quality-safety-command-center",
+    "title": "Quality & Safety Command Center",
+    "kind": "quality",
+    "description": "Fila de alarmes de qualidade e segurança sobre eventos simulados",
+    "source": "synthetic events; not production industrial data"
+  },
+  "100": {
+    "slug": "100-end-to-end-industrial-bi-data-platform",
+    "title": "Industrial BI Data Platform",
+    "kind": "bi",
+    "description": "Armazenamento SQL e KPIs industriais consultados por API",
+    "source": "synthetic events; not production industrial data"
+  }
+}

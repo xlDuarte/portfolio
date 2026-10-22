@@ -1,0 +1,89 @@
+name: Advanced systems 091–100 acceptance
+on:
+  pull_request:
+    paths:
+      - 'advanced_batch/**'
+      - 'projetos/10-advanced/**'
+      - 'tests/test_advanced_batch.py'
+      - 'tests/test_advanced_kafka.py'
+      - 'requirements-advanced.txt'
+      - '.github/workflows/advanced-batch.yml'
+      - 'site/cases/advanced/**'
+  push:
+    branches: [main,batch-091-100-advanced-end-to-end]
+    paths:
+      - 'advanced_batch/**'
+      - 'projetos/10-advanced/**'
+      - 'tests/test_advanced_batch.py'
+      - 'tests/test_advanced_kafka.py'
+      - 'requirements-advanced.txt'
+      - '.github/workflows/advanced-batch.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  api-ml-sql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install -r requirements-advanced.txt
+      - run: python -m compileall -q advanced_batch projetos/10-advanced tests/test_advanced_batch.py
+      - name: Test real models, API, SQLite storage and negative controls
+        run: python -m unittest discover -s tests -p test_advanced_batch.py -v
+      - name: Execute ten project entrypoints on synthetic events
+        run: |
+          for id in $(seq 91 100); do python -m advanced_batch.engine "$id" --save > /dev/null; done
+          python -m advanced_batch.export_bi --output advanced_batch/reports/synthetic_bi.csv
+      - name: Test Streamlit frontend widgets
+        run: |
+          python - <<'PY'
+          from streamlit.testing.v1 import AppTest
+          app=AppTest.from_file('advanced_batch/app.py',default_timeout=30).run()
+          assert len(app.exception)==0,app.exception
+          assert len(app.selectbox)>0
+          assert len(app.button)>0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-advanced-api-ml-evidence
+          path: |
+            advanced_batch/reports/*.json
+            advanced_batch/reports/*.csv
+          if-no-files-found: error
+  kafka-broker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      RUN_ADVANCED_KAFKA: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install -r requirements-advanced.txt
+      - name: Start real Redpanda Kafka protocol broker
+        run: |
+          docker compose -f advanced_batch/compose.yaml up -d redpanda
+          python - <<'PY'
+          import time
+          from kafka import KafkaAdminClient
+          for i in range(45):
+              try:
+                  client=KafkaAdminClient(bootstrap_servers='localhost:19092',
+                                          request_timeout_ms=3000)
+                  client.close()
+                  break
+              except Exception:
+                  if i==44: raise
+                  time.sleep(2)
+          PY
+      - name: Test broker-ACK publication and SQLite consumer offset commit
+        run: python -m unittest discover -s tests -p test_advanced_kafka.py -v
+      - if: always()
+        run: docker compose -f advanced_batch/compose.yaml logs --tail=80 redpanda

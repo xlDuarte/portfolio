@@ -1,0 +1,4 @@
+reports/*.json
+exports/*.csv
+exports/raw/*.csv
+figures/*.png

@@ -1,27 +1,22 @@
-> **Status de implementação #041: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #41 — Warranty & Field Feedback Sentiment
 
-# Project #041 — Análise de Sentimento em Garantias e Pós-Venda
-## Warranty & Field Feedback Sentiment
+**Status:** pipeline NLP executável; exemplos e rótulos artificiais, sem validação real. Código de implementação: [nlp_batch/engine.py](../../../nlp_batch/engine.py); [especificação e templates](../../../nlp_batch/specs.json).
 
-- **Categoria / Route:** `/projetos/nlp/41` (`05 / 10`)
-- **Diretório GitHub:** `projetos/05-nlp/041-warranty-field-feedback-sentiment`
-- **Benchmark de Referência:** `41 Sentiment Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
-- **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
+## Escopo e funcionalidade
+Classifica satisfação e reclamações de garantia em três polaridades; use como triagem, nunca indicador real de satisfação.
 
----
+**Implementação:** NLTK TweetTokenizer, tokenizador Hugging Face WordPiece treinado localmente, TF-IDF e Scikit-learn LogisticRegression, com baseline DummyClassifier, treinamento em templates distintos e holdout separado.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Mineração de relatos técnicos de concessionárias e clientes industriais para detectar falhas de campo.
+**Classes:** negative, neutral, positive. Treino/calibração/teste por template (3/1/1), métricas macro-F1, acurácia e relatório por classe.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Mining dealer and industrial client field reports to surface emerging quality issues.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-nlp.txt
+python projetos/05-nlp/041-warranty-field-feedback-sentiment/main.py --text "Cliente relata falha repetida na garantia e solicita substituição" --save
+python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
+
+**Artefatos locais:** relatório JSON `nlp_batch/reports/41.json`; dataset sintético CSV `nlp_batch/data/41.csv`.
+
+## Limites
+Vocabulário e classes artificiais; ausência de anotações independentes, avaliação externa, robustez adversarial e aferição em produção. Nenhuma conclusão empresarial ou regulatória foi comprovada.

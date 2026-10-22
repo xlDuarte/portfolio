@@ -1,4 +1,13 @@
-> **Estado auditado #110: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria técnica #110:** Preserva modelagens numéricas e incorpora painel com varredura de rigidez, mapas térmicos artificiais e histograma de amortecedores. Não é FLIR nem o simulador proprietário ChassisSim. **Stack efetiva:** Python, NumPy, Pandas, Plotly, Streamlit. Dados fictícios, nenhuma telemetria de F1 ou inspeção industrial autêntica, nenhuma homologação externa.
+
+## Execução comprovável
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python -m streamlit run motorsport_batch/performance.py
+```
+
+**Código e testes:** [módulos executáveis](../../../motorsport_batch/README.md) e [suíte CI](../../../tests/test_motorsport_advanced.py). 
 
 # Project #110 — Suíte Completa de Engenharia de Performance em Motorsport (Pneus, FLIR, Setup, HH Timing & Laptime Sim)
 ## Complete Motorsport Performance Engineering Suite (Tire Physics, FLIR, Setup, HH Timing & Laptime Sim)
@@ -7,7 +16,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/110-complete-motorsport-performance-engineering-suite-tire-physics-flir-setup-hh-timing-laptime-sim`
 - **Benchmark de Referência:** `Flagship #110 — Full 5-Day Motorsport Performance Engineering Seminar Suite (Porsche Cup / WEC)`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Tecnologias de benchmark:** referências aspiracionais, não necessariamente implementadas neste caso.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---

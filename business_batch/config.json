@@ -1,0 +1,72 @@
+{
+  "81": {
+    "slug": "081-b2b-account-lifetime-value-ltv",
+    "title": "B2B Account Lifetime Value (LTV)",
+    "mode": "regression",
+    "desc": "Previsão de margem de contribuição nos próximos 12 meses por conta fictícia",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "82": {
+    "slug": "082-executive-oee-commercial-bi-dashboard",
+    "title": "Executive OEE & Commercial BI Dashboard",
+    "mode": "bi",
+    "desc": "OEE ponderado, produção e atingimento de metas com grão de turno",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "83": {
+    "slug": "083-b2b-commercial-campaign-roi-analysis",
+    "title": "B2B Commercial Campaign ROI Analysis",
+    "mode": "causal_roi",
+    "desc": "ROI de campanha com grupos simulados aleatorizados",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "84": {
+    "slug": "084-supplier-client-abc-rfm-segmentation",
+    "title": "Supplier & Client ABC/RFM Segmentation",
+    "mode": "segmentation",
+    "desc": "Segmentação ABC por receita acumulada e RFM por clientes",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "85": {
+    "slug": "085-sox-payment-audit-anomaly-detection",
+    "title": "SOX Payment Audit & Anomaly Detection",
+    "mode": "audit",
+    "desc": "Regras de detecção explicáveis sobre pagamentos ERP fictícios",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "86": {
+    "slug": "086-operational-risk-matrix-heatmap",
+    "title": "Operational Risk Matrix & Heatmap",
+    "mode": "risk",
+    "desc": "Matriz de probabilidade e severidade e heatmap operacional",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "87": {
+    "slug": "087-capex-innovation-portfolio-analysis",
+    "title": "CAPEX Innovation Portfolio Analysis",
+    "mode": "optimization",
+    "desc": "Seleção por VPL de projetos de inovação sob restrição orçamentária",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "88": {
+    "slug": "088-industrial-billing-revenue-projection",
+    "title": "Industrial Billing & Revenue Projection",
+    "mode": "reconciliation",
+    "desc": "Conciliação fiscal-contábil e previsão temporal de receita",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "89": {
+    "slug": "089-sap-ariba-procurement-spend-analytics",
+    "title": "SAP Ariba Procurement Spend Analytics",
+    "mode": "procurement",
+    "desc": "Pareto de compras, concentração de fornecedores e indicadores de entrega",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  },
+  "90": {
+    "slug": "090-manufacturing-cost-tariff-analytics",
+    "title": "Manufacturing Cost & Tariff Analytics",
+    "mode": "costs",
+    "desc": "Apuração de custos industriais, tarifa ponta/fora-ponta, HE e variâncias",
+    "source": "SYNTHETIC ERP-like records — not SAP/Ariba production data"
+  }
+}

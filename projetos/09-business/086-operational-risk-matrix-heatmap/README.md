@@ -1,14 +1,20 @@
-# Project #086 — Operational Risk Matrix Heatmap
+# #86 — Operational Risk Matrix & Heatmap
 
-**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
+**Status:** processamento real de dados financeiros industriais inteiramente sintéticos, sem conexão corporativa.
 
-**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
+## Funcionalidade implementada
+Matriz de risco operacional de 5 × 5 com cálculo probabilidade × impacto, agregação de frequência e heatmap.
 
-**Reprodução:**
+**Ferramentas efetivamente utilizadas:** SQLite SQL, NumPy, Matplotlib.
+
+## Reproduzir
 ```bash
-python -m pip install -r requirements-case-studies.txt
-python projetos/09-business/086-operational-risk-matrix-heatmap/main.py
-python -m unittest discover -s tests -v
+python -m pip install -r requirements-business.txt
+python projetos/09-business/086-operational-risk-matrix-heatmap/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
 
-**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.
+**Dados/relatórios gerados:** `business_batch/exports/86_query.csv`, `business_batch/reports/86.json`, `business_batch/figures/86.png`. O arquivo [SQL](../../../business_batch/sql/086.sql) é executado com SQLite; a fonte de dados é gerada pelo [motor](../../../business_batch/engine.py).
+
+**Limitações:** Escalas e limiar ≥15 são fictícios. Não representa incidente real nem validação de segurança. Templates [DAX](../../../business_batch/powerbi/Measures.dax) só foram escritos; nenhuma execução via Power BI Desktop. Não há dados SAP reais nem conclusão de compliance.

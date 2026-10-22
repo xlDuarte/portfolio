@@ -1,4 +1,14 @@
-> **Estado auditado #101: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria do lote #101–#110:** Modelos XGBoost e RandomForestRegressor ajustados em voltas artificiais agrupadas por sessão; simulador físico original de pit-stop preservado. **Tecnologias comprováveis neste projeto:** Python, Scikit-learn, XGBoost, NumPy, Pandas; simulador matemático de stint. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
+
+## Como executar a implementação atual
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python projetos/11-motorsport-f1-mlops/101-f1-predictive-race-strategy-pit-stop-window-simulator/main.py --fit-ml
+python -m unittest discover -s tests -p test_motorsport_batch.py -v
+```
+
+**Evidência técnica:** [pacote de implementação](../../../motorsport_batch/README.md), [código especializado](../../../motorsport_batch/) e [testes avançados](../../../tests/test_motorsport_advanced.py). 
 
 # Project #101 — Estratégia Preditiva de Corrida (F1) & Simulador de Janela de Pit-Stop
 ## F1 Predictive Race Strategy & Pit-Stop Window Simulator
@@ -7,7 +17,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/101-f1-predictive-race-strategy-pit-stop-window-simulator`
 - **Benchmark de Referência:** `F1 Skill 01 — Predictive Race Strategy (XGBoost / Random Forest)`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Stack de referência originalmente anunciada:** não é evidência de importação/execução nesta implementação.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---

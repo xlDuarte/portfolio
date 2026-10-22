@@ -1,4 +1,14 @@
-> **Estado auditado #108: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria técnica #108:** SMOTE somente no treino, ajuste XGBoost e explicações calculadas de fato por SHAP TreeExplainer nas amostras de teste. **Stack efetiva:** imbalanced-learn, XGBoost, SHAP, NumPy, Scikit-learn. Dados fictícios, nenhuma telemetria de F1 ou inspeção industrial autêntica, nenhuma homologação externa.
+
+## Execução comprovável
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements-motorsport-advanced.txt
+python projetos/11-motorsport-f1-mlops/108-explainable-ai-shap-imbalanced-fault-risk-modeling-with-smote/main.py --run
+```
+
+**Código e testes:** [módulos executáveis](../../../motorsport_batch/README.md) e [suíte CI](../../../tests/test_motorsport_advanced.py). O modo padrão de inspeção de dados não treina os frameworks pesados; use `--run` para execução integral.
 
 # Project #108 — Explicabilidade de Modelos (SHAP) & Eventos Raros com SMOTE
 ## Explainable AI (SHAP) & Imbalanced Fault/Risk Modeling with SMOTE
@@ -7,7 +17,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/108-explainable-ai-shap-imbalanced-fault-risk-modeling-with-smote`
 - **Benchmark de Referência:** `Data Mavericks Int 01/02/05 — Explainable AI (SHAP) & Imbalanced SMOTE`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Tecnologias de benchmark:** referências aspiracionais, não necessariamente implementadas neste caso.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---

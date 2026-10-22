@@ -1,27 +1,22 @@
-> **Status de implementação #088: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #88 — Industrial Billing & Revenue Projection
 
-# Project #088 — Projeção de Faturamento e Conciliação Contábil-Fiscal
-## Industrial Billing & Revenue Projection
+**Status:** análise de negócio funcional com dados industriais inteiramente sintéticos. Sem acesso a sistemas SAP/Ariba e sem medição financeira corporativa.
 
-- **Categoria / Route:** `/projetos/business/88` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/088-industrial-billing-revenue-projection`
-- **Benchmark de Referência:** `88 Revenue Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo executado
+Conciliação entre faturamento líquido e lançamentos fictícios do razão; aponta diferenças e estima receita dos próximos três meses.
 
----
+**Metodologia:** Modelo Ridge treinado em 30 meses com índices temporais e sazonalidade; holdout final de 6 meses, sem valores futuros observados.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Previsão de fechamento mensal integrando expedição física, notas emitidas e impostos.
+**Tecnologias efetivas:** SQLite SQL, Pandas, Scikit-learn Ridge, Matplotlib. Painel Streamlit para explorar o resultado e modelos SQL para consultas.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Monthly closing projection integrating physical dispatch, issued invoices, and tax rules.
-
----
-
-## 3. Como Executar / How to Run
-
+## Instalação e execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/088-industrial-billing-revenue-projection/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Arquivos:** `business_batch/exports/88_query.csv` (resultado SQL real), `business_batch/reports/88.json`, `business_batch/figures/88.png`. [Consulta executada](../../../business_batch/sql/088.sql) · [fonte Python](../../../business_batch/engine.py) · [Power Query/DAX](../../../business_batch/powerbi/README.md).
+
+**Limites:** nenhuma homologação externa, conciliação fiscal oficial, nota auditada, cálculo tarifário vigente ou modelo Power BI executado. Estes dados são demonstrações acadêmico-industriais fictícias.

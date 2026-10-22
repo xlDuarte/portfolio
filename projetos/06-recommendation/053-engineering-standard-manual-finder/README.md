@@ -1,27 +1,20 @@
-> **Status de implementação #053: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #53 — Engineering Standard & Manual Finder
 
-# Project #053 — Recomendador de Normas Técnicas e Manuais de Engenharia
-## Engineering Standard & Manual Finder
+**Status:** funcionalidade específica executável, com entradas e dados exclusivamente sintéticos; não é prova de performance em produção.
 
-- **Categoria / Route:** `/projetos/recommendation/53` (`06 / 10`)
-- **Diretório GitHub:** `projetos/06-recommendation/053-engineering-standard-manual-finder`
-- **Benchmark de Referência:** `53 Book Recommendation System`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, NumPy, Scikit-learn, Streamlit`
-- **Fluxo de Engenharia (How It Flows):** `Perfil / Ativo -> Similaridade -> Ranking -> Top-N Ações` (`Asset Data -> Similarity -> Rank -> Top-N`)
+## Escopo implementado
+Documentos técnicos fictícios, revisões e permissões; retorna apenas registros vigentes e autorizados, ranqueados por similaridade textual.
 
----
+**Ferramentas reais:** Python, Pandas, NumPy, Scikit-learn (TfidfVectorizer/cosine_similarity) e interface Streamlit.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Recuperação inteligente de normas ABNT/ISO/DIN relevantes para cada projeto de engenharia.
+**Código:** [motor](../../../recommendation_batch/engine.py) · [catálogo fictício](../../../recommendation_batch/fixtures.json) · [métodos e restrições](../../../recommendation_batch/README.md).
 
-## 2. Industrial & Motorsport Context (EN-US)
-Intelligent retrieval of relevant ABNT/ISO/DIN standards for active engineering projects.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-recommendation.txt
+python projetos/06-recommendation/053-engineering-standard-manual-finder/main.py --query "inspeção de solda e qualidade" --save
+python -m streamlit run projetos/06-recommendation/053-engineering-standard-manual-finder/streamlit_app.py
+python -m unittest discover -s tests -p test_recommendation_batch.py -v
 ```
+
+**Saída:** JSON com IDs, escore ou distância, justificativa e filtros; relatório salvo em `recommendation_batch/reports/53.json` se solicitado. Similaridade lexical é demonstração; qualidade e cobertura de recomendações não foram medidas sobre interações reais.

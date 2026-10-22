@@ -1,27 +1,24 @@
-> **Status de implementação #071: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #71 — Shop-floor PPE compliance
 
-# Project #071 — Verificação Automática de EPIs no Chão de Fábrica
-## Shop-Floor PPE Compliance Detection
+**Status:** código de visão computacional executável sobre **imagens sintéticas**; sem detecção certificada em ambientes reais.
 
-- **Categoria / Route:** `/projetos/vision/71` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/071-shop-floor-ppe-compliance-detection`
-- **Benchmark de Referência:** `71 Face Mask Detection`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+## Funcionalidade implementada
+Classificação visual de capacete em cenas artificiais.
 
----
+**Tecnologia realmente utilizada neste projeto:** TensorFlow/Keras CNN. O módulo compartilhado usa OpenCV e NumPy. Executar com `--deep` treina uma CNN TensorFlow/Keras efetiva com imagens 100% artificiais, com teste gerado por seed separada.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Detecção em tempo real do uso de capacete, óculos de proteção e protetor facial em áreas quentes.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Real-time detection of helmet, safety goggles, and face shield compliance in hazard zones.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução
 ```bash
-python3 main.py
+sudo apt-get install -y tesseract-ocr
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/071-shop-floor-ppe-compliance-detection/main.py --save
+python -m pip install --no-cache-dir -r requirements-vision-deep.txt
+python -m pip install --no-cache-dir 'torch==2.5.1+cpu' --index-url https://download.pytorch.org/whl/cpu
+python projetos/08-vision/071-shop-floor-ppe-compliance-detection/main.py --deep --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+**Artefatos gerados:** imagem artificial PNG e relatório JSON em `vision_batch/reports/71.*` (não são métricas industriais observadas). Ver [métodos](../../../vision_batch/engine.py) e [critérios de aceitação](../../../vision_batch/README.md).
+
+## Restrições
+Sem imagens industriais reais, anotação independente, métricas de produção, medidas de privacidade ou homologação. Não usar como fiscalização de EPIs ou sistema de segurança.
