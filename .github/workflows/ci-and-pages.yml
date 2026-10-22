@@ -1,7 +1,7 @@
-name: Portfolio quality gates and Pages
+name: Integrated portfolio - 111 projects quality gates and Pages
 on:
   push:
-    branches: [main, audit-quality-upgrade-2026-10-21, batch-011-020-eda, batch-021-030-regression]
+    branches: [main, integration-111-projects-audit]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -11,23 +11,28 @@ env:
   OPENBLAS_NUM_THREADS: '1'
   OMP_NUM_THREADS: '1'
   MKL_NUM_THREADS: '1'
+  TF_CPP_MIN_LOG_LEVEL: '2'
+  CUDA_VISIBLE_DEVICES: '-1'
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install analytical dependencies
-        run: python -m pip install -r requirements-case-studies.txt -r requirements-eda.txt -r requirements-regression.txt
-      - name: Unit, numerical guardrail and 111-script smoke tests
+        with: {python-version: '3.11'}
+      - name: Install OCR runtime
+        run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
+      - name: Install all core domain dependencies (heavy CNN/MLflow tested separately)
+        run: python -m pip install --no-cache-dir -r requirements-integration.txt
+      - name: Audit 111 canonical projects and integrated evidence
+        run: python -m unittest discover -s tests -p test_integration_111.py -v
+      - name: Integration, unit and 111-entrypoint smoke tests
         run: python -m unittest discover -s tests -v
-      - name: Verify generated data and report reproduce exactly
+      - name: Compile all Python modules and regenerate analytics
         run: |
           python case_studies/analytics.py > /dev/null
-          python -m compileall -q projetos case_studies analytics_eda regression_batch f1-predictive-intelligence
+          python -m compileall -q projetos case_studies analytics_eda regression_batch classification_batch nlp_batch recommendation_batch timeseries_batch vision_batch business_batch advanced_batch motorsport_batch f1-predictive-intelligence
   deploy-pages:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify

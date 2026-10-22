@@ -1,8 +1,8 @@
-> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+> **AUDITORIA INTEGRADA DOS 111 PROJETOS (branch de revisão):** implementações específicas #031–#110 consolidadas a partir de oito branches; #001–#030 preservados da `main` existente; #010 é o estudo de cadeia de suprimentos; #111 continua um F1-PIP parcial, com modelos do catálogo declarados como não implementados. Classificadores #031–#040 agora usam o modelo real no `main.py` canônico. **Todos os dados de validação dos lotes são sintéticos.** Ver [auditoria por projeto](INTEGRATION_AUDIT.md), [matriz CSV](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) e [lacunas](QUALITY_ROADMAP.md). Não há avaliação 100/100 ou homologação industrial.
 
-> **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
+> **Integração não equivale a merge dos PRs originais:** esta branch compõe o código em uma nova árvore Git; CI cruzado e revisão são obrigatórios antes de incorporar à `main`. Power BI DAX, SAP, FIA/FastF1, FLIR, ChassisSim, API e credenciais externas não são automaticamente validados ou conectados.
 
-# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
 **Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
@@ -13,7 +13,7 @@
 - **[#109 — Motor de Replay de Corrida F1 & Telemetria GPS em Tempo Real (Construído do Zero)](./projetos/11-motorsport-f1-mlops/109-f1-telemetry-race-replay-live-gps-track-position-engine-built-from-scratch/)**
 - **[#110 — Suíte Completa de Engenharia de Performance em Motorsport (Seminário Porsche Cup / Jorge Segers — 5 Dias Completos)](./projetos/11-motorsport-f1-mlops/110-complete-motorsport-performance-engineering-suite-tire-physics-flir-setup-hh-timing-laptime-sim/)**
 
-## Estrutura de Pastas do Repositório (`/projetos` — 11 Categorias / 110 Projetos)
+## Estrutura de Pastas do Repositório (`/projetos` — 11 Categorias / 111 Projetos)
 
 ### 01 / 10 — `01-dados` (Análise de Dados Industrial / Industrial Data Analysis)
 - **Stack:** `Pandas, NumPy, Matplotlib, Jupyter, Power BI`
