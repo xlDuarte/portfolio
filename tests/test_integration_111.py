@@ -27,7 +27,6 @@ class IntegrationInventory(unittest.TestCase):
             self.assertTrue((ROOT/"site"/"cases"/"classification"/f"{id:03d}"/"index.html").exists())
     def test_no_eval_execution_from_config(self):
         import numpy as np
-        np.testing.assert_allclose(evaluate_formula("2*a-3*b",{"a":np.array([4.,2.]),"b":np.array([1.,1.])}),[5.,1.]) if False else None
         # The config parser only accepts features present in RANGES.
         from classification_batch.engine import RANGES
         key="monthly_orders"
@@ -52,6 +51,6 @@ class IntegrationInventory(unittest.TestCase):
         self.assertIn("PLANNED_MODEL_CATALOG_NOT_IMPLEMENTED",b)
     def test_technical_scope_disclosed_in_report(self):
         s=(ROOT/"INTEGRATION_AUDIT.md").read_text()
-        for token in ("synthetic","Power BI","SAP","MLflow","XGBoost","111","not 100/100"):
+        for token in ("synthetic","Power BI","SAP","MLflow","XGBoost","111","não é 100/100"):
             self.assertIn(token.lower(),s.lower())
 if __name__=="__main__":unittest.main()
