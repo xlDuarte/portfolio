@@ -20,14 +20,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install OCR engine
+        run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
       - name: Install analytical dependencies
-        run: python -m pip install -r requirements-case-studies.txt -r requirements-eda.txt -r requirements-regression.txt
+        run: python -m pip install -r requirements-case-studies.txt -r requirements-eda.txt -r requirements-regression.txt -r requirements-vision.txt
       - name: Unit, numerical guardrail and 111-script smoke tests
         run: python -m unittest discover -s tests -v
       - name: Verify generated data and report reproduce exactly
         run: |
           python case_studies/analytics.py > /dev/null
-          python -m compileall -q projetos case_studies analytics_eda regression_batch f1-predictive-intelligence
+          python -m compileall -q projetos case_studies analytics_eda regression_batch vision_batch f1-predictive-intelligence
   deploy-pages:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify
