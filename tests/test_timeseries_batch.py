@@ -71,6 +71,18 @@ class TestForecastingBatch(unittest.TestCase):
                 self.assertTrue(0 <= report["empirical_interval_coverage"] <= 1)
                 self.assertTrue(0 <= report["prophet_interval_coverage"] <= 1)
 
+    def test_future_forecast_has_only_future_dates_and_no_actuals(self):
+        from timeseries_batch.engine import forecast_future
+        result=forecast_future(61,horizon=8)
+        self.assertEqual(result["project_id"],61)
+        self.assertEqual(len(result["future_dates"]),8)
+        self.assertEqual(len(result["selected_forecast"]),8)
+        self.assertEqual(len(result["prophet_forecast"]),8)
+        self.assertFalse(result["actual_values_available"])
+        self.assertTrue(all(x > result["forecast_origin_date"] for x in result["future_dates"]))
+        with self.assertRaises(ValueError):
+            forecast_future(61,horizon=0)
+
     def test_mae_and_seasonal_naive_baseline(self):
         np.testing.assert_equal(seasonal_naive(np.arange(30),horizon=3),[17,18,19])
         metric=errors(np.array([2.,4.]),np.array([3.,4.]))
