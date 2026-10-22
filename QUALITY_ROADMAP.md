@@ -30,3 +30,11 @@ O commit `868191141992996ca1190c853aabc54f80778c16` consolidou na `main` os oito
 9. Expandir a auditoria específica de tecnologia para os casos #001–#080, com execução de cada stack anunciada e evidência de imports, runtime e artefatos; os dados seguem sintéticos.
 
 **Regra de aceite:** uma tecnologia é validada somente quando há código, teste executado, evidência reproduzível e limites declarados. Esta integração não recebe nota 100/100.
+
+
+## Complemento de implementação — 22/10/2026
+
+- Implementado um pipeline F1 separado que ajusta dois baselines e seis modelos de terceiros (`trained_pipeline.py`), em dados artificialmente gerados e validação temporal de corridas posteriores, com temperatura de probabilidades ajustada nos eventos de validação. Não há benchmark externo ou calibração em F1 real.
+- Entrada `predict_event_trained` disponível nos motores F1 legados sem quebrar o método heurístico `predict_event_walk_forward`; página estática em `site/f1-models/`.
+- Adicionado projeto PBIP de operações industriais em `powerbi-industrial/`, com 5 tabelas, 6 relações e 16 medidas DAX, além de 4 cartões PBIR. Artefatos foram verificados estruturalmente, **não** executados pelo Desktop Microsoft.
+- Persistem para homologação: telemetria oficial licenciada, train/cal/test externo multi-season para F1, probabilidade DNF/SC, SHAP real, Power BI Desktop/Tabular, dados industriais autorizados, Lighthouse/E2E e integração contínua com execução de CI aprovada.

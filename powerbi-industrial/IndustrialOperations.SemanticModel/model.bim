@@ -1,0 +1,352 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1601,
+  "model": {
+    "culture": "pt-BR",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "DimPlant",
+        "columns": [
+          {
+            "name": "PlantKey",
+            "dataType": "int64",
+            "sourceColumn": "PlantKey"
+          },
+          {
+            "name": "PlantName",
+            "dataType": "string",
+            "sourceColumn": "PlantName"
+          },
+          {
+            "name": "State",
+            "dataType": "string",
+            "sourceColumn": "State"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPlant",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [PlantKey = Int64.Type, PlantName = type text, State = type text], {\n        {1, \"Pindamonhangaba\", \"SP\"},\n        {2, \"Taubate\", \"SP\"},\n        {3, \"Sao Jose dos Campos\", \"SP\"}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "DateISO",
+            "dataType": "string",
+            "sourceColumn": "DateISO"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [DateKey = Int64.Type, DateISO = type text], {\n        {20261001, \"2026-10-01\"},\n        {20261002, \"2026-10-02\"},\n        {20261003, \"2026-10-03\"},\n        {20261004, \"2026-10-04\"}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactProduction",
+        "columns": [
+          {
+            "name": "ProductionKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductionKey"
+          },
+          {
+            "name": "PlantKey",
+            "dataType": "int64",
+            "sourceColumn": "PlantKey"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "PlannedMinutes",
+            "dataType": "int64",
+            "sourceColumn": "PlannedMinutes"
+          },
+          {
+            "name": "DowntimeMinutes",
+            "dataType": "int64",
+            "sourceColumn": "DowntimeMinutes"
+          },
+          {
+            "name": "IdealCycleMinutes",
+            "dataType": "double",
+            "sourceColumn": "IdealCycleMinutes"
+          },
+          {
+            "name": "TotalUnits",
+            "dataType": "int64",
+            "sourceColumn": "TotalUnits"
+          },
+          {
+            "name": "GoodUnits",
+            "dataType": "int64",
+            "sourceColumn": "GoodUnits"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactProduction",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [ProductionKey = Int64.Type, PlantKey = Int64.Type, DateKey = Int64.Type, PlannedMinutes = Int64.Type, DowntimeMinutes = Int64.Type, IdealCycleMinutes = type number, TotalUnits = Int64.Type, GoodUnits = Int64.Type], {\n        {101, 1, 20261001, 480, 18, 0.85, 373, 359},\n        {102, 1, 20261002, 480, 27, 0.85, 367, 353},\n        {103, 1, 20261003, 480, 36, 0.85, 361, 347},\n        {104, 1, 20261004, 480, 45, 0.85, 355, 341},\n        {201, 2, 20261001, 480, 27, 0.85, 361, 344},\n        {202, 2, 20261002, 480, 36, 0.85, 355, 338},\n        {203, 2, 20261003, 480, 45, 0.85, 349, 332},\n        {204, 2, 20261004, 480, 54, 0.85, 343, 326},\n        {301, 3, 20261001, 480, 36, 0.85, 349, 329},\n        {302, 3, 20261002, 480, 45, 0.85, 343, 323},\n        {303, 3, 20261003, 480, 54, 0.85, 337, 317},\n        {304, 3, 20261004, 480, 63, 0.85, 331, 311}\n    })\nin\n    Source"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Scheduled Minutes",
+            "expression": "SUM(FactProduction[PlannedMinutes])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Downtime Minutes",
+            "expression": "SUM(FactProduction[DowntimeMinutes])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Run Minutes",
+            "expression": "[Scheduled Minutes] - [Downtime Minutes]",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Availability",
+            "expression": "DIVIDE([Run Minutes], [Scheduled Minutes])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Performance",
+            "expression": "DIVIDE(SUMX(FactProduction, FactProduction[IdealCycleMinutes] * FactProduction[TotalUnits]), [Run Minutes])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Quality",
+            "expression": "DIVIDE(SUM(FactProduction[GoodUnits]), SUM(FactProduction[TotalUnits]))",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "OEE",
+            "expression": "[Availability] * [Performance] * [Quality]",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "OEE Target Gap",
+            "expression": "[OEE] - 0.85",
+            "formatString": "0.0%"
+          }
+        ]
+      },
+      {
+        "name": "FactOrders",
+        "columns": [
+          {
+            "name": "OrderKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderKey"
+          },
+          {
+            "name": "PlantKey",
+            "dataType": "int64",
+            "sourceColumn": "PlantKey"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "OrderedQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderedQty"
+          },
+          {
+            "name": "DeliveredQty",
+            "dataType": "int64",
+            "sourceColumn": "DeliveredQty"
+          },
+          {
+            "name": "DeliveredOnTime",
+            "dataType": "int64",
+            "sourceColumn": "DeliveredOnTime"
+          },
+          {
+            "name": "RevenueBRL",
+            "dataType": "double",
+            "sourceColumn": "RevenueBRL"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactOrders",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [OrderKey = Int64.Type, PlantKey = Int64.Type, DateKey = Int64.Type, OrderedQty = Int64.Type, DeliveredQty = Int64.Type, DeliveredOnTime = Int64.Type, RevenueBRL = type number], {\n        {101, 1, 20261001, 110, 110, 1, 24100.0},\n        {102, 1, 20261002, 110, 110, 1, 24700.0},\n        {103, 1, 20261003, 110, 110, 1, 25300.0},\n        {104, 1, 20261004, 110, 98, 0, 25900.0},\n        {201, 2, 20261001, 120, 120, 1, 25600.0},\n        {202, 2, 20261002, 120, 120, 1, 26200.0},\n        {203, 2, 20261003, 120, 120, 1, 26800.0},\n        {204, 2, 20261004, 120, 108, 0, 27400.0},\n        {301, 3, 20261001, 130, 130, 1, 27100.0},\n        {302, 3, 20261002, 130, 130, 1, 27700.0},\n        {303, 3, 20261003, 130, 130, 1, 28300.0},\n        {304, 3, 20261004, 130, 118, 0, 28900.0}\n    })\nin\n    Source"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Orders",
+            "expression": "COUNTROWS(FactOrders)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "OTIF Orders",
+            "expression": "COUNTROWS(FILTER(FactOrders, FactOrders[DeliveredOnTime] = 1 && FactOrders[DeliveredQty] >= FactOrders[OrderedQty]))",
+            "formatString": "#,0"
+          },
+          {
+            "name": "OTIF Rate",
+            "expression": "DIVIDE([OTIF Orders], [Total Orders])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Revenue BRL",
+            "expression": "SUM(FactOrders[RevenueBRL])",
+            "formatString": "R$ #,0.00"
+          }
+        ]
+      },
+      {
+        "name": "FactQuality",
+        "columns": [
+          {
+            "name": "QualityKey",
+            "dataType": "int64",
+            "sourceColumn": "QualityKey"
+          },
+          {
+            "name": "PlantKey",
+            "dataType": "int64",
+            "sourceColumn": "PlantKey"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "InspectedUnits",
+            "dataType": "int64",
+            "sourceColumn": "InspectedUnits"
+          },
+          {
+            "name": "DefectUnits",
+            "dataType": "int64",
+            "sourceColumn": "DefectUnits"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactQuality",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [QualityKey = Int64.Type, PlantKey = Int64.Type, DateKey = Int64.Type, InspectedUnits = Int64.Type, DefectUnits = Int64.Type], {\n        {101, 1, 20261001, 797, 9},\n        {102, 1, 20261002, 809, 10},\n        {103, 1, 20261003, 821, 11},\n        {104, 1, 20261004, 833, 12},\n        {201, 2, 20261001, 832, 10},\n        {202, 2, 20261002, 844, 11},\n        {203, 2, 20261003, 856, 12},\n        {204, 2, 20261004, 868, 13},\n        {301, 3, 20261001, 867, 11},\n        {302, 3, 20261002, 879, 12},\n        {303, 3, 20261003, 891, 13},\n        {304, 3, 20261004, 903, 14}\n    })\nin\n    Source"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Inspected Units",
+            "expression": "SUM(FactQuality[InspectedUnits])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Defect Units",
+            "expression": "SUM(FactQuality[DefectUnits])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Defect Rate",
+            "expression": "DIVIDE([Defect Units], [Inspected Units])",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "Defects PPM",
+            "expression": "DIVIDE([Defect Units] * 1000000, [Inspected Units])",
+            "formatString": "#,0"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "FactProduction_DimPlant",
+        "fromTable": "FactProduction",
+        "fromColumn": "PlantKey",
+        "toTable": "DimPlant",
+        "toColumn": "PlantKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "FactProduction_DimDate",
+        "fromTable": "FactProduction",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "FactOrders_DimPlant",
+        "fromTable": "FactOrders",
+        "fromColumn": "PlantKey",
+        "toTable": "DimPlant",
+        "toColumn": "PlantKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "FactOrders_DimDate",
+        "fromTable": "FactOrders",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "FactQuality_DimPlant",
+        "fromTable": "FactQuality",
+        "fromColumn": "PlantKey",
+        "toTable": "DimPlant",
+        "toColumn": "PlantKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "FactQuality_DimDate",
+        "fromTable": "FactQuality",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      }
+    ]
+  }
+}

@@ -74,3 +74,10 @@ O que os testes demonstram: estrutura do catálogo, execução de algoritmos nas
 **Gabriel Reis Duarte** · [LinkedIn](https://www.linkedin.com/in/gabrielrduarte) · [GitHub](https://github.com/xlDuarte)
 
 Este repositório não publica arquivos de fonte proprietária, credenciais ou dados reais de empresas. **Nenhuma licença de reutilização foi concedida automaticamente**; consulte as condições aplicáveis antes de redistribuir o código.
+
+
+## F1 (modelos treinados) e Power BI (artefatos de projeto) — 22/10/2026
+
+- [Pesquisa F1: oito modelos realmente ajustados sobre corridas sintéticas](f1-predictive-intelligence/ml/training/README.md) · [Resultados estáticos](site/f1-models/index.html) · [Pipeline](f1-predictive-intelligence/ml/training/trained_pipeline.py). A API treinada está disponível por `WalkForwardPredictionEngine.predict_event_trained(...)` e não substitui o motor heurístico legado. **Não há validação F1 oficial ou serviço ao vivo.**
+- [Power BI PBIP Industrial Operations](powerbi-industrial/README.md): modelo Import, 16 medidas DAX e quatro cartões no arquivo-fonte. O projeto ainda **não foi aberto, processado ou homologado no Power BI Desktop/Tabular Engine**.
+- [Testes e pendências de homologação](F1_POWERBI_VALIDATION_2026-10-22.md). A suíte adicionada executa `tests/test_f1_trained_pipeline.py` e `tests/test_powerbi_semantic_model.py`.

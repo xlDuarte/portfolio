@@ -111,3 +111,19 @@ class WalkForwardPredictionEngine:
 
 if __name__ == "__main__":
     print("F1-PIP Engine Ready.")
+
+
+# Explicit trained-model API; legacy predict_event_walk_forward remains heuristic
+# for existing callers and should not be mistaken for fitted predictions.
+def _predict_event_trained(history, target_event, as_of_timestamp, models=None):
+    from pathlib import Path
+    import importlib.util
+    research_file = Path(__file__).resolve().parent / 'ml' / 'training' / 'trained_pipeline.py'
+    if not research_file.is_file():
+        raise FileNotFoundError("F1 trained research pipeline not installed: " + str(research_file))
+    spec = importlib.util.spec_from_file_location("f1_research_trained", research_file)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.fit_and_evaluate(history, target_event, as_of_timestamp, models=models)
+
+WalkForwardPredictionEngine.predict_event_trained = staticmethod(_predict_event_trained)

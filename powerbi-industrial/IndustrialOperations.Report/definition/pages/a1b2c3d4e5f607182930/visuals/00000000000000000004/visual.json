@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "00000000000000000004",
+  "position": {
+    "x": 965,
+    "y": 70,
+    "z": 4000,
+    "height": 210,
+    "width": 280,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactOrders"
+                    }
+                  },
+                  "Property": "Revenue BRL"
+                }
+              },
+              "queryRef": "FactOrders.Revenue BRL",
+              "nativeQueryRef": "Revenue BRL"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
