@@ -1,0 +1,838 @@
+{
+  "media": [
+    {
+      "id": "PB01",
+      "title": "Hydraulic pump bearing vibration diagnosis",
+      "text": "hydraulic pump bearing vibration inspection maintenance playbook",
+      "asset": "pump",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB02",
+      "title": "Motor winding overheating checklist",
+      "text": "electric motor insulation temperature resistance diagnostic",
+      "asset": "motor",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB03",
+      "title": "Pump shaft alignment video",
+      "text": "hydraulic pump alignment vibration couplings bearing video",
+      "asset": "pump",
+      "language": "en",
+      "status": "approved",
+      "kind": "video"
+    },
+    {
+      "id": "PB04",
+      "title": "Bearing lubrication and grease intervals",
+      "text": "bearing grease contamination lubrication wear maintenance",
+      "asset": "pump",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB05",
+      "title": "Gearbox gear tooth wear inspection",
+      "text": "gearbox teeth noise vibration maintenance video",
+      "asset": "gearbox",
+      "language": "pt",
+      "status": "approved",
+      "kind": "video"
+    },
+    {
+      "id": "PB06",
+      "title": "Thermal inspection on CNC drives",
+      "text": "cnc servo actuator temperature inspection",
+      "asset": "cnc",
+      "language": "en",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB07",
+      "title": "Lockout tagout safety process",
+      "text": "lockout equipment isolation safety prior to repair",
+      "asset": "pump",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB08",
+      "title": "Old pump vibration playbook",
+      "text": "hydraulic pump bearing vibration legacy guide",
+      "asset": "pump",
+      "language": "pt",
+      "status": "obsolete",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB09",
+      "title": "Hydraulic seal replacement",
+      "text": "pump hydraulic seal leakage pressure replacement",
+      "asset": "pump",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    },
+    {
+      "id": "PB10",
+      "title": "Servo encoder troubleshooting",
+      "text": "cnc automation encoder fault position error",
+      "asset": "cnc",
+      "language": "pt",
+      "status": "approved",
+      "kind": "playbook"
+    }
+  ],
+  "docs": [
+    {
+      "id": "DOC1",
+      "title": "Weld quality inspection SOP",
+      "text": "visual weld quality porosity crack inspection",
+      "domain": "welding",
+      "revision": "rev3",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC2",
+      "title": "Hydraulic component maintenance manual",
+      "text": "pump bearing hydraulics seals vibration diagnostic",
+      "domain": "hydraulics",
+      "revision": "rev2",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC3",
+      "title": "Metrology calibration checklist",
+      "text": "calibration quality traceability dimensional tolerance",
+      "domain": "metrology",
+      "revision": "rev5",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC4",
+      "title": "CNC servo electrical diagnostics",
+      "text": "cnc servo motor encoder electrical diagnostic",
+      "domain": "cnc",
+      "revision": "rev2",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC5",
+      "title": "Welding obsolete revision",
+      "text": "weld quality porosity old procedure",
+      "domain": "welding",
+      "revision": "rev1",
+      "status": "obsolete",
+      "authorized": true
+    },
+    {
+      "id": "DOC6",
+      "title": "Internal supplier inspection protocol",
+      "text": "supplier inspection quality acceptance process",
+      "domain": "procurement",
+      "revision": "rev2",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC7",
+      "title": "Plant safety isolation manual",
+      "text": "lockout safety isolation maintenance equipment",
+      "domain": "safety",
+      "revision": "rev4",
+      "status": "effective",
+      "authorized": true
+    },
+    {
+      "id": "DOC8",
+      "title": "Process nonconformity reporting",
+      "text": "quality defect nonconformity traceability report",
+      "domain": "quality",
+      "revision": "rev3",
+      "status": "effective",
+      "authorized": true
+    }
+  ],
+  "parts": [
+    {
+      "id": "P01",
+      "title": "Industrial bearing 6205",
+      "text": "bearing hydraulic pump shaft vibration",
+      "asset": "pump",
+      "stock": 14,
+      "unit_cost_brl": 80,
+      "approved": true,
+      "min_reliability_pct": 120
+    },
+    {
+      "id": "P02",
+      "title": "Hydraulic shaft seal",
+      "text": "seal pump hydraulic leakage shaft",
+      "asset": "pump",
+      "stock": 2,
+      "unit_cost_brl": 44,
+      "approved": true,
+      "min_reliability_pct": 90
+    },
+    {
+      "id": "P03",
+      "title": "Vibration sensor",
+      "text": "sensor pump gearbox vibration condition monitoring",
+      "asset": "pump",
+      "stock": 7,
+      "unit_cost_brl": 380,
+      "approved": true,
+      "min_reliability_pct": 120
+    },
+    {
+      "id": "P04",
+      "title": "Gearbox oil filter",
+      "text": "filter gearbox maintenance lubricant",
+      "asset": "gearbox",
+      "stock": 4,
+      "unit_cost_brl": 80,
+      "approved": true,
+      "min_reliability_pct": 130
+    },
+    {
+      "id": "P05",
+      "title": "Encoder spare",
+      "text": "encoder cnc servo position controller",
+      "asset": "cnc",
+      "stock": 8,
+      "unit_cost_brl": 610,
+      "approved": true,
+      "min_reliability_pct": 110
+    },
+    {
+      "id": "P06",
+      "title": "Pump bearing old generation",
+      "text": "bearing hydraulic pump shaft vibration",
+      "asset": "pump",
+      "stock": 20,
+      "unit_cost_brl": 60,
+      "approved": false,
+      "min_reliability_pct": 180
+    },
+    {
+      "id": "P07",
+      "title": "Grease cartridge",
+      "text": "lubricant bearing pump grease maintenance",
+      "asset": "pump",
+      "stock": 13,
+      "unit_cost_brl": 40,
+      "approved": true,
+      "min_reliability_pct": 200
+    },
+    {
+      "id": "P08",
+      "title": "CNC coolant filter",
+      "text": "cnc filtration coolant machining",
+      "asset": "cnc",
+      "stock": 15,
+      "unit_cost_brl": 75,
+      "approved": true,
+      "min_reliability_pct": 100
+    },
+    {
+      "id": "P09",
+      "title": "Hydraulic relief valve",
+      "text": "hydraulic pump pressure relief protection",
+      "asset": "pump",
+      "stock": 1,
+      "unit_cost_brl": 480,
+      "approved": true,
+      "min_reliability_pct": 90
+    }
+  ],
+  "courses": [
+    {
+      "id": "C01",
+      "title": "Fundamentos de Python",
+      "skill": "python",
+      "prerequisites": [],
+      "hours": 10,
+      "text": "python pandas programação"
+    },
+    {
+      "id": "C02",
+      "title": "Excel Avançado para Engenharia",
+      "skill": "excel",
+      "prerequisites": [],
+      "hours": 8,
+      "text": "excel análises operações indústria"
+    },
+    {
+      "id": "C03",
+      "title": "SQL para análise industrial",
+      "skill": "sql",
+      "prerequisites": [],
+      "hours": 12,
+      "text": "sql dados consultas banco"
+    },
+    {
+      "id": "C04",
+      "title": "Power BI Modelagem",
+      "skill": "power bi",
+      "prerequisites": [
+        "excel"
+      ],
+      "hours": 16,
+      "text": "power bi dax dashboards"
+    },
+    {
+      "id": "C05",
+      "title": "Pandas e ETL",
+      "skill": "pandas",
+      "prerequisites": [
+        "python"
+      ],
+      "hours": 18,
+      "text": "pandas python tratamento de dados"
+    },
+    {
+      "id": "C06",
+      "title": "Machine Learning industrial",
+      "skill": "ml",
+      "prerequisites": [
+        "python",
+        "sql"
+      ],
+      "hours": 24,
+      "text": "scikit-learn regressão falhas"
+    },
+    {
+      "id": "C07",
+      "title": "Lean Six Sigma",
+      "skill": "six sigma",
+      "prerequisites": [],
+      "hours": 12,
+      "text": "lean six sigma melhoria de processo"
+    },
+    {
+      "id": "C08",
+      "title": "Manutenção Preditiva",
+      "skill": "predictive",
+      "prerequisites": [
+        "python"
+      ],
+      "hours": 14,
+      "text": "vibração previsão manutenção industrial"
+    },
+    {
+      "id": "C09",
+      "title": "Cadeia de Suprimentos",
+      "skill": "supply",
+      "prerequisites": [],
+      "hours": 10,
+      "text": "logística suprimentos compras"
+    },
+    {
+      "id": "C10",
+      "title": "Visualização Industrial",
+      "skill": "visualization",
+      "prerequisites": [
+        "power bi"
+      ],
+      "hours": 9,
+      "text": "dados relatórios operação"
+    }
+  ],
+  "engineers": [
+    {
+      "id": "ENG1",
+      "skills": [
+        "python",
+        "sql",
+        "power bi"
+      ],
+      "domain": "data",
+      "city": "pindamonhangaba",
+      "free_hours": 24,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG2",
+      "skills": [
+        "python",
+        "automation",
+        "plc"
+      ],
+      "domain": "automation",
+      "city": "taubate",
+      "free_hours": 8,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG3",
+      "skills": [
+        "cad",
+        "mechanical",
+        "maintenance"
+      ],
+      "domain": "mechanical",
+      "city": "pindamonhangaba",
+      "free_hours": 20,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG4",
+      "skills": [
+        "sql",
+        "power bi",
+        "etl",
+        "python"
+      ],
+      "domain": "data",
+      "city": "sao jose dos campos",
+      "free_hours": 32,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG5",
+      "skills": [
+        "python",
+        "sql",
+        "industrial data",
+        "etl"
+      ],
+      "domain": "data",
+      "city": "taubate",
+      "free_hours": 40,
+      "cleared": false,
+      "synthetic": true
+    },
+    {
+      "id": "ENG6",
+      "skills": [
+        "sql",
+        "supply",
+        "sap"
+      ],
+      "domain": "procurement",
+      "city": "pindamonhangaba",
+      "free_hours": 30,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG7",
+      "skills": [
+        "electrical",
+        "plc",
+        "automation"
+      ],
+      "domain": "automation",
+      "city": "sao jose dos campos",
+      "free_hours": 30,
+      "cleared": true,
+      "synthetic": true
+    },
+    {
+      "id": "ENG8",
+      "skills": [
+        "python",
+        "sql",
+        "industrial data"
+      ],
+      "domain": "data",
+      "city": "pindamonhangaba",
+      "free_hours": 16,
+      "cleared": true,
+      "synthetic": true
+    }
+  ],
+  "stories": [
+    {
+      "id": "NEWS1",
+      "title": "Fictional steel pricing and input costs",
+      "text": "steel iron ore price trend costs",
+      "topic": "steel",
+      "days_ago": 10,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS2",
+      "title": "Fictional plant electricity tariff update",
+      "text": "energy electricity industrial tariff peak demand",
+      "topic": "energy",
+      "days_ago": 7,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS3",
+      "title": "Fictional port cargo bottleneck",
+      "text": "logistics ports shipping delays containers",
+      "topic": "logistics",
+      "days_ago": 4,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS4",
+      "title": "Fictional supply resilience survey",
+      "text": "supply logistics procurement risks industrial",
+      "topic": "logistics",
+      "days_ago": 12,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS5",
+      "title": "Fictional autonomous maintenance story",
+      "text": "maintenance ai sensors industrial assets",
+      "topic": "maintenance",
+      "days_ago": 5,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS6",
+      "title": "Fictional logistics warehouse automation",
+      "text": "logistics warehouse autonomous robotics",
+      "topic": "logistics",
+      "days_ago": 22,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS7",
+      "title": "Fictional steel scrap recycling program",
+      "text": "steel emissions sustainability energy",
+      "topic": "steel",
+      "days_ago": 3,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS8",
+      "title": "Fictional energy market brief",
+      "text": "energy industrial demand renewable power",
+      "topic": "energy",
+      "days_ago": 1,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS9",
+      "title": "Fictional machinery safety brief",
+      "text": "machinery manufacturing safety compliance",
+      "topic": "safety",
+      "days_ago": 14,
+      "status": "published",
+      "source": "synthetic training feed"
+    },
+    {
+      "id": "NEWS10",
+      "title": "Fictional steel obsolete update",
+      "text": "steel old commentary archives",
+      "topic": "steel",
+      "days_ago": 90,
+      "status": "archived",
+      "source": "synthetic training feed"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "SUP1",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.96,
+      "quality": 0.99,
+      "lead_days": 7,
+      "unit_price_brl": 115,
+      "capacity": 150,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP2",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.9,
+      "quality": 0.96,
+      "lead_days": 4,
+      "unit_price_brl": 130,
+      "capacity": 180,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP3",
+      "category": "bearings",
+      "approved": false,
+      "otif": 0.99,
+      "quality": 0.99,
+      "lead_days": 2,
+      "unit_price_brl": 85,
+      "capacity": 180,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP4",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.98,
+      "quality": 0.97,
+      "lead_days": 12,
+      "unit_price_brl": 90,
+      "capacity": 40,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP5",
+      "category": "hydraulics",
+      "approved": true,
+      "otif": 0.94,
+      "quality": 0.98,
+      "lead_days": 7,
+      "unit_price_brl": 300,
+      "capacity": 120,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP6",
+      "category": "hydraulics",
+      "approved": true,
+      "otif": 0.93,
+      "quality": 0.95,
+      "lead_days": 3,
+      "unit_price_brl": 360,
+      "capacity": 130,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP7",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.95,
+      "quality": 0.99,
+      "lead_days": 6,
+      "unit_price_brl": 109,
+      "capacity": 100,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP8",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.91,
+      "quality": 0.95,
+      "lead_days": 5,
+      "unit_price_brl": 112,
+      "capacity": 300,
+      "certifications": [
+        "ISO9001"
+      ],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    },
+    {
+      "id": "SUP9",
+      "category": "bearings",
+      "approved": true,
+      "otif": 0.97,
+      "quality": 0.98,
+      "lead_days": 5,
+      "unit_price_brl": 140,
+      "capacity": 200,
+      "certifications": [],
+      "scenario": "Ariba-like synthetic, not connected to SAP"
+    }
+  ],
+  "legs": [
+    {
+      "from": "Pindamonhangaba",
+      "to": "Taubate",
+      "km": 40,
+      "hours": 1,
+      "cost_brl": 16,
+      "mode": "truck",
+      "carrier": "C1",
+      "co2_kg": 11,
+      "carrier_approved": true
+    },
+    {
+      "from": "Pindamonhangaba",
+      "to": "Sao Jose dos Campos",
+      "km": 65,
+      "hours": 1.4,
+      "cost_brl": 24,
+      "mode": "truck",
+      "carrier": "C1",
+      "co2_kg": 17,
+      "carrier_approved": true
+    },
+    {
+      "from": "Taubate",
+      "to": "Sao Jose dos Campos",
+      "km": 42,
+      "hours": 1,
+      "cost_brl": 18,
+      "mode": "truck",
+      "carrier": "C1",
+      "co2_kg": 12,
+      "carrier_approved": true
+    },
+    {
+      "from": "Sao Jose dos Campos",
+      "to": "Santos",
+      "km": 180,
+      "hours": 3.5,
+      "cost_brl": 90,
+      "mode": "truck",
+      "carrier": "C1",
+      "co2_kg": 48,
+      "carrier_approved": true
+    },
+    {
+      "from": "Sao Jose dos Campos",
+      "to": "Campinas",
+      "km": 130,
+      "hours": 2.5,
+      "cost_brl": 62,
+      "mode": "truck",
+      "carrier": "C2",
+      "co2_kg": 37,
+      "carrier_approved": true
+    },
+    {
+      "from": "Campinas",
+      "to": "Santos",
+      "km": 175,
+      "hours": 3,
+      "cost_brl": 78,
+      "mode": "truck",
+      "carrier": "C2",
+      "co2_kg": 46,
+      "carrier_approved": true
+    },
+    {
+      "from": "Taubate",
+      "to": "Santos",
+      "km": 235,
+      "hours": 4.5,
+      "cost_brl": 122,
+      "mode": "truck",
+      "carrier": "C3",
+      "co2_kg": 70,
+      "carrier_approved": false
+    },
+    {
+      "from": "Pindamonhangaba",
+      "to": "Campinas",
+      "km": 170,
+      "hours": 3.3,
+      "cost_brl": 81,
+      "mode": "truck",
+      "carrier": "C2",
+      "co2_kg": 47,
+      "carrier_approved": true
+    },
+    {
+      "from": "Sao Jose dos Campos",
+      "to": "Santos",
+      "km": 200,
+      "hours": 5.5,
+      "cost_brl": 46,
+      "mode": "rail",
+      "carrier": "R1",
+      "co2_kg": 22,
+      "carrier_approved": true
+    },
+    {
+      "from": "Taubate",
+      "to": "Campinas",
+      "km": 170,
+      "hours": 5,
+      "cost_brl": 52,
+      "mode": "rail",
+      "carrier": "R1",
+      "co2_kg": 21,
+      "carrier_approved": true
+    }
+  ],
+  "bom": {
+    "PUMP-100": [
+      {
+        "component": "KIT-SEAL",
+        "qty": 1
+      },
+      {
+        "component": "P01",
+        "qty": 2
+      },
+      {
+        "component": "P03",
+        "qty": 1
+      }
+    ],
+    "KIT-SEAL": [
+      {
+        "component": "P02",
+        "qty": 2
+      },
+      {
+        "component": "P07",
+        "qty": 1
+      }
+    ],
+    "CNC-200": [
+      {
+        "component": "P05",
+        "qty": 1
+      },
+      {
+        "component": "P08",
+        "qty": 3
+      }
+    ],
+    "GEAR-300": [
+      {
+        "component": "P04",
+        "qty": 2
+      },
+      {
+        "component": "P07",
+        "qty": 2
+      }
+    ]
+  },
+  "provenance": "All identifiers and values in this file are authored fictional demonstration fixtures, not measured industrial or market records."
+}
