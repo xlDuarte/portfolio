@@ -1,0 +1,59 @@
+name: Time Series 061–070 verification
+
+on:
+  pull_request:
+    paths:
+      - 'timeseries_batch/**'
+      - 'projetos/07-timeseries/**'
+      - 'tests/test_timeseries_batch.py'
+      - 'requirements-timeseries.txt'
+      - '.github/workflows/timeseries-batch.yml'
+      - 'site/cases/timeseries/**'
+  push:
+    branches: [main, batch-061-070-timeseries-forecasting]
+    paths:
+      - 'timeseries_batch/**'
+      - 'projetos/07-timeseries/**'
+      - 'tests/test_timeseries_batch.py'
+      - 'requirements-timeseries.txt'
+      - '.github/workflows/timeseries-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  forecasts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-timeseries.txt
+      - name: Install forecasting dependencies
+        run: python -m pip install -r requirements-timeseries.txt
+      - name: Compile forecasting and project scripts
+        run: python -m compileall -q timeseries_batch projetos/07-timeseries tests/test_timeseries_batch.py
+      - name: Validate backtests, models, leakage, outputs
+        run: python -m unittest discover -s tests -p test_timeseries_batch.py -v
+      - name: Export ten reproducible series and actual forecasts
+        run: |
+          for id in $(seq 61 70); do
+            python -m timeseries_batch.engine "$id" --save > /dev/null
+          done
+      - name: Upload synthetic plots and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-forecast-evidence
+          path: |
+            timeseries_batch/data/*.csv
+            timeseries_batch/reports/*.json
+            timeseries_batch/reports/*_predictions.csv
+            timeseries_batch/figures/*.html
+          if-no-files-found: error
