@@ -1,0 +1,11 @@
+// Manual Power BI Desktop template, NOT executed by portfolio CI.
+// Import the result of "python -m advanced_batch.export_bi" and
+// name the table "Synthetic_BI_Shifts" and type numeric columns.
+Synthetic Weighted OEE % =
+DIVIDE(
+    SUM(Synthetic_BI_Shifts[good_ideal_min]),
+    SUM(Synthetic_BI_Shifts[planned_min])
+)
+
+Synthetic Revenue BRL = SUM(Synthetic_BI_Shifts[revenue_brl])
+Synthetic Good Units = SUM(Synthetic_BI_Shifts[good_units])
