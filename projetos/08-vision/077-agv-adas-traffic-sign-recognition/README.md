@@ -1,27 +1,16 @@
-> **Status de implementação #077: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #77 — AGV and ADAS sign recognition
 
-# Project #077 — Reconhecimento de Sinalização para AGVs e Sistemas ADAS
-## AGV & ADAS Traffic Sign Recognition
+**Implementação executável:** Reconhecimento de pictogramas artificiais por geometria e cor. A entrada de demonstração é imagem sintética criada por OpenCV; não houve teste industrial.
 
-- **Categoria / Route:** `/projetos/vision/77` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/077-agv-adas-traffic-sign-recognition`
-- **Benchmark de Referência:** `77 Traffic Sign Recognition`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+**Tecnologias efetivas:** OpenCV HSV + polígonos, NumPy. Segmentação HSV e aproximação poligonal identificam pictogramas artificiais; não há inferência adequada à navegação AGV ou direção ADAS.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Identificação de placas de limite de velocidade, pare e rotas demarcadas para veículos autônomos.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Identification of speed limits, stop signs, and floor markings for autonomous AGVs/ADAS.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/077-agv-adas-traffic-sign-recognition/main.py --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+Relatórios e imagens em `vision_batch/reports/77.json` e `vision_batch/reports/77.png`. [Motor](../../../vision_batch/engine.py), [documentação](../../../vision_batch/README.md).
+
+**Limites:** apenas padrões desenhados artificialmente, sem métricas reais de acurácia, sem certificação, sem controles ou decisões automatizadas.

@@ -1,0 +1,9 @@
+-r requirements-motorsport-core.txt
+mlflow>=2.18,<4
+pypdf>=5,<7
+reportlab>=4,<5
+langchain-core>=0.3,<2
+langchain-text-splitters>=0.3,<2
+imbalanced-learn>=0.13,<0.15
+shap==0.47.2
+xgboost==2.1.4

@@ -1,27 +1,17 @@
-> **Status de implementação #096: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #96 — MES Setup Recommendation Engine
 
-# Project #096 — Motor de Recomendação de Parâmetros de Setup (MES)
-## Real-Time MES Setup Recommendation Engine
+**Implementação:** Sugestão de parâmetros de setup dentro de limites artificiais de máquina. Regras de setup determinísticas com limitação de RPM e avanço; NÃO envia comandos MES. Realmente processa eventos de domínio, armazena em SQLite via API e calcula indicadores/ML com Scikit-learn quando aplicável.
 
-- **Categoria / Route:** `/projetos/advanced/96` (`10 / 10`)
-- **Diretório GitHub:** `projetos/10-advanced/096-real-time-mes-setup-recommendation-engine`
-- **Benchmark de Referência:** `96 Real-Time Recommendation Engine`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Docker, FastAPI, Kafka, Streamlit, Power BI`
-- **Fluxo de Engenharia (How It Flows):** `Stream IIoT/SAP -> Pipeline ETL -> Modelo IA/BI -> Deploy Prod` (`Data Stream -> Pipeline -> Model -> Deploy`)
-
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Sugestão em tempo real de parâmetros ótimos de máquina para maximizar OEE na troca de lote.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Real-time suggestion of optimal machine parameters to maximize OEE during batch changeover.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-advanced.txt
+python projetos/10-advanced/096-real-time-mes-setup-recommendation-engine/main.py --save
+python -m unittest discover -s tests -p test_advanced_batch.py -v
+uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000
 ```
+
+**Kafka real (local):** `docker compose -f advanced_batch/compose.yaml up -d redpanda`, `python -m advanced_batch.kafka_bus publish --project 96 --count 96`, depois `python -m advanced_batch.kafka_bus consume --count 96`. O CI possui teste separado de broker. O painel Streamlit lê a API; nenhum comando de planta é enviado.
+
+**Stack implementada no conjunto:** FastAPI, SQLite, Scikit-learn, Pandas, NumPy, Streamlit, Kafka-python e Docker; Power BI apenas como template M/DAX não executado em Desktop. [Motor](../../../advanced_batch/engine.py) · [API](../../../advanced_batch/api.py) · [Limitações](../../../advanced_batch/README.md).
+
+**Limites:** dados e rótulos fictícios, sem fonte industrial, autenticação de produção, controle de equipamento, contratação, decisão de crédito ou impacto medido. A API é demonstrativa e deve ficar em rede local.

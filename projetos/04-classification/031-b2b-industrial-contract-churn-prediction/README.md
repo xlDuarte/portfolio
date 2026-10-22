@@ -1,14 +1,15 @@
-# Project #031 — B2B Industrial Contract Churn Prediction
+# #031 — B2B Industrial Contract Churn
 
-**Status: estudo demonstrativo reproduzível com dados 100% SINTÉTICOS.** Este caso possui cálculo efetivamente executado, dados versionados, teste automatizado e métrica contextualizada. **Não houve implantação em indústria nem resultado econômico comprovado.**
+**Escopo comprovável:** classificador industrial de demonstração treinado em observações e rótulos **100% sintéticos**.
 
-**Projeto completo:** [`case_studies/`](../../../case_studies/README.md) · [Dicionário de dados](../../../case_studies/DATA_DICTIONARY.md) · [Dados](../../../case_studies/data/) · [Código](../../../case_studies/analytics.py) · [Relatório](../../../case_studies/reports/metrics.json).
+Este projeto carrega explicitamente as variáveis numéricas `monthly_orders`, `late_shipments`, `support_tickets`, `tenure_months`, `price_change_pct` e a variável categórica `contract_segment`. Usa Pandas/NumPy, StandardScaler e OneHotEncoder, Scikit-learn LogisticRegression, HistGradientBoostingClassifier e DummyClassifier. O código aplica divisão treino/calibração/teste 60/20/20, seleciona o limiar na calibração e calcula ROC-AUC, F1, average precision, Brier e matriz de confusão no teste.
 
-**Reprodução:**
 ```bash
-python -m pip install -r requirements-case-studies.txt
+python -m pip install -r requirements-classification.txt
 python projetos/04-classification/031-b2b-industrial-contract-churn-prediction/main.py
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -p test_classification_batch.py -v
 ```
 
-**Limites:** desempenho estatístico refere-se exclusivamente ao dataset sintético, com baseline explícita e sem validação externa. Para cenário real, são necessários controles de qualidade, autorização dos dados, recorte temporal, drift, custos de erro e revisão com especialistas.
+**Fontes:** [motor](../../../classification_batch/engine.py) · [configuração específica](../../../classification_batch/config.json) · [auditoria integrada](../../../INTEGRATION_AUDIT.md).
+
+**Limites:** sem SAP, XGBoost, TensorFlow, serviço externo, dados corporativos, impacto de negócio validado ou decisões automatizadas. O resultado não qualifica modelos comerciais/de crédito/segurança como homologados.

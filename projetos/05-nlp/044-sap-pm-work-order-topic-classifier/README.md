@@ -1,27 +1,22 @@
-> **Status de implementação #044: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #44 — SAP PM Work-Order Topic Classifier
 
-# Project #044 — Classificação Automática de Ordens de Manutenção (SAP PM)
-## SAP PM Work-Order Topic Classifier
+**Status:** classificação NLP com treinamento, teste e inferência reais sobre texto 100% sintético. Implementação: [motor NLP](../../../nlp_batch/engine.py); [templates artificiais](../../../nlp_batch/specs.json).
 
-- **Categoria / Route:** `/projetos/nlp/44` (`05 / 10`)
-- **Diretório GitHub:** `projetos/05-nlp/044-sap-pm-work-order-topic-classifier`
-- **Benchmark de Referência:** `44 News Topic Classification`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
-- **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
+## Escopo efetivamente implementado
+Classificação de textos de ordens SAP PM nas disciplinas mecânica, elétrica, automação ou qualidade. Sem conexão real com SAP.
 
----
+**Classes:** mechanical, electrical, automation, quality.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Categorização de notas de manutenção (elétrica, mecânica, hidráulica, automação) via texto livre.
+**Tecnologia executada:** NLTK TweetTokenizer; Hugging Face Tokenizers WordPiece local (sem pesos de Transformers); Scikit-learn TF-IDF (caracteres e WordPiece), LogisticRegression e baseline DummyClassifier. Holdout isolado por *sentence template* (treino/calibração/teste = 3/1/1 templates por classe). Métricas: acurácia, macro-F1, relatório por classe e baseline.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Categorizing free-text maintenance notes into electrical, mechanical, hydraulic, or automation.
-
----
-
-## 3. Como Executar / How to Run
-
+## Reprodução
 ```bash
-python3 main.py
+python -m pip install -r requirements-nlp.txt
+python projetos/05-nlp/044-sap-pm-work-order-topic-classifier/main.py --text "Rolamento apresenta vibração mecânica anormal" --save
+python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
+
+**Saídas locais:** `nlp_batch/reports/44.json` e `nlp_batch/data/44.csv`. Não há download de modelos pré-treinados.
+
+## Limitações
+Templates sintéticos e variações contextuais não constituem observações independentes. Sem evidência de desempenho com dados reais, revisão de especialistas ou monitoramento em produção. 

@@ -1,0 +1,6 @@
+reports/*.json
+reports/*.png
+reports/*.pdf
+reports/*.sqlite
+reports/mlflow-106/
+reports/synthetic-pdfs-107/

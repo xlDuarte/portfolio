@@ -58,7 +58,22 @@ def evaluate_pit_strategies(total_laps=58, pit_loss_s=22.4):
     return results
 
 
+def fit_synthetic_lap_models():
+    """Real session-disjoint XGBoost and RandomForest lap-time fit."""
+    import sys
+    from pathlib import Path
+    sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+    from motorsport_batch.race_ml import evaluate
+    return evaluate()
+
+
 if __name__ == "__main__":
+    import sys
+    if "--fit-ml" in sys.argv:
+        import json
+        print(json.dumps(fit_synthetic_lap_models(), indent=2))
+        sys.exit(0)
+
     ranked = evaluate_pit_strategies()
     print("=" * 72)
     print("[F1 RACE STRATEGY SIMULATOR] Optimal Pit-Stop Window Evaluation")

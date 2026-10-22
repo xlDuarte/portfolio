@@ -1,0 +1,72 @@
+{
+  "51": {
+    "slug": "051-maintenance-playbook-video-recommender",
+    "title": "Maintenance Playbook & Video Recommender",
+    "mode": "content",
+    "query": "vibração em bomba hidráulica rolamento",
+    "default_top_k": 5
+  },
+  "52": {
+    "slug": "052-acoustic-diagnostic-signature-matcher",
+    "title": "Acoustic Diagnostic Signature Matcher",
+    "mode": "spectral",
+    "query": "bearing_fault",
+    "default_top_k": 4
+  },
+  "53": {
+    "slug": "053-engineering-standard-manual-finder",
+    "title": "Engineering Standard & Manual Finder",
+    "mode": "content",
+    "query": "inspeção de solda e qualidade",
+    "default_top_k": 4
+  },
+  "54": {
+    "slug": "054-tooling-spare-parts-recommender",
+    "title": "Tooling & Spare Parts Recommender",
+    "mode": "parts",
+    "query": "rolamento para bomba hidráulica",
+    "default_top_k": 5
+  },
+  "55": {
+    "slug": "055-industrial-upskilling-path-recommender",
+    "title": "Industrial Upskilling Path Recommender",
+    "mode": "learning",
+    "query": "python power bi sql",
+    "default_top_k": 5
+  },
+  "56": {
+    "slug": "056-project-to-engineer-skill-matcher",
+    "title": "Project to Engineer Skill Matcher",
+    "mode": "skills",
+    "query": "python sql industrial data",
+    "default_top_k": 4
+  },
+  "57": {
+    "slug": "057-industrial-market-intelligence-feed",
+    "title": "Industrial Market Intelligence Feed",
+    "mode": "feed",
+    "query": "steel logistics energy",
+    "default_top_k": 5
+  },
+  "58": {
+    "slug": "058-approved-supplier-recommender-ariba",
+    "title": "Approved Supplier Recommender (Ariba scenario)",
+    "mode": "suppliers",
+    "query": "bearings",
+    "default_top_k": 5
+  },
+  "59": {
+    "slug": "059-optimal-logistics-route-carrier-engine",
+    "title": "Optimal Logistics Route and Carrier Engine",
+    "mode": "routing",
+    "query": "Pindamonhangaba>Santos",
+    "default_top_k": 5
+  },
+  "60": {
+    "slug": "060-automated-bom-maintenance-kit-engine",
+    "title": "Automated BOM and Maintenance Kit Engine",
+    "mode": "bom",
+    "query": "PUMP-100",
+    "default_top_k": 5
+  }
+}

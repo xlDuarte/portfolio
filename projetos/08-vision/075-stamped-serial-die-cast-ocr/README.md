@@ -1,27 +1,17 @@
-> **Status de implementação #075: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #75 — Stamped serial OCR
 
-# Project #075 — Reconhecimento Óptico (OCR) de Gravações em Relevo/Punção
-## Stamped Serial & Die-Cast OCR
+**Status:** funcionalidade de visão computacional real, com dados **inteiramente sintéticos**. OCR de códigos artificiais impressos (não marcação em metal real).
 
-- **Categoria / Route:** `/projetos/vision/75` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/075-stamped-serial-die-cast-ocr`
-- **Benchmark de Referência:** `75 Handwritten Digit Recognition`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+**Tecnologias utilizadas:** OpenCV + Tesseract; OpenCV e NumPy. Pré-processamento Otsu e pytesseract/Tesseract OCR recebem imagem sintética de texto impresso; não existe reconhecimento validado de punção em metal real.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Leitura automatizada de códigos de corrida siderúrgica e lotes gravados em superfícies metálicas.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Automated reading of steel heat numbers and batch codes stamped on metal surfaces.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+sudo apt-get install -y tesseract-ocr
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/075-stamped-serial-die-cast-ocr/main.py --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+Relatório em `vision_batch/reports/75.json` e PNG original artificial em `vision_batch/reports/75.png`. [Código](../../../vision_batch/engine.py) · [metodologia](../../../vision_batch/README.md).
+
+**Limitações:** sem imagens de produção, teste em condições reais ou garantia de leitura/inspeção; sempre requer verificação humana.

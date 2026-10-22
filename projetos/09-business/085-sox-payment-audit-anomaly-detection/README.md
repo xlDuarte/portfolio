@@ -1,27 +1,20 @@
-> **Status de implementação #085: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #85 — SOX Payment Audit & Anomaly Detection
 
-# Project #085 — Auditoria Contínua de Pagamentos e Conformidade SOX
-## SOX Payment Audit & Anomaly Detection
+**Status:** processamento real de dados financeiros industriais inteiramente sintéticos, sem conexão corporativa.
 
-- **Categoria / Route:** `/projetos/business/85` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/085-sox-payment-audit-anomaly-detection`
-- **Benchmark de Referência:** `85 Credit Card Fraud Detection`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Funcionalidade implementada
+Pagamentos fictícios: SQL com funções de janela para duplicidades, finais de semana, valores além da alçada e possível fracionamento.
 
----
+**Ferramentas efetivamente utilizadas:** SQLite SQL, Pandas, Matplotlib.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Verificação automatizada de duplicidades, desvios fiscais e conformidade em contas a pagar.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Automated verification of duplicates, tax deviations, and compliance in accounts payable.
-
----
-
-## 3. Como Executar / How to Run
-
+## Reproduzir
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/085-sox-payment-audit-anomaly-detection/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Dados/relatórios gerados:** `business_batch/exports/85_query.csv`, `business_batch/reports/85.json`, `business_batch/figures/85.png`. O arquivo [SQL](../../../business_batch/sql/085.sql) é executado com SQLite; a fonte de dados é gerada pelo [motor](../../../business_batch/engine.py).
+
+**Limitações:** Indicadores são hipóteses para revisão humana, jamais constatação de fraude/SOX. Templates [DAX](../../../business_batch/powerbi/Measures.dax) só foram escritos; nenhuma execução via Power BI Desktop. Não há dados SAP reais nem conclusão de compliance.

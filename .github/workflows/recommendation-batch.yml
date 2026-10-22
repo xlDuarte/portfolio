@@ -1,0 +1,65 @@
+name: Recommendation projects 051–060 verification
+
+on:
+  pull_request:
+    paths:
+      - 'recommendation_batch/**'
+      - 'projetos/06-recommendation/**'
+      - 'tests/test_recommendation_batch.py'
+      - 'requirements-recommendation.txt'
+      - '.github/workflows/recommendation-batch.yml'
+      - 'site/cases/recommendation/**'
+  push:
+    branches: [main, batch-051-060-industrial-recommendation]
+    paths:
+      - 'recommendation_batch/**'
+      - 'projetos/06-recommendation/**'
+      - 'tests/test_recommendation_batch.py'
+      - 'requirements-recommendation.txt'
+      - '.github/workflows/recommendation-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-recommendation.txt
+      - name: Install actual analytics and UI dependencies
+        run: python -m pip install -r requirements-recommendation.txt
+      - name: Compile all 10 recommendation projects and source
+        run: python -m compileall -q recommendation_batch projetos/06-recommendation tests/test_recommendation_batch.py
+      - name: Validate business rules and genuine recommender outputs
+        run: python -m unittest discover -s tests -p test_recommendation_batch.py -v
+      - name: Run every domain script with synthetic data and save reports
+        run: |
+          for id in $(seq 51 60); do
+            python -m recommendation_batch.engine "$id" --save > /dev/null
+          done
+      - name: Verify Streamlit app widgets with real execution
+        run: |
+          python - <<'PY'
+          from streamlit.testing.v1 import AppTest
+          a=AppTest.from_file("recommendation_batch/app.py",default_timeout=30).run()
+          assert len(a.exception)==0, a.exception
+          assert len(a.selectbox)>0
+          a.button[0].click().run()
+          assert len(a.exception)==0, a.exception
+          assert len(a.json)>0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-recommendation-reports
+          path: recommendation_batch/reports/*.json
+          if-no-files-found: error

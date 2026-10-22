@@ -1,27 +1,19 @@
-> **Status de implementação #080: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #80 — Metallurgical microstructure classifier
 
-# Project #080 — Classificação de Microestrutura Metalográfica por Imagem
-## Metallurgical Microstructure Classifier
+**Escopo implementado:** CNN PyTorch treinada sobre texturas metalográficas fictícias. Imagens exclusivamente artificiais.
 
-- **Categoria / Route:** `/projetos/vision/80` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/080-metallurgical-microstructure-classifier`
-- **Benchmark de Referência:** `80 Food Image Classification`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+**Tecnologias efetivas:** PyTorch Conv2d com OpenCV e NumPy. Convolução real em PyTorch Conv2D treinada em texturas geradas matematicamente. Executar `--deep` ajusta parâmetros da CNN, calcula loss e probabilidades em amostras de seed separada, sem dados microscópicos verdadeiros.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Classificação de fases metalúrgicas (perlita, martensita, bainita) em imagens de microscopia.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Classification of metallurgical phases (pearlite, martensite, bainite) from microscopy images.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/080-metallurgical-microstructure-classifier/main.py --save
+python -m pip install --no-cache-dir -r requirements-vision-deep.txt
+python -m pip install --no-cache-dir 'torch==2.5.1+cpu' --index-url https://download.pytorch.org/whl/cpu
+python projetos/08-vision/080-metallurgical-microstructure-classifier/main.py --deep --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+JSON e imagem demonstrativa `vision_batch/reports/80.json`, `vision_batch/reports/80.png`. [Motor](../../../vision_batch/engine.py) · [metodologia](../../../vision_batch/README.md).
+
+**Limitação:** sem base real e sem validação externa; não serve como vigilância, identificação de pessoas, classificação metalúrgica de produção ou fundamento decisório.

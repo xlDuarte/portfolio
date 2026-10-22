@@ -1,0 +1,48 @@
+// Power BI Desktop measure definitions (NOT executed by GitHub Actions).
+// Import CSVs from business_batch/exports/raw with the provided M template.
+// Format measures as Percentage or BRL in the Power BI model.
+
+Weighted OEE % = DIVIDE(
+    SUMX(Fact_Shifts, Fact_Shifts[good_units] * Fact_Shifts[ideal_cycle_min]),
+    SUM(Fact_Shifts[planned_min])
+)
+
+Availability % = DIVIDE(
+    SUM(Fact_Shifts[operating_min]),
+    SUM(Fact_Shifts[planned_min])
+)
+
+Performance % = DIVIDE(
+    SUMX(Fact_Shifts, Fact_Shifts[total_units] * Fact_Shifts[ideal_cycle_min]),
+    SUM(Fact_Shifts[operating_min])
+)
+
+Quality % = DIVIDE(
+    SUM(Fact_Shifts[good_units]),
+    SUM(Fact_Shifts[total_units])
+)
+
+Quota attainment % = DIVIDE(
+    SUM(Fact_Shifts[good_units]),
+    SUM(Fact_Shifts[quota_units])
+)
+
+Gross sales BRL = SUM(Fact_Invoices[amount_brl])
+
+Contribution margin BRL = SUM(Fact_Invoices[contribution_margin_brl])
+
+Purchase spend BRL = SUM(Fact_Procurement[spend_brl])
+
+Purchase orders = DISTINCTCOUNT(Fact_Procurement[po_id])
+
+Purchasing OTIF % = DIVIDE(
+    COUNTROWS(FILTER(Fact_Procurement, Fact_Procurement[actual_lead_days] <= Fact_Procurement[quoted_lead_days])),
+    COUNTROWS(Fact_Procurement)
+)
+
+Unreconciled revenue BRL = 
+SUMX(Fact_Billing, Fact_Billing[net_revenue_brl] - 
+    LOOKUPVALUE(Fact_Ledger[posted_revenue_brl], Fact_Ledger[month], Fact_Billing[month]))
+ 
+Risk high events =
+COUNTROWS(FILTER(Fact_Risk, Fact_Risk[likelihood] * Fact_Risk[impact] >= 15))

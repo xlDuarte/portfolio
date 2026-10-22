@@ -1,0 +1,104 @@
+name: Motorsport and MLOps 101–110 verification
+on:
+  pull_request:
+    paths:
+      - 'motorsport_batch/**'
+      - 'motorsport/optical_flow.py'
+      - 'projetos/11-motorsport-f1-mlops/**'
+      - 'tests/test_motorsport_batch.py'
+      - 'tests/test_motorsport_advanced.py'
+      - 'requirements-motorsport*.txt'
+      - '.github/workflows/motorsport-batch.yml'
+      - 'site/cases/motorsport/**'
+  push:
+    branches: [main,batch-101-110-motorsport-mlops]
+    paths:
+      - 'motorsport_batch/**'
+      - 'projetos/11-motorsport-f1-mlops/**'
+      - 'tests/test_motorsport_batch.py'
+      - 'tests/test_motorsport_advanced.py'
+      - 'requirements-motorsport*.txt'
+      - '.github/workflows/motorsport-batch.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+jobs:
+  physics-and-ml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install numerical/CV/ML and interactive UI dependencies
+        run: python -m pip install -r requirements-motorsport-core.txt
+      - run: python -m compileall -q motorsport_batch motorsport projetos/11-motorsport-f1-mlops tests/test_motorsport_batch.py
+      - name: Test 101 RF/XGB, EKF, Lucas-Kanade, replay and tire dynamics
+        run: python -m unittest discover -s tests -p test_motorsport_batch.py -v
+      - name: Exercise five model-domain CLI data input checks
+        run: |
+          for id in $(seq 104 108); do
+            python -m motorsport_batch.cli "$id" --output /tmp/motorsport-inputs > /dev/null
+          done
+      - name: Verify Streamlit physics visualization surfaces
+        run: |
+          python - <<'PY'
+          from streamlit.testing.v1 import AppTest
+          for path in ('motorsport_batch/replay.py','motorsport_batch/performance.py'):
+              a=AppTest.from_file(path,default_timeout=45).run()
+              assert len(a.exception)==0,(path,a.exception)
+              assert len(a.slider)>0,path
+          PY
+  keras-lstm-and-gradcam:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      RUN_MOTORSPORT_TF: '1'
+      TF_CPP_MIN_LOG_LEVEL: '2'
+      CUDA_VISIBLE_DEVICES: '-1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-cache-dir -r requirements-motorsport-tf.txt
+      - name: Fit actual LSTM and CNN, calculate held-out Grad-CAM
+        run: python -m unittest discover -s tests -p test_motorsport_advanced.py -v
+      - name: Run model-training CLI entrypoints
+        run: |
+          python -m motorsport_batch.cli 104 --run --output /tmp/models > /dev/null
+          python -m motorsport_batch.cli 105 --run --output /tmp/models > /dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-motorsport-lstm-gradcam
+          path: /tmp/models/*.json
+          if-no-files-found: error
+  tracked-mlflow-rag-shap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RUN_MOTORSPORT_ADVANCED: '1'
+      MLFLOW_ENABLE_SYSTEM_METRICS_LOGGING: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-cache-dir -r requirements-motorsport-mlops.txt
+      - name: Train/test tracked MLflow artifacts, LangChain PDFs and XGBoost SHAP
+        run: python -m unittest discover -s tests -p test_motorsport_advanced.py -v
+      - name: Run actual document, tracking and explainability pipelines
+        run: |
+          python -m motorsport_batch.cli 106 --run --output /tmp/track-106 > /dev/null
+          python -m motorsport_batch.cli 107 --run --output /tmp/rag-107 > /dev/null
+          python -m motorsport_batch.cli 108 --run --output /tmp/explain-108 > /dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-motorsport-mlflow-rag-shap
+          path: |
+            /tmp/track-106/106.json
+            /tmp/rag-107/107.json
+            /tmp/explain-108/108.json
+          if-no-files-found: error

@@ -1,27 +1,25 @@
-> **Status de implementação #081: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #81 — B2B Account Lifetime Value (LTV)
 
-# Project #081 — Predição de Lifetime Value (LTV) de Contas Industriais
-## B2B Account Lifetime Value (LTV)
+**Status:** implementação funcional sobre dados ERP fictícios. Não é integração SAP/Ariba ou relatório Power BI executado.
 
-- **Categoria / Route:** `/projetos/business/81` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/081-b2b-account-lifetime-value-ltv`
-- **Benchmark de Referência:** `81 Customer Lifetime Value Prediction`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo entregue
+Treina RandomForestRegressor com atributos de 12 meses anteriores e prevê margem de contribuição dos próximos 12 meses por cliente artificial.
 
----
+**Método e testes:** Usa split por conta (135 treino/45 teste), MAE/R² e baseline mediana; não utiliza rótulo futuro como feature.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Valoração econômica de contratos de longo prazo com montadoras e clientes siderúrgicos.
+**Tecnologias deste projeto:** Scikit-learn, Pandas, SQLite SQL, Matplotlib, Streamlit.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Economic valuation of long-term contracts with automotive OEMs and steel clients.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução verificável
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/081-b2b-account-lifetime-value-ltv/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Saídas reais do Python:** `business_batch/exports/81_query.csv` obtido por SQL executado; `business_batch/reports/81.json`, `business_batch/figures/81.png` e onze tabelas raw CSV para exploração.
+
+**Fonte:** [código](../../../business_batch/engine.py) · [SQL deste projeto](../../../business_batch/sql/081.sql) · [documentação Power BI](../../../business_batch/powerbi/README.md) · [auditoria](../../../business_batch/README.md).
+
+## Restrições
+Modelo não está validado sobre contas reais, vendas reais ou políticas comerciais e não apoia decisões de crédito. Fontes SAP não conectadas, nenhuma execução da DAX no CI e nenhuma medição econômica externa.

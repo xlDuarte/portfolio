@@ -1,0 +1,122 @@
+{
+  "61": {
+    "slug": "061-steel-alloy-commodity-forecasting",
+    "title": "Steel & Alloy Commodity Forecasting",
+    "unit": "BRL/tonne",
+    "base": 4400,
+    "trend_per_week": 5.5,
+    "season_amplitude": 240,
+    "noise_sigma": 160,
+    "description": "Sazonalidade contratual e volatilidade simulada de aço e ligas",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "62": {
+    "slug": "062-s-op-industrial-sales-forecasting",
+    "title": "S&OP Industrial Sales Forecasting",
+    "unit": "BRL/week",
+    "base": 830000,
+    "trend_per_week": 1200,
+    "season_amplitude": 92000,
+    "noise_sigma": 30000,
+    "description": "Sazonalidade de faturamento e demanda industrial simulados",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "63": {
+    "slug": "063-plant-thermal-load-weather-forecast",
+    "title": "Plant Thermal Load Weather Forecast",
+    "unit": "kWh_thermal/week",
+    "base": 19000,
+    "trend_per_week": 14,
+    "season_amplitude": 2300,
+    "noise_sigma": 740,
+    "description": "Carga térmica industrial, não é previsão meteorológica real",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "64": {
+    "slug": "064-rolling-mill-electricity-demand-forecast",
+    "title": "Rolling Mill Electricity Demand Forecast",
+    "unit": "MWh/week",
+    "base": 780,
+    "trend_per_week": 1.8,
+    "season_amplitude": 85,
+    "noise_sigma": 32,
+    "description": "Consumo fabril de energia em demanda de ponta simulada",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "65": {
+    "slug": "065-iiot-broker-api-traffic-forecasting",
+    "title": "IIoT Broker & API Traffic Forecasting",
+    "unit": "messages/week",
+    "base": 220000,
+    "trend_per_week": 480,
+    "season_amplitude": 32000,
+    "noise_sigma": 17000,
+    "description": "Tráfego de APIs e mensagens IIoT artificiais",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "66": {
+    "slug": "066-critical-ics-tooling-demand-forecast",
+    "title": "Critical ICS & Tooling Demand Forecast",
+    "unit": "units/week",
+    "base": 190,
+    "trend_per_week": 0.22,
+    "season_amplitude": 42,
+    "noise_sigma": 16,
+    "description": "Demanda de ferramentas e insumos críticos não observada",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "67": {
+    "slug": "067-machining-center-dock-slot-forecast",
+    "title": "Machining Center & Dock Slot Forecast",
+    "unit": "percent_occupancy",
+    "base": 68,
+    "trend_per_week": 0.018,
+    "season_amplitude": 13,
+    "noise_sigma": 4.5,
+    "description": "Ocupação semanal de docas e usinagem simulada",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "68": {
+    "slug": "068-fx-volatility-analysis-for-imports",
+    "title": "FX Volatility Analysis for Imports",
+    "unit": "percent_weekly_realized_volatility",
+    "base": 1.8,
+    "trend_per_week": 0.001,
+    "season_amplitude": 0.45,
+    "noise_sigma": 0.16,
+    "description": "Volatilidade de câmbio sintética, não previsão de preços FX",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "69": {
+    "slug": "069-industrial-esg-emissions-forecasting",
+    "title": "Industrial ESG Emissions Forecasting",
+    "unit": "tCO2e/week",
+    "base": 950,
+    "trend_per_week": 0.45,
+    "season_amplitude": 75,
+    "noise_sigma": 22,
+    "description": "Emissões industriais simuladas, não medições auditadas",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  },
+  "70": {
+    "slug": "070-consumables-burn-rate-forecasting",
+    "title": "Consumables Burn-Rate Forecasting",
+    "unit": "litres/week",
+    "base": 6800,
+    "trend_per_week": 2.1,
+    "season_amplitude": 960,
+    "noise_sigma": 410,
+    "description": "Consumo de fluidos e gases industriais fictícios",
+    "cadence": "W-MON",
+    "horizon_weeks": 8
+  }
+}

@@ -1,0 +1,7 @@
+data/*.csv
+reports/*.json
+reports/*_predictions.csv
+figures/*.html
+!data/.gitkeep
+!reports/.gitkeep
+!figures/.gitkeep

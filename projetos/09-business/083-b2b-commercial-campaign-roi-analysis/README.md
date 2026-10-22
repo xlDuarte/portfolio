@@ -1,27 +1,25 @@
-> **Status de implementação #083: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #83 — B2B Commercial Campaign ROI Analysis
 
-# Project #083 — Análise de Retorno de Iniciativas Comerciais e Feiras B2B
-## B2B Commercial Campaign ROI Analysis
+**Status:** implementação funcional sobre dados ERP fictícios. Não é integração SAP/Ariba ou relatório Power BI executado.
 
-- **Categoria / Route:** `/projetos/business/83` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/083-b2b-commercial-campaign-roi-analysis`
-- **Benchmark de Referência:** `83 Marketing Campaign Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo entregue
+Compara margem de contribuição entre campanhas e controles artificiais de alocação aleatória.
 
----
+**Método e testes:** Calcula lift médio, efeito incremental estimado, despesa de campanha e ROI; cenário experimental sintético, não prova causal real.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Avaliação de custo de aquisição, conversão de cotações técnicas e margem gerada.
+**Tecnologias deste projeto:** SQLite SQL, Pandas, NumPy, Matplotlib.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Evaluation of acquisition cost, technical quote conversion, and generated margin.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução verificável
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/083-b2b-commercial-campaign-roi-analysis/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Saídas reais do Python:** `business_batch/exports/83_query.csv` obtido por SQL executado; `business_batch/reports/83.json`, `business_batch/figures/83.png` e onze tabelas raw CSV para exploração.
+
+**Fonte:** [código](../../../business_batch/engine.py) · [SQL deste projeto](../../../business_batch/sql/083.sql) · [documentação Power BI](../../../business_batch/powerbi/README.md) · [auditoria](../../../business_batch/README.md).
+
+## Restrições
+Premissas e valores de todas as tabelas são artificiais, sem indicador de desempenho corporativo observado. Fontes SAP não conectadas, nenhuma execução da DAX no CI e nenhuma medição econômica externa.

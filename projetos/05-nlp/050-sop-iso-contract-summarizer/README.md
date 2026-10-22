@@ -1,27 +1,18 @@
-> **Status de implementação #050: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #050 — SOP, ISO & Contract Summarizer
 
-# Project #050 — Sumarização Executiva de Normas ISO, SOPs e Contratos
-## SOP, ISO & Contract Summarizer
+**Status:** sumarizador extrativo operacional em documentos fornecidos pelo usuário ou exemplo fictício. As frases selecionadas permanecem literalmente iguais às do documento-fonte, acompanhadas do ID de cada sentença original.
 
-- **Categoria / Route:** `/projetos/nlp/50` (`05 / 10`)
-- **Diretório GitHub:** `projetos/05-nlp/050-sop-iso-contract-summarizer`
-- **Benchmark de Referência:** `50 News Article Summarization`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
-- **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
+## Funcionamento real
+**spaCy** (`sentencizer`) segmenta frases; **Scikit-learn** (`TfidfVectorizer`, `cosine_similarity`) calcula centralidade e aplica seleção por diversidade MMR. O texto resultante não é gerado por modelo Transformer e não constitui análise jurídica nem resumo certificado de norma ISO.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Geração de resumos executivos estruturados a partir de manuais técnicos e cláusulas regulatórias.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Generating structured executive summaries from dense technical manuals and regulatory clauses.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-nlp.txt
+python projetos/05-nlp/050-sop-iso-contract-summarizer/main.py --text-file nlp_batch/examples/sop.txt --save
+python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
+
+**Saída local:** `nlp_batch/reports/050.json` com `source_sentence_id`, `text` e `summary`. Código: [nlp_batch/engine.py](../../../nlp_batch/engine.py).
+
+## Segurança e limites
+Não foram incorporados textos protegidos por licença ISO. Não há modelo Hugging Face pré-treinado nem garantia de que obrigações, exceções, artigos legais, quantitativos e qualificações sejam preservados; é obrigatória revisão de especialista antes de uso decisório.

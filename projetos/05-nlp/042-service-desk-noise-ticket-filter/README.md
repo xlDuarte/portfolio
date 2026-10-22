@@ -1,27 +1,22 @@
-> **Status de implementação #042: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #42 — Service Desk Noise & Ticket Filter
 
-# Project #042 — Filtro Inteligente de Chamados de Service Desk
-## Service Desk Noise & Ticket Filter
+**Status:** pipeline NLP executável; exemplos e rótulos artificiais, sem validação real. Código de implementação: [nlp_batch/engine.py](../../../nlp_batch/engine.py); [especificação e templates](../../../nlp_batch/specs.json).
 
-- **Categoria / Route:** `/projetos/nlp/42` (`05 / 10`)
-- **Diretório GitHub:** `projetos/05-nlp/042-service-desk-noise-ticket-filter`
-- **Benchmark de Referência:** `42 Spam Message Detection`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `NLTK, spaCy, Hugging Face, Scikit-learn`
-- **Fluxo de Engenharia (How It Flows):** `Texto Técnico -> Tokenização -> Modelo NLP -> Classificação` (`Text -> Tokenize -> Model -> Output`)
+## Escopo e funcionalidade
+Distingue publicidade/ruído de chamados técnicos acionáveis; não apaga chamados automaticamente.
 
----
+**Implementação:** NLTK TweetTokenizer, tokenizador Hugging Face WordPiece treinado localmente, TF-IDF e Scikit-learn LogisticRegression, com baseline DummyClassifier, treinamento em templates distintos e holdout separado.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Descarte automático de chamados duplicados ou improcedentes no suporte SAP/TI.
+**Classes:** noise, actionable. Treino/calibração/teste por template (3/1/1), métricas macro-F1, acurácia e relatório por classe.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Automated filtering of duplicate or non-actionable tickets in SAP/IT support queues.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-nlp.txt
+python projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py --text "Mensagem promocional com desconto de assinatura" --save
+python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
+
+**Artefatos locais:** relatório JSON `nlp_batch/reports/42.json`; dataset sintético CSV `nlp_batch/data/42.csv`.
+
+## Limites
+Vocabulário e classes artificiais; ausência de anotações independentes, avaliação externa, robustez adversarial e aferição em produção. Nenhuma conclusão empresarial ou regulatória foi comprovada.

@@ -1,0 +1,11 @@
+-r requirements-case-studies.txt
+-r requirements-eda.txt
+-r requirements-regression.txt
+-r requirements-classification.txt
+-r requirements-nlp.txt
+-r requirements-recommendation.txt
+-r requirements-timeseries.txt
+-r requirements-vision.txt
+-r requirements-business.txt
+-r requirements-advanced.txt
+-r requirements-motorsport-core.txt

@@ -1,4 +1,15 @@
-> **Estado auditado #104: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria do lote #101–#110:** Treino efetivo de LSTM autoencoder TensorFlow/Keras sobre séries artificiais; calibração de erro pela validação e baseline RMS. **Tecnologias comprováveis neste projeto:** TensorFlow/Keras, Scikit-learn, NumPy; treinamento sob flag --run. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
+
+## Como executar a implementação atual
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements-motorsport-advanced.txt
+python projetos/11-motorsport-f1-mlops/104-mechanical-vibration-time-series-anomaly-detection-lstm-vs-baseline/main.py --run
+python -m unittest discover -s tests -p test_motorsport_batch.py -v
+```
+
+**Evidência técnica:** [pacote de implementação](../../../motorsport_batch/README.md), [código especializado](../../../motorsport_batch/) e [testes avançados](../../../tests/test_motorsport_advanced.py). Sem `--run`, a CLI só verifica os dados; o treinamento verdadeiro exige `--run`.
 
 # Project #104 — Detecção de Anomalias em Vibração Mecânica com Rede LSTM vs. Baseline
 ## Mechanical Vibration Time-Series Anomaly Detection (LSTM vs. Baseline)
@@ -7,7 +18,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/104-mechanical-vibration-time-series-anomaly-detection-lstm-vs-baseline`
 - **Benchmark de Referência:** `F1 Skill 04 & Data Mavericks Adv 06 — LSTM Time-Series Anomaly Detection`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Stack de referência originalmente anunciada:** não é evidência de importação/execução nesta implementação.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---

@@ -57,14 +57,16 @@ class TestCaseStudies(unittest.TestCase):
             s=f.read_text();self.assertIn('SINTÉTICA',s);self.assertIn(f'{key}.svg',s)
             self.assertTrue((ROOT/'site/cases/assets'/f'{key}.svg').exists())
 
-    def test_legacy_marked_demonstrations(self):
-        import re
+    def test_integrated_projects_do_not_use_original_generic_telemetry_main(self):
+        # Every canonical #031-#110 entrypoint must execute its own industrial
+        # domain engine; README labels are not substitute functionality.
         for p in ROOT.glob('projetos/**/main.py'):
-            n=int(p.parent.name[:3]);
-            if n in (*range(1,31),31,61,86) or n>=101:continue
-            txt=(p.parent/'README.md').read_text()
-            self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
-            self.assertIn('model_validation_status',p.read_text())
+            n=int(p.parent.name[:3])
+            if 31<=n<=110:
+                with self.subTest(project=n):
+                    s=p.read_text()
+                    self.assertNotIn('from case_studies.analytics import run',s)
+                    self.assertTrue((p.parent/'README.md').is_file())
 
     def test_regression_022_bad_parameter_rejected(self):
         from regression_batch.engine import synthetic_data, partitions, validate_data

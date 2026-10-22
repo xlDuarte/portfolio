@@ -1,0 +1,142 @@
+{
+  "31": {
+    "title": "B2B Industrial Contract Churn",
+    "entity": "contract",
+    "numerics": [
+      "monthly_orders",
+      "late_shipments",
+      "support_tickets",
+      "tenure_months",
+      "price_change_pct"
+    ],
+    "categorical": "contract_segment",
+    "equation": "-.045*monthly_orders+.34*late_shipments+.25*support_tickets-.025*tenure_months+.055*price_change_pct",
+    "slug": "b2b-industrial-contract-churn-prediction"
+  },
+  "32": {
+    "title": "Vendor B2B Credit Approval",
+    "entity": "vendor",
+    "numerics": [
+      "liquidity_ratio",
+      "debt_ratio",
+      "late_payments",
+      "years_operating",
+      "annual_revenue_m"
+    ],
+    "categorical": "sector",
+    "equation": "-1.1*liquidity_ratio+2*debt_ratio+.4*late_payments-.06*years_operating-.04*annual_revenue_m",
+    "slug": "vendor-b2b-credit-approval-classifier"
+  },
+  "33": {
+    "title": "Counterparty Credit and Compliance Risk",
+    "entity": "counterparty",
+    "numerics": [
+      "sanction_alerts",
+      "late_filings",
+      "financial_leverage",
+      "customer_concentration",
+      "audit_findings"
+    ],
+    "categorical": "jurisdiction",
+    "equation": "1.6*sanction_alerts+.4*late_filings+.85*financial_leverage+.025*customer_concentration+.5*audit_findings",
+    "slug": "counterparty-credit-compliance-risk"
+  },
+  "34": {
+    "title": "Shop Floor and Tech Attrition",
+    "entity": "worker",
+    "numerics": [
+      "overtime_hours",
+      "tenure_months",
+      "absences",
+      "engagement_score",
+      "training_hours"
+    ],
+    "categorical": "shift",
+    "equation": "+.055*overtime_hours-.022*tenure_months+.20*absences-.045*engagement_score-.018*training_hours",
+    "slug": "shop-floor-tech-attrition-prediction"
+  },
+  "35": {
+    "title": "IT OT Cybersecurity Alert Triage",
+    "entity": "alert",
+    "numerics": [
+      "failed_logins",
+      "ip_reputation_risk",
+      "unexpected_ports",
+      "payload_entropy",
+      "asset_criticality"
+    ],
+    "categorical": "network_zone",
+    "equation": "+.08*failed_logins+1.5*ip_reputation_risk+.4*unexpected_ports+.6*payload_entropy+.35*asset_criticality",
+    "slug": "it-ot-cybersecurity-alert-classifier"
+  },
+  "36": {
+    "title": "Hydraulic Pump Failure Classification",
+    "entity": "machine",
+    "numerics": [
+      "vibration_mm_s",
+      "oil_temp_c",
+      "pressure_variation",
+      "maintenance_age_days",
+      "particle_count"
+    ],
+    "categorical": "pump_type",
+    "equation": "+.35*vibration_mm_s+.035*oil_temp_c+.12*pressure_variation+.002*maintenance_age_days+.018*particle_count",
+    "slug": "hydraulic-pump-failure-classification"
+  },
+  "37": {
+    "title": "Lubricant Degradation Classification",
+    "entity": "sample",
+    "numerics": [
+      "viscosity_change_pct",
+      "water_ppm",
+      "particle_count",
+      "oxidation_index",
+      "running_hours"
+    ],
+    "categorical": "lubricant_grade",
+    "equation": "+.1*viscosity_change_pct+.001*water_ppm+.014*particle_count+.65*oxidation_index+.00025*running_hours",
+    "slug": "lubricant-degradation-classifier"
+  },
+  "38": {
+    "title": "SAP Procurement Anomaly Detection",
+    "entity": "purchase",
+    "numerics": [
+      "amount_brl",
+      "price_deviation_pct",
+      "split_orders",
+      "weekend_flag",
+      "new_vendor_flag"
+    ],
+    "categorical": "purchasing_group",
+    "equation": "+.000003*amount_brl+.06*price_deviation_pct+.7*split_orders+.85*weekend_flag+.5*new_vendor_flag",
+    "slug": "sap-procurement-anomaly-detection"
+  },
+  "39": {
+    "title": "Spare Parts Reorder Propensity",
+    "entity": "account",
+    "numerics": [
+      "days_since_last_order",
+      "past_orders",
+      "stockout_events",
+      "active_machines",
+      "quoted_discount_pct"
+    ],
+    "categorical": "product_family",
+    "equation": "-.014*days_since_last_order+.16*past_orders+.25*stockout_events+.055*active_machines+.025*quoted_discount_pct",
+    "slug": "spare-parts-reorder-propensity-model"
+  },
+  "40": {
+    "title": "Contract Default and SLA Breach",
+    "entity": "contract",
+    "numerics": [
+      "supplier_delay_days",
+      "open_incidents",
+      "fill_rate_pct",
+      "capacity_utilization_pct",
+      "late_shipments"
+    ],
+    "categorical": "contract_type",
+    "equation": "+.16*supplier_delay_days+.32*open_incidents-.055*fill_rate_pct+.024*capacity_utilization_pct+.28*late_shipments",
+    "slug": "contract-default-sla-breach-classifier"
+  }
+}

@@ -1,4 +1,14 @@
-> **Estado auditado #102: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria do lote #101–#110:** Estimador EKF escalar de sideslip por dinâmica simplificada e sensores artificiais. Não é filtro multiestado calibrado em carro real. **Tecnologias comprováveis neste projeto:** Python, matemática e dados de sensores sintéticos; sem sensores físicos. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
+
+## Como executar a implementação atual
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python projetos/11-motorsport-f1-mlops/102-vehicle-dynamics-state-estimation-via-extended-kalman-filter-ekf/main.py
+python -m unittest discover -s tests -p test_motorsport_batch.py -v
+```
+
+**Evidência técnica:** [pacote de implementação](../../../motorsport_batch/README.md), [código especializado](../../../motorsport_batch/) e [testes avançados](../../../tests/test_motorsport_advanced.py). 
 
 # Project #102 — Estimação de Estado em Dinâmica Veicular com Filtro de Kalman Estendido (EKF)
 ## Vehicle Dynamics State Estimation via Extended Kalman Filter (EKF)
@@ -7,7 +17,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/102-vehicle-dynamics-state-estimation-via-extended-kalman-filter-ekf`
 - **Benchmark de Referência:** `F1 Skill 02 — State Estimation (Vehicle Dynamics EKF)`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Stack de referência originalmente anunciada:** não é evidência de importação/execução nesta implementação.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---
