@@ -61,7 +61,8 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,31),31,61,86) or n>=101:continue
+            # Replaced generic NLP scripts (#041-#050) have their own end-to-end tests.
+            if n in (*range(1,31),31,61,86) or 41 <= n <= 50 or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
