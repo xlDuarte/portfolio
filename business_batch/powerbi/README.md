@@ -13,3 +13,8 @@
 
 ## Integrity and limitations
 The Python implementation **executes SQLite queries** and produces actual figures/metrics. The above Power BI measure expressions are independently authored artifacts and have not been evaluated in DAX by CI. Tableau/Power BI report output or SAP API access is NOT implied. Operational use would require approved source credentials, refresh governance, RLS, reconciled accounting logic and automated DAX validation against a compatible Tabular engine.
+
+
+## Nova entrega PBIP versionável (outubro/2026)
+
+Foi adicionado [Industrial Operations PBIP](../../powerbi-industrial/README.md) com cinco tabelas Import, relacionamentos, 16 medidas DAX e uma página com quatro cartões. O antigo diretório Power Query/DAX permanece como material histórico. **A abertura, execução DAX e renderização no Power BI Desktop ainda não foram verificadas**; não há homologação do dashboard ou dataset industrial real.
