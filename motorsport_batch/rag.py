@@ -5,6 +5,7 @@ LangChain Document/RecursiveCharacterTextSplitter/RunnableLambda are executed.
 Scikit-learn TF-IDF retrieves evidence; response quotes matched source text
 and cites filename and page. No provider APIs or model hallucinations.
 """
+from __future__ import annotations
 from pathlib import Path
 import re
 from typing import Any
