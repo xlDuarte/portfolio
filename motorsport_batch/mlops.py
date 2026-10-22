@@ -57,7 +57,9 @@ def run(output_dir:str|Path,seed:int=106):
             auc=float(roc_auc_score(y[te],prob))
             mlflow.log_params({"max_depth":depth,"seed":seed,"train_rows":len(tr)})
             mlflow.log_metrics({"heldout_f1":f1,"heldout_roc_auc":auc})
-            mlflow.sklearn.log_model(model,"model",input_example=x[tr][:3])
+            mlflow.sklearn.log_model(model,name="model",input_example=x[tr][:3],
+                                           serialization_format="skops",
+                                           skops_trusted_types=["sklearn.tree._tree.Tree"])
             candidates.append((f1,active.info.run_id,depth))
             trained_predictions[active.info.run_id]=pred.copy()
     champion=max(candidates)
