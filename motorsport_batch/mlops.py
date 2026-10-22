@@ -7,8 +7,6 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import numpy as np
-import mlflow
-import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score,roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -33,6 +31,8 @@ def population_stability_index(reference,actual,bins=8):
     return float(np.sum((obs-ref)*np.log(obs/ref)))
 
 def run(output_dir:str|Path,seed:int=106):
+    import mlflow
+    import mlflow.sklearn
     root=Path(output_dir).resolve()
     root.mkdir(parents=True,exist_ok=True)
     mlflow.set_tracking_uri(root.joinpath("mlruns").as_uri())
