@@ -105,8 +105,9 @@ class RecommendationBatchTests(unittest.TestCase):
             self.assertTrue(all(x["carrier"]!="C3" for x in route["legs"]))
         truck = recommend(59,"Pindamonhangaba>Santos",filters={"modes":["truck"]})
         self.assertTrue(all(leg["mode"]=="truck" for r in truck["recommendations"] for leg in r["legs"]))
+        self.assertEqual(recommend(59,"Santos>Pindamonhangaba")["result_count"], 0)
         with self.assertRaises(ValueError):
-            recommend(59,"Santos>Pindamonhangaba")
+            recommend(59,"Pindamonhangaba")
 
     def test_bom_is_complete_not_truncated_and_respects_inventory(self):
         result = recommend(60, "PUMP-100", top_k=1, filters={"units":2,"pack_size":5})
