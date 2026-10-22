@@ -35,7 +35,12 @@ def run(output_dir:str|Path,seed:int=106):
     import mlflow.sklearn
     root=Path(output_dir).resolve()
     root.mkdir(parents=True,exist_ok=True)
-    mlflow.set_tracking_uri(root.joinpath("mlruns").as_uri())
+    root.joinpath("artifacts").mkdir(exist_ok=True)
+    mlflow.set_tracking_uri(f"sqlite:///{root.joinpath('mlflow.db')}")
+    # Use the currently maintained SQLite backend and an explicit local
+    # artifact directory instead of MLflow's deprecated filesystem tracking.
+    mlflow.create_experiment("synthetic-industrial-fault-risk",
+                             artifact_location=root.joinpath("artifacts").as_uri())
     mlflow.set_experiment("synthetic-industrial-fault-risk")
     x,y=fabricate(seed)
     tr,te=train_test_split(np.arange(len(y)),test_size=.25,stratify=y,random_state=seed)
@@ -64,7 +69,7 @@ def run(output_dir:str|Path,seed:int=106):
             "selected_holdout_f1":round(champion[0],5),
             "model_reloaded":bool(np.array_equal(loaded.predict(x[te]),trained_predictions[champion[1]])),
             "psi_synthetic_shift":round(population_stability_index(x[tr,0],x[te,0]+.25),5),
-            "artifact_uri":model_uri,"tracking_store":"real local MLflow file store",
+            "artifact_uri":model_uri,"tracking_store":"real local MLflow SQLite tracking store",
             "registry_configured":False,"data_origin":"synthetic sklearn classification labels",
             "limitations":"Not deployed as authenticated production API and no real streaming drift baseline"}
     (root/"report.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
