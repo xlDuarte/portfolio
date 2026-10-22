@@ -1,8 +1,8 @@
-> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+> **Implementações #091–#100 (branch separada):** dez sistemas end-to-end demonstrativos com FastAPI, SQLite, Scikit-learn, Streamlit e adaptador Kafka real via Redpanda/Docker. Todo dado é **sintético** e nenhum sistema envia comandos industriais ou acessa SAP. Os templates Power BI são apenas fontes DAX/M editáveis, não executadas em uma engine Tabular. A autenticação/segurança de produção e validação externa permanecem pendentes. Consulte [advanced_batch](advanced_batch/README.md) e os testes do PR.
 
-> **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
+> **Status geral:** outros lotes estão em PRs separados, sem garantia de merge. A implementação demonstrativa não significa que todos os 111 projetos estejam homologados, implantados, ou que o portfólio seja 100/100.
 
-# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
 **Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
