@@ -2,10 +2,9 @@
 
 **Portfólio técnico de Data Analytics, Machine Learning, Business Intelligence, Engenharia Industrial e Motorsport.**
 
-[<ins>Explorar o portfólio web</ins>](https://xlduarte.github.io/portfolio/) · [111 projetos](PROJECT_CATALOG.md) · [Auditoria de tecnologias](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) · [Como executar](docs/GETTING_STARTED.md)
+[Explorar o portfólio web](https://xlduarte.github.io/portfolio/) · [111 projetos](PROJECT_CATALOG.md) · [Auditoria de tecnologias](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) · [Como executar](docs/GETTING_STARTED.md)
 
 [![CI integrado — 111 projetos](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml/badge.svg?branch=main)](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml)
-[![Publicação GitHub Pages](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml/badge.svg?branch=main)](https://github.com/xlDuarte/portfolio/actions)
 [Releases](https://github.com/xlDuarte/portfolio/releases) · [Packages](https://github.com/xlDuarte?tab=packages)
 
 **Autor:** Gabriel Reis Duarte · [LinkedIn](https://www.linkedin.com/in/gabrielrduarte) · [GitHub](https://github.com/xlDuarte)
@@ -18,7 +17,7 @@ O repositório contém **111 projetos numerados** e organizados em 11 áreas. Os
 
 | Área | IDs | Evidência principal | Acesso |
 |---|---|---|---|
-| Análise de dados industrial | #001–#010 | Pandas, notebooks e métricas descritivas | [Catálogo](PROJECT_CATALOG.md#01--11--01-dados-análise-de-dados-industrial--industrial-data-analysis) |
+| Análise de dados industrial | #001–#010 | Pandas, notebooks e métricas descritivas | [Catálogo](PROJECT_CATALOG.md) |
 | Análise exploratória | #011–#020 | EDA, Pandas, gráficos, SQL | [Casos](site/cases/eda/index.html) |
 | Regressão | #021–#030 | Scikit-learn, XGBoost, MAE/R² | [Casos](site/cases/regression/index.html) |
 | Classificação | #031–#040 | Treino e separação treino/calibração/teste | [Casos](site/cases/classification/index.html) |
