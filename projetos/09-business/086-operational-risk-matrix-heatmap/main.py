@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
-"""Project #086 — Operational Risk Matrix Heatmap.
-
-Actual analytics case study (all source data are synthetic, NOT industry observations).
-Requires requirements-case-studies.txt; source: case_studies/analytics.py.
-"""
+"""Project #86: real SQL and Python financial analysis on synthetic data."""
 from pathlib import Path
 import sys
-import json
-sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
-from case_studies.analytics import run
-
-if __name__ == "__main__":
-    print(json.dumps(run('oee'), ensure_ascii=False, indent=2))
+sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+from business_batch.engine import cli
+if __name__=="__main__":cli(86)
