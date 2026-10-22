@@ -1,8 +1,8 @@
 # Roadmap técnico — auditoria integrada de 111 projetos
 
-## Reconciliação nesta branch
+## Reconciliação já incorporada à `main`
 
-A branch de integração parte da `main` e incorpora **349 objetos de arquivo especializados** dos oito lotes #031–#110, sem sobrescrever automaticamente os seis arquivos compartilhados. Entrypoints, páginas e READMEs #031–#040 foram corrigidos; `README.md`, navegação `site/index.html`, workflow global e suites de testes foram compostos manualmente.
+O commit `868191141992996ca1190c853aabc54f80778c16` consolidou na `main` os oito lotes #031–#110, preservando os projetos #001–#030 e #111. A integração conciliou **349 objetos Git específicos**, código de entrada canônico, páginas, documentação e testes compartilhados. Os PRs #6–#14 foram encerrados sem merge individual por terem sido substituídos pela árvore consolidada.
 
 | Escopo | Evidência | Estado |
 |---|---|---|
@@ -24,7 +24,9 @@ A branch de integração parte da `main` e incorpora **349 objetos de arquivo es
 3. Arquivos Power BI (.pbip/.pbix) e DAX testado por Tabular Engine; credenciais oficiais SAP/Ariba/MES/OT; integração de produção e autorização.
 4. CNNs com imagens reais anotadas, desempenho NDT/visão e telemetria oficial; validação de segurança e privacidade.
 5. RAG com avaliação relevante, autenticação, isolamento de clientes e referências de documentação corporativa autorizada.
-6. Diagnóstico técnico e merge/revisão dos PRs #6–#14. A existência de CI verde em branches separadas não certifica a árvore integrada.
+6. Auditoria de mudanças futuras na árvore `main`; os PRs #6–#14 já foram encerrados e substituídos pela consolidação. Os **testes da árvore `main` passaram**, mas nenhuma validação real foi demonstrada.
 7. Auditoria de performance frontend, WCAG/Lighthouse, segurança dos containers, atualização de dependências e cobertura E2E de interface.
+8. **Publicação do site:** configurar GitHub Pages em *Settings → Pages → Build and deployment → GitHub Actions*. O job de verificação passou, mas o deploy da execução `39789049369` falhou com HTTP 404 (Pages não configurado). O workflow corrigido em branch separada sinaliza a ausência de Pages e não declara publicação concluída.
+9. Expandir a auditoria específica de tecnologia para os casos #001–#080, com execução de cada stack anunciada e evidência de imports, runtime e artefatos; os dados seguem sintéticos.
 
 **Regra de aceite:** uma tecnologia é validada somente quando há código, teste executado, evidência reproduzível e limites declarados. Esta integração não recebe nota 100/100.
