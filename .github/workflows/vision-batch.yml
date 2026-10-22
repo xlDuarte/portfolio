@@ -1,0 +1,48 @@
+name: Vision projects 071–080 verification
+on:
+  pull_request:
+    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements-vision*.txt','.github/workflows/vision-batch.yml','site/cases/vision/**']
+  push:
+    branches: [main,batch-071-080-industrial-computer-vision]
+    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements-vision*.txt','.github/workflows/vision-batch.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
+      - run: python -m pip install -r requirements-vision.txt
+      - run: python -m compileall -q vision_batch projetos/08-vision tests/test_vision_batch.py
+      - run: python -m unittest discover -s tests -p test_vision_batch.py -v
+      - run: |
+          for id in $(seq 71 80); do python -m vision_batch.engine "$id" --save > /dev/null; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-vision-frames-and-reports
+          path: vision_batch/reports/*
+          if-no-files-found: error
+  cnn-training:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      TF_CPP_MIN_LOG_LEVEL: '2'
+      CUDA_VISIBLE_DEVICES: '-1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install -r requirements-vision-deep.txt
+      - name: Fit and test TensorFlow and PyTorch CNNs
+        run: python -m unittest discover -s tests -p test_vision_deep.py -v
+      - name: Verify actual model fitting on synthetic images
+        run: |
+          python -m vision_batch.engine 71 --deep --save > /dev/null
+          python -m vision_batch.engine 80 --deep --save > /dev/null
