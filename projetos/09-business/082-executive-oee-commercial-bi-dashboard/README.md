@@ -1,27 +1,25 @@
-> **Status de implementação #082: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #82 — Executive OEE & Commercial BI Dashboard
 
-# Project #082 — Dashboard Executivo de OEE, Cotas e Performance (Gerdau)
-## Executive OEE & Commercial BI Dashboard
+**Status:** implementação funcional sobre dados ERP fictícios. Não é integração SAP/Ariba ou relatório Power BI executado.
 
-- **Categoria / Route:** `/projetos/business/82` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/082-executive-oee-commercial-bi-dashboard`
-- **Benchmark de Referência:** `82 Sales Dashboard & Insights`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo entregue
+OEE ponderado de três linhas; calcula disponibilidade, performance, qualidade, OEE total e atingimento de meta.
 
----
+**Método e testes:** Consolida turno por linha em SQL e pondera OEE pela produção ideal boa dividida pelo tempo planejado; evita média simples de percentuais.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Consolidação estratégica de KPIs produtivos, comerciais e logísticos com DAX avançado.
+**Tecnologias deste projeto:** SQLite SQL, Pandas, Power Query M e expressões DAX fornecidas; DAX não executado em CI.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Strategic consolidation of production, commercial, and logistics KPIs using advanced DAX.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução verificável
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/082-executive-oee-commercial-bi-dashboard/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Saídas reais do Python:** `business_batch/exports/82_query.csv` obtido por SQL executado; `business_batch/reports/82.json`, `business_batch/figures/82.png` e onze tabelas raw CSV para exploração.
+
+**Fonte:** [código](../../../business_batch/engine.py) · [SQL deste projeto](../../../business_batch/sql/82.sql) · [documentação Power BI](../../../business_batch/powerbi/README.md) · [auditoria](../../../business_batch/README.md).
+
+## Restrições
+Premissas e valores de todas as tabelas são artificiais, sem indicador de desempenho corporativo observado. Fontes SAP não conectadas, nenhuma execução da DAX no CI e nenhuma medição econômica externa.
