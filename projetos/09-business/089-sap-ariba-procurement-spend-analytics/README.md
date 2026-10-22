@@ -1,27 +1,22 @@
-> **Status de implementação #089: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #89 — SAP Ariba Procurement Spend Analytics
 
-# Project #089 — Spend Analytics e Eficiência de Compras no SAP Ariba
-## SAP Ariba Procurement Spend Analytics
+**Status:** análise de negócio funcional com dados industriais inteiramente sintéticos. Sem acesso a sistemas SAP/Ariba e sem medição financeira corporativa.
 
-- **Categoria / Route:** `/projetos/business/89` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/089-sap-ariba-procurement-spend-analytics`
-- **Benchmark de Referência:** `89 E-commerce Customer Analytics`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo executado
+Compras e fornecedores via consultas SQL e Pandas: gasto por categoria, concentração HHI e cumprimento de prazo.
 
----
+**Metodologia:** Simula dados no formato Ariba, mas não consulta SAP nem valida cadastro de fornecedores. Indicador de prazo não é OTIF completo.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Análise de saving em cotações, lead-time de compras e aderência a contratos corporativos.
+**Tecnologias efetivas:** SQLite SQL, Pandas, NumPy, Matplotlib. Painel Streamlit para explorar o resultado e modelos SQL para consultas.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Analysis of quoting savings, procurement lead-times, and corporate contract compliance.
-
----
-
-## 3. Como Executar / How to Run
-
+## Instalação e execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/089-sap-ariba-procurement-spend-analytics/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Arquivos:** `business_batch/exports/89_query.csv` (resultado SQL real), `business_batch/reports/89.json`, `business_batch/figures/89.png`. [Consulta executada](../../../business_batch/sql/89.sql) · [fonte Python](../../../business_batch/engine.py) · [Power Query/DAX](../../../business_batch/powerbi/README.md).
+
+**Limites:** nenhuma homologação externa, conciliação fiscal oficial, nota auditada, cálculo tarifário vigente ou modelo Power BI executado. Estes dados são demonstrações acadêmico-industriais fictícias.
