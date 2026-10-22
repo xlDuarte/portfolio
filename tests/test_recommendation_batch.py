@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 class RecommendationBatchTests(unittest.TestCase):
     def test_all_ten_domains_runnable_deterministic(self):
         self.assertEqual(set(SPECS), set(range(51,61)))
-        self.assertEqual(len({s["mode"] for s in SPECS.values()}), 10 - 1) if False else None
         self.assertEqual(len({s["slug"] for s in SPECS.values()}), 10)
         for p in SPECS:
             with self.subTest(project=p):
