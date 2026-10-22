@@ -76,7 +76,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
         self.assertTrue((ROOT/'site/index.html').is_file())
         self.assertTrue((ROOT/'site/f1/index.html').is_file())
         yml=(ROOT/'.github/workflows/ci-and-pages.yml').read_text(encoding='utf8')
-        self.assertIn('path: site',yml)
+        self.assertIn('path: _site',yml)
         self.assertIn('unittest discover -s tests',yml)
 
 if __name__=='__main__':unittest.main()
