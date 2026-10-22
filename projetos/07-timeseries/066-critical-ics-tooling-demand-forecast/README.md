@@ -1,27 +1,20 @@
-> **Status de implementação #066: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #66 — Critical ICS & Tooling Demand Forecast
 
-# Project #066 — Previsão de Consumo de Ferramentaria e ICS Críticos
-## Critical ICS & Tooling Demand Forecast
+**Status técnico:** previsão sobre série **inteiramente sintética** em units/week com treino real de **Statsmodels ETS** e **Prophet**, além de baseline sazonal.
 
-- **Categoria / Route:** `/projetos/timeseries/66` (`07 / 10`)
-- **Diretório GitHub:** `projetos/07-timeseries/066-critical-ics-tooling-demand-forecast`
-- **Benchmark de Referência:** `66 Retail Demand Forecasting`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, Statsmodels, Prophet, Plotly`
-- **Fluxo de Engenharia (How It Flows):** `Série Histórica -> Tendência + Sazonal -> Forecast -> Erro MAPE` (`Time Data -> Trend + Season -> Forecast -> MAPE Error`)
+## O que funciona
+Demanda de ferramentas e insumos críticos não observada. Gerador determinístico de 240 semanas, tendência, sazonalidade de 13 e 52 semanas, ruído estocástico simulado e mudança estrutural artificial.
 
----
+**Backtesting:** origens 168/192/216, horizonte fixo de 8 semanas, sem acesso a dados de teste na seleção. Seleção baseline sazonal versus ETS pelo MAE médio de validação. Prophet realmente ajustado apenas ao treino, acompanhado de previsões/intervalos diagnósticos no teste final. Métricas calculadas: MAE, RMSE, WAPE, MAPE (com denominador protegido) e sMAPE. Plotly gera gráfico HTML com previsões e série de teste.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Projeção de ponto de pedido dinâmico para evitar ruptura de itens críticos no SAP.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Dynamic reorder-point forecasting to prevent stockouts of critical SAP items.
-
----
-
-## 3. Como Executar / How to Run
-
+## Reproduzir
 ```bash
-python3 main.py
+python -m pip install -r requirements-timeseries.txt
+python projetos/07-timeseries/066-critical-ics-tooling-demand-forecast/main.py --save
+python projetos/07-timeseries/066-critical-ics-tooling-demand-forecast/main.py --future --save
+python -m unittest discover -s tests -p test_timeseries_batch.py -v
 ```
+
+**Arquivos locais:** `timeseries_batch/data/66.csv`, `timeseries_batch/reports/66.json`, `timeseries_batch/reports/66_predictions.csv`, `timeseries_batch/reports/66_future.json`, `timeseries_batch/figures/66.html`. [Código compartilhado](../../../timeseries_batch/engine.py) · [parâmetros por projeto](../../../timeseries_batch/config.json).
+
+**Restrições:** dados simulados, nenhuma inferência confiável em operação; ausência de telemetria real, fontes externas, contrato de qualidade dos dados, atualização automática e modelo validado para decisões de produção.
