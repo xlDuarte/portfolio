@@ -7,7 +7,7 @@
 | Aspecto | Evidência encontrada | Limitação |
 |---|---|---|
 | Inventário | 111 programas canônicos numerados 001–111 | Existência do arquivo não certifica escopo |
-| Analytics #001–#030 | Módulos e testes anteriores presentes na base main, incluído #010 supply | Não auditados contra dados corporativos reais |
+| Analytics #001–#030 | Nove funções específicas de analytics_batch1 em #001–#009, supply #010, EDA #011–#020 e regressão #021–#030 com testes na main | Não auditados contra dados corporativos reais |
 | Classificação #031–#040 | Scikit-learn real, split 60/20/20, threshold via calibração | Fórmulas e rótulos sintéticos |
 | NLP #041–#050 | Pipeline local, spaCy/NLTK/tokenizers/Scikit-learn conforme cada caso | Sem pesos Transformer baixados ou inferência LLM |
 | Recomendação #051–#060 | Projetos e testes próprios importados | Sem relevância comercial externa |
