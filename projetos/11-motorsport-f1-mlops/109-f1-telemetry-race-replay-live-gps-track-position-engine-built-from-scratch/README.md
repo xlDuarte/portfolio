@@ -1,4 +1,13 @@
-> **Estado auditado #109: protótipo matemático/numérico com entradas sintéticas, não um produto homologado.** Nomes de modelos, ferramentas, APIs, CV/RAG ou métricas no benchmark só indicam inspiração; **não demonstram** execução de terceiros (MLflow, TensorFlow, SHAP, CNN, serviços REST ou treino LSTM) sem código/imports, datasets e testes correspondentes. Não atribuir dados ou indicadores à F1 real.
+> **Auditoria técnica #109:** Replay temporal Plotly/Streamlit a partir do simulador existente. Circuito é inspirado numa curva artificial, NÃO coordenadas GPS de Interlagos, e o tempo não é live timing F1. **Stack efetiva:** Simulador próprio Python, Plotly, Streamlit. Dados fictícios, nenhuma telemetria de F1 ou inspeção industrial autêntica, nenhuma homologação externa.
+
+## Execução comprovável
+
+```bash
+python -m pip install -r requirements-motorsport-core.txt
+python -m streamlit run motorsport_batch/replay.py
+```
+
+**Código e testes:** [módulos executáveis](../../../motorsport_batch/README.md) e [suíte CI](../../../tests/test_motorsport_advanced.py). 
 
 # Project #109 — Motor de Replay de Corrida F1 & Telemetria GPS em Tempo Real (Construído do Zero)
 ## F1 Telemetry Race Replay & Live GPS Track Position Engine (Built from Scratch)
@@ -7,7 +16,7 @@
 - **Diretório GitHub:** `projetos/11-motorsport-f1-mlops/109-f1-telemetry-race-replay-live-gps-track-position-engine-built-from-scratch`
 - **Benchmark de Referência:** `Flagship #109 — Ground-Up 2D/3D Race Replay, Live Timing Tower & Delta Engine`
 - **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack & Ferramentas:** `Python, FastF1/Telemetry, ChassisSim/QSS, FLIR Thermal, XGBoost, OpenCV, LangChain`
+- **Tecnologias de benchmark:** referências aspiracionais, não necessariamente implementadas neste caso.
 - **Fluxo de Engenharia (How It Flows):** `Telemetria GPS / Pneus -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Estratégia & Pista` (`GPS Telemetry / Tires -> Replay / EKF / FLIR -> ChassisSim / RAG / CNN -> Strategy & Track`)
 
 ---
