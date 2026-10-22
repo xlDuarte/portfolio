@@ -61,7 +61,8 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,31),31,61,86) or n>=101:continue
+            # Vision #071-#080 now has project-specific CV acceptance tests.
+            if n in (*range(1,31),31,61,86) or 71 <= n <= 80 or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
