@@ -1,27 +1,22 @@
-> **Status de implementação #090: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #90 — Manufacturing Cost & Tariff Analytics
 
-# Project #090 — Análise de Custos de Transformação, Tarifas e Horas Extras
-## Manufacturing Cost & Tariff Analytics
+**Status:** análise de negócio funcional com dados industriais inteiramente sintéticos. Sem acesso a sistemas SAP/Ariba e sem medição financeira corporativa.
 
-- **Categoria / Route:** `/projetos/business/90` (`09 / 10`)
-- **Diretório GitHub:** `projetos/09-business/090-manufacturing-cost-tariff-analytics`
-- **Benchmark de Referência:** `90 Employee Salary Analysis`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `SQL, Power BI, DAX, Scikit-learn, SAP`
-- **Fluxo de Engenharia (How It Flows):** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI` (`Business Data -> Segment / Model -> Dashboard -> Decision`)
+## Escopo executado
+Cálculo dos custos de transformação: materiais, energia ponta/fora-ponta, mão de obra, horas extras e orçamento.
 
----
+**Metodologia:** O custo unitário é ponderado por produção; tarifas e adicionais são hipóteses matemáticas, não folha ou tarifa vigente.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Apoio à Controladoria na análise de custos industriais, tarifas operacionais e alocação.
+**Tecnologias efetivas:** SQLite SQL, Pandas, NumPy, Matplotlib. Painel Streamlit para explorar o resultado e modelos SQL para consultas.
 
-## 2. Industrial & Motorsport Context (EN-US)
-Supporting Controlling with manufacturing cost breakdowns, tariffs, and shift allocation.
-
----
-
-## 3. Como Executar / How to Run
-
+## Instalação e execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-business.txt
+python projetos/09-business/090-manufacturing-cost-tariff-analytics/main.py --save
+python -m streamlit run business_batch/app.py
+python -m unittest discover -s tests -p test_business_batch.py -v
 ```
+
+**Arquivos:** `business_batch/exports/90_query.csv` (resultado SQL real), `business_batch/reports/90.json`, `business_batch/figures/90.png`. [Consulta executada](../../../business_batch/sql/90.sql) · [fonte Python](../../../business_batch/engine.py) · [Power Query/DAX](../../../business_batch/powerbi/README.md).
+
+**Limites:** nenhuma homologação externa, conciliação fiscal oficial, nota auditada, cálculo tarifário vigente ou modelo Power BI executado. Estes dados são demonstrações acadêmico-industriais fictícias.
