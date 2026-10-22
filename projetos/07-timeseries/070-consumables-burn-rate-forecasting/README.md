@@ -1,27 +1,20 @@
-> **Status de implementação #070: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #70 — Consumables Burn-Rate Forecasting
 
-# Project #070 — Previsão de Taxa de Consumo (Burn-Rate) de Insumos Químicos
-## Consumables Burn-Rate Forecasting
+**Status:** motor de previsão executável; observações são 100% sintéticas, métricas não constituem acurácia de produção.
 
-- **Categoria / Route:** `/projetos/timeseries/70` (`07 / 10`)
-- **Diretório GitHub:** `projetos/07-timeseries/070-consumables-burn-rate-forecasting`
-- **Benchmark de Referência:** `70 Food Demand Forecasting`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Pandas, Statsmodels, Prophet, Plotly`
-- **Fluxo de Engenharia (How It Flows):** `Série Histórica -> Tendência + Sazonal -> Forecast -> Erro MAPE` (`Time Data -> Trend + Season -> Forecast -> MAPE Error`)
+## Escopo concluído
+Consumo de fluidos e gases industriais fictícios. Unidade alvo: **litres/week**. Série determinística, semanal, com 240 registros; controles para valores negativos, buracos e duplicidades temporais e limite de 100% para ocupação (#067).
 
----
+**Técnica:** Statsmodels ETS (tendência, sazonalidade semanal de período 13), Prophet (com sazonalidade anual), NumPy/Pandas, gráficos Plotly e baseline sazonal ingênuo. Backtest expanding-window em 168, 192, 216 observações e 8 semanas por origem; holdout intocado de 8 semanas finais. Seleção de baseline ou ETS pelo MAE da validação e avaliação adicional do Prophet sem selecionar pelo teste. Inclui MAE, RMSE, WAPE, MAPE e sMAPE e cálculo descritivo de cobertura de intervalos.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Previsão semanal de consumo de fluidos de corte, gases industriais e refratários.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Weekly consumption forecasting for cutting fluids, industrial gases, and refractories.
-
----
-
-## 3. Como Executar / How to Run
-
+## Executar
 ```bash
-python3 main.py
+python -m pip install -r requirements-timeseries.txt
+python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --save
+python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --future --save
+python -m unittest discover -s tests -p test_timeseries_batch.py -v
 ```
+
+**Arquivos:** dados `timeseries_batch/data/70.csv`, relatório `timeseries_batch/reports/70.json`, previsões `timeseries_batch/reports/70_predictions.csv`, futuro `timeseries_batch/reports/70_future.json`, gráfico `timeseries_batch/figures/70.html` (Plotly offline).
+
+**Limitações:** gerador artificial, ausência de dados autorizados reais, benchmarking de produção, atualizações de fonte, auditoria ESG, APIs climáticas ou cambiais; uso depende de validação e controles do domínio.
