@@ -412,6 +412,11 @@ def evaluate(project:int,tables:dict|None=None,save:bool=False)->dict:
         for folder in ("reports","exports","figures"):
             (ROOT/folder).mkdir(exist_ok=True)
         sql.to_csv(ROOT/"exports"/f"{project:03d}_query.csv",index=False)
+        # CSV star/fact source tables can be imported into Power BI Desktop.
+        # Do not mistake them for a .pbix or a DAX engine execution.
+        (ROOT/"exports"/"raw").mkdir(exist_ok=True)
+        for name,raw in tables.items():
+            raw.to_csv(ROOT/"exports"/"raw"/f"{name}.csv",index=False)
         (ROOT/"reports"/f"{project:03d}.json").write_text(
             json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         chart(project,result,sql,ROOT/"figures"/f"{project:03d}.png")
