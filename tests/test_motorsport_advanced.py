@@ -5,9 +5,8 @@ import unittest
 from pathlib import Path
 import numpy as np
 
-@unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_ADVANCED")=="1",
-    "TensorFlow, MLflow, LangChain, SHAP and SMOTE run in dedicated CI job")
 class TestRealAdvancedModels(unittest.TestCase):
+    @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_TF")=="1","requires TensorFlow CI job")
     def test_104_genuine_lstm_training(self):
         from motorsport_batch.vibration import evaluate
         r=evaluate(epochs=2)
@@ -17,6 +16,7 @@ class TestRealAdvancedModels(unittest.TestCase):
         self.assertEqual(r["untouched_test_fault"],72)
         for name in ("lstm","rms_threshold_baseline"):
             self.assertTrue(0<=r[name]["f1"]<=1)
+    @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_TF")=="1","requires TensorFlow CI job")
     def test_105_real_convnet_gradient_tape_gradcam(self):
         from motorsport_batch.xray import evaluate
         r=evaluate(epochs=2)
@@ -27,6 +27,7 @@ class TestRealAdvancedModels(unittest.TestCase):
         self.assertTrue(0<=r["test_accuracy"]<=1)
         self.assertTrue(0<=r["gradcam_mean_iou_on_synthetic_voids"]<=1)
         self.assertEqual(np.asarray(r["example_gradcam_heatmap"]).shape,(64,64))
+    @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_ADVANCED")=="1","requires MLflow/RAG/SHAP CI job")
     def test_106_mlflow_runs_and_loadable_artifact(self):
         from motorsport_batch.mlops import run
         with tempfile.TemporaryDirectory() as directory:
@@ -37,6 +38,7 @@ class TestRealAdvancedModels(unittest.TestCase):
             self.assertEqual(r["tracking_store"],"real local MLflow file store")
             self.assertFalse(r["registry_configured"])
             self.assertTrue((Path(directory)/"mlruns").is_dir())
+    @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_ADVANCED")=="1","requires MLflow/RAG/SHAP CI job")
     def test_107_actual_pdfs_and_langchain_runnable(self):
         from motorsport_batch.rag import build_demo_pdfs,ingest_pdfs,runnable
         with tempfile.TemporaryDirectory() as directory:
@@ -50,6 +52,7 @@ class TestRealAdvancedModels(unittest.TestCase):
             self.assertIn("p.",r["answer"])
             self.assertFalse(r["llm_called"])
             self.assertTrue(r["pdf_pages_extracted"]>=6)
+    @unittest.skipUnless(os.environ.get("RUN_MOTORSPORT_ADVANCED")=="1","requires MLflow/RAG/SHAP CI job")
     def test_108_smote_and_real_shap(self):
         from motorsport_batch.explain import evaluate
         r=evaluate()
