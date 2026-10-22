@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Advanced industrial project #95: actual synthetic ETL/ML workflow."""
+"""#95: B2B Contract Retention Platform; actual ETL/ML on synthetic events."""
 import sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
