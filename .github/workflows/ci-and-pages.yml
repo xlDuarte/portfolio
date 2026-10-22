@@ -26,7 +26,10 @@ jobs:
       - name: Install all core domain dependencies (heavy CNN/MLflow tested separately)
         run: python -m pip install --no-cache-dir -r requirements-integration.txt
       - name: Audit 111 canonical projects and integrated evidence
-        run: python -m unittest discover -s tests -p test_integration_111.py -v
+        run: |
+          python scripts/audit_integrated_portfolio.py --check
+          python -m unittest discover -s tests -p test_integration_111.py -v
+          python -m unittest discover -s tests -p test_integrated_audit_report.py -v
       - name: Integration, unit and 111-entrypoint smoke tests
         run: python -m unittest discover -s tests -v
       - name: Compile all Python modules and regenerate analytics
