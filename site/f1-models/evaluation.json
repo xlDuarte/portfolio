@@ -1,0 +1,205 @@
+{
+  "event_id": "SIM_NEXT",
+  "as_of_timestamp": "2024-12-31T20:00:00+00:00",
+  "features": [
+    "grid_pos",
+    "driver_mean_prior",
+    "driver_starts_prior",
+    "team_mean_prior",
+    "team_starts_prior",
+    "clean_air_delta_s",
+    "weather_skill_delta_s"
+  ],
+  "model_results": {
+    "Baseline_Grid": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.08333,
+      "validation_win_logloss_tuned": 1.68467,
+      "softmax_temperature": 5.0,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "baseline"
+    },
+    "Baseline_Standings": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 3.20833,
+      "validation_win_logloss_tuned": 2.2807,
+      "softmax_temperature": 2.0,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "baseline"
+    },
+    "Ridge_Regularized": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 1.70833,
+      "validation_win_logloss_tuned": 1.72633,
+      "softmax_temperature": 5.0,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    },
+    "RandomForest_Ensemble": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.375,
+      "validation_win_logloss_tuned": 1.89971,
+      "softmax_temperature": 3.5,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    },
+    "GradientBoosting_Regressor": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.33333,
+      "validation_win_logloss_tuned": 1.98102,
+      "softmax_temperature": 3.5,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    },
+    "XGBoost_Calibrated": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.5,
+      "validation_win_logloss_tuned": 2.03974,
+      "softmax_temperature": 3.5,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    },
+    "LightGBM_Ranker": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.45833,
+      "validation_win_logloss_tuned": 2.17079,
+      "softmax_temperature": 2.0,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    },
+    "CatBoost_Probabilistic": {
+      "status": "EVALUATED",
+      "holdout_event_rank_mae": 2.375,
+      "validation_win_logloss_tuned": 1.9268,
+      "softmax_temperature": 3.5,
+      "validation_events": 4,
+      "training_events": 11,
+      "kind": "trained"
+    }
+  },
+  "selected_model": "Ridge_Regularized",
+  "predictions": [
+    {
+      "driver_code": "D01",
+      "constructor": "T00",
+      "ranking_score": 2.1917,
+      "win_prob": 0.412,
+      "podium_prob": 0.8636666666666667,
+      "points_prob": 1.0,
+      "predicted_rank": 1
+    },
+    {
+      "driver_code": "D00",
+      "constructor": "T00",
+      "ranking_score": 3.71,
+      "win_prob": 0.16566666666666666,
+      "podium_prob": 0.5546666666666666,
+      "points_prob": 1.0,
+      "predicted_rank": 2
+    },
+    {
+      "driver_code": "D03",
+      "constructor": "T01",
+      "ranking_score": 4.31,
+      "win_prob": 0.12066666666666667,
+      "podium_prob": 0.42533333333333334,
+      "points_prob": 0.999,
+      "predicted_rank": 3
+    },
+    {
+      "driver_code": "D06",
+      "constructor": "T03",
+      "ranking_score": 4.5394,
+      "win_prob": 0.11133333333333334,
+      "podium_prob": 0.3923333333333333,
+      "points_prob": 0.9996666666666667,
+      "predicted_rank": 4
+    },
+    {
+      "driver_code": "D05",
+      "constructor": "T02",
+      "ranking_score": 4.6037,
+      "win_prob": 0.099,
+      "podium_prob": 0.37533333333333335,
+      "points_prob": 0.9976666666666667,
+      "predicted_rank": 5
+    },
+    {
+      "driver_code": "D07",
+      "constructor": "T03",
+      "ranking_score": 7.3069,
+      "win_prob": 0.024666666666666667,
+      "podium_prob": 0.08833333333333333,
+      "points_prob": 0.908,
+      "predicted_rank": 6
+    },
+    {
+      "driver_code": "D04",
+      "constructor": "T02",
+      "ranking_score": 7.5116,
+      "win_prob": 0.017333333333333333,
+      "podium_prob": 0.07666666666666666,
+      "points_prob": 0.88,
+      "predicted_rank": 7
+    },
+    {
+      "driver_code": "D09",
+      "constructor": "T04",
+      "ranking_score": 7.6771,
+      "win_prob": 0.016666666666666666,
+      "podium_prob": 0.06666666666666667,
+      "points_prob": 0.8546666666666667,
+      "predicted_rank": 8
+    },
+    {
+      "driver_code": "D02",
+      "constructor": "T01",
+      "ranking_score": 7.8136,
+      "win_prob": 0.015666666666666666,
+      "podium_prob": 0.06533333333333333,
+      "points_prob": 0.8393333333333334,
+      "predicted_rank": 9
+    },
+    {
+      "driver_code": "D08",
+      "constructor": "T04",
+      "ranking_score": 8.2377,
+      "win_prob": 0.010666666666666666,
+      "podium_prob": 0.054,
+      "points_prob": 0.7573333333333333,
+      "predicted_rank": 10
+    },
+    {
+      "driver_code": "D10",
+      "constructor": "T05",
+      "ranking_score": 9.2784,
+      "win_prob": 0.005666666666666667,
+      "podium_prob": 0.029666666666666668,
+      "points_prob": 0.527,
+      "predicted_rank": 11
+    },
+    {
+      "driver_code": "D11",
+      "constructor": "T05",
+      "ranking_score": 10.8199,
+      "win_prob": 0.0006666666666666666,
+      "podium_prob": 0.008,
+      "points_prob": 0.23733333333333334,
+      "predicted_rank": 12
+    }
+  ],
+  "limitations": [
+    "Synthetic demo or user-supplied history; no official F1 datasets bundled",
+    "Monte Carlo probabilities are not empirically calibrated",
+    "Selected-model holdout scores are biased by model selection; require untouched test season",
+    "Softmax temperature fitted on validation events, not externally calibrated",
+    "Missing framework dependencies are reported, not silently simulated"
+  ]
+}
