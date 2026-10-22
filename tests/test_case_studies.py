@@ -61,7 +61,8 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,31),31,61,86) or n>=101:continue
+            # Projects #081–#090 are now validated by dedicated SQL/BI acceptance tests.
+            if n in (*range(1,31),31,61) or 81 <= n <= 90 or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
