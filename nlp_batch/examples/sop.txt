@@ -1,0 +1,1 @@
+O procedimento interno fictício prevê vistoria das válvulas do forno antes da partida. O operador registra as leituras de pressão no sistema. O supervisor verifica cada registro de manutenção. Qualquer anomalia deve ser comunicada à segurança. A liberação do equipamento depende de autorização escrita.
