@@ -1,0 +1,55 @@
+name: Regression portfolio verification
+
+on:
+  pull_request:
+    paths:
+      - 'regression_batch/**'
+      - 'projetos/03-regression/**'
+      - 'tests/test_regression_batch.py'
+      - 'requirements-regression.txt'
+      - '.github/workflows/regression-batch.yml'
+      - 'site/cases/**'
+      - 'site/assets/regression/**'
+  push:
+    branches: [main, batch-021-030-ml-regression]
+    paths:
+      - 'regression_batch/**'
+      - 'projetos/03-regression/**'
+      - 'tests/test_regression_batch.py'
+      - 'requirements-regression.txt'
+      - '.github/workflows/regression-batch.yml'
+      - 'site/cases/**'
+      - 'site/assets/regression/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-regression.txt
+      - name: Install actual regression dependencies
+        run: python -m pip install -r requirements-regression.txt
+      - name: Compile package and project entrypoints
+        run: python -m compileall -q regression_batch projetos/03-regression tests/test_regression_batch.py
+      - name: Run negative, leakage and model tests
+        run: python -m unittest discover -s tests -p test_regression_batch.py -v
+      - name: Validate notebook JSON schemas and code cells
+        run: |
+          python - <<'PY'
+          import nbformat
+          from pathlib import Path
+          for path in sorted(Path("regression_batch/notebooks").glob("*.ipynb")):
+              notebook=nbformat.read(path,as_version=4)
+              nbformat.validate(notebook)
+              assert any(c.cell_type=="code" for c in notebook.cells),path
+          assert len(list(Path("regression_batch/notebooks").glob("*.ipynb")))==9
+          PY
