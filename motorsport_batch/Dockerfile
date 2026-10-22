@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 WORKDIR /app
-COPY requirements-motorsport-mlops.txt ./
+COPY requirements-motorsport-mlops.txt requirements-motorsport-core.txt requirements-case-studies.txt ./
 RUN pip install --no-cache-dir -r requirements-motorsport-mlops.txt
 COPY motorsport_batch ./motorsport_batch
 RUN useradd -r -u 10001 appuser && mkdir -p /artifacts && chown -R appuser:appuser /artifacts
