@@ -31,6 +31,7 @@ jobs:
       contents: write
     outputs:
       created: ${{ steps.create.outputs.created }}
+      publish_packages: ${{ steps.create.outputs.publish_packages }}
       release_tag: ${{ steps.create.outputs.release_tag }}
       release_sha: ${{ steps.create.outputs.release_sha }}
     steps:
@@ -78,22 +79,34 @@ jobs:
           echo "release_sha=${RELEASE_SHA}" >> "$GITHUB_OUTPUT"
           echo "release_tag=${RELEASE_TAG}" >> "$GITHUB_OUTPUT"
           if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "::notice::Release $RELEASE_TAG already exists; refusing to retarget a published version."
+            echo "::notice::Release $RELEASE_TAG exists. Will not retarget its tag."
             echo "created=false" >> "$GITHUB_OUTPUT"
+            existing_commit="$(git rev-list -n 1 "$RELEASE_TAG" 2>/dev/null || true)"
+            if [ "$existing_commit" = "$RELEASE_SHA" ]; then
+              echo "publish_packages=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "publish_packages=false" >> "$GITHUB_OUTPUT"
+            fi
             exit 0
+          fi
+          if [ "$RELEASE_TAG" = "v0.1.0-preview.1" ]; then
+            notes_args=(--notes-file docs/releases/v0.1.0-preview.1.md)
+          else
+            notes_args=(--generate-notes)
           fi
           gh release create "$RELEASE_TAG" \
             --repo "$GITHUB_REPOSITORY" \
             --target "$RELEASE_SHA" \
             --title "Automotive & Industrial Lab $RELEASE_TAG" \
             --prerelease \
-            --notes-file docs/releases/v0.1.0-preview.1.md \
+            "${notes_args[@]}" \
             portfolio-pages-preview.zip TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv
           echo "created=true" >> "$GITHUB_OUTPUT"
+          echo "publish_packages=true" >> "$GITHUB_OUTPUT"
 
   ghcr-demo-packages:
     needs: release
-    if: needs.release.outputs.created == 'true'
+    if: needs.release.outputs.publish_packages == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
