@@ -40,6 +40,7 @@ def run(output_dir:str|Path,seed:int=106):
     x,y=fabricate(seed)
     tr,te=train_test_split(np.arange(len(y)),test_size=.25,stratify=y,random_state=seed)
     candidates=[]
+    trained_predictions={}
     for depth in (3,5):
         model=RandomForestClassifier(n_estimators=60,max_depth=depth,
                                      random_state=seed,n_jobs=1)
@@ -53,6 +54,7 @@ def run(output_dir:str|Path,seed:int=106):
             mlflow.log_metrics({"heldout_f1":f1,"heldout_roc_auc":auc})
             mlflow.sklearn.log_model(model,"model",input_example=x[tr][:3])
             candidates.append((f1,active.info.run_id,depth))
+            trained_predictions[active.info.run_id]=pred.copy()
     champion=max(candidates)
     model_uri=f"runs:/{champion[1]}/model"
     loaded=mlflow.sklearn.load_model(model_uri)
@@ -60,7 +62,7 @@ def run(output_dir:str|Path,seed:int=106):
             "selected_run_id":champion[1],
             "selected_max_depth":champion[2],
             "selected_holdout_f1":round(champion[0],5),
-            "model_reloaded":bool(np.array_equal(loaded.predict(x[te]),loaded.predict(x[te]))),
+            "model_reloaded":bool(np.array_equal(loaded.predict(x[te]),trained_predictions[champion[1]])),
             "psi_synthetic_shift":round(population_stability_index(x[tr,0],x[te,0]+.25),5),
             "artifact_uri":model_uri,"tracking_store":"real local MLflow file store",
             "registry_configured":False,"data_origin":"synthetic sklearn classification labels",
