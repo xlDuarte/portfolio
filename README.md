@@ -1,8 +1,8 @@
-> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+> **Estado do lote #051–#060:** os dez projetos de recomendação têm algoritmos específicos, entrada CLI, app Streamlit, testes e páginas individuais. Todos os dados de catálogo são sintéticos. O portfólio inteiro não está homologado em produção, nem foi atingida nota 100/100. Consulte [motor de recomendação](recommendation_batch/README.md), [ROADMAP](QUALITY_ROADMAP.md) e CI antes de interpretar os resultados.
 
-> **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
+> **Transparência:** métricas e funcionalidades de outros lotes devem ser verificadas em seus próprios PRs, que podem ainda não ter sido integrados à branch main. Não alegar integrações corporativas nem impacto econômico medido.
 
-# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
 **Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
