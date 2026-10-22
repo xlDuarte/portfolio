@@ -1,27 +1,24 @@
-> **Status de implementação #091: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #91 — Vendor Governance & Risk Engine
 
-# Project #091 — Motor End-to-End de Governança e Risco de Fornecedores
-## End-to-End Vendor Governance & Risk Engine
+**Status:** processamento real em Python sobre eventos exclusivamente **SINTÉTICOS**; código de demonstração, não solução industrial homologada.
 
-- **Categoria / Route:** `/projetos/advanced/91` (`10 / 10`)
-- **Diretório GitHub:** `projetos/10-advanced/091-end-to-end-vendor-governance-risk-engine`
-- **Benchmark de Referência:** `91 End-to-End Credit Risk System`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `Docker, FastAPI, Kafka, Streamlit, Power BI`
-- **Fluxo de Engenharia (How It Flows):** `Stream IIoT/SAP -> Pipeline ETL -> Modelo IA/BI -> Deploy Prod` (`Data Stream -> Pipeline -> Model -> Deploy`)
+## Escopo executado
+Avaliação de fornecedores, aprovações e risco auditável. O motor entrega geração de eventos tipados, validação, armazenamento SQLite transacional, processamento por domínio, métricas em JSON e endpoints de API FastAPI. Os classificadores/estimadores aplicáveis ajustam Scikit-learn de fato e produzem resultados de amostras não utilizadas no ajuste.
 
----
+**Stack funcional:** Python, NumPy, Pandas, Scikit-learn, SQLite, FastAPI, Streamlit, Docker e Kafka via `advanced_batch.kafka_bus` **quando um broker é iniciado e acessível**. A disponibilidade do broker não é presumida; o teste de CI separado a verifica. Arquivos Power BI M/DAX existem para importação manual, sem execução de motor DAX.
 
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Arquitetura completa integrando dados financeiros, compliance jurídico (LGPD/SOX) e scoring.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Complete architecture integrating financial data, legal compliance (GDPR/SOX), and risk scoring.
-
----
-
-## 3. Como Executar / How to Run
-
+## Reprodução
 ```bash
-python3 main.py
+python -m pip install -r requirements-advanced.txt
+python projetos/10-advanced/091-end-to-end-vendor-governance-risk-engine/main.py --save
+python -m unittest discover -s tests -p test_advanced_batch.py -v
+uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000
+# Outro terminal: python -m streamlit run advanced_batch/app.py
 ```
+
+Para transporte real (ambiente local), subir `docker compose -f advanced_batch/compose.yaml up -d redpanda` e depois `python -m advanced_batch.kafka_bus publish --project 91 --count 96` / `python -m advanced_batch.kafka_bus consume --count 96`.
+
+**Referências:** [motor](../../../advanced_batch/engine.py), [API](../../../advanced_batch/api.py), [broker](../../../advanced_batch/kafka_bus.py), [protocolo e segurança](../../../advanced_batch/README.md).
+
+## Limitações
+Não valida fornecedores reais, certificações, risco de crédito ou transações. Não existe integração SAP, OT, MES ou produção; segurança, auditoria, RLS, autenticação e métricas reais estão fora do escopo.
