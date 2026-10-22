@@ -17,6 +17,6 @@ python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v
 ```
 
-**Arquivos:** `business_batch/exports/88_query.csv` (resultado SQL real), `business_batch/reports/88.json`, `business_batch/figures/88.png`. [Consulta executada](../../../business_batch/sql/88.sql) · [fonte Python](../../../business_batch/engine.py) · [Power Query/DAX](../../../business_batch/powerbi/README.md).
+**Arquivos:** `business_batch/exports/88_query.csv` (resultado SQL real), `business_batch/reports/88.json`, `business_batch/figures/88.png`. [Consulta executada](../../../business_batch/sql/088.sql) · [fonte Python](../../../business_batch/engine.py) · [Power Query/DAX](../../../business_batch/powerbi/README.md).
 
 **Limites:** nenhuma homologação externa, conciliação fiscal oficial, nota auditada, cálculo tarifário vigente ou modelo Power BI executado. Estes dados são demonstrações acadêmico-industriais fictícias.
