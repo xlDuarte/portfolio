@@ -43,7 +43,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertEqual(code,0,msg=stderr)
 
     def test_frontend_github_links(self):
-        for rel in ('site/index.html','site/f1/index.html'):
+        for rel in ('site/industry/index.html','site/f1/index.html'):
             s=(ROOT/rel).read_text(encoding='utf8')
             with self.subTest(file=rel):
                 self.assertIn(REPO_BASE,s)
