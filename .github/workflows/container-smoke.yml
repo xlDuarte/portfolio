@@ -1,0 +1,60 @@
+name: GHCR demo image build and API smoke
+on:
+  pull_request:
+    paths:
+      - "motorsport_batch/Dockerfile"
+      - "advanced_batch/Dockerfile"
+      - "motorsport_batch/service.py"
+      - "advanced_batch/**"
+      - "requirements-motorsport-mlops.txt"
+      - "requirements-motorsport-core.txt"
+      - "requirements-case-studies.txt"
+      - "requirements-advanced.txt"
+      - ".github/workflows/container-smoke.yml"
+      - ".github/workflows/preview-release-ghcr.yml"
+  push:
+    branches: [main]
+    paths:
+      - "motorsport_batch/Dockerfile"
+      - "advanced_batch/Dockerfile"
+      - "requirements-motorsport-mlops.txt"
+      - "requirements-advanced.txt"
+      - ".github/workflows/container-smoke.yml"
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+permissions:
+  contents: read
+jobs:
+  docker-build-and-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - slug: industrial
+            file: advanced_batch/Dockerfile
+          - slug: motorsport
+            file: motorsport_batch/Dockerfile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build real development image, no push or production claims
+        run: docker build -f "${{ matrix.file }}" -t "portfolio-${{ matrix.slug }}:smoke" .
+      - name: Start server and inspect real HTTP health response
+        run: |
+          set -euo pipefail
+          name="portfolio-${{ matrix.slug }}-smoke"
+          docker run -d --rm --name "$name" -p 127.0.0.1:8765:8000 "portfolio-${{ matrix.slug }}:smoke"
+          trap 'docker logs "$name" || true; docker stop "$name" || true' EXIT
+          for n in $(seq 1 45); do
+            if curl --silent --fail --show-error --max-time 2 http://127.0.0.1:8765/health > /tmp/health.json; then
+              python -m json.tool /tmp/health.json
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Demonstration API did not respond to /health"
+          exit 1

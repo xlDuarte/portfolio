@@ -179,7 +179,7 @@ class TestBusinessFinanceBatch(unittest.TestCase):
             self.assertIn("business_batch.engine",(folder/"main.py").read_text())
             self.assertTrue((ROOT/"site"/"cases"/"business"/f"{id:03d}"/"index.html").is_file())
         self.assertTrue((ROOT/"site"/"cases"/"business"/"index.html").is_file())
-        self.assertIn("/cases/business/",(ROOT/"site"/"index.html").read_text())
+        self.assertIn("/cases/business/",(ROOT/"site"/"docs"/"index.html").read_text())
 
     def test_entrypoint_and_interactive_dashboard(self):
         p=ROOT/"projetos"/"09-business"/b.CONFIG[82]["slug"]/"main.py"

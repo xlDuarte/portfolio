@@ -136,7 +136,7 @@ class TestForecastingBatch(unittest.TestCase):
                 page=ROOT/"site"/"cases"/"timeseries"/f"{project:03d}"/"index.html"
                 self.assertTrue(page.exists())
         self.assertTrue((ROOT/"site"/"cases"/"timeseries"/"index.html").exists())
-        self.assertIn("/cases/timeseries/",(ROOT/"site"/"index.html").read_text())
+        self.assertIn("/cases/timeseries/",(ROOT/"site"/"docs"/"index.html").read_text())
 
 if __name__=="__main__":
     unittest.main()

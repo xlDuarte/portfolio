@@ -12,3 +12,10 @@ analytics_batch1/example_output/
 
 # Regenerable synthetic EDA outputs
 analytics_eda/outputs/
+
+# GitHub Pages build and release archives
+_site/
+portfolio-pages-preview.zip
+
+# Local audit outputs
+reports/integrated_portfolio_audit.json

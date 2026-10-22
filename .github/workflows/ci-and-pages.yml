@@ -5,6 +5,9 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 permissions:
   contents: read
 env:
@@ -36,6 +39,14 @@ jobs:
         run: |
           python case_studies/analytics.py > /dev/null
           python -m compileall -q projetos case_studies analytics_eda regression_batch classification_batch nlp_batch recommendation_batch timeseries_batch vision_batch business_batch advanced_batch motorsport_batch f1-predictive-intelligence
+      - name: Build project-path-safe Pages and verify navigation/SEO artifacts
+        run: |
+          python scripts/prepare_pages.py --repo "${GITHUB_REPOSITORY}" --output _site
+          test -s _site/index.html
+          test -s _site/sitemap.xml
+          test -f _site/robots.txt
+          test -f _site/.nojekyll
+          python -m unittest discover -s tests -p test_pages_release.py -v
   deploy-pages:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify
@@ -49,6 +60,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Build final GitHub Pages site with safe /portfolio/ links
+        run: python scripts/prepare_pages.py --repo "${GITHUB_REPOSITORY}" --output _site
       - name: Detect whether GitHub Pages has been enabled
         id: pages
         env:
@@ -75,7 +88,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         if: steps.pages.outputs.enabled == 'true'
         with:
-          path: site
+          path: _site
       - uses: actions/deploy-pages@v4
         if: steps.pages.outputs.enabled == 'true'
         id: deployment

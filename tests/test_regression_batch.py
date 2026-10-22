@@ -98,6 +98,6 @@ class TestRegressionBatch(unittest.TestCase):
     def test_catalog_contains_all_ten_cases(self):
         html=(ROOT/'site/cases/regression/index.html').read_text()
         for p in range(21,31):self.assertIn(f'/cases/{p:03d}/',html)
-        self.assertIn('/cases/regression/',(ROOT/'site/index.html').read_text())
+        self.assertIn('/cases/regression/',(ROOT/'site/docs/index.html').read_text())
 
 if __name__ == '__main__':unittest.main()

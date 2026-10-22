@@ -37,8 +37,9 @@ class IntegrationInventory(unittest.TestCase):
     def test_8_domain_workflows_and_public_catalogs(self):
         for key,(start,end) in GROUPS.items():
             self.assertTrue((ROOT/"site"/"cases"/key/"index.html").is_file(),key)
-            path=ROOT/"site"/"index.html"
+            path=ROOT/"site"/"docs"/"index.html"
             self.assertIn(f"/cases/{key}/",path.read_text(),key)
+            self.assertIn("/docs/",(ROOT/"site"/"index.html").read_text())
             self.assertTrue((ROOT/"site"/"cases"/key/f"{start:03d}"/"index.html").is_file(),key)
         for required in ("classification-batch.yml","nlp-batch.yml","recommendation-batch.yml",
                          "timeseries-batch.yml","vision-batch.yml","business-batch.yml",
