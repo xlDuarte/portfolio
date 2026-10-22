@@ -1,27 +1,16 @@
-> **Status de implementação #079: PROTÓTIPO SINTÉTICO.** Este `main.py` apenas gera telemetria fabril fictícia e calcula estatísticas descritivas (OEE, temperatura e anomalias). As bibliotecas, modelos, ETL, APIs, visões computacionais e análises descritas neste documento representam **escopo proposto, não capacidades implementadas** neste script. Não há resultado industrial, acurácia ou desempenho real associado. Para casos analíticos reproduzíveis, veja [`case_studies/`](../../../case_studies/README.md).
+# #79 — Plant yard vehicle multi-object tracking
 
-# Project #079 — Rastreamento de Caminhões e Movimentação no Pátio
-## Plant Yard Vehicle & Fleet Tracking
+**Escopo implementado:** Rastreamento multiobjeto simples de caixas móveis artificiais. Imagens exclusivamente artificiais.
 
-- **Categoria / Route:** `/projetos/vision/79` (`08 / 10`)
-- **Diretório GitHub:** `projetos/08-vision/079-plant-yard-vehicle-fleet-tracking`
-- **Benchmark de Referência:** `79 Vehicle Detection`
-- **Autor:** Gabriel Reis Duarte (`@gabrielrduarte`)
-- **Stack proposta (não implementada no script):** `OpenCV, TensorFlow, PyTorch, NumPy`
-- **Fluxo de Engenharia (How It Flows):** `Câmera Industrial -> Pré-processo -> Rede CNN -> Detecção` (`Images -> Preprocess -> CNN -> Detect`)
+**Tecnologias efetivas:** OpenCV centroids/association com OpenCV e NumPy. Detecção e rastreamento de caixas artificiais ao longo de quadros; IDs não identificam veículos ou pessoas reais.
 
----
-
-## 1. Contexto Industrial & Automotivo (PT-BR)
-Monitoramento automatizado de fila de pesagem, docas de carga e tempo de permanência.
-
-## 2. Industrial & Motorsport Context (EN-US)
-Automated monitoring of weighbridge queues, loading docks, and yard dwell time.
-
----
-
-## 3. Como Executar / How to Run
-
+## Execução
 ```bash
-python3 main.py
+python -m pip install -r requirements-vision.txt
+python projetos/08-vision/079-plant-yard-vehicle-fleet-tracking/main.py --save
+python -m unittest discover -s tests -p test_vision_batch.py -v
 ```
+
+JSON e imagem demonstrativa `vision_batch/reports/79.json`, `vision_batch/reports/79.png`. [Motor](../../../vision_batch/engine.py) · [metodologia](../../../vision_batch/README.md).
+
+**Limitação:** sem base real e sem validação externa; não serve como vigilância, identificação de pessoas, classificação metalúrgica de produção ou fundamento decisório.
