@@ -5,7 +5,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 HTML = (
     "index.html",
-    "site/index.html",
+    "site/industry/index.html",
     "site/f1/index.html",
     "gabriel_duarte_automotive_lab.html",
     "f1-predictive-intelligence/apps/web/index.html",
