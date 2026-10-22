@@ -61,7 +61,8 @@ class TestCaseStudies(unittest.TestCase):
         import re
         for p in ROOT.glob('projetos/**/main.py'):
             n=int(p.parent.name[:3]);
-            if n in (*range(1,31),31,61,86) or n>=101:continue
+            # #091–#100 use project-specific integration and API acceptance tests.
+            if n in (*range(1,31),31,61,86) or 91 <= n <= 100 or n>=101:continue
             txt=(p.parent/'README.md').read_text()
             self.assertIn('PROTÓTIPO SINTÉTICO',txt,str(p))
             self.assertIn('model_validation_status',p.read_text())
