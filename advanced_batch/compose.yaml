@@ -1,7 +1,7 @@
 services:
   api:
     build:
-      context: .
+      context: ..
       dockerfile: advanced_batch/Dockerfile
     environment:
       ADVANCED_DB_PATH: /data/events.sqlite3
