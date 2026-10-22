@@ -1,0 +1,213 @@
+{
+  "41": {
+    "slug": "041-warranty-field-feedback-sentiment",
+    "title": "Warranty & Field Feedback Sentiment",
+    "kind": "classifier",
+    "labels": {
+      "negative": [
+        "Cliente relata falha repetida na garantia e solicita substituição",
+        "Avaria persistente na peça gera reclamação do comprador",
+        "Oficina informa insatisfação com defeitos sucessivos",
+        "Inspeção do pós-venda confirma reclamação sobre quebra",
+        "Assistência relata problema recorrente e experiência ruim"
+      ],
+      "neutral": [
+        "Solicitação registrada para análise técnica da garantia",
+        "Equipe informa atualização de protocolo de atendimento",
+        "Revisão de peças programada para a próxima semana",
+        "Chamado contém apenas histórico do produto entregue",
+        "Status do atendimento atualizado sem avaliação do cliente"
+      ],
+      "positive": [
+        "Cliente elogia solução rápida e atendimento competente",
+        "Oficina confirma satisfação após reparo da peça",
+        "Pós-venda recebeu avaliação excelente do comprador",
+        "Garantia solucionada com qualidade e elogios ao suporte",
+        "Comprador recomenda a assistência pelo bom serviço"
+      ]
+    }
+  },
+  "42": {
+    "slug": "042-service-desk-noise-ticket-filter",
+    "title": "Service Desk Noise & Ticket Filter",
+    "kind": "classifier",
+    "labels": {
+      "noise": [
+        "Mensagem promocional com desconto de assinatura",
+        "Publicidade não solicitada para compra de brindes",
+        "Campanha comercial sem problema técnico registrado",
+        "Oferta genérica de marketing enviada ao suporte",
+        "Convite para sorteio não relacionado ao sistema"
+      ],
+      "actionable": [
+        "Erro de autenticação impede acesso ao SAP",
+        "Usuário perdeu conexão com terminal de operação",
+        "Falha no servidor bloqueia emissão de ordens",
+        "Impressora de etiquetas está inoperante no turno",
+        "Sistema MES apresenta indisponibilidade na fábrica"
+      ]
+    }
+  },
+  "43": {
+    "slug": "043-regulatory-supply-chain-alert-verifier",
+    "title": "Regulatory & Supply Chain Alert Verifier",
+    "kind": "evidence_verification"
+  },
+  "44": {
+    "slug": "044-sap-pm-work-order-topic-classifier",
+    "title": "SAP PM Work-Order Topic Classifier",
+    "kind": "classifier",
+    "labels": {
+      "mechanical": [
+        "Rolamento apresenta vibração mecânica anormal",
+        "Bomba hidráulica perdeu vedação na carcaça",
+        "Redutor emite ruído excessivo durante operação",
+        "Correia mecânica precisa de ajuste de tensão",
+        "Engrenagem mostra desgaste acentuado no eixo"
+      ],
+      "electrical": [
+        "Painel elétrico indica falha de alimentação",
+        "Disjuntor desarmou no circuito de potência",
+        "Motor apresenta fuga de corrente no isolamento",
+        "Contator elétrico aqueceu durante acionamento",
+        "Cablagem de potência possui mau contato"
+      ],
+      "automation": [
+        "Controlador CLP perdeu comunicação com rede",
+        "Sensor industrial não responde ao supervisório",
+        "Programa de automação apresentou erro de lógica",
+        "Sistema SCADA deixou de coletar tags do processo",
+        "Inversor recebe comando incorreto do controlador"
+      ],
+      "quality": [
+        "Dimensão da peça está fora da tolerância",
+        "Lote foi retido por não conformidade dimensional",
+        "Inspeção detectou rebarba na superfície usinada",
+        "Controle da qualidade identificou porosidade",
+        "Instrumento de medição aponta desvio de calibração"
+      ]
+    }
+  },
+  "45": {
+    "slug": "045-technical-inspection-report-polarity",
+    "title": "Technical Inspection Report Polarity",
+    "kind": "classifier",
+    "labels": {
+      "conforming": [
+        "Laudo registra conformidade dimensional da amostra",
+        "Resultado da inspeção está dentro da tolerância",
+        "Ensaio aprovou peça sem desvio mensurável",
+        "Relatório atesta ausência de trincas na superfície",
+        "Auditoria técnica encontrou requisito atendido"
+      ],
+      "nonconforming": [
+        "Laudo reprovou amostra por desvio de medida",
+        "Inspeção identificou trinca acima do limite",
+        "Ensaio constatou peça fora de especificação",
+        "Relatório encontrou defeito crítico na solda",
+        "Auditoria registrou requisito descumprido"
+      ]
+    }
+  },
+  "46": {
+    "slug": "046-engineering-tech-resume-classifier",
+    "title": "Engineering & Tech Resume Classifier",
+    "kind": "classifier",
+    "labels": {
+      "data": [
+        "Experiência técnica com SQL dashboards e análise de dados",
+        "Desenvolveu rotinas ETL Python e relatórios Power BI",
+        "Modelou warehouse e métricas de inteligência analítica",
+        "Trabalhou com pipelines de dados e consultas SQL",
+        "Conhecimento em pandas estatística e BI"
+      ],
+      "software": [
+        "Desenvolvimento backend Java com APIs REST e testes",
+        "Programação full stack React TypeScript e Node",
+        "Criou serviços Spring Boot com arquitetura de software",
+        "Atuou com controle de versão e integração contínua",
+        "Construiu aplicações web e serviços distribuídos"
+      ],
+      "mechanical": [
+        "Projetou componentes CAD para usinagem mecânica",
+        "Experiência em desenho de estruturas e resistência",
+        "Analisou esforços e processos de fabricação de peças",
+        "Atuou com elementos de máquinas e cálculo mecânico",
+        "Modelou sistemas mecânicos em SolidWorks e FEM"
+      ],
+      "automation": [
+        "Programação de CLP para linhas industriais",
+        "Implantou integração SCADA com sensores industriais",
+        "Configurou controladores e redes Modbus e OPC UA",
+        "Experiência com instrumentação e automação fabril",
+        "Projetou lógica ladder e sistemas de controle"
+      ]
+    }
+  },
+  "47": {
+    "slug": "047-shift-log-criticality-urgency-nlp",
+    "title": "Shift-Log Criticality & Urgency NLP",
+    "kind": "classifier",
+    "labels": {
+      "low": [
+        "Rotina de inspeção concluída sem intercorrência",
+        "Checklist do turno atualizado conforme previsto",
+        "Limpeza de bancada programada para amanhã",
+        "Registro informativo de passagem de turno",
+        "Equipe confirmou operação estável da máquina"
+      ],
+      "medium": [
+        "Oscilação de pressão requer inspeção no próximo turno",
+        "Ruído intermitente pede ajuste de manutenção",
+        "Pequeno vazamento exige abertura de chamado",
+        "Atraso parcial recomenda acompanhamento do supervisor",
+        "Alarme recorrente solicita avaliação técnica planejada"
+      ],
+      "high": [
+        "Parada crítica do forno exige ação imediata",
+        "Vazamento de gás ativa emergência na planta",
+        "Equipamento apresenta risco iminente de acidente",
+        "Incêndio no painel necessita isolamento urgente",
+        "Falha de segurança exige desligamento emergencial"
+      ]
+    }
+  },
+  "48": {
+    "slug": "048-compliance-governance-text-scanner",
+    "title": "Compliance & Governance Text Scanner",
+    "kind": "rule_scanner"
+  },
+  "49": {
+    "slug": "049-multi-plant-documentation-language-router",
+    "title": "Multi-Plant Documentation Language Router",
+    "kind": "classifier",
+    "labels": {
+      "pt": [
+        "Inspecionar os rolamentos antes do início do turno",
+        "O procedimento exige verificar a pressão hidráulica",
+        "A equipe deve registrar a manutenção preventiva",
+        "A documentação técnica descreve o teste de segurança",
+        "É necessário conferir a válvula de retenção"
+      ],
+      "en": [
+        "Inspect the bearings before the start of the shift",
+        "The procedure requires checking hydraulic pressure",
+        "The team must record preventive maintenance work",
+        "The technical manual describes the safety inspection",
+        "It is necessary to check the nonreturn valve"
+      ],
+      "es": [
+        "Inspeccionar los rodamientos antes del inicio del turno",
+        "El procedimiento exige comprobar la presión hidráulica",
+        "El equipo debe registrar el mantenimiento preventivo",
+        "El manual técnico describe la inspección de seguridad",
+        "Es necesario verificar la válvula de retención"
+      ]
+    }
+  },
+  "50": {
+    "slug": "050-sop-iso-contract-summarizer",
+    "title": "SOP, ISO & Contract Summarizer",
+    "kind": "extractive_summary"
+  }
+}
