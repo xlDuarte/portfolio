@@ -1,8 +1,8 @@
-> **Estado auditado:** 111 entradas numeradas, das quais 5 agora executam estudos de caso com datasets sintéticos versionados, SQL/BI e/ou modelos treinados/avaliados; 95 permanecem demonstrações genéricas, além de 11 protótipos especializados Motorsport. Resultados dos 5 casos são exclusivamente sintéticos, nunca impacto corporativo observado. A meta 100/100 não é homologada; ver [QUALITY_ROADMAP.md](QUALITY_ROADMAP.md) e [case_studies](case_studies/README.md).
+> **Estado auditado do lote #071–#080 (branch):** dez projetos de visão computacional com funções de imagem genuínas sobre imagens **totalmente sintéticas**. OpenCV/NumPy presentes nos pipelines; TensorFlow CNN em #071 e PyTorch CNN em #080 mediante `--deep`; Tesseract OCR em #075. As tecnologias diferem por projeto e estão identificadas individualmente. Não há câmeras, inspeção real, métricas de campo, validação de segurança ou nota 100/100. Ver [vision_batch](vision_batch/README.md).
 
-> **Aviso técnico:** este repositório contém protótipos demonstrativos e dados sintéticos. Resultados simulados não são resultados reais de treinamento, benchmarks ou integração com ferramentas externas. O módulo F1-PIP incluído é parcial e deve ser validado antes de ser anunciado como plataforma completa.
+> **Atenção:** outros lotes usam pull requests separados e podem ainda não estar integrados ao branch principal; a conclusão desse lote não certifica todos os 111 projetos.
 
-# Automotive & Industrial Engineering Lab — 110 Data, AI, F1, Porsche Cup & BI Projects
+# Automotive & Industrial Engineering Lab — 111 Data, AI, F1, Porsche Cup & BI Projects
 **Author:** Gabriel Reis Duarte (`@gabrielrduarte`)  
 **Role:** Industrial Data Analyst | BI | Systems Integration (SAP/ARIBA/MES) & Motorsport Performance Engineering  
 **Contact:** gabrielduartejardim@gmail.com | [LinkedIn](https://www.linkedin.com/in/gabrielrduarte)
