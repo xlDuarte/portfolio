@@ -285,7 +285,7 @@ function setupTimeline(){
    const rect=list.getBoundingClientRect(),range=Math.max(1,rect.height-innerHeight*.6);
    const p=clamp((innerHeight*.6-rect.top)/range);
    prog.style.height=(p*100)+'%';mark.style.top=(p*100)+'%';
-   markerRotation=lerp(markerRotation,p*5*90,.15);
+   markerRotation=lerp(markerRotation,p*5*360,.15);
    mark.style.transform='rotate('+markerRotation+'deg)';
    rows.forEach((r,i)=>{
      const canvas=$('canvas[data-art]',r),cr=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,1.5);
@@ -361,7 +361,7 @@ async function setupHeroWebGL() {
     const width=innerWidth;
     const mobile=width<768 || (coarse.matches&&width<1024);
     const tablet=!mobile&&(coarse.matches||width<1280);
-    return {mobile,coarse:coarse.matches,tablet,dpr:mobile?1:tablet?1.25:1.5,samples:mobile?12:tablet?18:24,outline:!mobile,freeze:reduced,pointer:!coarse.matches&&!reduced,interval:mobile||tablet?1000/60-2:0};
+    return {mobile,coarse:coarse.matches,tablet,dpr:mobile?1:tablet?1.25:1.5,samples:mobile?28:tablet?44:72,outline:!mobile,freeze:reduced,pointer:!coarse.matches&&!reduced,interval:mobile||tablet?1000/60-2:0};
  };
  let settings=tier();
  try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:!settings.mobile&&!settings.tablet,powerPreference:'high-performance'});}
@@ -373,7 +373,7 @@ async function setupHeroWebGL() {
  root.prepend(renderer.domElement);
  const scene=new THREE.Scene();
  const camera=new THREE.OrthographicCamera(-5,5,5,-5,.1,100);camera.position.z=12;
- const uniforms={uTime:{value:0},uPointer:{value:new THREE.Vector2(.5,.5)},uResolution:{value:new THREE.Vector2(1,1)},uIntro:{value:0},uRise:{value:0},uPace:{value:0},uAuto:{value:0},uReveal:{value:1},uTrail:{value:Array.from({length:24},()=>new THREE.Vector2(.5,.5))}};
+ const uniforms={uTime:{value:0},uPointer:{value:new THREE.Vector2(.5,.5)},uResolution:{value:new THREE.Vector2(1,1)},uIntro:{value:0},uRise:{value:0},uPace:{value:0},uAuto:{value:0},uReveal:{value:1},uTrailCount:{value:72},uTrail:{value:Array.from({length:72},()=>new THREE.Vector2(.5,.5))}};
  const backdropVert=[
  'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}'
  ].join('\n');
@@ -410,7 +410,7 @@ async function setupHeroWebGL() {
  ].join('\n');
  const effectFrag=[
  'precision highp float;varying vec3 vN;varying vec3 vPos;varying vec2 vUv;',
- 'uniform vec2 uResolution;uniform vec2 uPointer;uniform vec2 uTrail[24];',
+ 'uniform vec2 uResolution;uniform vec2 uPointer;uniform vec2 uTrail[72];uniform int uTrailCount;',
  'uniform float uIntro;uniform float uTime;uniform float uPace;uniform float uAuto;uniform float uReveal;',
  'float rnd(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
  'float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(rnd(i),rnd(i+vec2(1.,0.)),f.x),mix(rnd(i+vec2(0.,1.)),rnd(i+vec2(1.,1.)),f.x),f.y);}',
@@ -428,7 +428,7 @@ async function setupHeroWebGL() {
  'float glow=4.*intact*(1.-intact);',
  'vec2 shift=vec2(noise(p*12.+uTime*.4)-.5,noise(p*12.-uTime*.29+2.)-.5)*.023;',
  'float brush=0.;',
- 'for(int i=0;i<23;i++){float fi=float(i)/23.;float taper=pow(1.-fi,mix(3.04,1.9,uPace));',
+ 'for(int i=0;i<71;i++){if(i>=uTrailCount-1)break;float fi=float(i)/float(uTrailCount-1);float taper=pow(1.-fi,mix(3.04,1.9,uPace));',
  'float r=.46*mix(.28,1.,uPace)*taper;',
  'brush=max(brush,capsule(uTrail[i]+shift,uTrail[i+1]+shift,p,r));}',
  'float gate=smoothstep(.06,.21,uPace);',
@@ -453,7 +453,7 @@ async function setupHeroWebGL() {
  });
  const wire=new THREE.LineSegments(new THREE.WireframeGeometry(geometry),wireMat);
  wire.scale.copy(shell.scale);pivot.add(wire);
- let trail=Array.from({length:24},()=>new THREE.Vector2(.5,.5)),raw=new THREE.Vector2(.5,.5),ease=new THREE.Vector2(.5,.5);
+ let trail=Array.from({length:72},()=>new THREE.Vector2(.5,.5)),raw=new THREE.Vector2(.5,.5),ease=new THREE.Vector2(.5,.5);
  let pace=0,rotX=0,rotY=0,velX=0,velY=0,readyAt=0,fitW=0,fitH=0,everRendered=false;
  const resize=()=>{
    const w=Math.max(1,root.clientWidth),h=Math.max(1,root.clientHeight);
@@ -473,10 +473,11 @@ async function setupHeroWebGL() {
    const scale=Math.max(.66,Math.min(1.36,fit));
    pivot.scale.setScalar(scale);portrait.scale.setScalar(scale);
    wire.visible=settings.outline;
+   uniforms.uTrailCount.value=settings.samples;
    uniforms.uAuto.value=settings.mobile?0:coarse.matches?.55:0;
    fitW=w;fitH=h;
  };
- const ro=new ResizeObserver(()=>resize());ro.observe(root);resize();
+ const ro=new ResizeObserver(()=>resize());ro.observe(root);coarse.addEventListener('change',resize);resize();
  let assetEngine=null;
  const params=new URLSearchParams(location.search);
  if(params.has('assetScene')||params.has('referenceScene')){
