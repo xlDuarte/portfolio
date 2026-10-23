@@ -26,3 +26,10 @@ No false claims of actual race wins, F1 affiliation, verified professional emplo
 - Check link navigation, browser console, 320px / 390px / 768px / 1440px layout, reduced-motion accessibility and keyboard navigation.
 - Verify that GitHub Pages `scripts/prepare_pages.py` maps `../` paths appropriately under `/portfolio/` and that Vercel serves the same pages at domain root.
 - Validate the full suite and GitHub Actions before production merge.
+
+## Photo and helmet integration — 23 October 2026
+
+- The personal portal ships a **small, optimized, AI-assisted editorial portrait** at `site/assets/gabriel-portrait.webp` (used at restrained dimensions). The artwork is derived from the user's requested composite and should not be represented as an unmodified DSLR photograph.
+- Motorsport ships `site/motorsport/assets/concept-helmet.webp`, an **unofficial 2D helmet render**, and displays it as an interactive pointer-responsive illustration in front of the existing procedural Three.js scene. The helmet image is not a rotatable GLB/FBX model, and brand-like markings in the image do not imply sponsorship or team affiliation.
+- The two web assets are lightweight preview sizes, deliberately separated from the original high-resolution output files. A genuinely textured 3D asset remains optional and must be authorized before publication.
+- Accessibility: meaningful alt text, reduced-motion fallback, masked reveal only for fine-pointer devices, no cursor capture. The original site has no deleted projects or routes.
