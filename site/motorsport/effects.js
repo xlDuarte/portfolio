@@ -380,7 +380,7 @@ async function setupHeroWebGL() {
  'precision highp float;varying vec2 vUv;uniform float uTime;uniform vec2 uPointer;',
  'float field(vec2 p){p+=vec2(sin(p.y*1.66+uTime*.32),sin(p.x*1.3-uTime*.2))*.37;return sin(p.x*3.8)+sin(p.y*3.1)+.55*sin(dot(p,vec2(2.4,3.5)));}',
  'void main(){vec2 uv=(vUv-.5)*vec2(6.,3.);float f=field(uv);float contour=1.-smoothstep(.022,.07,abs(fract(f*2.5)-.5));',
- 'vec3 col=mix(vec3(.969,.98,.985),vec3(.85,.91,.925),contour*.53);col=mix(col,vec3(.81,.91,.93),.10*smoothstep(1.6,0.,distance(uv,vec2(1.1,0.))));gl_FragColor=vec4(col,1.);}'
+ 'vec3 col=mix(vec3(.969,.98,.985),vec3(.85,.91,.925),contour*.53);col=mix(col,vec3(.81,.91,.93),.10*(1.-smoothstep(0.,1.6,distance(uv,vec2(1.1,0.)))));gl_FragColor=vec4(col,1.);}'
  ].join('\n');
  const bg=new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.ShaderMaterial({vertexShader:backdropVert,fragmentShader:backgroundFrag,uniforms,depthWrite:false,depthTest:false}));
  bg.position.z=-5;scene.add(bg);
@@ -476,6 +476,21 @@ async function setupHeroWebGL() {
    fitW=w;fitH=h;
  };
  const ro=new ResizeObserver(()=>resize());ro.observe(root);resize();
+ let assetEngine=null;
+ const params=new URLSearchParams(location.search);
+ if(params.has('assetScene')||params.has('referenceScene')){
+   try{
+     const adapter=await import('./asset-scene.js');
+     assetEngine=await adapter.activateAssetScene(THREE,{scene,renderer,pivot,procedural:[shell,visor,wire],portrait,uniforms,camera,error:showError});
+     if(params.has('referenceScene')){
+       const notice=document.createElement('div');
+       notice.setAttribute('role','note');
+       notice.style.cssText='position:fixed;top:0;left:0;z-index:650;padding:8px 12px;background:#111;color:#fff;font:12px/1.5 system-ui';
+       notice.textContent='Referência visual de terceiros — retrato e capacete não representam Gabriel Reis Duarte.';
+       document.body.append(notice);
+     }
+   }catch(err){showError('Licensed high-fidelity asset scene: check URL/CORS and assets/README.md',err);}
+ }
  const onPointer=(e)=>{raw.set(clamp(e.clientX/innerWidth),1-clamp(e.clientY/innerHeight))};
  window.addEventListener('pointermove',onPointer,{passive:true});
  const visibility=()=>document.visibilityState==='visible';
@@ -504,6 +519,7 @@ async function setupHeroWebGL() {
    const base=fitW>=1280?(10*fitW/fitH)*.22:fitW>=760?(10*fitW/fitH)*.13:(10*fitW/fitH)*.10;
    pivot.position.x=base+.10+(ease.x-.5)*.02;
    portrait.position.x=base+(ease.x-.5)*.03;
+   if(assetEngine)assetEngine.update(settings);
    const rise=(1-Math.min(1,age/2000));const dy=rise*200/Math.max(1,fitH)*10;
    pivot.position.y=-.7-dy;portrait.position.y=-.25-dy;
    uniforms.uAuto.value=settings.mobile?0:(coarse.matches?.76:.0);
