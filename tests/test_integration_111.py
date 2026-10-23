@@ -39,7 +39,7 @@ class IntegrationInventory(unittest.TestCase):
             self.assertTrue((ROOT/"site"/"cases"/key/"index.html").is_file(),key)
             path=ROOT/"site"/"docs"/"index.html"
             self.assertIn(f"/cases/{key}/",path.read_text(),key)
-            self.assertIn("/docs/",(ROOT/"site"/"index.html").read_text())
+            self.assertIn("/docs/",(ROOT/"site"/"industry"/"index.html").read_text())
             self.assertTrue((ROOT/"site"/"cases"/key/f"{start:03d}"/"index.html").is_file(),key)
         for required in ("classification-batch.yml","nlp-batch.yml","recommendation-batch.yml",
                          "timeseries-batch.yml","vision-batch.yml","business-batch.yml",
