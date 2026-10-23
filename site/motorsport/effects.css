@@ -23,3 +23,15 @@
 @media(max-width:800px){.signoff-figure{right:10%;opacity:.11}}
 @media(max-width:639px){.signoff-figure{width:70vw;right:-8%;opacity:.1}}
 @media(min-width:801px) and (max-width:1279px){.primary-links{display:none}.menu-switch{display:block}}
+
+
+/* Fotorrealistic concept image is a 2D artwork; interactive WebGL remains procedural. */
+.visual-helmet{--hx:50%;--hy:48%;--offset-x:0px;--offset-y:0px;position:absolute;z-index:1;right:clamp(150px,18vw,315px);top:18%;width:clamp(190px,27vw,340px);margin:0;pointer-events:none;transform:translate3d(var(--offset-x),var(--offset-y),0);filter:drop-shadow(0 18px 25px #0a254355);isolation:isolate;will-change:transform,filter;animation:concept-arrive 1.4s ease-out both}
+.visual-helmet img{display:block;width:100%;height:auto;object-fit:contain;mask-image:radial-gradient(ellipse 68% 71% at var(--hx) var(--hy),#000 57%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 68% 71% at var(--hx) var(--hy),#000 57%,transparent 100%)}
+.visual-helmet:before{content:'';position:absolute;inset:8% 4%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse at var(--hx) var(--hy),#02d2e33b,transparent 63%);filter:blur(26px)}
+.visual-helmet figcaption{margin-top:-4px;font:700 9px/1.4 var(--font);letter-spacing:.12em;text-align:center;white-space:normal;color:#375765}
+@keyframes concept-arrive{from{opacity:0;filter:blur(16px)}to{opacity:1;filter:drop-shadow(0 18px 25px #0a254355)}}
+@media(max-width:1279px){.visual-helmet{right:5%;top:25%;width:clamp(160px,30vw,295px);opacity:.74}}
+@media(max-width:760px){.visual-helmet{width:clamp(160px,42vw,270px);right:0;top:32%;opacity:.35}.visual-helmet figcaption{display:none}}
+@media(max-width:460px){.visual-helmet{top:38%;width:48vw;opacity:.22}}
+@media(prefers-reduced-motion:reduce){.visual-helmet{transform:none!important;animation:none!important;will-change:auto}.visual-helmet img{mask-image:none;-webkit-mask-image:none}}
