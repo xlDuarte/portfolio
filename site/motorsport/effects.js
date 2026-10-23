@@ -327,6 +327,7 @@ function setupCalendar(){
   const glow=.18+.13*(.5+.5*Math.sin(t/680));
   const current=$('.round.is-current');
   if(current)current.style.boxShadow='0 0 22px rgba(2,210,227,'+glow+')';
+  $('#calendar-list').style.setProperty('--calendar-drift',((t/50)%24)+'px');
   for(const item of items){if(!item.classList.contains('is-current'))item.style.borderTopStyle='dashed'}
  },80);
 }
@@ -532,6 +533,8 @@ async function setupHeroWebGL() {
    readyAt=performance.now();finishLoader(false);
  }catch(err){showError('WebGL shader compilation',err);renderer.domElement.style.display='none';fallback()}
 }
+/* Footer figure rises into frame as the scroll reaches the final panel. */
+function setupSignoff(){const block=$('#contact'),figure=$('#signoff-figure');if(!figure)return;subscribe(()=>{const b=block.getBoundingClientRect(),p=clamp((innerHeight-b.top)/(Math.max(innerHeight,b.height)));figure.style.transform='translateY('+(reduced?0:145*(1-p))+'px)'},12)}
 /* Initialize non-WebGL interactions immediately; WebGL import can fail independently. */
-setupMenu();setupStack();installReveals();checker();marchingContours();setupMap();setupCircuit();setupTimeline();setupCalendar();setupLenis();
+setupMenu();setupStack();installReveals();checker();marchingContours();setupMap();setupCircuit();setupTimeline();setupCalendar();setupSignoff();setupLenis();
 setupHeroWebGL().catch(err=>{showError('Hero scene initialization',err);const veil=$('#loading-veil');veil.classList.add('is-out');veil.style.display='none';$('#hero-fallback').classList.add('is-visible')});
