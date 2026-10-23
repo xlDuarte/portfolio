@@ -57,7 +57,7 @@ export async function activateAssetScene(THREE,opts){
      s.uniforms.uTime=uniforms.uTime;
      s.uniforms.uPace=uniforms.uPace;
      s.uniforms.uResolution=uniforms.uResolution;
-     s.uniforms.uTrail=uniforms.uTrail;
+     s.uniforms.uTrail=uniforms.uTrail;s.uniforms.uTrailCount=uniforms.uTrailCount;
      s.uniforms.uNoise={value:tex['noise.webp']};
      s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec2 vHelmetUv;');
      s.vertexShader=s.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvHelmetUv=uv;');
@@ -65,7 +65,7 @@ export async function activateAssetScene(THREE,opts){
       '#include <common>',
       'varying vec2 vHelmetUv;',
       'uniform float uIntro;uniform float uTime;uniform float uPace;',
-      'uniform vec2 uResolution;uniform vec2 uTrail[24];uniform sampler2D uNoise;',
+      'uniform vec2 uResolution;uniform vec2 uTrail[72];uniform int uTrailCount;uniform sampler2D uNoise;',
       'float capsule2(vec2 a,vec2 b,vec2 p,float r){vec2 ab=b-a;float q=clamp(dot(p-a,ab)/max(dot(ab,ab),.0001),0.,1.);return 1.-smoothstep(r*.8,r,length(p-a-q*ab));}'
      ].join('\n'));
      s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',[
@@ -74,7 +74,7 @@ export async function activateAssetScene(THREE,opts){
       'float b=smoothstep(.14,1.,uIntro);float intact=1.-smoothstep(h-.02,h+.02,b);',
       'vec2 uv=gl_FragCoord.xy/max(uResolution,vec2(1.));',
       'float mask=0.;',
-      'for(int i=0;i<23;i++){float f=float(i)/23.;float radius=.46*mix(.28,1.,uPace)*pow(1.-f,mix(3.04,1.9,uPace));',
+      'for(int i=0;i<71;i++){if(i>=uTrailCount-1)break;float f=float(i)/float(uTrailCount-1);float radius=.46*mix(.28,1.,uPace)*pow(1.-f,mix(3.04,1.9,uPace));',
       'vec2 warp=vec2(texture2D(uNoise,uv*2.9+vec2(uTime*.1)).r-.5,texture2D(uNoise,uv*2.9-vec2(uTime*.12)).g-.5)*.023;',
       'mask=max(mask,capsule2(uTrail[i]+warp,uTrail[i+1]+warp,uv,radius));}',
       'mask*=smoothstep(.06,.21,uPace);',
