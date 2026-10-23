@@ -507,7 +507,7 @@ async function setupHeroWebGL() {
    uniforms.uTime.value=t/1000;
    uniforms.uIntro.value=clamp((age-400)/4000);
    uniforms.uRise.value=clamp(age/2000);
-   if(reduced)uniforms.uIntro.value=1;
+   // Mobile and reduced-motion visitors need a visible, stable helmet without hover.\n   if(reduced||settings.mobile)uniforms.uIntro.value=0;
    const pointer=settings.pointer?raw:new THREE.Vector2(.65,.5);
    const distance=pointer.distanceTo(ease);
    ease.lerp(pointer,.17);const targetPace=clamp(distance/.029);
