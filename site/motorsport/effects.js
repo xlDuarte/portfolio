@@ -541,3 +541,26 @@ function setupSignoff(){const block=$('#contact'),figure=$('#signoff-figure');if
 /* Initialize non-WebGL interactions immediately; WebGL import can fail independently. */
 setupMenu();setupStack();installReveals();checker();marchingContours();setupMap();setupCircuit();setupTimeline();setupCalendar();setupSignoff();setupLenis();
 setupHeroWebGL().catch(err=>{showError('Hero scene initialization',err);const veil=$('#loading-veil');veil.classList.add('is-out');veil.style.display='none';$('#hero-fallback').classList.add('is-visible')});
+
+/* Pointer-driven reveal of the opt-in 2D helmet illustration.
+   This supplements, and never substitutes for, the procedural Three.js scene. */
+function setupConceptHelmetReveal(){
+ const hero=document.getElementById('hero');
+ const helmet=document.getElementById('concept-helmet');
+ if(!hero||!helmet||reduced)return;
+ let x=.50,y=.48;
+ const update=(nx,ny)=>{
+   x=clamp(nx);y=clamp(ny);
+   helmet.style.setProperty('--hx',(x*100).toFixed(2)+'%');
+   helmet.style.setProperty('--hy',(y*100).toFixed(2)+'%');
+   helmet.style.setProperty('--offset-x',((x-.5)*23).toFixed(1)+'px');
+   helmet.style.setProperty('--offset-y',((y-.5)*14).toFixed(1)+'px');
+ };
+ hero.addEventListener('pointermove',e=>{
+   if(e.pointerType==='touch'||coarse.matches)return;
+   const r=hero.getBoundingClientRect();
+   update((e.clientX-r.left)/Math.max(1,r.width),(e.clientY-r.top)/Math.max(1,r.height));
+ },{passive:true});
+ hero.addEventListener('pointerleave',()=>update(.5,.48),{passive:true});
+}
+setupConceptHelmetReveal();
