@@ -21,6 +21,24 @@ class TestPortfolioPortalSplit(unittest.TestCase):
         self.assertIn('id="sobre"', home)
         self.assertIn('Gabriel', home)
 
+    def test_personal_and_motorsport_assets(self):
+        home=(SITE/"index.html").read_text(encoding="utf-8")
+        motor=(SITE/"motorsport/index.html").read_text(encoding="utf-8")
+        css=(SITE/"motorsport/effects.css").read_text(encoding="utf-8")
+        js=(SITE/"motorsport/effects.js").read_text(encoding="utf-8")
+        self.assertIn('src="./assets/gabriel-portrait.webp"',home)
+        self.assertIn('src="./assets/concept-helmet.webp"',motor)
+        self.assertIn('id="concept-helmet"',motor)
+        self.assertIn('function setupConceptHelmetReveal()',js)
+        self.assertIn('prefers-reduced-motion',css)
+        for target in ("assets/gabriel-portrait.webp","motorsport/assets/concept-helmet.webp"):
+            asset=SITE/target
+            with self.subTest(target=target):
+                self.assertTrue(asset.is_file())
+                self.assertGreater(asset.stat().st_size,3000)
+                self.assertEqual(asset.read_bytes()[:4],b"RIFF")
+                self.assertEqual(asset.read_bytes()[8:12],b"WEBP")
+
     def test_industry_retains_original_routes(self):
         industry=(SITE/"industry/index.html").read_text(encoding="utf-8")
         for token in ('function renderAll()', '#/f1-racing', '#/home', 'githubRepoBase'):
