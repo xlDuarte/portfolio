@@ -44,7 +44,7 @@ class TestPagesReleaseBuild(unittest.TestCase):
             ET.parse(dist/"sitemap.xml")
             self.assertIn("https://xlduarte.github.io/portfolio/sitemap.xml",(dist/"robots.txt").read_text())
     def test_real_site_index_and_routes(self):
-        index=(ROOT/"site"/"index.html").read_text(encoding="utf-8")
+        index=(ROOT/"site"/"industry"/"index.html").read_text(encoding="utf-8")
         self.assertIn('href="/docs/"',index)
         self.assertIn('href="/cases/"',index)
         self.assertIn('href="/about/"',index)
@@ -52,6 +52,9 @@ class TestPagesReleaseBuild(unittest.TestCase):
         for folder in ("docs","about","releases","packages"):
             self.assertTrue((ROOT/"site"/folder/"index.html").is_file(),folder)
         self.assertTrue((ROOT/"site"/"index.html").exists())
+        personal=(ROOT/"site"/"index.html").read_text(encoding="utf-8")
+        self.assertIn('href="./industry/"',personal)
+        self.assertIn('href="./motorsport/"',personal)
         for category in ("classification","nlp","recommendation","timeseries","vision","business","advanced","motorsport"):
             with self.subTest(category=category):
                 self.assertTrue((ROOT/"site"/"cases"/category/"index.html").exists())

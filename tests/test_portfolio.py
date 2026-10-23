@@ -43,7 +43,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertEqual(code,0,msg=stderr)
 
     def test_frontend_github_links(self):
-        for rel in ('site/index.html','site/f1/index.html'):
+        for rel in ('site/industry/index.html','site/f1/index.html'):
             s=(ROOT/rel).read_text(encoding='utf8')
             with self.subTest(file=rel):
                 self.assertIn(REPO_BASE,s)
@@ -73,7 +73,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
             engine.predict_event_walk_forward([past],target_future,'2026-02-02T00:00:00Z')
 
     def test_site_pages_and_ci_scope(self):
-        self.assertTrue((ROOT/'site/index.html').is_file())
+        self.assertTrue((ROOT/'site/industry/index.html').is_file())
         self.assertTrue((ROOT/'site/f1/index.html').is_file())
         yml=(ROOT/'.github/workflows/ci-and-pages.yml').read_text(encoding='utf8')
         self.assertIn('path: _site',yml)
