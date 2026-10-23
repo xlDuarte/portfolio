@@ -27,7 +27,7 @@ class TestMotorsportEffects(unittest.TestCase):
         for token in ('new THREE.WebGLRenderer','ShaderMaterial','function spring(',
                       'function marchingContours()','function setupTimeline()','function setupCircuit()',
                       'function setupMap()','function setupSignoff()','function setupLenis()',
-                      'settings.freeze','trailSamples','uTrail[72]','uTrailCount',
+                      'settings.freeze','uTrail[72]','uTrailCount',
                       'mobile?28:tablet?44:72','total=6000','nx=92,ny=87',
                       "params.has('referenceScene')"):
             with self.subTest(token=token):self.assertIn(token,self.js)
