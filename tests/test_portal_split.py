@@ -27,11 +27,11 @@ class TestPortfolioPortalSplit(unittest.TestCase):
         css=(SITE/"motorsport/effects.css").read_text(encoding="utf-8")
         js=(SITE/"motorsport/effects.js").read_text(encoding="utf-8")
         self.assertIn('src="./assets/gabriel-portrait.webp"',home)
-        self.assertIn('src="./assets/concept-helmet.webp"',motor)
-        self.assertIn('id="concept-helmet"',motor)
-        self.assertIn('function setupConceptHelmetReveal()',js)
+        self.assertIn('src="./assets/gabriel-racing.webp"',motor)
+        self.assertNotIn('id="concept-helmet"',motor)
+        self.assertIn("adapter.activateAssetScene",js)
         self.assertIn('prefers-reduced-motion',css)
-        for target in ("assets/gabriel-portrait.webp","motorsport/assets/concept-helmet.webp"):
+        for target in ("assets/gabriel-portrait.webp","motorsport/assets/gabriel-racing.webp"):
             asset=SITE/target
             with self.subTest(target=target):
                 self.assertTrue(asset.is_file())
@@ -57,10 +57,10 @@ class TestPortfolioPortalSplit(unittest.TestCase):
         js=(SITE/"motorsport/effects.js").read_text(encoding="utf-8")
         self.assertIn('prefers-reduced-motion',css+js)
         self.assertIn('WebGLRenderer',js)
-        self.assertIn('helmet-racing-lab.svg',html)
-        self.assertIn('if(reduced||settings.mobile)uniforms.uIntro.value=0;',js)
+        self.assertIn('gabriel-racing.webp',html)
+        self.assertIn('if(reduced)uniforms.uIntro.value=1;',js)
         self.assertIn('raceBlue',js)
-        self.assertTrue((SITE/'motorsport/assets/helmet-racing-lab.svg').is_file())
+        self.assertTrue((SITE/'motorsport/assets/gabriel-racing.webp').is_file())
         self.assertIn('ShaderMaterial',js)
         self.assertIn('strokeDashoffset',js)
         self.assertIn('function checker()',js)
