@@ -337,9 +337,10 @@ async function setupHeroWebGL() {
  const root=$('#hero-scene'),veil=$('#loading-veil'),progress=$('#loader-bar'),fill=$('#loader-fill');
  const fallback=()=>{root.classList.add('scene-off');$('#hero-fallback').classList.add('is-visible');finishLoader(true)};
  let ready=false,loading=0;
- const watchdog=setTimeout(()=>{if(!ready){showError('Scene timeout','A fotografia permanece disponível.');fallback();}},20000);
+ const watchdog=setTimeout(()=>{if(!ready){showError('Scene timeout','A fotografia permanece disponível.');fallback();}},60000);
  function finishLoader(failed=false){
    ready=true;clearTimeout(watchdog);
+   if(!failed){root.dataset.sceneReady="true";root.classList.remove("scene-off");$("#hero-fallback").classList.remove("is-visible");if($("#asset-error").textContent.includes("Scene timeout"))$("#asset-error").classList.remove("is-visible");}
    if(reduced){veil.style.display='none';return}
    veil.dataset.ready='1';
    const t0=performance.now();
@@ -508,7 +509,7 @@ async function setupHeroWebGL() {
    uniforms.uTime.value=t/1000;
    uniforms.uIntro.value=clamp((age-400)/4000);
    uniforms.uRise.value=clamp(age/2000);
-   // Mobile and reduced-motion visitors need a visible, stable helmet without hover.\n   if(reduced)uniforms.uIntro.value=1;
+   if(reduced)uniforms.uIntro.value=1;
    const pointer=settings.pointer?raw:new THREE.Vector2(.65,.5);
    const distance=pointer.distanceTo(ease);
    ease.lerp(pointer,.17);const targetPace=clamp(distance/.029);
@@ -524,9 +525,10 @@ async function setupHeroWebGL() {
    const base=fitW>=1280?(10*fitW/fitH)*.06:fitW>=760?(10*fitW/fitH)*.13:(10*fitW/fitH)*.10;
    pivot.position.x=base+.10+(ease.x-.5)*.02;
    portrait.position.x=base+(ease.x-.5)*.03;
-   if(assetEngine)assetEngine.update(settings);
+   
    const rise=(1-Math.min(1,age/2000));const dy=rise*200/Math.max(1,fitH)*10;
    pivot.position.y=.35-dy;portrait.position.y=-.25-dy;
+   if(assetEngine)assetEngine.update(settings);
    uniforms.uAuto.value=settings.mobile?0:(coarse.matches?.76:.0);
    renderer.render(scene,camera);everRendered=true;
  },()=>settings.interval);

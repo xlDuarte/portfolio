@@ -1,8 +1,4 @@
-/* Optional high-fidelity asset adapter for hero scene.
- * Enabled by ?assetScene=1 for the owner's authorized local asset pack.
- * Reference demo ?referenceScene=1 loads remote creator assets as a *clearly labeled*
- * third-party visual reference; it is never the default public portfolio.
- */
+/* Real GLB helmet with the user-supplied portrait. Dependencies are pinned in the import map. */
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
@@ -42,9 +38,10 @@ export async function activateAssetScene(THREE,opts){
   model.updateMatrixWorld(true);
   let box=new THREE.Box3().setFromObject(model);
   const sz=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-  const ratio=2.9/Math.max(sz.x,sz.y,sz.z);
-  model.position.sub(center);model.scale.setScalar(ratio);
-  model.position.y-=.56;model.position.z+=.35;
+  const ratio=3.15/sz.y;
+  model.scale.setScalar(ratio);model.position.copy(center).multiplyScalar(-ratio);
+  model.position.y+=.14;model.position.z+=.35;
+  model.rotation.y=.40;
   // Base color, normal, ORM remain inherited from actual GLB materials.
   const wireGroups=[];
   for(const mesh of meshes){
@@ -69,7 +66,7 @@ export async function activateAssetScene(THREE,opts){
      ].join('\n'));
      s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',[
       'float n=texture2D(uNoise,vHelmetUv*vec2(3.,3.)+vec2(uTime*.03)).r;',
-      'float h=mix(1.-vHelmetUv.y,n,.45);',
+      'float h=mix(1.-gl_FragCoord.y/max(uResolution.y,1.),n,.45);',
       'float b=smoothstep(.14,1.,uIntro);float intact=1.-smoothstep(h-.02,h+.02,b);',
       'vec2 uv=gl_FragCoord.xy/max(uResolution,vec2(1.));',
       'float mask=0.;',
