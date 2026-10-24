@@ -74,7 +74,7 @@ jobs:
         run: |
           python -m motorsport_batch.cli 104 --run --output /tmp/models > /dev/null
           python -m motorsport_batch.cli 105 --run --output /tmp/models > /dev/null
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: synthetic-motorsport-lstm-gradcam
           path: /tmp/models/*.json
@@ -97,7 +97,7 @@ jobs:
           python -m motorsport_batch.cli 106 --run --output /tmp/track-106 > /dev/null
           python -m motorsport_batch.cli 107 --run --output /tmp/rag-107 > /dev/null
           python -m motorsport_batch.cli 108 --run --output /tmp/explain-108 > /dev/null
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: synthetic-motorsport-mlflow-rag-shap
           path: |

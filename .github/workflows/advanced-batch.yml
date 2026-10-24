@@ -50,7 +50,7 @@ jobs:
           assert len(app.selectbox)>0
           assert len(app.button)>0
           PY
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: synthetic-advanced-api-ml-evidence
           path: |

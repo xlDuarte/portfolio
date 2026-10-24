@@ -22,7 +22,7 @@ jobs:
       - run: python -m unittest discover -s tests -p test_vision_batch.py -v
       - run: |
           for id in $(seq 71 80); do python -m vision_batch.engine "$id" --save > /dev/null; done
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: synthetic-vision-frames-and-reports
           path: vision_batch/reports/*

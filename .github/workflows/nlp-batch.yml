@@ -50,7 +50,7 @@ jobs:
           python -m nlp_batch.engine 43 --evidence-file nlp_batch/examples/evidence.json --save > /dev/null
           python -m nlp_batch.engine 50 --text-file nlp_batch/examples/sop.txt --save > /dev/null
       - name: Publish reproducibility artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: synthetic-nlp-reports
           path: |
