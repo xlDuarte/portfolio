@@ -35,3 +35,11 @@
 @media(max-width:760px){.visual-helmet{width:clamp(160px,42vw,270px);right:0;top:32%;opacity:.35}.visual-helmet figcaption{display:none}}
 @media(max-width:460px){.visual-helmet{top:38%;width:48vw;opacity:.22}}
 @media(prefers-reduced-motion:reduce){.visual-helmet{transform:none!important;animation:none!important;will-change:auto}.visual-helmet img{mask-image:none;-webkit-mask-image:none}}
+
+
+/* Portrait composition restricted to the motorsport document. */
+.hero-fallback img{animation:none;width:auto;height:90%;max-height:none;position:absolute;left:50%;bottom:0;transform:translateX(-50%);opacity:1;filter:none;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.fallback-caption{display:none}.hero-fade{background:linear-gradient(90deg,#f7fafb 0%,#f7fafb70 24%,transparent 43%,transparent 72%,#f7fafbb0 95%)}
+.impact{font-size:96px;line-height:.95}.hero-title-zone{max-width:420px}.hero-meta{display:flex;flex-direction:column;margin-top:80px;gap:16px}.hero-meta span{border:0;padding:0;backdrop-filter:none;font-size:16px}.hero-side{width:218px}.bracket{background:#f7fafb90}.hero-tag{font-size:16px}.hero-columns{min-height:calc(100svh - 90px)}
+@media(max-width:1279px){.impact{font-size:70px}.hero-meta{margin-top:30px}.hero-title-zone{max-width:350px}}
+@media(max-width:639px){.impact{font-size:58px}.hero-columns{align-items:flex-start;padding-top:110px;min-height:calc(100svh - 120px)}.hero-side{display:none}.hero-meta{margin-top:22px;gap:10px}.hero-meta span{font-size:11px}.hero-fade{background:linear-gradient(180deg,#f7fafb 0%,#f7fafbb0 27%,transparent 55%,#f7fafb 100%)}.hero-foot{padding-bottom:22px}.hero-fallback img{height:68%;left:60%}}

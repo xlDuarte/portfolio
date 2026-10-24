@@ -337,8 +337,9 @@ async function setupHeroWebGL() {
  const root=$('#hero-scene'),veil=$('#loading-veil'),progress=$('#loader-bar'),fill=$('#loader-fill');
  const fallback=()=>{root.classList.add('scene-off');$('#hero-fallback').classList.add('is-visible');finishLoader(true)};
  let ready=false,loading=0;
+ const watchdog=setTimeout(()=>{if(!ready){showError('Scene timeout','A fotografia permanece disponível.');fallback();}},20000);
  function finishLoader(failed=false){
-   ready=true;
+   ready=true;clearTimeout(watchdog);
    if(reduced){veil.style.display='none';return}
    veil.dataset.ready='1';
    const t0=performance.now();
@@ -466,7 +467,7 @@ async function setupHeroWebGL() {
    const aspect=w/h,viewH=10,viewW=10*aspect;
    camera.left=-viewW/2;camera.right=viewW/2;camera.top=5;camera.bottom=-5;camera.updateProjectionMatrix();
    bg.scale.set(viewW,viewH,1);
-   const targetX=w>=1280?viewW*.22:w>=760?viewW*.13:viewW*.10;
+   const targetX=w>=1280?viewW*.06:w>=760?viewW*.13:viewW*.10;
    portrait.position.x=targetX;
    portrait.position.y=-.25;
    pivot.position.x=targetX+.10;
@@ -482,7 +483,7 @@ async function setupHeroWebGL() {
  const ro=new ResizeObserver(()=>resize());ro.observe(root);coarse.addEventListener('change',resize);resize();
  let assetEngine=null;
  const params=new URLSearchParams(location.search);
- if(params.has('assetScene')||params.has('referenceScene')){
+ {
    try{
      const adapter=await import('./asset-scene.js');
      assetEngine=await adapter.activateAssetScene(THREE,{scene,renderer,pivot,procedural:[shell,visor,wire],portrait,uniforms,camera,error:showError});
@@ -507,7 +508,7 @@ async function setupHeroWebGL() {
    uniforms.uTime.value=t/1000;
    uniforms.uIntro.value=clamp((age-400)/4000);
    uniforms.uRise.value=clamp(age/2000);
-   // Mobile and reduced-motion visitors need a visible, stable helmet without hover.\n   if(reduced||settings.mobile)uniforms.uIntro.value=0;
+   // Mobile and reduced-motion visitors need a visible, stable helmet without hover.\n   if(reduced)uniforms.uIntro.value=1;
    const pointer=settings.pointer?raw:new THREE.Vector2(.65,.5);
    const distance=pointer.distanceTo(ease);
    ease.lerp(pointer,.17);const targetPace=clamp(distance/.029);
@@ -520,12 +521,12 @@ async function setupHeroWebGL() {
    [rotX,velX]=spring(rotX,(ease.y-.5)*2*2.5*Math.PI/180,velX,dt,90,26);
    [rotY,velY]=spring(rotY,(ease.x-.5)*2*2.1*Math.PI/180,velY,dt,90,26);
    pivot.rotation.x=rotX;pivot.rotation.y=rotY;
-   const base=fitW>=1280?(10*fitW/fitH)*.22:fitW>=760?(10*fitW/fitH)*.13:(10*fitW/fitH)*.10;
+   const base=fitW>=1280?(10*fitW/fitH)*.06:fitW>=760?(10*fitW/fitH)*.13:(10*fitW/fitH)*.10;
    pivot.position.x=base+.10+(ease.x-.5)*.02;
    portrait.position.x=base+(ease.x-.5)*.03;
    if(assetEngine)assetEngine.update(settings);
    const rise=(1-Math.min(1,age/2000));const dy=rise*200/Math.max(1,fitH)*10;
-   pivot.position.y=-.7-dy;portrait.position.y=-.25-dy;
+   pivot.position.y=.35-dy;portrait.position.y=-.25-dy;
    uniforms.uAuto.value=settings.mobile?0:(coarse.matches?.76:.0);
    renderer.render(scene,camera);everRendered=true;
  },()=>settings.interval);
@@ -564,3 +565,4 @@ function setupConceptHelmetReveal(){
  hero.addEventListener('pointerleave',()=>update(.5,.48),{passive:true});
 }
 setupConceptHelmetReveal();
+
