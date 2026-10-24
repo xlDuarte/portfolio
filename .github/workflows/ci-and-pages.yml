@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Install OCR runtime
@@ -59,7 +59,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build final GitHub Pages site with safe /portfolio/ links
         run: python scripts/prepare_pages.py --repo "${GITHUB_REPOSITORY}" --output _site
       - name: Detect whether GitHub Pages has been enabled
