@@ -1,8 +1,4 @@
-/* Optional high-fidelity asset adapter for hero scene.
- * Enabled by ?assetScene=1 for the owner's authorized local asset pack.
- * Reference demo ?referenceScene=1 loads remote creator assets as a *clearly labeled*
- * third-party visual reference; it is never the default public portfolio.
- */
+/* Real GLB helmet with the user-supplied portrait. Dependencies are pinned in the import map. */
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
@@ -10,12 +6,11 @@ import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 export async function activateAssetScene(THREE,opts){
  const {scene,renderer,pivot,procedural,portrait,uniforms,error} = opts;
- const reference=new URLSearchParams(location.search).get('referenceScene')==='1';
- const base=reference
-    ?'https://storage.getlayers.ai/assets/kimi-04a9449ab2/hero/scene/'
-    :new URL('./assets/hero/scene/',import.meta.url).href;
- const files=['helmet3.glb','studio-light.hdr','noise.webp','person-diffuse.webp','person-depth.webp','person-alpha.webp','person-normal.webp'];
+ const reference=false;
+ const base='https://storage.getlayers.ai/assets/kimi-04a9449ab2/hero/scene/';
+ const files=['helmet3.glb','studio-light.hdr','noise.webp','person-diffuse.webp'];
  const urls=Object.fromEntries(files.map(f=>[f,base+f]));
+ urls['person-diffuse.webp']=new URL('./assets/gabriel-racing.webp',import.meta.url).href;
  const textureLoader=new THREE.TextureLoader();
  const gltfLoader=new GLTFLoader();
  const draco=new DRACOLoader();
@@ -43,9 +38,10 @@ export async function activateAssetScene(THREE,opts){
   model.updateMatrixWorld(true);
   let box=new THREE.Box3().setFromObject(model);
   const sz=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
-  const ratio=2.9/Math.max(sz.x,sz.y,sz.z);
-  model.position.sub(center);model.scale.setScalar(ratio);
-  model.position.y-=.56;model.position.z+=.35;
+  const ratio=3.15/sz.y;
+  model.scale.setScalar(ratio);model.position.copy(center).multiplyScalar(-ratio);
+  model.position.y+=.14;model.position.z+=.35;
+  model.rotation.y=.40;
   // Base color, normal, ORM remain inherited from actual GLB materials.
   const wireGroups=[];
   for(const mesh of meshes){
@@ -70,7 +66,7 @@ export async function activateAssetScene(THREE,opts){
      ].join('\n'));
      s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',[
       'float n=texture2D(uNoise,vHelmetUv*vec2(3.,3.)+vec2(uTime*.03)).r;',
-      'float h=mix(1.-vHelmetUv.y,n,.45);',
+      'float h=mix(1.-gl_FragCoord.y/max(uResolution.y,1.),n,.45);',
       'float b=smoothstep(.14,1.,uIntro);float intact=1.-smoothstep(h-.02,h+.02,b);',
       'vec2 uv=gl_FragCoord.xy/max(uResolution,vec2(1.));',
       'float mask=0.;',
@@ -97,20 +93,16 @@ export async function activateAssetScene(THREE,opts){
    mesh.parent.add(lines);wireGroups.push(lines);
   }
   pivot.add(model);
-  const portraitShader=[
-   'precision highp float;varying vec2 vUv;uniform sampler2D diffuse;uniform sampler2D depth;',
-   'uniform sampler2D alphaMap;uniform sampler2D normalMap;uniform vec2 uPointer;',
-   'void main(){vec2 delta=(uPointer-.5)*.005;float d=texture2D(depth,vUv).r;',
-   'vec2 uv=vUv+delta*d;vec4 color=texture2D(diffuse,uv);',
-   'float a=texture2D(alphaMap,uv).r;vec3 n=texture2D(normalMap,uv).rgb*2.-1.;',
-   'vec3 light=normalize(vec3((uPointer-.5)*.5,.95));float nd=max(0.,dot(normalize(n),light));',
-   'color.rgb*=mix(1.,.65+nd*.7,.32);gl_FragColor=vec4(color.rgb,a);}'
-  ].join('\n');
-  const image=new THREE.Mesh(new THREE.PlaneGeometry(4.6,6.2),new THREE.ShaderMaterial({
+  const image=new THREE.Mesh(new THREE.PlaneGeometry(4.65,6.2),new THREE.ShaderMaterial({
     vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-    fragmentShader:portraitShader,uniforms:{uPointer:uniforms.uPointer,diffuse:{value:tex['person-diffuse.webp']},
-    depth:{value:tex['person-depth.webp']},alphaMap:{value:tex['person-alpha.webp']},normalMap:{value:tex['person-normal.webp']}},
-    transparent:true,depthWrite:false
+    fragmentShader:`varying vec2 vUv;uniform sampler2D diffuse;uniform vec2 uPointer;
+    void main(){vec2 uv=vUv+(uPointer-.5)*.005;vec4 c=texture2D(diffuse,uv);
+    float edge=smoothstep(0.,.16,uv.x)*smoothstep(0.,.16,1.-uv.x)*smoothstep(0.,.16,1.-uv.y);
+    gl_FragColor=vec4(c.rgb,edge);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
+    }`,
+    uniforms:{uPointer:uniforms.uPointer,diffuse:{value:tex['person-diffuse.webp']}},transparent:true,depthWrite:false
   }));
   image.position.copy(portrait.position);image.scale.copy(portrait.scale);image.position.z=-1.1;
   scene.add(image);
