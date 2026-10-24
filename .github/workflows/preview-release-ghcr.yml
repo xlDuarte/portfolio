@@ -141,7 +141,7 @@ jobs:
             org.opencontainers.image.description=Synthetic educational industrial analytics API, not for production
             org.opencontainers.image.source=https://github.com/xlDuarte/portfolio
             org.opencontainers.image.licenses=NOASSERTION
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           file: ${{ matrix.dockerfile }}
