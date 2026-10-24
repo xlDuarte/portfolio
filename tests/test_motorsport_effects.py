@@ -33,11 +33,15 @@ class TestMotorsportEffects(unittest.TestCase):
             with self.subTest(token=token):self.assertIn(token,self.js)
         self.assertIn('prefers-reduced-motion',self.css)
 
-    def test_optional_draco_hdr_maps_and_fallbacks(self):
+    def test_draco_hdr_personal_portrait_and_fallbacks(self):
         for token in ('GLTFLoader','DRACOLoader','RGBELoader','PMREMGenerator',
-                      'studio-light.hdr','helmet3.glb','person-normal.webp',
-                      'person-depth.webp','person-alpha.webp','noise.webp'):
+                      'studio-light.hdr','helmet3.glb','gabriel-racing.webp','noise.webp'):
             with self.subTest(token=token):self.assertIn(token,self.asset)
+        self.assertTrue((SITE/"assets/gabriel-racing.webp").is_file())
+        self.assertIn('gabriel-racing.webp',self.html)
+        self.assertNotIn('id="concept-helmet"',self.html)
+        self.assertIn('root.dataset.sceneReady="true"',self.js)
+        self.assertIn('clearTimeout(watchdog)',self.js)
         self.assertIn('is-visible',self.css)
         self.assertIn("showError('WebGL",self.js)
         self.assertTrue((SITE/"assets/README.md").is_file())
@@ -54,3 +58,4 @@ class TestMotorsportEffects(unittest.TestCase):
                 self.assertEqual(proc.returncode,0,proc.stderr)
 
 if __name__=="__main__":unittest.main()
+
