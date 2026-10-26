@@ -1,8 +1,11 @@
-/* Real GLB helmet with the user-supplied portrait. Dependencies are pinned in the import map. */
+/* Real GLB geometry with a custom Red Bull livery and the user-supplied portrait.
+ * Red Bull mark: https://www.logo.wine/logo/Red_Bull (cropped SVG viewBox).
+ * Team trademarks belong to Red Bull; this is a portfolio livery, not an official driver replica.
+ * Dependencies are pinned in the import map.
+ */
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
-import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 export async function activateAssetScene(THREE,opts){
  const {scene,renderer,pivot,procedural,portrait,uniforms,error} = opts;
@@ -29,6 +32,9 @@ export async function activateAssetScene(THREE,opts){
   const tex=Object.fromEntries(files.slice(2).map((f,i)=>[f,results[i+2]]));
   tex['noise.webp'].wrapS=THREE.RepeatWrapping;tex['noise.webp'].wrapT=THREE.RepeatWrapping;
   tex['person-diffuse.webp'].colorSpace=THREE.SRGBColorSpace;
+  const redBull=await load(new URL('./assets/red-bull.svg',import.meta.url).href,url=>textureLoader.loadAsync(url));
+  redBull.colorSpace=THREE.SRGBColorSpace;
+  const erase={uEraseCenter:{value:new THREE.Vector2(-1000,-1000)},uEraseActive:{value:0},uEraseRadius:{value:80},uPixelRatio:{value:renderer.getPixelRatio()}};
   const pmrem=new THREE.PMREMGenerator(renderer);
   const env=pmrem.fromEquirectangular(environment).texture;
   const model=loaded.scene;
@@ -42,56 +48,76 @@ export async function activateAssetScene(THREE,opts){
   model.scale.setScalar(ratio);model.position.copy(center).multiplyScalar(-ratio);
   model.position.y+=.14;model.position.z+=.35;
   model.rotation.y=.40;
-  // Base color, normal, ORM remain inherited from actual GLB materials.
-  const wireGroups=[];
+  // Replace every baked Mercedes material with a custom Red Bull livery.
+  // Object-space projection avoids inheriting the source model's packed UV artwork.
   for(const mesh of meshes){
-   const old=mesh.material,mat=old.clone();
-   mat.transparent=true;mat.depthWrite=false;mat.side=THREE.FrontSide;
-   mat.envMap=env;mat.envMapIntensity=1.3;
+   const mat=new THREE.MeshStandardMaterial({color:0xffffff,roughness:.32,metalness:.28,
+     envMap:env,envMapIntensity:1.1,transparent:true,depthWrite:true,side:THREE.FrontSide});
    mat.onBeforeCompile=s=>{
-     s.uniforms.uIntro=uniforms.uIntro;
-     s.uniforms.uTime=uniforms.uTime;
-     s.uniforms.uPace=uniforms.uPace;
-     s.uniforms.uResolution=uniforms.uResolution;
-     s.uniforms.uTrail=uniforms.uTrail;s.uniforms.uTrailCount=uniforms.uTrailCount;
-     s.uniforms.uNoise={value:tex['noise.webp']};
-     s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec2 vHelmetUv;');
-     s.vertexShader=s.vertexShader.replace('#include <uv_vertex>','#include <uv_vertex>\nvHelmetUv=uv;');
-     s.fragmentShader=s.fragmentShader.replace('#include <common>',[
-      '#include <common>',
-      'varying vec2 vHelmetUv;',
-      'uniform float uIntro;uniform float uTime;uniform float uPace;',
-      'uniform vec2 uResolution;uniform vec2 uTrail[72];uniform int uTrailCount;uniform sampler2D uNoise;',
-      'float capsule2(vec2 a,vec2 b,vec2 p,float r){vec2 ab=b-a;float q=clamp(dot(p-a,ab)/max(dot(ab,ab),.0001),0.,1.);return 1.-smoothstep(r*.8,r,length(p-a-q*ab));}'
-     ].join('\n'));
-     s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',[
-      'float n=texture2D(uNoise,vHelmetUv*vec2(3.,3.)+vec2(uTime*.03)).r;',
-      'float h=mix(1.-gl_FragCoord.y/max(uResolution.y,1.),n,.45);',
-      'float b=smoothstep(.14,1.,uIntro);float intact=1.-smoothstep(h-.02,h+.02,b);',
-      'vec2 uv=gl_FragCoord.xy/max(uResolution,vec2(1.));',
-      'float mask=0.;',
-      'for(int i=0;i<71;i++){if(i>=uTrailCount-1)break;float f=float(i)/float(uTrailCount-1);float radius=.46*mix(.28,1.,uPace)*pow(1.-f,mix(3.04,1.9,uPace));',
-      'vec2 warp=vec2(texture2D(uNoise,uv*2.9+vec2(uTime*.1)).r-.5,texture2D(uNoise,uv*2.9-vec2(uTime*.12)).g-.5)*.023;',
-      'mask=max(mask,capsule2(uTrail[i]+warp,uTrail[i+1]+warp,uv,radius));}',
-      'mask*=smoothstep(.06,.21,uPace);',
-      'float alpha=mix(intact,smoothstep(.075,.085,mask),step(.999,uIntro));',
-      'gl_FragColor.rgb+=vec3(0.,.82,.9)*4.*intact*(1.-intact);',
-      'gl_FragColor.a*=alpha;if(gl_FragColor.a<.012)discard;',
-      '#include <dithering_fragment>'
-     ].join('\n'));
+     Object.assign(s.uniforms,erase,{uRedBull:{value:redBull}});
+     s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vHelmetPosition;');
+     s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvHelmetPosition=position;');
+     s.fragmentShader=s.fragmentShader.replace('#include <common>',`
+      #include <common>
+      varying vec3 vHelmetPosition;
+      uniform sampler2D uRedBull;
+      uniform vec2 uEraseCenter;
+      uniform float uEraseActive,uEraseRadius,uPixelRatio;
+     `);
+     s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`
+      #include <color_fragment>
+      vec3 p=vHelmetPosition;
+      vec3 navy=vec3(.009,.018,.065),red=vec3(.72,.008,.026),gold=vec3(1.,.58,.008);
+      vec3 paint=navy;
+      float stripe=abs(p.x);
+      if(stripe<.20&&p.y>.64)paint=red;
+      if(stripe>.20&&stripe<.235&&p.y>.64)paint=gold;
+      // Dark mirrored visor and yellow seal on the front half of the shell.
+      float visorTop=.22,visorBottom=-.12;
+      if(p.z>.35&&p.y>visorBottom-.025&&p.y<visorTop+.025)paint=gold;
+      if(p.z>.35&&p.y>visorBottom&&p.y<visorTop)paint=vec3(.012,.019,.032);
+      // Project the authentic bulls + sun mark onto the forehead and chin.
+      vec2 logoUV=vec2(p.x/.88+.5,(p.y-.44)/.35+.5);
+      if(p.y<-.15)logoUV=vec2(p.x/.85+.5,(p.y+.43)/.34+.5);
+      if(p.z>.25&&all(greaterThanEqual(logoUV,vec2(0.)))&&all(lessThanEqual(logoUV,vec2(1.)))){
+        vec4 logo=texture2D(uRedBull,logoUV);
+        paint=mix(paint,logo.rgb,logo.a);
+      }
+      diffuseColor.rgb=paint;
+     `);
+     s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',`
+      // Visible at rest. Only a CSS-pixel circle under the pointer disappears.
+      // Pixel coordinates keep the mask circular at every viewport aspect ratio.
+      float distanceToPointer=length(gl_FragCoord.xy/uPixelRatio-uEraseCenter);
+      float eraseMask=(1.-smoothstep(uEraseRadius*.72,uEraseRadius,distanceToPointer))*uEraseActive;
+      gl_FragColor.a*=1.-eraseMask;
+      if(gl_FragColor.a<.012)discard;
+      #include <dithering_fragment>
+     `);
    };
    mesh.material=mat;
-   // Unmerged fallback if geometry carries different attribute layouts.
-   const geom=new THREE.WireframeGeometry(mesh.geometry);
-   const scan=new THREE.ShaderMaterial({
-    vertexShader:'varying float vY;void main(){vY=position.y;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-    fragmentShader:'precision highp float;varying float vY;uniform float uTime;uniform float uIntro;void main(){float w=exp(-pow((vY-(1.4-mod(uTime,3.1)/3.1*2.8))/.15,2.));gl_FragColor=vec4(.88,.96,.98,w*.09*smoothstep(.3,.9,uIntro));}',
-    uniforms,transparent:true,depthWrite:false
-   });
-   const lines=new THREE.LineSegments(geom,scan);
-   lines.position.copy(mesh.position);lines.rotation.copy(mesh.rotation);lines.scale.copy(mesh.scale);
-   mesh.parent.add(lines);wireGroups.push(lines);
   }
+  let pointerFrame=0;
+  const drawPointer=()=>{
+    if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;renderer.render(scene,opts.camera)});
+  };
+  const clearPointer=()=>{erase.uEraseActive.value=0;drawPointer()};
+  const onPointer=e=>{
+    const r=renderer.domElement.getBoundingClientRect();
+    const x=e.clientX-r.left,y=e.clientY-r.top;
+    erase.uEraseActive.value=(x>=0&&x<=r.width&&y>=0&&y<=r.height)?1:0;
+    erase.uEraseCenter.value.set(x,r.height-y);
+    erase.uEraseRadius.value=Math.max(42,Math.min(90,r.width*.065));
+    erase.uPixelRatio.value=renderer.getPixelRatio();
+    drawPointer();
+  };
+  // Listen above the non-interactive canvas; HTML labels overlay the hero.
+  window.addEventListener('pointermove',onPointer,{passive:true});
+  document.documentElement.addEventListener('pointerleave',clearPointer);
+  window.addEventListener('blur',clearPointer);
+  window.addEventListener('scroll',clearPointer,{passive:true});
+  window.addEventListener('resize',clearPointer,{passive:true});
+  window.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')clearPointer()},{passive:true});
   pivot.add(model);
   const image=new THREE.Mesh(new THREE.PlaneGeometry(4.65,6.2),new THREE.ShaderMaterial({
     vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
@@ -114,7 +140,7 @@ export async function activateAssetScene(THREE,opts){
   const update=(tier)=>{
     image.position.x=portrait.position.x;image.position.y=portrait.position.y;
     image.scale.copy(portrait.scale);
-    wireGroups.forEach(o=>o.visible=tier.outline);
+    erase.uPixelRatio.value=renderer.getPixelRatio();
   };
   draco.dispose();environment.dispose();pmrem.dispose();
   return {update,reference};
