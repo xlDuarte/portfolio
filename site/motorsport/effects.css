@@ -43,3 +43,16 @@
 .impact{font-size:96px;line-height:.95}.hero-title-zone{max-width:420px}.hero-meta{display:flex;flex-direction:column;margin-top:80px;gap:16px}.hero-meta span{border:0;padding:0;backdrop-filter:none;font-size:16px}.hero-side{width:218px}.bracket{background:#f7fafb90}.hero-tag{font-size:16px}.hero-columns{min-height:calc(100svh - 90px)}
 @media(max-width:1279px){.impact{font-size:70px}.hero-meta{margin-top:30px}.hero-title-zone{max-width:350px}}
 @media(max-width:639px){.impact{font-size:58px}.hero-columns{align-items:flex-start;padding-top:110px;min-height:calc(100svh - 120px)}.hero-side{display:none}.hero-meta{margin-top:22px;gap:10px}.hero-meta span{font-size:11px}.hero-fade{background:linear-gradient(180deg,#f7fafb 0%,#f7fafbb0 27%,transparent 55%,#f7fafb 100%)}.hero-foot{padding-bottom:22px}.hero-fallback img{height:68%;left:60%}}
+
+/* Generated project covers, scoped to the Motorsport gallery. */
+#projects .history-media{display:block;height:auto!important;aspect-ratio:3/2;background:#081017}
+#projects .history-media:after{display:none}
+#projects .project-cover{display:block;width:100%;height:100%;object-fit:cover;transition:transform .65s ease,filter .65s ease}
+#projects .history-media:hover .project-cover,#projects .history-media:focus-visible .project-cover{transform:scale(1.045);filter:brightness(1.12)}
+#projects .history-media:focus-visible{outline:3px solid var(--cyan);outline-offset:5px}
+#projects .project-image-label{position:absolute;left:16px;bottom:16px;padding:8px 10px;background:#061018dc;border-left:2px solid var(--cyan);font:10px/1.2 monospace;letter-spacing:.1em;color:#fff;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#projects .project-cover{transition:none!important;transform:none!important}}
+#projects .history-copy p{display:block}
+#projects .history-copy p+p{margin-top:18px}
+#projects .history:nth-child(even) .history-copy p{margin-left:auto}
+@media(max-width:639px){#projects .history:nth-child(even) .history-copy p{margin-left:0}}

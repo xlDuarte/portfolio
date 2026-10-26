@@ -271,7 +271,7 @@ function setupCircuit(){
    track.style.filter=passed>=1?'none':'drop-shadow(0 0 7px #02d2e3aa)';
  },0);
 }
-/* Seven art-directed pseudo-photographic plates with 3 depth layers / parallax */
+/* Project cover gallery with scroll progress and focus states. */
 function setupTimeline(){
  const rows=$$('.history'),list=$('#timeline-list'),prog=$('#timeline-progress'),mark=$('#timeline-marker');
  const inview=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');inview.unobserve(e.target)}}),{rootMargin:'0px 0px -25% 0px'});
@@ -287,34 +287,6 @@ function setupTimeline(){
    prog.style.height=(p*100)+'%';mark.style.top=(p*100)+'%';
    markerRotation=lerp(markerRotation,p*5*360,.15);
    mark.style.transform='rotate('+markerRotation+'deg)';
-   rows.forEach((r,i)=>{
-     const canvas=$('canvas[data-art]',r),cr=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,1.5);
-     if(cr.bottom<0||cr.top>innerHeight)return;
-     const w=Math.max(1,cr.width),h=Math.max(1,cr.height);
-     if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr)}
-     const c=canvas.getContext('2d');if(!c)return;c.setTransform(dpr,0,0,dpr,0,0);
-     const offset=reduced?0:(innerHeight*.5-cr.top-cr.height*.5)/innerHeight;
-     const drift=(t/1000*.06+i),gradient=c.createLinearGradient(0,0,w,h);
-     gradient.addColorStop(0,['#0c2328','#121926','#182c31','#162122','#0d2431','#14282c','#071921'][i]);
-     gradient.addColorStop(1,'#030608');c.fillStyle=gradient;c.fillRect(0,0,w,h);
-     // far plane: glowing light bands
-     c.save();c.translate(offset*-11,0);
-     for(let j=0;j<21;j++){let x=j*w/17-50,y=h*(.33+.17*Math.sin(j*.8+i));
-       c.strokeStyle=j%3?'#416471':'#02d2e3';c.globalAlpha=.12;c.lineWidth=(j%4)+1;c.beginPath();c.moveTo(x-200,y-80);c.lineTo(x+220,y+30);c.stroke()}
-     c.restore();
-     // mid plane: track perspective
-     c.save();c.translate(offset*23,0);c.lineWidth=3;c.strokeStyle='#d9f9fd';c.globalAlpha=.45;
-     for(let j=0;j<5;j++){c.beginPath();c.moveTo(-30,h*(.8-j*.11));c.bezierCurveTo(w*.34,h*(.5-j*.12),w*.59,h*(.88-j*.13),w+25,h*(.36-j*.06));c.stroke()}
-     c.restore();
-     // near plane: instrument shapes (no sourced driver/photograph)
-     c.save();c.translate(offset*45,offset*7);
-     c.translate(w*.50,h*.5);c.rotate(-.2+Math.sin(i)*.15);c.globalAlpha=.85;
-     c.fillStyle='#04121a';c.strokeStyle='#02d2e3';c.lineWidth=3;
-     c.beginPath();c.ellipse(0,0,w*.34,h*.19,0,0,Math.PI*2);c.fill();c.stroke();
-     c.fillStyle='#112e36';c.beginPath();c.ellipse(0,0,w*.22,h*.1,0,0,Math.PI*2);c.fill();
-     c.strokeStyle='#dcf5f7';c.lineWidth=2;c.beginPath();c.moveTo(-w*.25,0);c.lineTo(w*.25,0);c.stroke();c.restore();
-     c.globalAlpha=1;c.fillStyle='#02d2e3';c.font='700 12px monospace';c.fillText('MOTORSPORT / '+String([101,102,103,104,106,109,111][i]),19,h-21);
-   });
  },reduced?400:33);
 }
 /* The calendar band's live bracket and connector motion */
