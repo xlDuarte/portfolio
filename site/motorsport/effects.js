@@ -519,8 +519,8 @@ async function setupHeroWebGL() {
    // Convert CSS NDC into renderer pixel coordinates with Y measured from bottom.
    uniforms.uTrail.value=trail;
    uniforms.uPointer.value.copy(ease);
-   [rotX,velX]=spring(rotX,(ease.y-.5)*2*2.5*Math.PI/180,velX,dt,90,26);
-   [rotY,velY]=spring(rotY,(ease.x-.5)*2*2.1*Math.PI/180,velY,dt,90,26);
+   [rotX,velX]=spring(rotX,(ease.y-.5)*2*8*Math.PI/180,velX,dt,90,26);
+   [rotY,velY]=spring(rotY,(ease.x-.5)*2*16*Math.PI/180,velY,dt,90,26);
    pivot.rotation.x=rotX;pivot.rotation.y=rotY;
    const base=fitW>=1280?(10*fitW/fitH)*.06:fitW>=760?(10*fitW/fitH)*.13:(10*fitW/fitH)*.10;
    pivot.position.x=base+.10+(ease.x-.5)*.02;

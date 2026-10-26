@@ -34,7 +34,7 @@ export async function activateAssetScene(THREE,opts){
   tex['person-diffuse.webp'].colorSpace=THREE.SRGBColorSpace;
   const redBull=await load(new URL('./assets/red-bull.svg',import.meta.url).href,url=>textureLoader.loadAsync(url));
   redBull.colorSpace=THREE.SRGBColorSpace;
-  const erase={uEraseCenter:{value:new THREE.Vector2(-1000,-1000)},uEraseActive:{value:0},uEraseRadius:{value:80},uPixelRatio:{value:renderer.getPixelRatio()}};
+  const erase={uEraseCenter:{value:new THREE.Vector3(-1000,-1000,-1000)},uEraseActive:{value:0},uEraseRadius:{value:.62},uPixelRatio:{value:renderer.getPixelRatio()}};
   const pmrem=new THREE.PMREMGenerator(renderer);
   const env=pmrem.fromEquirectangular(environment).texture;
   const model=loaded.scene;
@@ -55,13 +55,13 @@ export async function activateAssetScene(THREE,opts){
      envMap:env,envMapIntensity:1.1,transparent:true,depthWrite:true,side:THREE.FrontSide});
    mat.onBeforeCompile=s=>{
      Object.assign(s.uniforms,erase,{uRedBull:{value:redBull}});
-     s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vHelmetPosition;');
-     s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvHelmetPosition=position;');
+     s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vHelmetPosition; varying vec3 vHelmetWorld;');
+     s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvHelmetPosition=position;vHelmetWorld=(modelMatrix*vec4(position,1.)).xyz;');
      s.fragmentShader=s.fragmentShader.replace('#include <common>',`
       #include <common>
-      varying vec3 vHelmetPosition;
+      varying vec3 vHelmetPosition; varying vec3 vHelmetWorld;
       uniform sampler2D uRedBull;
-      uniform vec2 uEraseCenter;
+      uniform vec3 uEraseCenter;
       uniform float uEraseActive,uEraseRadius,uPixelRatio;
      `);
      s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`
@@ -86,9 +86,8 @@ export async function activateAssetScene(THREE,opts){
       diffuseColor.rgb=paint;
      `);
      s.fragmentShader=s.fragmentShader.replace('#include <dithering_fragment>',`
-      // Visible at rest. Only a CSS-pixel circle under the pointer disappears.
-      // Pixel coordinates keep the mask circular at every viewport aspect ratio.
-      float distanceToPointer=length(gl_FragCoord.xy/uPixelRatio-uEraseCenter);
+      // A sphere intersects the actual surface at the raycast hit point.
+      float distanceToPointer=length(vHelmetWorld-uEraseCenter);
       float eraseMask=(1.-smoothstep(uEraseRadius*.72,uEraseRadius,distanceToPointer))*uEraseActive;
       gl_FragColor.a*=1.-eraseMask;
       if(gl_FragColor.a<.012)discard;
@@ -101,15 +100,24 @@ export async function activateAssetScene(THREE,opts){
   const drawPointer=()=>{
     if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;renderer.render(scene,opts.camera)});
   };
-  const clearPointer=()=>{erase.uEraseActive.value=0;drawPointer()};
+  const clearPointer=()=>{pointerInside=false;erase.uEraseActive.value=0;drawPointer()};
+  const raycaster=new THREE.Raycaster(),pointerNdc=new THREE.Vector2();
+  let pointerInside=false;
+  const updateHit=()=>{
+    if(!pointerInside){erase.uEraseActive.value=0;return}
+    scene.updateMatrixWorld(true);
+    raycaster.setFromCamera(pointerNdc,opts.camera);
+    const hit=raycaster.intersectObjects(meshes,false)[0];
+    erase.uEraseActive.value=hit?1:0;
+    if(hit)erase.uEraseCenter.value.copy(hit.point);
+    erase.uEraseRadius.value=.62*pivot.scale.x;
+  };
   const onPointer=e=>{
     const r=renderer.domElement.getBoundingClientRect();
     const x=e.clientX-r.left,y=e.clientY-r.top;
-    erase.uEraseActive.value=(x>=0&&x<=r.width&&y>=0&&y<=r.height)?1:0;
-    erase.uEraseCenter.value.set(x,r.height-y);
-    erase.uEraseRadius.value=Math.max(42,Math.min(90,r.width*.065));
-    erase.uPixelRatio.value=renderer.getPixelRatio();
-    drawPointer();
+    pointerInside=x>=0&&x<=r.width&&y>=0&&y<=r.height;
+    pointerNdc.set(x/r.width*2-1,1-y/r.height*2);
+    updateHit();drawPointer();
   };
   // Listen above the non-interactive canvas; HTML labels overlay the hero.
   window.addEventListener('pointermove',onPointer,{passive:true});
@@ -140,7 +148,7 @@ export async function activateAssetScene(THREE,opts){
   const update=(tier)=>{
     image.position.x=portrait.position.x;image.position.y=portrait.position.y;
     image.scale.copy(portrait.scale);
-    erase.uPixelRatio.value=renderer.getPixelRatio();
+    updateHit();
   };
   draco.dispose();environment.dispose();pmrem.dispose();
   return {update,reference};
