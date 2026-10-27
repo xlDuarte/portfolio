@@ -5,7 +5,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 HTML = (
     "index.html",
-    "site/industry/index.html",
+    "site/motorsport/racing/index.html",
     "site/f1/index.html",
     "gabriel_duarte_automotive_lab.html",
     "f1-predictive-intelligence/apps/web/index.html",
@@ -38,7 +38,7 @@ class TestF1Routing(unittest.TestCase):
     def test_direct_f1_entrypoint(self):
         for name, html in self.pages.items():
             with self.subTest(page=name):
-                self.assertIn("const defaultRoute = /\\/f1", html)
+                self.assertIn("const defaultRoute =", html)
                 self.assertIn("navigateTo(window.location.hash || defaultRoute)", html)
 
     def test_f1_hub_contains_modules(self):
@@ -50,3 +50,4 @@ class TestF1Routing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

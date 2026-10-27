@@ -1,0 +1,26 @@
+:root{--bg-color:#080d11;--accent-color:#65f4dc;--accent-secondary:#65f4dc;--accent-contrast:#071714;--glass-bg:#101a21;--glass-border:#24343e;--font-heading:'Inter',sans-serif}
+body{background:#080d11;color:#eef4f5;background-image:radial-gradient(ellipse at 80% 0,rgba(101,244,220,.08),transparent 45%)}
+.header{background:rgba(8,13,17,.96)!important}
+.back-motorsport{color:#65f4dc;text-decoration:none;font-size:.8rem;white-space:nowrap}
+.logo-sub{letter-spacing:.12em!important;color:#65f4dc!important}
+.page-container{max-width:1440px;margin:auto;padding:40px 4vw 90px}
+.section-title{font-weight:900!important;letter-spacing:-.055em!important;line-height:1.05!important;max-width:1000px}
+#f1-racing-container>.section-header .section-title{font-size:clamp(2.5rem,6vw,5.8rem)!important;text-transform:uppercase;margin:20px 0}
+.section-subtitle{max-width:780px;line-height:1.8!important;color:#aabdc7!important}
+.section-code{color:#65f4dc!important;letter-spacing:.16em}
+.route-bar{border-bottom:1px solid #2b3b43;padding-bottom:20px;gap:16px;align-items:flex-start!important;flex-wrap:wrap}
+.route-path{font-size:.65rem!important;max-width:660px}
+.route-bar>div{flex-wrap:wrap}
+.race-notice{border-left:2px solid #65f4dc;background:#12212a;color:#b4c8ce;font-size:.8rem;line-height:1.7;padding:16px 20px;margin:24px 0 12px}
+.race-labs{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 28px}.race-labs a{color:#65f4dc;border:1px solid #34504f;padding:12px 18px;text-decoration:none;font-size:.85rem}.race-labs a:hover{background:#1c3538}
+.proj-item-card{border-radius:4px!important;background:linear-gradient(135deg,#16232b,#0b1117)!important;border-color:#2b3e47!important;min-width:0}
+.proj-item-card:hover{border-color:#65f4dc!important;transform:translateY(-4px)}
+.nav-item.active{color:#65f4dc!important;border-color:#65f4dc!important}
+button,a,input,select{touch-action:manipulation}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #65f4dc;outline-offset:4px}
+#page-projetos .category-tabs{display:none}
+@media(max-width:900px){header{flex-wrap:wrap!important;height:auto!important;gap:12px!important;padding:16px!important;position:relative!important}.nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start!important;flex-wrap:nowrap!important}.nav-item{white-space:nowrap}.header-actions{margin-left:auto}.page-container{padding:28px 18px 64px}.section-header{flex-wrap:wrap}.route-bar{display:block}.route-bar>div{margin-top:14px}.projects-10-grid{grid-template-columns:1fr!important}.section-title{overflow-wrap:anywhere}table{min-width:640px}canvas{max-width:100%}.race-labs a{flex:1 1 200px}}
+
+.race-project-image{width:100%;height:170px;object-fit:cover;margin-bottom:18px;border-radius:2px}.proj-item-card{overflow:hidden}
+.nav-item.active{color:#071714!important}.lab-workbench{border-color:#2b494b!important}#return-to-personal{display:none}@media(max-width:900px){.page-view{padding-top:0!important}.route-path{font-size:.6rem!important}}
+
+#bubbles-container{display:none}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script>if (/^#\/f1-racing\/?$/.test(window.location.hash)) window.location.replace(new URL('../motorsport/racing/', window.location.href).href);</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabriel Reis Duarte | Automotive &amp; Industrial Engineering Lab</title>
@@ -1790,9 +1791,7 @@
     <!-- ==========================================================================
          PAGE 5: #/autolab (5 INTERACTIVE AUTOMOTIVE ENGINEERING SIMULATORS)
          ========================================================================== -->
-    <section id="page-f1-racing" class="page-view">
-        <div class="page-container" id="f1-racing-container"></div>
-    </section>
+
 
     <section id="page-autolab" class="page-view">
         <div class="page-container" id="autolab-container"></div>
@@ -1893,7 +1892,6 @@
            ======================================================================== */
         const navRoutes = [
             { hash: '#/home', pt: 'Início 3D', en: '3D Stage' },
-            { hash: '#/f1-racing', pt: '🏎️ F1 & Corridas (F1-PIP)', en: '🏎️ F1 & Racing (F1-PIP)', badge: 'NEW' },
             { hash: '#/projetos/motorsport-f1', pt: 'Hub /projetos', en: 'Projects Hub', badge: '111' },
             { hash: '#/cases', pt: 'Cases Reais', en: 'Real Cases', badge: '6' },
             { hash: '#/autolab', pt: 'Automotive Lab', en: 'Automotive Lab', badge: '5' },
@@ -4468,91 +4466,6 @@ python3 main.py
             ctx.fillText('Reliability curve — illustrative only (ECE/Brier not measured)', rx + 12, ry + 18);
         }
 
-        function renderF1RacingPage() {
-            const container = document.getElementById('f1-racing-container');
-            if (!container) return;
-
-            const motorsportCat = projectCategories.find(c => c.slug === 'motorsport-f1');
-            const f1Projects = motorsportCat ? motorsportCat.projects : [];
-
-            container.innerHTML = `
-                <div class="route-bar">
-                    <span class="route-path">
-                        <span>●</span>
-                        <span>/f1-racing — ${t('Central Dedicada de Fórmula 1, Motorsport & Engenharia de Corridas (F1-PIP + Replay + Porsche Cup)', 'Dedicated Formula 1, Motorsport & Race Engineering Hub (F1-PIP + Replay + Porsche Cup)')}</span>
-                    </span>
-                    <div style="display:flex; gap:0.45rem;">
-                        <button type="button" class="filter-btn" data-route="#/projetos/motorsport-f1/109">🏎️ Replay F1 (#109)</button>
-                        <button type="button" class="filter-btn" data-route="#/projetos/motorsport-f1/110">🏁 Porsche Cup (#110)</button>
-                        <button type="button" class="filter-btn" data-route="#/projetos/motorsport-f1/111">🧠 Repo F1-PIP (#111)</button>
-                    </div>
-                </div>
-
-                <div class="section-header">
-                    <div>
-                        <span class="section-code">F1 PREDICTIVE INTELLIGENCE PLATFORM (F1-PIP) &amp; MOTORSPORT HUB</span>
-                        <h2 class="section-title">🏎️ ${t('Central de Engenharia de Corridas, Telemetria & Inteligência Preditiva F1', 'Formula 1 Predictive Intelligence, Telemetry & Race Engineering Hub')}</h2>
-                        <p class="section-subtitle">${t(
-                            'Página dedicada reunindo a F1 Predictive Intelligence Platform (F1-PIP com 18 módulos, Walk-Forward ML, Clean Air Pace, Clima UTC, Estratégia e Monte Carlo 100k), o Motor de Replay 2D/GPS (#109), a Suíte Porsche Cup / Jorge Segers (#110) e todos os projetos de F1.',
-                            'Dedicated hub uniting the F1 Predictive Intelligence Platform (F1-PIP with 18 modules, Walk-Forward ML, Clean Air Pace, UTC Weather, Strategy & 100k Monte Carlo), the Ground-Up 2D/GPS Race Replay (#109), the Porsche Cup / Jorge Segers Suite (#110), and all F1 projects.'
-                        )}</p>
-                    </div>
-                </div>
-
-                ${buildF1PipCommandCenterHTML(true)}
-
-                <div class="section-header" style="margin-top:2.2rem;">
-                    <div>
-                        <span class="section-code">COMPLETE MOTORSPORT &amp; F1 ECOSYSTEM // 11 PROJECTS</span>
-                        <h3 class="section-title" style="font-size:1.45rem;">${t('Todos os Projetos de Corridas, F1 & Motorsport Acessíveis no Site e GitHub', 'All Racing, F1 & Motorsport Projects Accessible on Site & GitHub')}</h3>
-                    </div>
-                </div>
-
-                <div class="projects-10-grid">
-                    ${f1Projects.map(p => {
-                        const numStr = String(p[0]).padStart(3, '0');
-                        const folderSlug = getProjFolderSlug(p[0], p[2]);
-                        const ghUrl = getProjGithubUrl('motorsport-f1', p[0], p[2]);
-                        const pageRoute = `#/projetos/motorsport-f1/${p[0]}`;
-                        return `
-                            <div class="proj-item-card" data-goto-proj="${pageRoute}" style="${p[0] >= 109 ? 'border-color:rgba(230,57,70,0.5);' : ''}">
-                                <div>
-                                    <div class="proj-num-tag">
-                                        <span>#${numStr} // /projetos/motorsport-f1/${p[0]}</span>
-                                        <span class="status-badge ${p[0] >= 109 ? 'badge-proto' : 'badge-proven'}" style="font-size:0.55rem; padding:0.12rem 0.4rem;">${p[0] >= 109 ? 'FLAGSHIP F1' : 'F1 / MLOPS'}</span>
-                                    </div>
-                                    <div class="proj-ind-title" style="margin-top:0.35rem;">${t(p[1], p[2])}</div>
-                                    <div class="proj-orig-ref" style="margin-top:0.15rem;">📂 11-motorsport-f1-mlops/${folderSlug}</div>
-                                    <p class="proj-Summary" style="margin-top:0.45rem;">${t(p[4], p[5])}</p>
-                                </div>
-                                <div class="proj-card-actions">
-                                    <button type="button" class="proj-action-link" data-route="${pageRoute}">
-                                        ${t('Abrir Workbench & Código →', 'Open Workbench & Code →')}
-                                    </button>
-                                    <a href="${ghUrl}" target="_blank" rel="noopener noreferrer" class="proj-gh-link" onclick="event.stopPropagation();">
-                                        <span>GitHub</span><span>↗</span>
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-
-            wireF1PipEvents(renderF1RacingPage);
-            drawF1PipMainCanvas();
-
-            container.querySelectorAll('[data-route]').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    navigateTo(btn.getAttribute('data-route'));
-                });
-            });
-            container.querySelectorAll('[data-goto-proj]').forEach(card => {
-                card.addEventListener('click', () => navigateTo(card.getAttribute('data-goto-proj')));
-            });
-        }
-
         function renderAutoLabPage() {
             const container = document.getElementById('autolab-container');
             if (!container) return;
@@ -4973,14 +4886,6 @@ python3 main.py
             renderCasesPage();
             renderProjetosPage();
             renderProjetoDetalhePage();
-            // Render the F1 hub only on its route. Without this call its page is blank.
-            // Unmount on other routes to prevent duplicate controls with project #111.
-            const f1Container = document.getElementById('f1-racing-container');
-            if (currentRoute === '#/f1-racing') {
-                renderF1RacingPage();
-            } else if (f1Container && f1Container.childElementCount) {
-                f1Container.replaceChildren();
-            }
             renderAutoLabPage();
             renderEstrategiaPage();
             renderContatoPage();
@@ -4990,6 +4895,7 @@ python3 main.py
            SPA ROUTER (#/home, #/sobre, #/cases, #/projetos/<slug>, #/autolab, etc.)
            ======================================================================== */
         function navigateTo(hash) {
+            if (/^#\/f1-racing\/?$/.test(hash)) { window.location.assign(new URL('../motorsport/racing/', window.location.href).href); return; }
             if (!hash || !hash.startsWith('#/')) hash = '#/home';
 
             if (hash.startsWith('#/projetos')) {
@@ -5037,8 +4943,7 @@ python3 main.py
                 document.getElementById('page-projeto-detalhe').classList.add('active-page');
             } else if (currentRoute.startsWith('#/projetos')) {
                 document.getElementById('page-projetos').classList.add('active-page');
-            } else if (currentRoute === '#/f1-racing') {
-                document.getElementById('page-f1-racing').classList.add('active-page');
+
             } else if (currentRoute === '#/autolab') {
                 document.getElementById('page-autolab').classList.add('active-page');
             } else if (currentRoute === '#/estrategia') {
