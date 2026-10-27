@@ -7,7 +7,7 @@
     <meta name="description" content="Executive Portfolio — Software Engineering, Data Science, Smart Manufacturing & Automotive Technology — Gabriel Reis Duarte.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --graphite-black: #0B0F14;
@@ -2503,7 +2503,7 @@
 
             if (!navEl) return;
             navEl.innerHTML = navRoutes.map(r => {
-                const isProjRoute = r.hash.startsWith('#/projetos') && currentRoute.startsWith('#/projetos');
+                const isProjRoute = r.hash === '#/projetos/motorsport-f1' && currentRoute === r.hash;
                 const isActive = (currentRoute === r.hash) || isProjRoute;
                 const badgeHtml = r.badge ? `<span class="nav-count">${r.badge}</span>` : '';
                 return `<button type="button" class="nav-item ${isActive ? 'active' : ''}" data-route="${r.hash}">${t(r.pt, r.en)} ${badgeHtml}</button>`;
@@ -3309,7 +3309,7 @@ python3 main.py
                         <span>#${numStr} — ${folderSlug}</span>
                     </span>
                     <div style="display:flex; gap:0.45rem;">
-                        ${projNum > 1 ? `<button type="button" class="filter-btn" data-route="#/projetos/${foundCat.slug}/${projNum - 1}">← #${String(projNum - 1).padStart(3, '0')}</button>` : ''}
+                        ${projNum > 101 ? `<button type="button" class="filter-btn" data-route="#/projetos/${foundCat.slug}/${projNum - 1}">← #${String(projNum - 1).padStart(3, '0')}</button>` : ''}
                         ${projNum < 111 ? `<button type="button" class="filter-btn" data-route="#/projetos/${foundCat.slug}/${projNum + 1}">#${String(projNum + 1).padStart(3, '0')} →</button>` : ''}
                     </div>
                 </div>
@@ -4961,22 +4961,20 @@ python3 main.py
 
         function renderAll() {
             renderHeaderNav();
-            renderHomePage();
-            renderSobrePage();
-            renderCasesPage();
-            renderProjetosPage();
-            renderProjetoDetalhePage();
-            // Render the F1 hub only on its route. Without this call its page is blank.
-            // Unmount on other routes to prevent duplicate controls with project #111.
             const f1Container = document.getElementById('f1-racing-container');
+            const detailContainer = document.getElementById('projeto-detalhe-container');
+            const projectsContainer = document.getElementById('projetos-container');
+            // Unmount before binding controls: every ID belongs to the active route only.
+            f1Container.replaceChildren();
+            detailContainer.replaceChildren();
+            projectsContainer.replaceChildren();
             if (currentRoute === '#/f1-racing') {
                 renderF1RacingPage();
-            } else if (f1Container && f1Container.childElementCount) {
-                f1Container.replaceChildren();
+            } else if (currentProjectDetailId) {
+                renderProjetoDetalhePage();
+            } else if (currentRoute.startsWith('#/projetos')) {
+                renderProjetosPage();
             }
-            renderAutoLabPage();
-            renderEstrategiaPage();
-            renderContatoPage();
         }
 
         /* ========================================================================
