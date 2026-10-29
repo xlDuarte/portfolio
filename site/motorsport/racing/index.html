@@ -4981,6 +4981,8 @@ python3 main.py
            SPA ROUTER (#/home, #/sobre, #/cases, #/projetos/<slug>, #/autolab, etc.)
            ======================================================================== */
         function navigateTo(hash) {
+            if(hash==='#/projetos/motorsport-f1/101'){window.location.assign(new URL('../../cases/motorsport/101/',window.location.href).href);return;}
+
             if (hash === '#/projetos/motorsport-f1/109') { window.location.assign(new URL('../../cases/motorsport/109/', window.location.href).href); return; }
             if (hash === '#/home') { window.location.assign('../'); return; }
             if (!hash || (!hash.startsWith('#/projetos/motorsport-f1') && hash !== '#/f1-racing')) hash = '#/f1-racing';
