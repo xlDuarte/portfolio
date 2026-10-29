@@ -3,7 +3,7 @@
 Canonical entrypoint: `site/cases/motorsport/109/index.html`.
 The Motorsport hub forwards its project-109 route to this entrypoint.
 
-The independent white/cyan dashboard uses deck.gl 9.1.14 for the local-coordinate circuit and Apache ECharts 6.0.0 for linked telemetry. Dependencies are version-pinned on jsDelivr and loaded independently. A native SVG view and charts preserve replay, selection, controls and export if loading or GPU initialization fails.
+The independent white/cyan dashboard uses deck.gl 9.1.14 for the local-coordinate circuit and Apache ECharts 6.0.0 for linked telemetry. Dependencies are version-pinned, served locally from `vendor/` and loaded independently. Files are the unmodified npm package distributions, with their licenses alongside. A native SVG view and charts preserve replay, selection, controls and export if loading or GPU initialization fails.
 
 `session.mjs` is a data adapter over the unchanged `../lab/engine.mjs`. The shared clock is clamped to 0–900 seconds. Playback uses elapsed animation-frame time and pauses when the tab is hidden. Drivers, current indicators and telemetry exports derive from the same engine and parameters. Acceleration is a central finite difference of the synthetic speed signal; the position-advance model is independent of that signal. No real track, GPS, sensor data or physical validity is implied.
 
