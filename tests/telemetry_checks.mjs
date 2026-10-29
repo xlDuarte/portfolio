@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';
+import {ekf} from '../site/motorsport/lab/engine.mjs';
+import {session,histogram} from '../site/motorsport/telemetry/model.mjs';
+for(const noise of [0,.25,2.5,3])for(const q of [1e-6,1e-4,1e-3]){const s=session(noise,q),r=ekf(noise,q),h=histogram(s.points);assert.equal(s.points.length,200);assert.equal(s.metrics.rmse,r.rmse);s.points.forEach((p,i)=>{assert.equal(p.time,i*.02);assert.equal(p.truth,r.truth[i]);assert.equal(p.measured,r.measured[i]);assert.equal(p.estimated,r.estimated[i]);assert.equal(p.error,p.estimated-p.truth)});assert.equal(h.sensor.reduce((a,b)=>a+b),200);assert.equal(h.filter.reduce((a,b)=>a+b),200);assert(Math.abs(s.metrics.rmse-Math.sqrt(s.points.reduce((n,p)=>n+p.error**2,0)/200))<1e-12);assert.equal(s.metrics.maxError,Math.max(...s.points.map(p=>Math.abs(p.error))));assert.deepEqual(s,session(noise,q));if(noise===0)assert.equal(s.metrics.reduction,null)}
+assert.throws(()=>session(-1));assert.throws(()=>session(.25,1));console.log('PASS telemetry: engine parity, time, metrics, determinism, histogram conservation, zero-noise and bounds');
