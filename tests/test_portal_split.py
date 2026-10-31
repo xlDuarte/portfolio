@@ -41,7 +41,7 @@ class TestPortfolioPortalSplit(unittest.TestCase):
 
     def test_industry_retains_original_routes(self):
         industry=(SITE/"industry/index.html").read_text(encoding="utf-8")
-        for token in ('function renderAll()', '#/f1-racing', '#/home', 'githubRepoBase'):
+        for token in ('src="industrial.mjs"', '#/projetos', '#/cases', '#/home', '../motorsport/racing/'):
             self.assertIn(token,industry)
         self.assertIn('href="../"',industry)
 

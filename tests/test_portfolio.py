@@ -43,7 +43,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertEqual(code,0,msg=stderr)
 
     def test_frontend_github_links(self):
-        for rel in ('site/industry/index.html','site/f1/index.html'):
+        for rel in ('site/industry/arquivo.html','site/f1/index.html'):
             s=(ROOT/rel).read_text(encoding='utf8')
             with self.subTest(file=rel):
                 self.assertIn(REPO_BASE,s)
@@ -53,6 +53,16 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertIn('Generated example',s)
                 self.assertIn('README.md ↗',s)
                 self.assertNotIn('Score do Modelo (R² / F1)',s)
+
+    def test_industry_catalog_source_links(self):
+        directory = ROOT / 'site/industry'
+        module = (directory / 'industrial.mjs').read_text()
+        self.assertIn(REPO_BASE.rsplit('/', 1)[0] + "/'+p.code", module)
+        self.assertIn('href="${code}"', module)
+        paths = re.findall(r'"code":"(.*?)"', (directory / 'catalog.mjs').read_text())
+        self.assertTrue(paths)
+        for path in paths:
+            self.assertTrue(path.startswith('projetos/') and (ROOT / path / 'README.md').is_file(), path)
 
     def test_f1_walk_forward_leakage_protection(self):
         src=ROOT/'f1-predictive-intelligence/main.py'
