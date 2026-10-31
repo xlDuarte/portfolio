@@ -66,6 +66,22 @@ def rewrite_html(markup:str,base_path:str,canonical_url:str|None=None)->str:
             markup=_HEAD_END.sub(lambda m:snippet+m.group(0),markup,count=1)
     return markup
 
+def style_industrial_report(relative:str,markup:str)->str:
+    """Apply the shared theme only to numbered industrial reports, never F1 or the homepage."""
+    m=re.fullmatch(r"cases/(?:[a-z_-]+/)?(\d{3})/index\.html",relative)
+    if not m or not 1<=int(m[1])<=100 or "data-industrial-report" in markup:
+        return markup
+    num=int(m[1])
+    markup=_HEAD_END.sub('<link rel="stylesheet" href="/industry/report.css"></head>',markup,count=1)
+    bar=(f'<div class="ind-report-bar"><a href="/industry/#/projetos/{num}">← Ficha do projeto</a>'
+         f'<span>Gabriel Duarte / {num:03}</span></div>')
+    markup=re.sub(r"<body(\s[^>]*)?>",lambda b:b[0][:-1]+" data-industrial-report>"+bar,markup,count=1,flags=re.I)
+    def fold_code(m):
+        if re.search(r"(?:python(?:3)? -m pip|pip install|python projetos/)",m[0]):
+            return '<details class="ind-command"><summary>Ver comandos de reprodução</summary>'+m[0]+'</details>'
+        return m[0]
+    return re.sub(r"<pre(?:\s[^>]*)?>.*?</pre>",fold_code,markup,flags=re.S|re.I)
+
 def build(src:Path,dst:Path,base_path:str="/portfolio",
           site_url:str="https://xlduarte.github.io")->dict:
     base=clean_base_path(base_path)
@@ -91,7 +107,7 @@ def build(src:Path,dst:Path,base_path:str="/portfolio",
         public_url=site_url+base+"/"+quote(public_path,safe="/-._~")
         if relative=="index.html":public_url=site_url+base+"/"
         raw=path.read_text(encoding="utf-8")
-        path.write_text(rewrite_html(raw,base,public_url),encoding="utf-8")
+        path.write_text(rewrite_html(style_industrial_report(relative,raw),base,public_url),encoding="utf-8")
         if relative!="404.html":urls.append(public_url)
     (dst/".nojekyll").touch()
     root=Element("urlset",{"xmlns":"http://www.sitemaps.org/schemas/sitemap/0.9"})
@@ -128,3 +144,4 @@ def main():
     print(report)
 if __name__=="__main__":
     main()
+
