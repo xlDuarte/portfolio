@@ -43,7 +43,7 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertEqual(code,0,msg=stderr)
 
     def test_frontend_github_links(self):
-        for rel in ('site/industry/index.html','site/f1/index.html'):
+        for rel in ('site/industry/arquivo.html','site/f1/index.html'):
             s=(ROOT/rel).read_text(encoding='utf8')
             with self.subTest(file=rel):
                 self.assertIn(REPO_BASE,s)
@@ -53,6 +53,24 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertIn('Generated example',s)
                 self.assertIn('README.md ↗',s)
                 self.assertNotIn('Score do Modelo (R² / F1)',s)
+
+    def test_industrial_catalog_links_and_evidence(self):
+        import json
+        site=ROOT/'site'/'industry'
+        self.assertIn(REPO_BASE,(site/'index.html').read_text())
+        src=(site/'catalog.mjs').read_text().splitlines()[0]
+        groups=json.loads(src.removeprefix('export default ').removesuffix(';'))
+        projects=[p for group in groups for p in group['projects']]
+        self.assertEqual(sorted(p['id'] for p in projects),list(range(1,101)))
+        for p in projects:
+            with self.subTest(project=p['id']):
+                self.assertTrue((ROOT/p['code']).is_dir())
+                if p['view']:
+                    self.assertTrue((site/p['view']/'index.html').is_file())
+        for n in (1,8,9):
+            data=json.loads((ROOT/f'site/cases/{n:03}/metrics.json').read_text())
+            self.assertIn('synthetic',data['dataset'])
+        self.assertIn('Base sintética reproduzível',(site/'industrial.mjs').read_text())
 
     def test_f1_walk_forward_leakage_protection(self):
         src=ROOT/'f1-predictive-intelligence/main.py'
