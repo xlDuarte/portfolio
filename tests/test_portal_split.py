@@ -41,8 +41,18 @@ class TestPortfolioPortalSplit(unittest.TestCase):
 
     def test_industry_retains_original_routes(self):
         industry=(SITE/"industry/index.html").read_text(encoding="utf-8")
-        for token in ('src="industrial.mjs"', '#/projetos', '#/cases', '#/home', '../motorsport/racing/'):
-            self.assertIn(token,industry)
+        # The original app remains available for legacy routes; the new entry only
+        # renders the selected view. Test both entrypoints against their contracts.
+        archive=(SITE/"industry/arquivo.html").read_text(encoding="utf-8")
+        for token in ('function renderAll()', '#/f1-racing', '#/home', 'githubRepoBase'):
+            self.assertIn(token,archive)
+        for route in ('#/home', '#/projetos', '#/cases', '#/contato'):
+            self.assertIn('href="'+route+'"',industry)
+        router=(SITE/"industry/industrial.mjs").read_text(encoding="utf-8")
+        self.assertIn("new URL('../motorsport/racing/'",router)
+        self.assertIn("arquivo.html'+location.hash",router)
+        self.assertIn('src="industrial.mjs"',industry)
+        self.assertNotIn('function renderAll()',industry)
         self.assertIn('href="../"',industry)
 
     def test_motorsport_has_content_and_valid_paths(self):
@@ -78,3 +88,4 @@ class TestPortfolioPortalSplit(unittest.TestCase):
 
 if __name__=='__main__':
     unittest.main()
+
