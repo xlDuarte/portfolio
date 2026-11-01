@@ -1,2 +1,2 @@
 -r requirements-motorsport-core.txt
-tensorflow-cpu>=2.16,<2.20
+tensorflow-cpu>=2.21.0,<2.22
