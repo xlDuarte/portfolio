@@ -2,5 +2,5 @@ numpy>=1.26,<3
 pandas>=3.0.6,<4
 scikit-learn>=1.4,<2
 nltk>=3.8,<4
-spacy>=3.7,<4
+spacy>=3.8.18,<4
 tokenizers>=0.19,<1
