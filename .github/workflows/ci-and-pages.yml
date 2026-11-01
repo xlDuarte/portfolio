@@ -90,7 +90,7 @@ jobs:
         with:
           path: _site
           name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         if: steps.pages.outputs.enabled == 'true'
         id: deployment
         with:
