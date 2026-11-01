@@ -40,7 +40,7 @@ jobs:
             file: motorsport_batch/Dockerfile
     steps:
       - uses: actions/checkout@v7
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v4
       - name: Build real development image, no push or production claims
         run: docker build -f "${{ matrix.file }}" -t "portfolio-${{ matrix.slug }}:smoke" .
       - name: Start server and inspect real HTTP health response
