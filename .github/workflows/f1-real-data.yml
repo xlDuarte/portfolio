@@ -20,7 +20,7 @@ jobs:
           OPENBLAS_NUM_THREADS: '1'
           OMP_NUM_THREADS: '1'
       - run: node tests/real_f1_checks.mjs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: historical-f1-validated
           path: site/motorsport/data/*.json
