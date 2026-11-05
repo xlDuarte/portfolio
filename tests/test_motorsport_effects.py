@@ -18,7 +18,7 @@ class TestMotorsportEffects(unittest.TestCase):
         h=self.html
         for token in ('id="hero"','id="systems"','id="projects"','id="method"','id="contact"',
                       'id="loading-veil"','id="hero-scene"','id="track-trace"','id="reticle"',
-                      'href="../f1-models/"','href="../industry/"','href="../"'):
+                      'href="./f1-pip/"','href="../industry/"','href="../"'):
             with self.subTest(token=token):self.assertIn(token,h)
         self.assertEqual(h.count('class="history"'),7)
         self.assertEqual(h.count('data-checker='),3)

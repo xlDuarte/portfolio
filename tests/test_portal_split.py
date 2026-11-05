@@ -49,7 +49,7 @@ class TestPortfolioPortalSplit(unittest.TestCase):
         for route in ('#/home', '#/projetos', '#/cases', '#/contato'):
             self.assertIn('href="'+route+'"',industry)
         router=(SITE/"industry/industrial.mjs").read_text(encoding="utf-8")
-        self.assertIn("new URL('../motorsport/racing/'",router)
+        self.assertIn("new URL('../motorsport/f1-pip/'",router)
         self.assertIn("arquivo.html'+location.hash",router)
         self.assertIn('src="industrial.mjs"',industry)
         self.assertNotIn('function renderAll()',industry)
@@ -57,7 +57,7 @@ class TestPortfolioPortalSplit(unittest.TestCase):
 
     def test_motorsport_has_content_and_valid_paths(self):
         html=(SITE/"motorsport/index.html").read_text(encoding="utf-8")
-        for token in ('id="systems"','id="projects"','id="method"','../f1-models/','../cases/motorsport/','href="../"'):
+        for token in ('id="systems"','id="projects"','id="method"','./f1-pip/','../cases/motorsport/','href="../"'):
             self.assertIn(token,html)
         self.assertNotIn('Mercedes-AMG F1 Team',html)
         self.assertNotIn('Kimi Antonelli',html)
