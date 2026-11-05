@@ -4490,7 +4490,7 @@ python3 main.py
                 </div>
 
                 
-                <div class="race-labs"><a href="../../cases/motorsport/109/">${t('Experimentar replay + prints','Try replay + screenshots')} ↗</a><a href="../../f1-models/">${t('Modelos F1 + simulação Monte Carlo','F1 models + Monte Carlo simulation')} ↗</a></div>
+                <div class="race-labs"><a href="../../cases/motorsport/109/">${t('Experimentar replay + prints','Try replay + screenshots')} ↗</a><a href="../f1-pip/">${t('Modelos F1 + simulação Monte Carlo','F1 models + Monte Carlo simulation')} ↗</a></div>
                 <p class="race-notice">Dados históricos reais: Bahrain 2024 via OpenF1. Modelos: resultados 2022–2024 via FastF1/Jolpica. Não é timing ao vivo. Projetos sem sensores ou documentos disponíveis indicam a ausência da fonte.</p>
 
                 <div class="section-header" style="margin-top:2.2rem;">
@@ -4980,7 +4980,7 @@ python3 main.py
            SPA ROUTER (#/home, #/sobre, #/cases, #/projetos/<slug>, #/autolab, etc.)
            ======================================================================== */
         function navigateTo(hash) {
-            if(hash==='#/projetos/motorsport-f1/111'){window.location.assign(new URL('../../f1-models/',window.location.href).href);return;}
+            if(hash==='#/projetos/motorsport-f1/111'){window.location.assign(new URL('../f1-pip/',window.location.href).href);return;}
             for(const id of [103,104,105,106,107,108]){if(hash==='#/projetos/motorsport-f1/'+id){window.location.assign(new URL('../../cases/motorsport/'+id+'/',window.location.href).href);return;}}
             if(hash==='#/projetos/motorsport-f1/110'){window.location.assign(new URL('../../cases/motorsport/110/',window.location.href).href);return;}
             if(hash==='#/projetos/motorsport-f1/102'){window.location.assign(new URL('../../cases/motorsport/102/',window.location.href).href);return;}

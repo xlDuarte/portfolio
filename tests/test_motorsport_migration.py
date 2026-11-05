@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class MotorsportMigration(unittest.TestCase):
     def test_industry_redirects_without_mounting_hub(self):
         text = (ROOT / 'site/industry/index.html').read_text()
-        self.assertIn("new URL('../motorsport/racing/'", text)
+        self.assertIn("new URL('../motorsport/f1-pip/'", text)
         self.assertNotIn('id="page-f1-racing"', text)
         self.assertNotIn('function renderF1RacingPage()', text)
     def test_motorsport_owns_hub_and_links(self):
@@ -35,3 +35,19 @@ for(const [route,id,expected] of [['#/f1-racing',null,'hub'],['#/projetos/motors
 }
 """.replace('BODY', body)
         subprocess.run(['node', '-e', script], check=True, capture_output=True)
+
+    def test_pip_uses_motorsport_assets_and_navigation(self):
+        from html.parser import HTMLParser
+        page = ROOT / 'site/motorsport/f1-pip/index.html'
+        class Links(HTMLParser):
+            def handle_starttag(self, tag, attrs):
+                for key, value in attrs:
+                    if key in ('src', 'href') and value.startswith('../'):
+                        target = (page.parent / value).resolve()
+                        self_target = target / 'index.html' if value.endswith('/') else target
+                        assert self_target.is_file(), str(self_target)
+        text = page.read_text()
+        Links().feed(text)
+        self.assertIn('F1-PIP', text)
+        self.assertIn('Space+Grotesk', text)
+        self.assertIn('Oswald', text)
