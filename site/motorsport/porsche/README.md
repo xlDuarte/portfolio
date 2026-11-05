@@ -1,35 +1,23 @@
-# Porsche Cup — Performance Lab / projeto 110
+# Porsche Cup — Acquisition workspace
 
-Rota canônica: `/cases/motorsport/110/`. O hub redireciona para esta página sem montar o antigo painel. Implementação estática independente, com ECharts 6.0.0 local (`../replay/vendor`) e fallback SVG. Página pessoal, indústria e demais laboratórios permanecem fora do escopo.
+Route: /cases/motorsport/110/. The page loads workspace.mjs and observed.mjs.
 
-## Interface
+## Data and operation
 
-Identidade inspirada no 911 GT3 Cup: branco, grafite, vermelho, fotografia lateral e logotipo Porsche Motorsport. Estudo independente, com identificação de autoria e referências oficiais. Controles agrupados em cenário de movimento, pneus/contato e chassi/aerodinâmica. Cenários de reta, curva à esquerda e frenagem; seleção de roda; referência congelada para comparação de cargas; exportação JSON com parâmetros, hipóteses, unidades e resultados. A captura 110.webp mostra a interface em funcionamento.
+Upload a locally acquired CSV with time_s followed by measured channels. Supported delimiters are comma with decimal point, and semicolon with decimal comma. Limits are 5 MB and 50,000 samples. Timestamps must strictly increase. Duplicate headers, missing cells, unknown channels, non-finite values and negative wheel loads or speeds are rejected. Each accepted channel must be populated for every sample.
 
-## Modelo e limites
+Supported channels are load_FL_N, load_FR_N, load_RL_N, load_RR_N, temp_FL_C, temp_FR_C, temp_RL_C, temp_RR_C, ax_ms2, ay_ms2, damper_velocity_mms and speed_kmh. A missing channel displays an unavailable state.
 
-`model.mjs` calcula equilíbrio quase estático. Massa de referência 1260 kg, conforme a página oficial do modelo 992/2021. Os demais parâmetros são hipóteses didáticas: g 9,81; densidade 1,225; área 1,8 m²; CG 0,45 m; bitola 1,6 m; entre-eixos 2,45 m; distribuição dianteira estática 40%, aero 45%, transferência lateral 45%.
+Controls cover file import, time range, playback rate, selected instant, tire selection, signal selection and export. CSV export preserves every sample in the selected interval. JSON exports sample means and extrema with the original filename and unverified-user-source label. The downloadable template contains only headers.
 
-A soma de Fz nas quatro rodas é igual ao peso + downforce. Aceleração lateral positiva representa curva à esquerda, carregando as rodas direitas. Aceleração longitudinal negativa representa frenagem, carregando a dianteira. Não há dinâmica transiente de suspensão, cambagem dinâmica, temperatura integrada no tempo ou aquisição real.
+## Interpretation
 
-Rigidez e três temperaturas por pneu preservam as fórmulas do painel anterior. As novas cargas podem ultrapassar o domínio original de 3067–4972 N; não existe validação dessa extrapolação. A curva saturante de força lateral usa a rigidez como derivada em zero; não é calibração Pacejka de um pneu real. O envelope G-G é uma elipse de capacidade agregada, com escalas visuais iguais nos dois eixos. Não é um modelo completo de aderência combinada por eixo.
+Total load is the sum of four measured wheel loads. Front share is (FL+FR)/total and cross load is (FL+RR)/total. Both require all four channels and a positive total. Tire colors scale within the selected interval and do not identify an optimal operating temperature. One temperature channel is supported per wheel. Sensor type and placement are supplied by the acquisition owner.
 
-A cambagem afeta apenas temperaturas. Pressão afeta temperatura central e rigidez. Carga afeta rigidez, temperaturas e capacidade. Temperatura não retroalimenta a aderência. O ajuste de amortecedor altera apenas uma distribuição sintética normalizada de velocidades da haste. A aerodinâmica é independente do amortecimento, corrigindo o acoplamento artificial anterior. Não executa FLIR, HH Timing nem ChassisSim.
+The G-G panel uses measured lateral and longitudinal acceleration. Sign conventions and gravity correction must be checked at source. Cursor values use the last sample at or before the selected time. Charts subsample while preserving interval endpoints; statistical summaries use every sample. Means are arithmetic sample means, not time-weighted integrals.
 
-## Validação
+No acquisition is bundled for Porsche. OpenF1 data is not used to fill Porsche channels. The previous illustrative physics model remains available as a legacy module tested independently and is not imported by this workspace.
 
-`node tests/porsche_checks.mjs`
+## Verification
 
-`python -m unittest discover -s tests -p test_porsche.py`
-
-Testes nos limites: conservação de carga, positividade, simetria, sinais das transferências, dependência quadrática da velocidade no downforce, independência do amortecedor, conservação da distribuição, paridade térmica, derivada de Fy em zero e saturação. Navegador: assets, ECharts, controles, presets, seleção, referência, exportação, restauração, 390/768/1024/1440 px, fallback e rota do hub.
-
-## Créditos e origem dos assets
-
-Referência oficial: https://racing.porsche.com/en-US/cars/911-gt3-cup-2021
-
-- `assets/gt3-cup.webp`: imagem oficial do modelo, obtida do CDN referenciado nessa página, em WebP com limite de 1400 px. Origem: https://res.cloudinary.com/dmwcbhehi/image/upload/v1731403761/Porsche_GT3Cup_Seitenschuss_ro9tv1.png
-- `assets/porsche-motorsport.svg`: logotipo vetorial presente no cabeçalho da mesma página oficial; paths e cores preservados.
-- Porsche e as respectivas marcas pertencem aos seus titulares. Assets de referência não passam a integrar uma licença de código aberto do projeto. Este estudo não tem vínculo nem endosso da Porsche.
-
-Não são reivindicados tempos de volta oficiais, dados de sensores ou resultados de processo seletivo.
+Run node tests/porsche_observed_checks.mjs and python -m unittest discover -s tests -p test_porsche.py -v.
