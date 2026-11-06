@@ -5,3 +5,9 @@ import unittest
 class PorscheTests(unittest.TestCase):
     def test_physics_invariants(self):
         subprocess.run(['node', str(Path(__file__).with_name('porsche_checks.mjs'))], check=True, timeout=30)
+
+    def test_observed_acquisition(self):
+        subprocess.run(['node', str(Path(__file__).with_name('porsche_observed_checks.mjs'))], check=True, timeout=30)
+
+    def test_seminar_engineering_analyses(self):
+        subprocess.run(['node', str(Path(__file__).with_name('porsche_engineering_checks.mjs'))], check=True, timeout=30)
