@@ -20,7 +20,7 @@ class TestMotorsportEffects(unittest.TestCase):
                       'id="loading-veil"','id="hero-scene"','id="track-trace"','id="reticle"',
                       'href="./f1-pip/"','href="../industry/"','href="../"'):
             with self.subTest(token=token):self.assertIn(token,h)
-        self.assertEqual(h.count('class="history"'),7)
+        self.assertEqual(h.count('class="history"'),10)
         self.assertEqual(h.count('data-checker='),3)
 
     def test_shaders_tier_and_reference_motion(self):
