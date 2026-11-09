@@ -1,0 +1,32 @@
+name: F1 Physics Labs
+on:
+  pull_request:
+    paths:
+      - 'site/motorsport/**'
+      - 'tests/f1_physics_checks.mjs'
+      - '.github/workflows/f1-physics.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'site/motorsport/physics/**'
+      - 'tests/f1_physics_checks.mjs'
+      - '.github/workflows/f1-physics.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Physics invariants
+        run: node tests/f1_physics_checks.mjs
+      - name: JavaScript syntax
+        run: node --check site/motorsport/physics/app.mjs
+      - name: Python syntax
+        run: python -m py_compile site/motorsport/physics/export_fastf1.py
