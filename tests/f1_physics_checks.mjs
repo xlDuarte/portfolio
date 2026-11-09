@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {aero,ers,lap,sensitivity,wingCAD,telemetry} from '../site/motorsport/physics/models.mjs';
+import {activeAero,aero,ers,lap,sensitivity,wingCAD,telemetry} from '../site/motorsport/physics/models.mjs';
 const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t, a+' != '+b);
 // Controlled analytic fixtures are tests only, never shipped as session data.
 const rows=[{time_s:0,speed_kmh:72,brake:1},{time_s:1,speed_kmh:36,brake:0},{time_s:2,speed_kmh:72,brake:0}];
@@ -28,3 +28,17 @@ assert.equal(sensitivity(circle,car).length,12);
 assert.ok(wingCAD({span:1.5,chord:.3,front_deg:10,rear_deg:15}).includes('polygon(points)'));
 assert.throws(()=>wingCAD({span:-1,chord:1,front_deg:0,rear_deg:0}));
 console.log('PASS F1 physics: energy conservation, battery limits, aero equations, periodic lap solver, sensitivity, CAD validation.');
+
+const active=activeAero(rows,{rho:1.2,area:1,switch_kmh:60,hysteresis_kmh:10},configs);
+assert.deepEqual(active.profile.map(x=>x.low_drag),[0,0,1]);assert.equal(active.switches,1);assert.ok(active.drag_energy_mj<=a[0].drag_energy_mj);
+
+const {readFileSync}=await import('node:fs');
+const race=JSON.parse(readFileSync(new URL('../site/motorsport/data/bahrain-2024-race.json',import.meta.url),'utf8'));
+assert.equal(race.origin,'observed');
+for(const driver of race.replay_window.drivers){
+ const raw=race.telemetry[String(driver)],t0=Date.parse(raw[0].date);
+ const observed=raw.map(r=>({time_s:(Date.parse(r.date)-t0)/1000,speed_kmh:r.speed,brake:r.brake?1:0}));
+ const actual=ers(observed,p);near(actual.balance_error_mj,0,1e-7);assert.ok(actual.profile.length>100);assert.ok(actual.recovered_mj>0);
+ const aeroResult=activeAero(observed,{rho:1.225,area:1.5,switch_kmh:200,hysteresis_kmh:20},configs);assert.ok(aeroResult.drag_energy_mj>0);
+}
+console.log('PASS actual committed OpenF1 session integration for every replay driver.');

@@ -1,4 +1,4 @@
-import {aero,ers,lap,sensitivity,wingCAD,telemetry} from './models.mjs';
+import {activeAero,aero,ers,lap,sensitivity,wingCAD,telemetry} from './models.mjs';
 import {numericCSV} from '../porsche/engineering.mjs';
 import {loadRace} from '../data/load.mjs';
 const $=s=>document.querySelector(s),mode=document.body.dataset.mode,fmt=x=>Number(x).toLocaleString('pt-BR',{maximumFractionDigits:3});
@@ -28,11 +28,11 @@ function calculate(){
   let output,profile,metric;
   if(mode==='aero'){
    if(dataset.length>100||dataset.length*observed.length>500000)throw Error('Limite de 100 configurações e 500.000 pares configuração/amostra. Reduza o intervalo ou o número de configurações.');
-   output=aero(observed,p,dataset);profile=output.flatMap((r,i)=>r.profile.map(v=>({configuration:i+1,...v})));metric=output[0].drag_energy_mj;
-   kpis([['Configurações',output.length,''],['Energia de arrasto · config. 1',metric,'MJ'],['Carga média · config. 1',output[0].mean_downforce_n,'N']]);
-   plot('Carga aerodinâmica · primeiras 5 configurações',output.slice(0,5).map((r,i)=>({name:'Config. '+(i+1),data:r.profile.map(x=>[x.time_s,x.downforce_n])})),'tempo (s)','carga (N)');
-   plot('Potência dissipada no arrasto',output.slice(0,5).map((r,i)=>({name:'Config. '+(i+1),data:r.profile.map(x=>[x.time_s,x.drag_power_kw])})),'tempo (s)','potência (kW)');
-   table($('#table'),output.map(({profile,...r},i)=>({configuration:i+1,...r})));
+   output=aero(observed,p,dataset);profile=output.flatMap((r,i)=>r.profile.map(v=>({configuration:i+1,...v})));const active=activeAero(observed,p,dataset);metric=active.drag_energy_mj;output={configurations:output,active};profile=active.profile;
+   kpis([['Configurações',output.configurations.length,''],['Arrasto · política ativa',metric,'MJ'],['Mudanças de estado',output.active.switches,'']]);
+   plot('Carga aerodinâmica · primeiras 5 configurações',output.configurations.slice(0,5).map((r,i)=>({name:'Config. '+(i+1),data:r.profile.map(x=>[x.time_s,x.downforce_n])})),'tempo (s)','carga (N)');
+   plot('Potência dissipada no arrasto',output.configurations.slice(0,5).map((r,i)=>({name:'Config. '+(i+1),data:r.profile.map(x=>[x.time_s,x.drag_power_kw])})),'tempo (s)','potência (kW)');
+   plot('Comando ativo · carga resultante',[{name:'Política ativa',data:output.active.profile.map(x=>[x.time_s,x.downforce_n])}],'tempo (s)','carga (N)');table($('#table'),output.configurations.map(({profile,...r},i)=>({configuration:i+1,...r})));
   }else if(mode==='ers'){
    output=ers(observed,p);profile=output.profile;metric=output.recovered_mj;
    kpis([['Energia recuperada',output.recovered_mj,'MJ'],['Energia entregue às rodas',output.deployed_wheel_mj,'MJ'],['SoC final',profile.at(-1).soc_pct,'%'],['Erro de balanço',output.balance_error_mj,'MJ']]);
@@ -48,7 +48,7 @@ function calculate(){
   }
   result={mode,created_at:new Date().toISOString(),provenance:$('#provenance').value,telemetry_source:source,input_file:dataSource,origin:'model-derived-from-observed-or-user-imported-inputs',parameters:p,method:document.querySelector('main>section.panel p:not(.eyebrow)').textContent,output,profile,metric,reference:reference?{metric:reference.metric,parameters:reference.parameters}:null};
   for(const id of ['json','csv','pin'])$('#'+id).disabled=false;
-  $('#comparison').textContent=reference?'B − A: '+fmt(metric-reference.metric)+(mode==='lap'?' s de tempo de volta':mode==='ers'?' MJ recuperados':' MJ de arrasto na configuração 1'):'Calcule e fixe um resultado para comparar.';
+  $('#comparison').textContent=reference?'B − A: '+fmt(metric-reference.metric)+(mode==='lap'?' s de tempo de volta':mode==='ers'?' MJ recuperados':' MJ de arrasto com política ativa'):'Calcule e fixe um resultado para comparar.';
   status('Cálculo concluído. Resultados estimados; parâmetros e origem incluídos no relatório.');
  }catch(e){clear();status(e.message);}
 }

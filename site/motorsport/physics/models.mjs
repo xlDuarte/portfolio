@@ -77,3 +77,20 @@ export function wingCAD(p){
  'module wing(angle){rotate([angle,0,0]) rotate([90,0,90]) linear_extrude(height=span,center=true) polygon(points);}\n'+
  'wing('+p.front_deg+'); translate([0,3,0.5]) wing('+p.rear_deg+');\n';
 }
+
+export function activeAero(rows,p,configs){
+ positive(p.switch_kmh,'Velocidade de ativação');nonnegative(p.hysteresis_kmh,'Histerese');
+ if(p.hysteresis_kmh>=p.switch_kmh)throw Error('Histerese deve ser menor que a velocidade de ativação.');
+ const cases=aero(rows,p,configs),low=cases.reduce((a,b)=>b.cd<a.cd?b:a),high=cases.reduce((a,b)=>b.cl_down>a.cl_down?b:a);
+ let open=false,switches=0,energy=0;
+ const profile=rows.map((r,i)=>{
+  const prior=open;
+  if(r.brake||r.speed_kmh<p.switch_kmh-p.hysteresis_kmh)open=false;
+  else if(r.speed_kmh>=p.switch_kmh)open=true;
+  if(i&&prior!==open)switches++;
+  const c=open?low:high,x=c.profile[i],v={...x,low_drag:open?1:0,front_deg:c.front_deg,rear_deg:c.rear_deg};
+  return v;
+ });
+ for(let i=1;i<profile.length;i++)energy+=(profile[i].drag_power_kw+profile[i-1].drag_power_kw)/2*(rows[i].time_s-rows[i-1].time_s)/1000;
+ return {drag_energy_mj:energy,switches,profile,policy:'min Cd above threshold, max Cl_down with brake or below threshold minus hysteresis; instantaneous commanded states, not FIA logic'};
+}
