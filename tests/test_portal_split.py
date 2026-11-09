@@ -78,10 +78,12 @@ class TestPortfolioPortalSplit(unittest.TestCase):
         self.assertIn('function setupTimeline()',js)
         self.assertIn('function setupLenis()',js)
         self.assertIn('function spring(',js)
-        self.assertEqual(html.count('class="history"'),7)
+        self.assertEqual(html.count('class="history"'),10)
 
     def test_internal_portal_targets_exist(self):
-        targets=('f1-models/index.html','cases/motorsport/index.html','cases/index.html')
+        targets=('f1-models/index.html','cases/motorsport/index.html','cases/index.html',
+                 'motorsport/active-aero/index.html','motorsport/energy-recovery/index.html',
+                 'motorsport/lap-simulator/index.html')
         for target in targets:
             with self.subTest(target=target):
                 self.assertTrue((SITE/target).is_file())
