@@ -16,9 +16,9 @@ Install Python dependencies:
 python -m pip install -r site/motorsport/physics/requirements.txt
 python site/motorsport/physics/export_fastf1.py 2024 Bahrain Q VER --output fastf1-export
 ```
-Import telemetry.csv for aero/ERS and track.csv for laptime. Preserve provenance.json and identify the session in the UI.
+Import session.json in any of the three labs to load telemetry, derived track and provenance together (aero still requires independent coefficient CSV). Individual telemetry.csv for aero/ERS and track.csv for laptime remain supported. Preserve provenance.json and identify the session in the UI.
 The script selects the fastest accurate timed lap and exports native car samples. It derives track curvature from observed decimetre position, smoothing, arc-length resampling and three-point curvature. The derived geometry is not a surveyed track. Rejects nonclosed traces >100 m; inspect smaller closure seams. Review position-derived.csv and repeat with finer discretization. Telemetry extent may not equal timing-line lap duration.
-No actual FastF1 download was executed during implementation; live provider availability remains an external dependency. No token or private data required.
+Live export attempted on 2026-11-17 using FastF1 3.9.2. Session requests failed and the provider logged missing F1 credentials; no live export was obtained. Provider availability/authentication is an external dependency. Do not enter account credentials in this static website.
 
 ## Aerodynamics
 Import front_deg,rear_deg,cd,cl_down. All coefficients must use the entered reference area and identical force conventions. Positive cl_down means downforce. Drag and downforce are q*A*C with q=rho*v²/2, integrated using observed timestamps. Compare configurations under fixed observed speed; this does not predict lap improvement. Active control chooses minimum Cd above the user threshold, maximum Cl_down during braking or below threshold minus hysteresis. It assumes instantaneous actuation, without FIA permission logic; exports state, angles and forces per sample.
@@ -42,7 +42,7 @@ python -m py_compile site/motorsport/physics/export_fastf1.py
 ```
 Analytical fixtures test energy conservation, empty/full/tiny battery limits, efficiency and input rejection, quadratic aero force, trapezoidal drag work, circular-track analytic time, periodic closure, refinement consistency, grip/downforce monotonic behavior, sensitivity and CAD validation.
 Fixtures are test-only. No claim of vehicle-level or CFD validation.
-Browser UI QA is not available in the current environment; automated model/syntax checks do not replace it.
+Browser QA on 2026-11-17 verified real-session ERS calculation and A/B comparison. Other import paths are covered by contract and concurrency tests; this is not exhaustive end-to-end browser coverage.
 
 ## References
 - https://docs.fastf1.dev/
@@ -50,3 +50,8 @@ Browser UI QA is not available in the current environment; automated model/synta
 - https://openf1.org/
 - https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/
 - https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/lift-equation/
+
+## Import and comparison improvements (2026-11-17)
+Independent request generations prevent telemetry and coefficient/track imports from cancelling one another. Superseded requests cannot commit stale results. Versioned session.json validates schema, timing, brake flags, metadata and segment geometry before adoption. Original session metadata is retained in exported analysis reports. Replacing input clears comparison A; parameter changes preserve A and invalidate stale B. ERS SoC and active-aero load graphs overlay the reference. Buttons reset parameters or clear reference; tables show Portuguese names and units.
+
+Run `node tests/f1_session_checks.mjs` for input contract and request isolation checks.

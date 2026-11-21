@@ -77,7 +77,11 @@ def export(args):
         "notes": "Telemetry samples do not necessarily cover exact timing-line boundaries. No proprietary aero, battery or MGU-K channels available. Validate track and repeat discretization study."
     }
     (out/"provenance.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-    print("Exported telemetry.csv, track.csv, position-derived.csv, provenance.json to", out)
+    bundle = {"schema": "f1-physics-session/v1", "provenance": metadata,
+              "telemetry": telemetry.to_dict(orient="records"),
+              "track": track.to_dict(orient="records")}
+    (out/"session.json").write_text(json.dumps(bundle, allow_nan=False), encoding="utf-8")
+    print("Exported session.json, telemetry.csv, track.csv, position-derived.csv, provenance.json to", out)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
