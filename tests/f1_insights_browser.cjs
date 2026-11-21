@@ -22,7 +22,7 @@ const {spawn}=require('node:child_process');
   await page.locator('nav a[href="#live"]').click();
   await page.route('https://api.openf1.org/**',route=>route.fulfill({status:401,body:'{}'}));await page.locator('#refresh').click();await page.waitForFunction(()=>document.querySelector('#live-result').textContent.includes('indisponível'));assert.match(await page.locator('#status').textContent(),/401/);
   await page.locator('#historical').click();assert.match(await page.locator('#live-result').textContent(),/Histórico/);
-  await page.setViewportSize({width:390,height:844});for(const id of ['corners','podium','championship','live','trajectory']){await page.locator(`nav a[href="#${id}"]`).click();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${id}`);}
+  await page.setViewportSize({width:390,height:844});for(const id of ['corners','podium','championship','live','trajectory']){await page.locator(`nav a[href="#${id}"]`).click();const overflow=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1&&!e.closest('.table')).map(e=>({tag:e.tagName,id:e.id,width:e.getBoundingClientRect().width,text:e.textContent.slice(0,80)})));if(overflow.length)console.log('Overflow candidates',id,overflow);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${id}`);}
   assert.deepEqual(errors,[]);console.log('Passed: five panels, real data initialization, CSV import/reset, championship edits, optimizer/export, API error/no fallback, mobile widths.');
  }finally{await browser?.close();server.kill();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
