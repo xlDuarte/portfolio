@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'site/motorsport/**'
+      - 'tests/f1_insights_checks.mjs'
       - 'tests/f1_physics_checks.mjs'
       - 'tests/f1_session_checks.mjs'
       - '.github/workflows/f1-physics.yml'
@@ -10,6 +11,8 @@ on:
     branches: [main]
     paths:
       - 'site/motorsport/physics/**'
+      - 'site/motorsport/insights/**'
+      - 'tests/f1_insights_checks.mjs'
       - 'tests/f1_physics_checks.mjs'
       - 'tests/f1_session_checks.mjs'
       - '.github/workflows/f1-physics.yml'
@@ -26,6 +29,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: F1 Insights contracts
+        run: node tests/f1_insights_checks.mjs
+      - name: F1 Insights syntax
+        run: |
+          node --check site/motorsport/insights/app.mjs
+          python -m py_compile site/motorsport/insights/export_fastf1.py
       - name: Physics invariants
         run: node tests/f1_physics_checks.mjs
       - name: Session import contracts
@@ -34,3 +43,9 @@ jobs:
         run: node --check site/motorsport/physics/app.mjs
       - name: Python syntax
         run: python -m py_compile site/motorsport/physics/export_fastf1.py
+
+      - name: Browser interaction checks
+        run: |
+          npm install --prefix /tmp/insights-browser playwright
+          /tmp/insights-browser/node_modules/.bin/playwright install --with-deps chromium
+          NODE_PATH=/tmp/insights-browser/node_modules node tests/f1_insights_browser.cjs
