@@ -5,6 +5,7 @@ Default bootstrap localhost:19092 (Redpanda docker compose external listener).
 No fake success when Kafka is offline; errors propagate to the caller.
 """
 from __future__ import annotations
+from contextlib import closing
 import argparse
 import json
 from .engine import generate,connect,ingest,read_events
@@ -39,7 +40,7 @@ def consume(db_path:str,bootstrap:str="localhost:19092",topic:str=TOPIC,
     processed=0
     inserted=0
     try:
-        with connect(db_path) as db:
+        with closing(connect(db_path)) as db:
             for message in consumer:
                 summary=ingest(db,[message.value])
                 inserted+=summary["inserted"]

@@ -16,7 +16,7 @@ Estimated occupational risk-prevention and incident costs for hypothetical plant
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/025-occupational-safety-cost-prediction/main.py
 python -m regression_batch.engine 25 --save
 ```

@@ -18,7 +18,7 @@ This directory replaces ten numeric telemetry stubs with **actual text processin
 ## Reproducible execution
 
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python -m unittest discover -s tests -p 'test_nlp_batch.py' -v
 python -m nlp_batch.engine 41 --text "Falha repetida na garantia"
 python -m nlp_batch.engine 43 --text "O comunicado fictício LOG-17 proíbe remessas de aço em junho."

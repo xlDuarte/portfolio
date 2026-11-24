@@ -1,5 +1,6 @@
 """Integration tests of ten actual synthetic stream/ML/SQL projects."""
 from __future__ import annotations
+from contextlib import closing
 import json
 import sqlite3
 import subprocess
@@ -74,7 +75,7 @@ class TestAdvancedBatch(unittest.TestCase):
 
     def test_event_schema_checks_and_idempotency(self):
         rows=e.generate(91,24)
-        with e.connect() as conn:
+        with closing(e.connect()) as conn:
             first=e.ingest(conn,rows)
             second=e.ingest(conn,rows)
             self.assertEqual(first["inserted"],24)

@@ -22,7 +22,7 @@
 Requirements for the core:
 \`\`\`bash
 sudo apt-get install -y tesseract-ocr
-python -m pip install -r requirements-vision.txt
+python -m pip install -r requirements/vision.txt
 python -m unittest discover -s tests -p test_vision_batch.py -v
 python -m vision_batch.engine 75 --save
 python -m vision_batch.engine 79 --save
@@ -30,7 +30,7 @@ python -m vision_batch.engine 79 --save
 
 To verify both deep learning frameworks:
 \`\`\`bash
-python -m pip install --no-cache-dir -r requirements-vision-deep.txt
+python -m pip install --no-cache-dir -r requirements/vision-deep.txt
 python -m pip install --no-cache-dir 'torch==2.5.1+cpu' --index-url https://download.pytorch.org/whl/cpu
 python -m unittest discover -s tests -p test_vision_deep.py -v
 python -m vision_batch.engine 71 --deep --save

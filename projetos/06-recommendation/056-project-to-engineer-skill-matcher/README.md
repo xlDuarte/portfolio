@@ -9,7 +9,7 @@ Correspondência transparente entre competências solicitadas e perfis profissio
 
 ## Execução
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/056-project-to-engineer-skill-matcher/main.py --query "python sql industrial data" --save
 python -m streamlit run projetos/06-recommendation/056-project-to-engineer-skill-matcher/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

@@ -180,9 +180,21 @@ def validate_tables(tables:dict[str,pd.DataFrame])->None:
         raise ValueError("Impossible OEE inputs")
     if (tables["fact_procurement"].quantity<=0).any():raise ValueError("Invalid PO quantity")
 
+class ClosingConnection(sqlite3.Connection):
+    """sqlite3 connection whose ``with`` block commits/rolls back *and* closes.
+
+    The stock connection context manager only ends the transaction, which left
+    connections open (ResourceWarning) after every ``with connect(...)`` block.
+    """
+    def __exit__(self,exc_type,exc,tb):
+        try:
+            return super().__exit__(exc_type,exc,tb)
+        finally:
+            self.close()
+
 def open_sqlite(tables:dict[str,pd.DataFrame])->sqlite3.Connection:
     validate_tables(tables)
-    conn=sqlite3.connect(":memory:")
+    conn=sqlite3.connect(":memory:",factory=ClosingConnection)
     for name,frame in tables.items():
         frame.to_sql(name,conn,index=False,if_exists="replace")
     return conn

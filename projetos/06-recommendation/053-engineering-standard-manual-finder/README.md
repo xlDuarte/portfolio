@@ -11,7 +11,7 @@ Documentos técnicos fictícios, revisões e permissões; retorna apenas registr
 
 ## Executar
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/053-engineering-standard-manual-finder/main.py --query "inspeção de solda e qualidade" --save
 python -m streamlit run projetos/06-recommendation/053-engineering-standard-manual-finder/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

@@ -11,7 +11,7 @@ Conciliação entre faturamento líquido e lançamentos fictícios do razão; ap
 
 ## Instalação e execução
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/088-industrial-billing-revenue-projection/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v

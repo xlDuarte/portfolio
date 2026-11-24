@@ -1,10 +1,10 @@
 name: Vision projects 071–080 verification
 on:
   pull_request:
-    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements-vision*.txt','.github/workflows/vision-batch.yml','site/cases/vision/**']
+    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements/vision*.txt','.github/workflows/vision-batch.yml','site/cases/vision/**']
   push:
     branches: [main,batch-071-080-industrial-computer-vision]
-    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements-vision*.txt','.github/workflows/vision-batch.yml']
+    paths: ['vision_batch/**','projetos/08-vision/**','tests/test_vision_batch.py','tests/test_vision_deep.py','requirements/vision*.txt','.github/workflows/vision-batch.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
-      - run: python -m pip install -r requirements-vision.txt
+      - run: python -m pip install -r requirements/vision.txt
       - run: python -m compileall -q vision_batch projetos/08-vision tests/test_vision_batch.py
       - run: python -m unittest discover -s tests -p test_vision_batch.py -v
       - run: |
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: |
-          python -m pip install --no-cache-dir -r requirements-vision-deep.txt
+          python -m pip install --no-cache-dir -r requirements/vision-deep.txt
           python -m pip install --no-cache-dir 'torch==2.5.1+cpu' --index-url https://download.pytorch.org/whl/cpu
       - name: Fit and test TensorFlow and PyTorch CNNs
         run: RUN_VISION_DEEP=1 python -m unittest discover -s tests -p test_vision_deep.py -v

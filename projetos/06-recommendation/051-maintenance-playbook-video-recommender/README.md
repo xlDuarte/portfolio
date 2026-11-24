@@ -11,7 +11,7 @@ Playbooks e vídeos ranqueados por TF-IDF e similaridade cosseno; exclusão de d
 
 ## Executar
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/051-maintenance-playbook-video-recommender/main.py --query "vibração em bomba hidráulica rolamento" --save
 python -m streamlit run projetos/06-recommendation/051-maintenance-playbook-video-recommender/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

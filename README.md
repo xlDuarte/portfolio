@@ -1,83 +1,74 @@
-# Automotive & Industrial Engineering Lab
+# Gabriel Reis Duarte — portfólio de dados e engenharia
 
-**Portfólio técnico de Data Analytics, Machine Learning, Business Intelligence, Engenharia Industrial e Motorsport.**
+Dados, software e engenharia aplicados a dois nichos: **operação industrial** e **automobilismo de desempenho** (Fórmula 1 e Porsche Cup).
 
-[Explorar o portfólio web](https://xlduarte.github.io/portfolio/) · [111 projetos](PROJECT_CATALOG.md) · [Auditoria de tecnologias](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) · [Como executar](docs/GETTING_STARTED.md)
+**Site:** [gabriel-automotive-industrial-lab.vercel.app](https://gabriel-automotive-industrial-lab.vercel.app) · [LinkedIn](https://www.linkedin.com/in/gabrielrduarte) · [Como executar](docs/GETTING_STARTED.md)
 
-[![CI integrado — 111 projetos](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml/badge.svg?branch=main)](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml)
-[Releases](https://github.com/xlDuarte/portfolio/releases) · [Packages](https://github.com/xlDuarte?tab=packages)
+[![CI](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml/badge.svg?branch=main)](https://github.com/xlDuarte/portfolio/actions/workflows/ci-and-pages.yml)
 
-**Autor:** Gabriel Reis Duarte · [LinkedIn](https://www.linkedin.com/in/gabrielrduarte) · [GitHub](https://github.com/xlDuarte)
+## Como o portfólio está organizado
 
-> **Transparência técnica:** os conjuntos de dados, sensores, corridas, documentos e fluxos operacionais demonstrados no portfólio são **sintéticos ou de teste**, salvo indicação e proveniência verificável em um projeto específico. Os testes automatizados demonstram execução de código em ambiente controlado, **não desempenho operacional ou integração com SAP, Ariba, MES, Power BI Desktop ou telemetria oficial da F1**. O projeto **#111 (F1 Predictive Intelligence Platform)** permanece parcialmente implementado. Este repositório **não está homologado 100/100**.
+| Seção | O que tem | Dados |
+|---|---|---|
+| [Industrial](https://gabriel-automotive-industrial-lab.vercel.app/industrial/) | 5 estudos de caso completos (OEE ponderado, OTIF, CAPEX, previsão de demanda, churn) e um catálogo de 100 exercícios técnicos por técnica (#001–#100) | Sintéticos, com semente fixa |
+| [Automotivo › Fórmula 1](https://gabriel-automotive-industrial-lab.vercel.app/automotivo/f1/) | Modelos e probabilidades de corrida, estratégia de pneus, telemetria com filtro de Kalman, replay, direção de prova e laboratórios de aerodinâmica, energia e tempo de volta | **Reais e públicos** (OpenF1, FastF1, Jolpica) |
+| [Automotivo › Porsche Cup](https://gabriel-automotive-industrial-lab.vercel.app/automotivo/porsche/) | Laboratório de engenharia: carga por roda, temperatura de pneus, dinâmica veicular | Aquisição importada pelo usuário |
+| [Laboratório comum](https://gabriel-automotive-industrial-lab.vercel.app/laboratorio/) | Visão computacional, vibração (LSTM), inspeção radiográfica (CNN + Grad-CAM), MLOps (MLflow + FastAPI), explicabilidade (SHAP) — técnicas que servem aos dois nichos | Sintéticos ou importados |
 
-## Visão geral
+## Por onde começar
 
-O repositório contém **111 projetos numerados** e organizados em 11 áreas. Os casos trazem, conforme o projeto, scripts Python, consultas SQL, modelos treinados, dados reprodutíveis, testes automatizados, métricas de avaliação, demonstrações HTML, APIs locais e interfaces Streamlit.
+- **Industrial:** [OEE ponderado](https://gabriel-automotive-industrial-lab.vercel.app/cases/oee/) e [OTIF e ruptura](https://gabriel-automotive-industrial-lab.vercel.app/cases/supply/) — código em [`case_studies/`](case_studies/).
+- **Fórmula 1:** [modelos e probabilidades](https://gabriel-automotive-industrial-lab.vercel.app/motorsport/f1-pip/) — treino em [`scripts/train_f1_real.py`](scripts/train_f1_real.py), oito modelos com validação temporal.
+- **Porsche Cup:** [laboratório de engenharia](https://gabriel-automotive-industrial-lab.vercel.app/cases/motorsport/110/) — código em [`site/motorsport/porsche/`](site/motorsport/porsche/).
 
-| Área | IDs | Evidência principal | Acesso |
-|---|---|---|---|
-| Análise de dados industrial | #001–#010 | Pandas, notebooks e métricas descritivas | [Catálogo](PROJECT_CATALOG.md) |
-| Análise exploratória | #011–#020 | EDA, Pandas, gráficos, SQL | [Casos](site/cases/eda/index.html) |
-| Regressão | #021–#030 | Scikit-learn, XGBoost, MAE/R² | [Casos](site/cases/regression/index.html) |
-| Classificação | #031–#040 | Treino e separação treino/calibração/teste | [Casos](site/cases/classification/index.html) |
-| NLP industrial | #041–#050 | NLP, modelos de texto e avaliação | [Casos](site/cases/nlp/index.html) |
-| Recomendação | #051–#060 | Ranking e recomendadores demonstrativos | [Casos](site/cases/recommendation/index.html) |
-| Séries temporais | #061–#070 | Backtesting e modelos temporais | [Casos](site/cases/timeseries/index.html) |
-| Visão computacional | #071–#080 | OpenCV, OCR e CNNs em imagens artificiais | [Casos](site/cases/vision/index.html) |
-| BI e finanças | #081–#090 | SQL SQLite, indicadores e modelos | [Casos](site/cases/business/index.html) |
-| Sistemas industriais | #091–#100 | FastAPI, SQLite, Kafka/Redpanda de teste | [Casos](site/cases/advanced/index.html) |
-| Motorsport e MLOps | #101–#111 | EKF, simuladores, MLflow, LSTM, Grad-CAM, SHAP; #111 parcial | [Casos](site/cases/motorsport/index.html) |
+## Transparência
 
-**Importante:** as tecnologias na tabela se referem às **demonstrações identificadas**, não à utilização de todas elas em cada projeto. Consulte a [matriz individual de evidências](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) antes de utilizar os exemplos como comprovação de habilidades.
+- Projetos industriais usam bases **sintéticas** porque dados de fábrica são confidenciais. Nenhum projeto usa dado de empresa onde o autor trabalhou.
+- Os 100 projetos do catálogo industrial são **exercícios curtos**: rodam de verdade e têm teste, mas compartilham um motor de cálculo por técnica. Os estudos de caso e os projetos de F1 são os trabalhos mais profundos.
+- Os testes provam que o código faz o que diz; **não** provam desempenho em dados corporativos, operação segura de equipamentos ou ganho financeiro. A [matriz de evidências](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) separa, projeto a projeto, o que foi feito do que não foi.
+- Projeto independente, sem vínculo com Fórmula 1, FIA, Porsche ou equipes.
 
-## Projetos em destaque
+## Executar localmente
 
-- **[#101 — Estratégia de corrida e pit-stops](projetos/11-motorsport-f1-mlops/101-f1-predictive-race-strategy-pit-stop-window-simulator/)** — simulador de stints e comparação de regressões XGBoost/Random Forest em voltas artificiais.
-- **[#104 — Detecção temporal com LSTM](projetos/11-motorsport-f1-mlops/104-mechanical-vibration-time-series-anomaly-detection-lstm-vs-baseline/)** — autoencoder TensorFlow treinado e baseline RMS em sinais fictícios.
-- **[#105 — CNN e Grad-CAM](projetos/11-motorsport-f1-mlops/105-industrial-x-ray-ndt-defect-detection-with-cnn-grad-cam/)** — classificação de radiografias geradas e explicações visuais, não validação NDT real.
-- **[#106 — MLOps com MLflow e FastAPI](projetos/11-motorsport-f1-mlops/106-end-to-end-mlops-pipeline-with-mlflow-docker-fastapi/)** — tracking local, artefatos recarregáveis e serviço de demonstração.
-- **[#109 — Replay de telemetria sintética](projetos/11-motorsport-f1-mlops/109-f1-telemetry-race-replay-live-gps-track-position-engine-built-from-scratch/)** — simulação e interface Plotly; não é GPS real nem live timing.
-- **[#110 — Engenharia de performance](projetos/11-motorsport-f1-mlops/110-complete-motorsport-performance-engineering-suite-tire-physics-flir-setup-hh-timing-laptime-sim/)** — física aproximada de pneus, mapa térmico simulado e análise de amortecedores; não usa FLIR nem ChassisSim.
-
-## Reproduzir a auditoria
-
-Requer Python 3.11. Use ambiente virtual e instale dependências conforme o caso escolhido. Evite instalar simultaneamente TensorFlow, PyTorch e MLflow quando não forem necessários.
+Requer Python 3.11. Instale só o domínio que for usar ([lista de dependências](requirements/)).
 
 ```bash
-python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -r requirements-integration.txt
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements/integration.txt
 python scripts/audit_integrated_portfolio.py --check
 python -m unittest discover -s tests -v
 ```
 
-Para trabalhos mais rápidos, veja [instalação por domínio](docs/GETTING_STARTED.md). Os treinos de CNNs, os testes de Kafka e os pipelines MLOps mais pesados têm workflows específicos.
+O site é estático e fica em [`site/`](site/). Depois de alterar páginas ou dados, regenere:
 
-## Publicação e distribuição
+```bash
+python -m pip install -r requirements/site.txt
+python scripts/build_site.py        # hubs, páginas de projeto, sitemap, vercel.json
+```
 
-O **GitHub Pages** publica somente a versão estática construída a partir de `site/`; as APIs FastAPI, o Streamlit e os modelos **não rodam dentro do Pages**. O script `scripts/prepare_pages.py` corrige caminhos para `/portfolio/`, gera sitemap, metadados, `.nojekyll` e página 404. Consulte [como publicar](docs/DEPLOYMENT.md).
+O CI falha se `site/` não corresponder ao resultado do build.
 
-As **releases** são prévias técnicas versionadas, não lançamentos de software industrial certificado. Após CI verde na `main`, um workflow pode criar a primeira pré-release e publicar contêineres demonstrativos no GitHub Container Registry, de acordo com as permissões disponíveis. Consulte [política de versões](docs/RELEASES.md) e [pacotes e contêineres](docs/PACKAGES.md).
+## Estrutura
 
-## Qualidade, escopo e governança
+```
+site/                 site estático publicado na Vercel (design system em site/assets/ds.css)
+scripts/              build do site (build_site.py, site_data.py), auditoria, treino F1
+projetos/             111 pontos de entrada numerados (#001–#111), um README cada
+*_batch/              motores de cálculo por técnica (regressão, NLP, visão, BI…)
+case_studies/         estudos de caso industriais completos
+f1-predictive-intelligence/   pipeline de treino walk-forward do projeto #111
+tests/                suíte automatizada (Python + Node)
+docs/                 guias e relatórios históricos de auditoria (docs/reports/)
+```
 
-O que os testes demonstram: estrutura do catálogo, execução de algoritmos nas fixtures, contratos locais de API/SQL, treinamento sintético e regressões. O que **não** demonstram: eficácia em dados corporativos, operação segura de equipamentos, conformidade regulatória, direitos de uso de telemetria real ou benefícios econômicos observados.
+## Publicação
 
-- [Auditoria integrada](INTEGRATION_AUDIT.md) · [Matriz de lacunas por projeto](TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv) · [Roadmap de limitações](QUALITY_ROADMAP.md)
-- [Guia de contribuição](CONTRIBUTING.md) · [Política de segurança](SECURITY.md) · [Histórico de versões](CHANGELOG.md)
-- [Catálogo completo de 111 projetos](PROJECT_CATALOG.md)
+A Vercel publica `site/` como endereço oficial (`vercel.json` define redirecionamentos das URLs antigas e cabeçalhos de segurança). O GitHub Pages continua ativo apenas para redirecionar links antigos para a Vercel — veja [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
-## Contato
+## Qualidade e governança
 
-**Gabriel Reis Duarte** · [LinkedIn](https://www.linkedin.com/in/gabrielrduarte) · [GitHub](https://github.com/xlDuarte)
+[Auditoria integrada](INTEGRATION_AUDIT.md) · [Roadmap de limitações](QUALITY_ROADMAP.md) · [Catálogo dos 111 projetos](PROJECT_CATALOG.md) · [Contribuição](CONTRIBUTING.md) · [Segurança](SECURITY.md) · [Histórico](CHANGELOG.md)
 
-Este repositório não publica arquivos de fonte proprietária, credenciais ou dados reais de empresas. **Nenhuma licença de reutilização foi concedida automaticamente**; consulte as condições aplicáveis antes de redistribuir o código.
+## Licença
 
-
-## F1 (modelos treinados) e Power BI (artefatos de projeto) — 22/10/2026
-
-- [Pesquisa F1: oito modelos realmente ajustados sobre corridas sintéticas](f1-predictive-intelligence/ml/training/README.md) · [Resultados estáticos](site/f1-models/index.html) · [Pipeline](f1-predictive-intelligence/ml/training/trained_pipeline.py). A API treinada está disponível por `WalkForwardPredictionEngine.predict_event_trained(...)` e não substitui o motor heurístico legado. **Não há validação F1 oficial ou serviço ao vivo.**
-- [Power BI PBIP Industrial Operations](powerbi-industrial/README.md): modelo Import, 16 medidas DAX e quatro cartões no arquivo-fonte. O projeto ainda **não foi aberto, processado ou homologado no Power BI Desktop/Tabular Engine**.
-- [Testes e pendências de homologação](F1_POWERBI_VALIDATION_2026-10-22.md). A suíte adicionada executa `tests/test_f1_trained_pipeline.py` e `tests/test_powerbi_semantic_model.py`.
+Código sob [licença MIT](LICENSE). A fonte Archivo é distribuída sob a [SIL Open Font License](site/assets/fonts/OFL.txt). Fotos do autor não estão incluídas na licença MIT.

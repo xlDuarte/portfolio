@@ -3,7 +3,7 @@
 This research implementation **trains the eight named algorithms**, four of which use external estimators (Ridge, RandomForest, GradientBoosting, XGBoost, LightGBM and CatBoost models plus two baselines). It does **not** transform synthetic tests into real-world F1 validation.
 
 ```bash
-pip install -r requirements-f1-research.txt
+pip install -r requirements/f1-research.txt
 python f1-predictive-intelligence/ml/training/trained_pipeline.py --synthetic-demo --output f1_synthetic_evaluation.json
 ```
 

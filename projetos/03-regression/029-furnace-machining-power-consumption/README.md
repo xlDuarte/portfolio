@@ -16,7 +16,7 @@ Forecast daily electrical consumption from production plans, ambient temperature
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/029-furnace-machining-power-consumption/main.py
 python -m regression_batch.engine 29 --save
 ```

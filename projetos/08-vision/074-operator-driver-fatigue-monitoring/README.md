@@ -10,7 +10,7 @@ Indicador PERCLOS de abertura ocular em desenhos, sem inferir fadiga real.
 ## Execução
 ```bash
 sudo apt-get install -y tesseract-ocr
-python -m pip install -r requirements-vision.txt
+python -m pip install -r requirements/vision.txt
 python projetos/08-vision/074-operator-driver-fatigue-monitoring/main.py --save
 python -m unittest discover -s tests -p test_vision_batch.py -v
 ```

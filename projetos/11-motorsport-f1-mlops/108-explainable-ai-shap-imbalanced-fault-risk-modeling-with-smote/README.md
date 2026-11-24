@@ -3,8 +3,8 @@
 ## Execução comprovável
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
-python -m pip install -r requirements-motorsport-advanced.txt
+python -m pip install -r requirements/motorsport-core.txt
+python -m pip install -r requirements/motorsport-advanced.txt
 python projetos/11-motorsport-f1-mlops/108-explainable-ai-shap-imbalanced-fault-risk-modeling-with-smote/main.py --run
 ```
 

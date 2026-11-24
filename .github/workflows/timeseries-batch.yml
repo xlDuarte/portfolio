@@ -6,7 +6,7 @@ on:
       - 'timeseries_batch/**'
       - 'projetos/07-timeseries/**'
       - 'tests/test_timeseries_batch.py'
-      - 'requirements-timeseries.txt'
+      - 'requirements/timeseries.txt'
       - '.github/workflows/timeseries-batch.yml'
       - 'site/cases/timeseries/**'
   push:
@@ -15,7 +15,7 @@ on:
       - 'timeseries_batch/**'
       - 'projetos/07-timeseries/**'
       - 'tests/test_timeseries_batch.py'
-      - 'requirements-timeseries.txt'
+      - 'requirements/timeseries.txt'
       - '.github/workflows/timeseries-batch.yml'
   workflow_dispatch:
 
@@ -35,9 +35,9 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements-timeseries.txt
+          cache-dependency-path: requirements/timeseries.txt
       - name: Install forecasting dependencies
-        run: python -m pip install -r requirements-timeseries.txt
+        run: python -m pip install -r requirements/timeseries.txt
       - name: Compile forecasting and project scripts
         run: python -m compileall -q timeseries_batch projetos/07-timeseries tests/test_timeseries_batch.py
       - name: Validate backtests, models, leakage, outputs

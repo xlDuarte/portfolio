@@ -5,7 +5,7 @@
 Este projeto carrega explicitamente as variáveis numéricas `monthly_orders`, `late_shipments`, `support_tickets`, `tenure_months`, `price_change_pct` e a variável categórica `contract_segment`. Usa Pandas/NumPy, StandardScaler e OneHotEncoder, Scikit-learn LogisticRegression, HistGradientBoostingClassifier e DummyClassifier. O código aplica divisão treino/calibração/teste 60/20/20, seleciona o limiar na calibração e calcula ROC-AUC, F1, average precision, Brier e matriz de confusão no teste.
 
 ```bash
-python -m pip install -r requirements-classification.txt
+python -m pip install -r requirements/classification.txt
 python projetos/04-classification/031-b2b-industrial-contract-churn-prediction/main.py
 python -m unittest discover -s tests -p test_classification_batch.py -v
 ```

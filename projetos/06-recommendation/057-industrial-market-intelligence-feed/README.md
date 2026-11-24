@@ -9,7 +9,7 @@ Feed de inteligência industrial baseado em notícias fictícias versionadas, co
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/057-industrial-market-intelligence-feed/main.py --query "steel logistics energy" --save
 python -m streamlit run projetos/06-recommendation/057-industrial-market-intelligence-feed/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

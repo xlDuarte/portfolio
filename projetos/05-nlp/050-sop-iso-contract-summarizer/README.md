@@ -7,7 +7,7 @@
 
 ## Execução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/050-sop-iso-contract-summarizer/main.py --text-file nlp_batch/examples/sop.txt --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

@@ -34,7 +34,7 @@ A estratégia usa efeitos de piloto, composto, idade e volta. Associação de vo
 ## Reprodução
 
 ```bash
-python -m pip install -r requirements-real-f1.txt
+python -m pip install -r requirements/real-f1.txt
 python scripts/collect_f1_real.py
 python scripts/fit_f1_strategy.py
 python scripts/train_f1_real.py

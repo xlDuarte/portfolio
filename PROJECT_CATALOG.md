@@ -131,7 +131,7 @@ Este é o catálogo detalhado preservado da versão original do README, com link
 - **Pipeline:** `Dados SAP/ERP -> Modelagem DAX -> Dashboard BI -> Decisão ROI`
 
   - **[#081 — Predição de Lifetime Value (LTV) de Contas Industriais](./projetos/09-business/081-b2b-account-lifetime-value-ltv/)** (*B2B Account Lifetime Value (LTV)* | Ref: `81 Customer Lifetime Value Prediction`)
-  - **[#082 — Dashboard Executivo de OEE, Cotas e Performance (Gerdau)](./projetos/09-business/082-executive-oee-commercial-bi-dashboard/)** (*Executive OEE & Commercial BI Dashboard* | Ref: `82 Sales Dashboard & Insights`)
+  - **[#082 — Dashboard Executivo de OEE, Cotas e Performance](./projetos/09-business/082-executive-oee-commercial-bi-dashboard/)** (*Executive OEE & Commercial BI Dashboard* | Ref: `82 Sales Dashboard & Insights`)
   - **[#083 — Análise de Retorno de Iniciativas Comerciais e Feiras B2B](./projetos/09-business/083-b2b-commercial-campaign-roi-analysis/)** (*B2B Commercial Campaign ROI Analysis* | Ref: `83 Marketing Campaign Analysis`)
   - **[#084 — Segmentação ABC/RFM de Fornecedores e Clientes](./projetos/09-business/084-supplier-client-abc-rfm-segmentation/)** (*Supplier & Client ABC/RFM Segmentation* | Ref: `84 Customer Segmentation`)
   - **[#085 — Auditoria Contínua de Pagamentos e Conformidade SOX](./projetos/09-business/085-sox-payment-audit-anomaly-detection/)** (*SOX Payment Audit & Anomaly Detection* | Ref: `85 Credit Card Fraud Detection`)

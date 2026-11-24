@@ -11,7 +11,7 @@ Classificação de textos de ordens SAP PM nas disciplinas mecânica, elétrica,
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/044-sap-pm-work-order-topic-classifier/main.py --text "Rolamento apresenta vibração mecânica anormal" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

@@ -6,7 +6,7 @@ on:
       - 'recommendation_batch/**'
       - 'projetos/06-recommendation/**'
       - 'tests/test_recommendation_batch.py'
-      - 'requirements-recommendation.txt'
+      - 'requirements/recommendation.txt'
       - '.github/workflows/recommendation-batch.yml'
       - 'site/cases/recommendation/**'
   push:
@@ -15,7 +15,7 @@ on:
       - 'recommendation_batch/**'
       - 'projetos/06-recommendation/**'
       - 'tests/test_recommendation_batch.py'
-      - 'requirements-recommendation.txt'
+      - 'requirements/recommendation.txt'
       - '.github/workflows/recommendation-batch.yml'
   workflow_dispatch:
 
@@ -35,9 +35,9 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements-recommendation.txt
+          cache-dependency-path: requirements/recommendation.txt
       - name: Install actual analytics and UI dependencies
-        run: python -m pip install -r requirements-recommendation.txt
+        run: python -m pip install -r requirements/recommendation.txt
       - name: Compile all 10 recommendation projects and source
         run: python -m compileall -q recommendation_batch projetos/06-recommendation tests/test_recommendation_batch.py
       - name: Validate business rules and genuine recommender outputs

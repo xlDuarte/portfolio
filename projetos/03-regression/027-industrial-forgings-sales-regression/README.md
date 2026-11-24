@@ -16,7 +16,7 @@ One-step-ahead daily forgings demand forecast using lagged sales and announced p
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/027-industrial-forgings-sales-regression/main.py
 python -m regression_batch.engine 27 --save
 ```

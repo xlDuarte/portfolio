@@ -34,7 +34,7 @@ All ten projects run **Pandas, NumPy, Statsmodels ExponentialSmoothing (ETS), Me
 ## Commands
 
 \`\`\`bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python -m unittest discover -s tests -p test_timeseries_batch.py -v
 
 # Run one case (unseen holdout).

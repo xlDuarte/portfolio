@@ -19,6 +19,6 @@ Testes: `python -m unittest discover -s tests -v` e notebooks Jupyter com `nbcli
 - Cinco HTMLs principais: JavaScript passou em `node --check`.
 - A execução de testes E2E do navegador não foi possível: Chromium não está instalado no Playwright do ambiente.
 - Interatividade Plotly utiliza CDN, mantendo SVG estático como fallback disponível na mesma página.
-- GitHub CI precisa instalar requirements-eda.txt; workflow atualizado.
+- GitHub CI precisa instalar requirements/eda.txt; workflow atualizado.
 
 **Estado de aceite:** aplicação demonstrativa e cálculo sintético reproduzível. Ainda não há verificação com dados reais, métricas de negócio observadas ou validação E2E em navegador.

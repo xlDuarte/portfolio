@@ -4,6 +4,7 @@ No live SAP/OT, real hiring decisions, production control commands, certified
 safety alerts, Kafka availability or deployed Power BI workspace is claimed.
 """
 from __future__ import annotations
+from contextlib import closing
 import json
 import sqlite3
 from pathlib import Path
@@ -289,7 +290,7 @@ def analyze(project:int,events:list[dict]|None=None)->dict:
                 "human_safety_review_required":True}
     else:
         # Metrics use a SQL aggregation over actual persisted event rows.
-        with connect() as conn:
+        with closing(connect()) as conn:
             ingest(conn,records)
             sql=conn.execute("""
               SELECT json_extract(payload_json, '$.line') AS line,
@@ -333,6 +334,6 @@ def cli(project:int|None=None):
         (ROOT/"reports").mkdir(exist_ok=True)
         (ROOT/"reports"/f"{chosen:03d}.json").write_text(
             json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-        with connect(ROOT/"reports"/f"{chosen:03d}.sqlite3") as db:ingest(db,generated)
+        with closing(connect(ROOT/"reports"/f"{chosen:03d}.sqlite3")) as db:ingest(db,generated)
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=="__main__":cli()

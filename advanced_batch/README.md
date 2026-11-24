@@ -20,7 +20,7 @@
 ## Local use
 
 ```bash
-python -m pip install -r requirements-advanced.txt
+python -m pip install -r requirements/advanced.txt
 python -m unittest discover -s tests -p test_advanced_batch.py -v
 python -m advanced_batch.engine 92 --save
 python -m advanced_batch.engine 100 --save

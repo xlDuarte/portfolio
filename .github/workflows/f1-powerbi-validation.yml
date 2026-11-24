@@ -7,7 +7,7 @@ on:
       - 'powerbi-industrial/**'
       - 'tests/test_f1_trained_pipeline.py'
       - 'tests/test_powerbi_semantic_model.py'
-      - 'requirements-f1-research.txt'
+      - 'requirements/f1-research.txt'
       - '.github/workflows/f1-powerbi-validation.yml'
   pull_request:
     paths:
@@ -15,7 +15,7 @@ on:
       - 'powerbi-industrial/**'
       - 'tests/test_f1_trained_pipeline.py'
       - 'tests/test_powerbi_semantic_model.py'
-      - 'requirements-f1-research.txt'
+      - 'requirements/f1-research.txt'
       - '.github/workflows/f1-powerbi-validation.yml'
   workflow_dispatch:
 permissions:
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pip install --no-cache-dir -r requirements-f1-research.txt
+      - run: python -m pip install --no-cache-dir -r requirements/f1-research.txt
       - run: python -m unittest discover -s tests -p test_f1_trained_pipeline.py -v
       - run: python -m unittest discover -s tests -p test_powerbi_semantic_model.py -v
       - name: Execute full 8-model synthetic fixture

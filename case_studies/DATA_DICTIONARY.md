@@ -10,4 +10,4 @@ Generator: `generate_data.py` using deterministic `random.Random(20261021)`. Thi
 | b2b_churn.csv | hypothetical account | account_id | target = churned_90d (binary), factors use simulated log-odds | labels are simulated; retention causality not proven |
 | demand_daily.csv | material/day | date+material | target = demand_units; evaluation by strictly lagged 7-day mean | artificial seasonality; no exogenous features |
 
-The `requirements-case-studies.txt` is separate from the optional package list for legacy 111 demos. CSV files use UTF-8, ISO-8601 dates, BRL for money (fictional). Define privacy controls and contract permissions when switching to real datasets.
+The `requirements/case-studies.txt` is separate from the optional package list for legacy 111 demos. CSV files use UTF-8, ISO-8601 dates, BRL for money (fictional). Define privacy controls and contract permissions when switching to real datasets.

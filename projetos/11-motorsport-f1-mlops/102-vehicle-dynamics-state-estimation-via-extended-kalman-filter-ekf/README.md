@@ -3,7 +3,7 @@
 ## Como executar a implementação atual
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements/motorsport-core.txt
 python projetos/11-motorsport-f1-mlops/102-vehicle-dynamics-state-estimation-via-extended-kalman-filter-ekf/main.py
 python -m unittest discover -s tests -p test_motorsport_batch.py -v
 ```

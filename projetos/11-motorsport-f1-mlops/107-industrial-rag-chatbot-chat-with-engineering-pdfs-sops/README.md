@@ -3,8 +3,8 @@
 ## Execução comprovável
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
-python -m pip install -r requirements-motorsport-advanced.txt
+python -m pip install -r requirements/motorsport-core.txt
+python -m pip install -r requirements/motorsport-advanced.txt
 python projetos/11-motorsport-f1-mlops/107-industrial-rag-chatbot-chat-with-engineering-pdfs-sops/main.py --run
 ```
 

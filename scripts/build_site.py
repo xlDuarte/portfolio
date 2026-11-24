@@ -14,7 +14,7 @@ What it does (idempotent — safe to run again after any engine regenerates page
      removes the retired pages listed in ``site_data.REDIRECTS``.
 
 Usage:  python scripts/build_site.py
-Requires: beautifulsoup4 (see requirements-site.txt).
+Requires: beautifulsoup4 (see requirements/site.txt).
 """
 from __future__ import annotations
 

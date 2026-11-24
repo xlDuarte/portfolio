@@ -611,7 +611,7 @@
    },
    {
     "id": 82,
-    "name": "Dashboard Executivo de OEE, Cotas e Performance (Gerdau)",
+    "name": "Dashboard Executivo de OEE, Cotas e Performance",
     "desc": "Consolidação estratégica de KPIs produtivos, comerciais e logísticos com DAX avançado.",
     "code": "projetos/09-business/082-executive-oee-commercial-bi-dashboard",
     "page": "/cases/business/082/"

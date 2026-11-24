@@ -1,8 +1,8 @@
 FROM python:3.11-slim
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 ADVANCED_DB_PATH=/data/events.sqlite3
-COPY requirements-advanced.txt ./
-RUN pip install --no-cache-dir -r requirements-advanced.txt
+COPY requirements/ ./requirements/
+RUN pip install --no-cache-dir -r requirements/advanced.txt
 COPY advanced_batch ./advanced_batch
 RUN mkdir -p /data && useradd -r -u 10001 appuser && chown -R appuser:appuser /data /app
 USER appuser

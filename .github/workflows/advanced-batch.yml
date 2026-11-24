@@ -6,7 +6,7 @@ on:
       - 'projetos/10-advanced/**'
       - 'tests/test_advanced_batch.py'
       - 'tests/test_advanced_kafka.py'
-      - 'requirements-advanced.txt'
+      - 'requirements/advanced.txt'
       - '.github/workflows/advanced-batch.yml'
       - 'site/cases/advanced/**'
   push:
@@ -16,7 +16,7 @@ on:
       - 'projetos/10-advanced/**'
       - 'tests/test_advanced_batch.py'
       - 'tests/test_advanced_kafka.py'
-      - 'requirements-advanced.txt'
+      - 'requirements/advanced.txt'
       - '.github/workflows/advanced-batch.yml'
   workflow_dispatch:
 permissions:
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install -r requirements-advanced.txt
+      - run: python -m pip install -r requirements/advanced.txt
       - run: python -m compileall -q advanced_batch projetos/10-advanced tests/test_advanced_batch.py
       - name: Test real models, API, SQLite storage and negative controls
         run: python -m unittest discover -s tests -p test_advanced_batch.py -v
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install -r requirements-advanced.txt
+      - run: python -m pip install -r requirements/advanced.txt
       - name: Start real Redpanda Kafka protocol broker
         run: |
           docker compose -f advanced_batch/compose.yaml up -d redpanda

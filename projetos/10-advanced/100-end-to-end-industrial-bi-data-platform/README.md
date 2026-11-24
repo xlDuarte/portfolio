@@ -6,7 +6,7 @@ O motor executa geração de eventos, validação, processamento por projeto e p
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-advanced.txt
+python -m pip install -r requirements/advanced.txt
 python projetos/10-advanced/100-end-to-end-industrial-bi-data-platform/main.py --save
 python -m unittest discover -s tests -p test_advanced_batch.py -v
 uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000

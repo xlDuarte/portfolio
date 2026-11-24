@@ -16,7 +16,7 @@ Predicted time to delivery from shipment attributes available at dispatch; forwa
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/030-logistics-delivery-time-eta-prediction/main.py
 python -m regression_batch.engine 30 --save
 ```

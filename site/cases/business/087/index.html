@@ -29,7 +29,7 @@
   <div class="note"><strong>Limites:</strong> ERP e indicadores totalmente fictícios, sem SAP/Ariba, desempenho financeiro real, relatório Power BI Desktop testado ou conformidade regulatória comprovada.</div>
 </section>
 <div class="wrap cols">
-  <article class="case-body prose"><h2>Pipeline auditável</h2><p>Consulta SQL realmente executada em SQLite, cálculo Python/Pandas específico, relatório JSON e visualização Matplotlib. Arquivos Power Query/DAX disponíveis como templates editáveis, não executados por CI.</p><h2>Reprodução</h2><pre class="cmd">python -m pip install -r requirements-business.txt
+  <article class="case-body prose"><h2>Pipeline auditável</h2><p>Consulta SQL realmente executada em SQLite, cálculo Python/Pandas específico, relatório JSON e visualização Matplotlib. Arquivos Power Query/DAX disponíveis como templates editáveis, não executados por CI.</p><h2>Reprodução</h2><pre class="cmd">python -m pip install -r requirements/business.txt
 python projetos/09-business/087-capex-innovation-portfolio-analysis/main.py --save
 python -m streamlit run business_batch/app.py</pre><footer>Revisão humana obrigatória para análise financeira, seleção de investimentos e conformidade.</footer></article>
   <aside class="aside">

@@ -9,7 +9,7 @@ Trilha de treinamento progressiva, respeitando habilidades prévias, dependênci
 
 ## Execução
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/055-industrial-upskilling-path-recommender/main.py --query "python power bi sql" --save
 python -m streamlit run projetos/06-recommendation/055-industrial-upskilling-path-recommender/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

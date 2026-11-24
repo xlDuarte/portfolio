@@ -16,7 +16,7 @@ Estimated vehicle residual value using age, odometer, maintenance and powertrain
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/022-fleet-vehicle-residual-value-model/main.py
 python -m regression_batch.engine 22 --save
 ```

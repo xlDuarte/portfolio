@@ -9,7 +9,7 @@ Previsão de demanda e ponto de reposição de estoque crítico. O motor entrega
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-advanced.txt
+python -m pip install -r requirements/advanced.txt
 python projetos/10-advanced/094-integrated-s-op-ics-demand-system/main.py --save
 python -m unittest discover -s tests -p test_advanced_batch.py -v
 uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000

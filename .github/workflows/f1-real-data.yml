@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r requirements-real-f1.txt
+      - run: python -m pip install -r requirements/real-f1.txt
       - run: python scripts/collect_f1_real.py
       - run: python scripts/fit_f1_strategy.py
       - run: python scripts/train_f1_real.py

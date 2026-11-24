@@ -5,7 +5,7 @@ These are nine **distinct, executable** analyses, not renamed copies of a teleme
 ## Reproduce
 
 ```bash
-python -m pip install -r requirements-case-studies.txt
+python -m pip install -r requirements/case-studies.txt
 python -m analytics_batch1.generate
 python -m analytics_batch1.engine 4 --report-dir /tmp/nvh-report
 python -m unittest tests.test_analytics_batch1 -v

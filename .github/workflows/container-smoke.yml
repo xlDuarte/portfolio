@@ -6,10 +6,10 @@ on:
       - "advanced_batch/Dockerfile"
       - "motorsport_batch/service.py"
       - "advanced_batch/**"
-      - "requirements-motorsport-mlops.txt"
-      - "requirements-motorsport-core.txt"
-      - "requirements-case-studies.txt"
-      - "requirements-advanced.txt"
+      - "requirements/motorsport-mlops.txt"
+      - "requirements/motorsport-core.txt"
+      - "requirements/case-studies.txt"
+      - "requirements/advanced.txt"
       - ".github/workflows/container-smoke.yml"
       - ".github/workflows/preview-release-ghcr.yml"
   push:
@@ -17,8 +17,8 @@ on:
     paths:
       - "motorsport_batch/Dockerfile"
       - "advanced_batch/Dockerfile"
-      - "requirements-motorsport-mlops.txt"
-      - "requirements-advanced.txt"
+      - "requirements/motorsport-mlops.txt"
+      - "requirements/advanced.txt"
       - ".github/workflows/container-smoke.yml"
   workflow_dispatch:
 concurrency:

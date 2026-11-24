@@ -102,7 +102,7 @@ Os projetos #011–#020 utilizam efetivamente **Pandas, NumPy, SQL SQLite, Seabo
 | 079 | Rastreamento de Caminhões e Movimentação no Pátio | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 080 | Classificação de Microestrutura Metalográfica por Imagem | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 081 | Predição de Lifetime Value (LTV) de Contas Industriais | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
-| 082 | Dashboard Executivo de OEE, Cotas e Performance (Gerdau) | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
+| 082 | Dashboard Executivo de OEE, Cotas e Performance | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 083 | Análise de Retorno de Iniciativas Comerciais e Feiras B2B | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 084 | Segmentação ABC/RFM de Fornecedores e Clientes | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |
 | 085 | Auditoria Contínua de Pagamentos e Conformidade SOX | SYNTHETIC PLACEHOLDER | Python stdlib; simulated numerical telemetry |

@@ -16,7 +16,7 @@ Tecnologias **efetivamente utilizadas**: Pandas e NumPy para validação/cálcul
 ## Como reproduzir
 A partir da raiz do repositório:
 ```bash
-pip install -r requirements-eda.txt
+pip install -r requirements/eda.txt
 python projetos/02-eda/013-logistics-hub-warehouse-capacity-eda/main.py
 python projetos/02-eda/013-logistics-hub-warehouse-capacity-eda/main.py --report-dir /tmp/eda-013
 python -m unittest discover -s tests -v

@@ -1,2 +1,2 @@
 # Dependencies for implemented case_studies (95 generic scripts need standard library only).
--r requirements-case-studies.txt
+-r requirements/case-studies.txt

@@ -11,7 +11,7 @@ OEE ponderado de três linhas; calcula disponibilidade, performance, qualidade, 
 
 ## Execução verificável
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/082-executive-oee-commercial-bi-dashboard/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v

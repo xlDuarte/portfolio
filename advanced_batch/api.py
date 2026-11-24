@@ -5,6 +5,7 @@ expose on a public network, or integrate with industrial equipment, without
 auth, HTTPS, authorization, operational security review and permissions.
 """
 from __future__ import annotations
+from contextlib import closing
 import os
 from pathlib import Path
 import sqlite3
@@ -29,7 +30,7 @@ def create_app(db_path:str|None=None)->FastAPI:
     path=db_path or os.environ.get("ADVANCED_DB_PATH","/tmp/advanced-industrial-demo.sqlite3")
     app=FastAPI(title="Advanced Industrial Demo API",version="0.1.0",
         description="Exclusively synthetic projects #091-100. Not a production industrial or safety system.")
-    with connect(path):pass
+    with closing(connect(path)):pass
 
     @app.get("/health")
     def health():
@@ -44,7 +45,7 @@ def create_app(db_path:str|None=None)->FastAPI:
         if project not in SPECS:raise HTTPException(status_code=404,detail="Unknown project")
         try:
             events=generate(project,count=count)
-            with connect(path) as db:summary=ingest(db,events)
+            with closing(connect(path)) as db:summary=ingest(db,events)
         except ValueError as exc:
             raise HTTPException(status_code=422,detail=str(exc)) from exc
         return {"project_id":project,**summary,"data_origin":"SYNTHETIC"}
@@ -56,7 +57,7 @@ def create_app(db_path:str|None=None)->FastAPI:
         if any(e["project_id"]!=project for e in events):
             raise HTTPException(status_code=422,detail="Mixed projects")
         try:
-            with connect(path) as db:out=ingest(db,events)
+            with closing(connect(path)) as db:out=ingest(db,events)
         except (ValueError,sqlite3.IntegrityError) as exc:
             raise HTTPException(status_code=409,detail=str(exc)) from exc
         return out
@@ -64,13 +65,13 @@ def create_app(db_path:str|None=None)->FastAPI:
     @app.get("/v1/projects/{project}/events")
     def events(project:int,limit:int=Query(100,ge=1,le=2000)):
         if project not in SPECS:raise HTTPException(status_code=404,detail="Unknown project")
-        with connect(path) as db:rows=read_events(db,project,limit)
+        with closing(connect(path)) as db:rows=read_events(db,project,limit)
         return {"project_id":project,"count":len(rows),"events":rows}
 
     @app.get("/v1/projects/{project}/analytics")
     def analytics(project:int):
         if project not in SPECS:raise HTTPException(status_code=404,detail="Unknown project")
-        with connect(path) as db:rows=read_events(db,project,2000)
+        with closing(connect(path)) as db:rows=read_events(db,project,2000)
         if len(rows)<24:
             raise HTTPException(status_code=409,detail="Ingest at least 24 demo events first")
         try:return analyze(project,rows)

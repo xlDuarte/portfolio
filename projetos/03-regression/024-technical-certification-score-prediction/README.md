@@ -16,7 +16,7 @@ Estimated technical certification outcome for simulated trainees; should never b
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/024-technical-certification-score-prediction/main.py
 python -m regression_batch.engine 24 --save
 ```

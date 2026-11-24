@@ -1,4 +1,4 @@
--r requirements-case-studies.txt
+-r case-studies.txt
 plotly>=5.24,<7
 streamlit>=1.66.0,<2
 fastapi>=0.115,<1

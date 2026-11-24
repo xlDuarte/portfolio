@@ -1,0 +1,2 @@
+-r motorsport-core.txt
+tensorflow-cpu>=2.16,<2.20

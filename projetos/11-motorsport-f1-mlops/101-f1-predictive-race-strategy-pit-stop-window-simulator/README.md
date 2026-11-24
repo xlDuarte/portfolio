@@ -3,7 +3,7 @@
 ## Como executar a implementação atual
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements/motorsport-core.txt
 python projetos/11-motorsport-f1-mlops/101-f1-predictive-race-strategy-pit-stop-window-simulator/main.py --fit-ml
 python -m unittest discover -s tests -p test_motorsport_batch.py -v
 ```

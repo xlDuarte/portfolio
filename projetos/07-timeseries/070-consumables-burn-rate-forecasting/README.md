@@ -9,7 +9,7 @@ Consumo de fluidos e gases industriais fictícios. Unidade alvo: **litres/week**
 
 ## Executar
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --save
 python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

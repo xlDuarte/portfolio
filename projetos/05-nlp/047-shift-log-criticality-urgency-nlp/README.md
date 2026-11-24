@@ -7,7 +7,7 @@
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/047-shift-log-criticality-urgency-nlp/main.py --text "Rotina de inspeção concluída sem intercorrência" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

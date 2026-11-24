@@ -16,7 +16,7 @@ Estimated employer monthly labor cost from measurable role experience, qualifica
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/023-engineering-compensation-cost-model/main.py
 python -m regression_batch.engine 23 --save
 ```

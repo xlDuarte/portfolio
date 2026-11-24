@@ -3,8 +3,8 @@
 ## Como executar a implementação atual
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
-python -m pip install -r requirements-motorsport-advanced.txt
+python -m pip install -r requirements/motorsport-core.txt
+python -m pip install -r requirements/motorsport-advanced.txt
 python projetos/11-motorsport-f1-mlops/105-industrial-x-ray-ndt-defect-detection-with-cnn-grad-cam/main.py --run
 python -m unittest discover -s tests -p test_motorsport_batch.py -v
 ```

@@ -27,7 +27,7 @@ jobs:
       - name: Install OCR runtime
         run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
       - name: Install all core domain dependencies (heavy CNN/MLflow tested separately)
-        run: python -m pip install --no-cache-dir -r requirements-integration.txt
+        run: python -m pip install --no-cache-dir -r requirements/integration.txt
       - name: Audit 111 canonical projects and integrated evidence
         run: |
           python scripts/audit_integrated_portfolio.py --check
@@ -39,11 +39,16 @@ jobs:
         run: |
           python case_studies/analytics.py > /dev/null
           python -m compileall -q projetos case_studies analytics_eda regression_batch classification_batch nlp_batch recommendation_batch timeseries_batch vision_batch business_batch advanced_batch motorsport_batch f1-predictive-intelligence
-      - name: Build project-path-safe Pages and verify navigation/SEO artifacts
+      - name: Site build is reproducible (committed site/ matches scripts/build_site.py)
+        run: |
+          python -m pip install --no-cache-dir -r requirements/site.txt
+          python scripts/build_site.py
+          git diff --exit-code -- site vercel.json
+      - name: Build the GitHub Pages mirror (redirects to the canonical Vercel site)
         run: |
           python scripts/prepare_pages.py --repo "${GITHUB_REPOSITORY}" --output _site
           test -s _site/index.html
-          test -s _site/sitemap.xml
+          test -f _site/404.html
           test -f _site/robots.txt
           test -f _site/.nojekyll
           python -m unittest discover -s tests -p test_pages_release.py -v

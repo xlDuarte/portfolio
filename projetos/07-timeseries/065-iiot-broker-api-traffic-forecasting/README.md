@@ -9,7 +9,7 @@ Tráfego de APIs e mensagens IIoT artificiais. Gerador determinístico de 240 se
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py --save
 python projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

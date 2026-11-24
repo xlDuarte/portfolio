@@ -1,4 +1,4 @@
--r requirements-motorsport-core.txt
+-r motorsport-core.txt
 mlflow>=3.17.1,<4
 pypdf>=5,<7
 reportlab>=4,<5

@@ -11,7 +11,7 @@ Classificação textual de laudos como conforme ou não conforme. Não substitui
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/045-technical-inspection-report-polarity/main.py --text "Laudo registra conformidade dimensional da amostra" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```
