@@ -1,3 +1,5 @@
+> **Atualização científica (fase 1):** o "proxy QSS" ilustrativo do Dia 4 foi substituído pelo pacote [`vehicle_dynamics`](../../../vehicle_dynamics/): pneu Pacejka (MF 6.1, escorregamento puro), transferência de carga, envelope g-g-V, traçado de curvatura mínima e simulação quase-estática calibrada por máximo a posteriori na telemetria real do GP do Bahrein 2024 (OpenF1). Método, validação e limites: [docs/physics/LAPSIM.md](../../../docs/physics/LAPSIM.md). Ferramenta: [/motorsport/lap-simulator/](https://gabriel-automotive-industrial-lab.vercel.app/motorsport/lap-simulator/). As classes originais abaixo ficam preservadas como registro do seminário.
+
 > **Auditoria técnica #110:** Preserva modelagens numéricas e incorpora painel com varredura de rigidez, mapas térmicos artificiais e histograma de amortecedores. Não é FLIR nem o simulador proprietário ChassisSim. **Stack efetiva:** Python, NumPy, Pandas, Plotly, Streamlit. Dados fictícios, nenhuma telemetria de F1 ou inspeção industrial autêntica, nenhuma homologação externa.
 
 ## Execução comprovável

@@ -69,8 +69,8 @@ F1_TOOLS = [
      "desc": "Energia recuperável na frenagem, perdas de conversão e estado de carga estimado ao longo da volta.",
      "tags": ["Física", "Telemetria real"]},
     {"title": "Simulador de tempo de volta", "path": "/motorsport/lap-simulator/",
-     "desc": "Perfil de velocidade sobre geometria de pista importada, com comparação de setups A/B.",
-     "tags": ["Física", "Simulação"]},
+     "desc": "Pneu Pacejka, transferência de carga e envelope g-g-V em 3D, calibrados na telemetria de Verstappen: volta simulada em 96,79 s contra 96,75 s reais.",
+     "tags": ["Física", "Telemetria real", "Calibração bayesiana"]},
 ]
 
 F1_PROJECTS = [
