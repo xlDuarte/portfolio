@@ -1,6 +1,6 @@
 -r motorsport-core.txt
 tensorflow-cpu>=2.16,<2.20
-mlflow>=3.17.1,<4
+mlflow>=3.18.0,<4
 pypdf>=5,<7
 reportlab>=4,<5
 langchain-core>=0.3,<2
