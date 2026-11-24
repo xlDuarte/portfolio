@@ -131,14 +131,33 @@ class TestDesignSystem(unittest.TestCase):
         self.assertIn("prefers-reduced-motion", css)
         self.assertIn(":focus-visible", css)
 
-    def test_no_third_party_logos_or_brand_artwork(self):
-        banned = ["red-bull.svg", "porsche-motorsport.svg", "gt3-cup.webp", "models/assets/f1.svg",
-                  "media.formula1.com", "concept-helmet"]
+    def test_legacy_brand_artwork_stays_removed(self):
+        banned = ["porsche-motorsport.svg", "models/assets/f1.svg", "media.formula1.com", "concept-helmet"]  # hotlinks and removed art
         for page in list(PAGES) + list(SITE.rglob("*.mjs")) + list(SITE.rglob("*.js")):
             s = page.read_text(encoding="utf-8", errors="ignore")
             for token in banned:
                 self.assertNotIn(token, s, f"{page}: {token}")
         self.assertFalse(list((SITE / "motorsport/models").glob("assets/*.webp")))
+
+    def test_every_third_party_image_has_provenance(self):
+        """Each file in assets/photos and assets/brands needs origin, licence and credit in SOURCES.json;
+        pages that show one carry the no-affiliation notice and, once confirmed, the credit."""
+        sources = json.loads((SITE / "assets/brands/SOURCES.json").read_text(encoding="utf-8"))["files"]
+        by_file = {e["file"]: e for e in sources}
+        files = [p for d in ("photos", "brands") for p in (SITE / "assets" / d).glob("*") if p.name != "SOURCES.json"]
+        self.assertTrue(files)
+        for f in files:
+            rel = f.relative_to(SITE).as_posix()
+            self.assertIn(rel, by_file, rel)
+            for key in ("origin", "license", "credit", "status", "added"):
+                self.assertTrue(by_file[rel].get(key), (rel, key))
+        for page in PAGES:
+            html = page.read_text(encoding="utf-8")
+            for rel, entry in by_file.items():
+                if f"/{rel}" in html:
+                    self.assertIn("sem vínculo", html, page)
+                    if entry["status"] != "pending":
+                        self.assertIn(entry["credit"], html, page)
 
     def test_og_images_present(self):
         for name in ("default", "industrial", "automotivo", "laboratorio"):
