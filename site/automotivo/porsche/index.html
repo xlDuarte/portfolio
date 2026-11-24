@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.subnav{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--rule)}.subnav a{text-decoration:none;padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;color:var(--slate);font-weight:600}.subnav a[aria-current]{color:var(--accent);border-color:var(--accent)}.subnav a:hover{color:var(--graphite)}</style></head>
+<style>.subnav{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--rule)}.subnav a{text-decoration:none;padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;color:var(--slate);font-weight:600}.subnav a[aria-current]{color:var(--accent);border-color:var(--accent)}.subnav a:hover{color:var(--graphite)}</style><link rel="stylesheet" href="/assets/hero/hero.css"><link rel="stylesheet" href="/assets/hubs/hubs.css"></head>
 <body data-niche="automotivo">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto" data-section-current>Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/automotivo/">Automotivo</a></li><li aria-current="page">Porsche Cup</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -28,6 +28,22 @@
   <p class="lede">Engenharia de pista para um carro de turismo de competição: o que cada roda está fazendo, a cada instante.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/">Fórmula 1</a><a href="/automotivo/porsche/" aria-current="page">Porsche Cup</a></nav>
 </section>
+<section class="hub-stage with-panel" data-hub="porsche" data-state="static" aria-label="Carro GT com modelo de carga por roda"><div class="hub-view"><canvas aria-hidden="true"></canvas></div><div class="pc-panel wrap">
+  <div class="pc-controls">
+    <p class="pc-title">Cenário</p>
+    <div class="ctl"><label for="pc-speed">Velocidade</label><input type="range" id="pc-speed" min="60" max="240" step="1" value="160"><output for="pc-speed">160 km/h</output></div>
+    <div class="ctl"><label for="pc-ay">Aceleração lateral</label><input type="range" id="pc-ay" min="-1.2" max="1.2" step="0.01" value="0.8"><output for="pc-ay">0.8 g</output></div>
+    <div class="ctl"><label for="pc-ax">Aceleração longitudinal</label><input type="range" id="pc-ax" min="-0.8" max="0.5" step="0.01" value="0"><output for="pc-ax">0 g</output></div>
+    <button type="button" class="btn secondary" data-auto hidden>Voltar ao ciclo automático</button>
+  </div>
+  <div class="pc-out" data-loads>
+    <table class="readout"><caption>Carga vertical por roda (modelo do laboratório)</caption>
+      <thead><tr><th scope="col">Diant. esq.</th><th scope="col">Diant. dir.</th><th scope="col">Tras. esq.</th><th scope="col">Tras. dir.</th></tr></thead>
+      <tbody><tr><td data-w="FL">—</td><td data-w="FR">—</td><td data-w="RL">—</td><td data-w="RR">—</td></tr></tbody></table>
+    <dl class="pc-kpis"><div><dt>Carga no eixo dianteiro</dt><dd data-front>—</dd></div><div><dt>Downforce</dt><dd data-down>—</dd></div><div><dt>Uso da aderência</dt><dd data-util>—</dd></div></dl>
+    <p class="small muted">Transferência de carga longitudinal e lateral, downforce e distribuição de rolagem do modelo #110. Carro genérico, não réplica; inclinação exagerada cerca de 2× para leitura.</p>
+  </div>
+</div></section>
 <section class="wrap section">
   <div class="cols">
     <div>
@@ -45,6 +61,17 @@
   </div>
 </section>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module">
+const root = document.querySelector("[data-hub]");
+const gl = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+const needsGL = root && root.dataset.hub !== "sobre";
+if (root && (gl || !needsGL)) {
+  const start = () => import("/assets/js/hub-porsche.js").then((m) => m.mount(root)).catch(() => { root.dataset.state = "fallback"; });
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+  if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), { once: true });
+} else if (root) {
+  root.dataset.state = "fallback";
+}
+</script>
 </body>
 </html>

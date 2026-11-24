@@ -5,7 +5,7 @@
   "description": "Front-end bundles for the static site (Three.js + GSAP).",
   "type": "module",
   "scripts": {
-    "build:hero": "esbuild frontend/hero/main.js --bundle --format=esm --minify --target=es2020 --legal-comments=external --outfile=site/assets/hero/hero.js",
+    "build": "node -e \"require('fs').rmSync('site/assets/js',{recursive:true,force:true})\" && esbuild hero=frontend/hero/main.js hub-industrial=frontend/hubs/industrial.js hub-automotivo=frontend/hubs/automotivo.js hub-f1=frontend/hubs/f1.js hub-porsche=frontend/hubs/porsche.js hub-lab=frontend/hubs/lab.js hub-sobre=frontend/hubs/sobre.js --bundle --splitting --format=esm --minify --target=es2020 --legal-comments=external --outdir=site/assets/js --entry-names=[name] --chunk-names=chunks/[name]-[hash]",
     "test": "node --test \"frontend/**/*.test.mjs\""
   },
   "devDependencies": {

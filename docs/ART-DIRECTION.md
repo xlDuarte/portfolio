@@ -256,3 +256,18 @@ Lighthouse em celular real fica para a Fase 5; o ambiente desta fase só roda We
 | Faíscas de titânio | Mesmo integrador, partícula mais quente e de resfriamento lento (combustão) | Gatilho ilustrativo: acelerador > 97% e > 265 km/h |
 
 **Cinemática em Python (`scripts/telemetry_physics.py`, testada em `tests/test_telemetry_physics.py`).** Savitzky–Golay sobre relógio uniforme de 4 Hz: a_long = dv/dt pelo canal de velocidade; a_lat = v·dψ/dt pelo rumo da trajetória suavizada. A amostragem pública (~3,7 Hz) atenua picos: a frenagem aparece entre −2,8 e −3,9 g, onde registradores de bordo mostrariam cerca de −5 g. Temperatura do disco dianteiro por modelo de massa térmica única integrado com RK4 (convecção forçada + radiação, potência de frenagem descontado o arrasto); resultado entre ~280 e ~810 °C no trecho, faixa plausível, mas é estimativa.
+
+## 14. Fase 2: hubs
+
+| Página | Cena | De onde vem o movimento |
+|---|---|---|
+| Industrial | Gêmeo digital isométrico com uma estação por estudo de caso; clique abre o estudo | OEE (disponibilidade, desempenho), Supply (AGV com perfil trapezoidal, entregas no prazo na proporção do estudo), CAPEX (prensa em massa-mola-amortecedor), Previsão (nível do silo = últimos 140 dias da série; anel = previsão sazonal ingênua de 7 dias), Churn (caminhões; a taxa de churn do estudo sai em vermelho) |
+| Automotivo | Duas garagens com plataformas giratórias; portas sobem na abertura | Plataforma com inércia: atrito viscoso + Coulomb e motor com alimentação direta (testado) |
+| Fórmula 1 | Replay de Sakhir em largura total, tabela com forças g e disco por piloto, diagrama g-g | Mesmos dados e modelos da home |
+| Porsche Cup | Carro GT genérico com barras de carga por roda e controles | Modelo de transferência de carga do próprio laboratório (`model.mjs`, #110); ciclo frenagem → curva → saída quando ninguém mexe |
+| Laboratório | Nuvem de 9 000 pontos que muda entre três técnicas | Modos de placa de Kirchhoff (#104), engrenagem com trinca (#105), vórtice de Rankine (#103), tudo no shader |
+| Sobre | Linha do tempo horizontal | Arrasto com inércia (atrito exponencial); teclado e botões |
+
+Carros são procedurais e genéricos, não réplicas. Cada página carrega só o seu pacote (`site/assets/js/hub-*.js`, com Three.js num pedaço compartilhado de ~164 KB gzip) depois do `load`; sem WebGL a cena some e o conteúdo da página continua inteiro.
+
+**Foto do GT3 Cup:** escolhida a opção (b), Creative Commons do Wikimedia Commons com atribuição. Pendente: o ambiente de build não alcança o Wikimedia; falta baixar o arquivo e registrar autor e licença em `docs/BRAND-ASSETS.md`.

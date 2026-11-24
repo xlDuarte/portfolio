@@ -33,10 +33,11 @@ class TestHeroData(unittest.TestCase):
         self.assertEqual(len(f1["track"]["points"]), 360)
 
     def test_home_carries_the_hero_and_the_prototype_is_retired(self):
-        for name in ("hero.js", "hero.css", "hero-fallback.svg"):
+        for name in ("hero.css", "hero-fallback.svg"):
             self.assertTrue((HERO / name).is_file(), name)
+        self.assertTrue((ROOT / "site" / "assets" / "js" / "hero.js").is_file())
         home = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('import("/assets/hero/hero.js")', home)
+        self.assertIn('import("/assets/js/hero.js")', home)
         self.assertIn('class="stage"', home)
         self.assertFalse((ROOT / "site" / "prototipos" / "heroi" / "index.html").exists())
         vercel = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
