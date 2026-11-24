@@ -12,3 +12,4 @@ h1{font-weight:600;letter-spacing:-.035em;text-transform:uppercase}
 .run-actions button:first-child{background:#b8122b;color:#090a0b;border-color:#b8122b}
 button,input,select{font-family:"Space Grotesk",system-ui,sans-serif}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.team-logo{height:18px;width:auto;vertical-align:-4px;margin-right:2px}

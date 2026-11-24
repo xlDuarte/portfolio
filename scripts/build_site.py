@@ -500,9 +500,9 @@ def build_automotivo() -> None:
              section="automotivo", niche="automotivo", crumbs=[("Início", "/"), ("Automotivo", "/automotivo/")])
     garages = hub_stage("automotivo", f"""<div class="halves">
   <div class="half auto" data-half="0"><div class="view-dim" aria-hidden="true"></div>
-    <div class="cap"><h2><a class="half-link" href="/automotivo/f1/"><img class="brand-mark" src="/assets/brands/formula-1.svg" alt="" width="30" height="30">Fórmula 1</a></h2><p>{len(D.F1_TOOLS)} ferramentas e {len(D.F1_PROJECTS)} projetos com sessões reais.</p></div></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/f1/">{brand_mark('formula-1', 30)}Fórmula 1</a></h2><p>{len(D.F1_TOOLS)} ferramentas e {len(D.F1_PROJECTS)} projetos com sessões reais.</p></div></div>
   <div class="half auto" data-half="1"><div class="view-dim" aria-hidden="true"></div>
-    <div class="cap"><h2><a class="half-link" href="/automotivo/porsche/"><img class="brand-mark" src="/assets/brands/porsche.svg" alt="" width="30" height="30">Porsche Cup</a></h2><p>Laboratório de engenharia: carga por roda, pneus e dinâmica.</p></div></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/porsche/">{brand_mark('porsche', 30)}Porsche Cup</a></h2><p>Laboratório de engenharia: carga por roda, pneus e dinâmica.</p></div></div>
 </div><span class="seam" aria-hidden="true"></span><p class="hub-hint wrap">Carros genéricos, não réplicas. Arraste para girar a plataforma.</p>""", cls="is-split", label="Garagens de Fórmula 1 e Porsche Cup")
     main = f"""
 <section class="wrap page-head">
@@ -529,7 +529,7 @@ def build_automotivo() -> None:
   <h2>De onde vêm os dados</h2>
   <p>As ferramentas de Fórmula 1 carregam sessões públicas do OpenF1 (corrida do Bahrein 2024) e resultados de 2022 a 2024 via FastF1 e Jolpica. Não é live timing e não há dado de equipe. O laboratório Porsche trabalha sobre a aquisição que você importar; sem arquivo, nada é preenchido com valores inventados.</p>
   <p><a href="/cases/motorsport/">Ver a lista completa dos projetos #101–#111</a></p>
-  <p class="small muted">Projeto independente, sem vínculo com a Fórmula 1, a FIA, a Porsche ou equipes. Marcas citadas pertencem aos seus titulares.</p>
+  <p class="small muted">Projeto independente, sem vínculo com a Fórmula 1, a FIA, a Porsche ou equipes. {LOGO_NOTE}</p>
 </section>"""
     p.extra_head = HUB_HEAD
     write(p, main, body_extra=hub_script("automotivo"))
@@ -547,12 +547,12 @@ def build_f1() -> None:
     main = f"""
 <section class="wrap page-head">
   <p class="kicker">Automotivo de desempenho</p>
-  <h1><img class="brand-mark" src="/assets/brands/formula-1.svg" alt="" width="40" height="40">Fórmula 1</h1>
+  <h1>{brand_mark('formula-1', 40)}Fórmula 1</h1>
   <p class="lede">Probabilidades, estratégia e física de pista calculadas sobre sessões reais públicas.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/" aria-current="page">Fórmula 1</a><a href="/automotivo/porsche/">Porsche Cup</a></nav>
 </section>
 {hub_stage("f1", f1_hud(), label="Replay de quatro minutos do GP do Bahrein de 2024")}
-<p class="wrap small muted">Marcas e logotipos pertencem aos seus titulares. Projeto independente, sem vínculo com a Fórmula 1, a FIA ou as equipes.</p>
+<p class="wrap small muted">{LOGO_NOTE} Projeto independente, sem vínculo com a Fórmula 1, a FIA ou as equipes.</p>
 <section class="wrap section" aria-labelledby="ferramentas">
   <h2 id="ferramentas">Ferramentas interativas</h2>
   <p class="muted">Rodam no navegador. Carregue o recorte real do Bahrein 2024 ou importe um CSV exportado pelo FastF1.</p>
@@ -598,7 +598,7 @@ def build_porsche() -> None:
     main = f"""
 <section class="wrap page-head">
   <p class="kicker">Automotivo de desempenho</p>
-  <h1><img class="brand-mark" src="/assets/brands/porsche.svg" alt="" width="40" height="40">Porsche Cup</h1>
+  <h1>{brand_mark('porsche', 40)}Porsche Cup</h1>
   <p class="lede">Engenharia de pista para um carro de turismo de competição: o que cada roda está fazendo, a cada instante.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/">Fórmula 1</a><a href="/automotivo/porsche/" aria-current="page">Porsche Cup</a></nav>
 </section>
@@ -616,7 +616,7 @@ def build_porsche() -> None:
     <aside class="aside">
       <h2>Ficha</h2>
       <ul><li>Projeto #{pp["id"]}</li><li>Dados: aquisição importada pelo usuário</li><li>Sem dados do fabricante</li><li>Roda no navegador</li></ul>
-      <p class="small muted">Projeto independente, sem vínculo com a Porsche AG. O nome identifica a categoria estudada.</p>
+      <p class="small muted">Projeto independente, sem vínculo com a Porsche AG. O nome identifica a categoria estudada. {LOGO_NOTE}</p>
     </aside>
   </div>
 </section>"""
@@ -625,6 +625,17 @@ def build_porsche() -> None:
 
 
 BRAND_SOURCES = SITE / "assets" / "brands" / "SOURCES.json"
+
+
+LOGO_NOTE = "Logotipos recriados por IA (ChatGPT); as marcas pertencem aos seus titulares."
+
+
+def brand_mark(slug: str, height: int) -> str:
+    """Team or series mark at a fixed CSS height; width follows the file's aspect (from SOURCES.json)."""
+    files = {e["file"]: e for e in json.loads(BRAND_SOURCES.read_text(encoding="utf-8"))["files"]}
+    e = files[f"assets/brands/{slug}.webp"]
+    width = round(height * e["width"] / e["height"])
+    return f'<img class="brand-mark" src="/assets/brands/{slug}.webp" alt="" width="{width}" height="{height}">'
 
 
 def gt3_photo() -> str:
