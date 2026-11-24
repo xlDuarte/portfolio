@@ -449,6 +449,7 @@ export async function mountHero(root) {
   // Static facts in the captions come from the same payload as the scene.
   const set = (sel, txt) => { const el = root.querySelector(sel); if (el) el.textContent = txt; };
   set("[data-oee]", pct(data.industrial.oee_weighted));
+  set("[data-elevation]", String(DISPLAY.elevation));
   set("[data-speed-range]", `de ${f1.speedRange[0]} a ${f1.speedRange[1]} km/h`);
   const lineRows = data.industrial.lines.map((l, i) => root.querySelector(`[data-line="${i}"]`));
   data.industrial.lines.forEach((l, i) => {
