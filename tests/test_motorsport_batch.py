@@ -90,7 +90,7 @@ class TestMotorsportCore(unittest.TestCase):
                 self.assertTrue((folder/"main.py").is_file())
                 self.assertTrue((ROOT/"site"/"cases"/"motorsport"/str(i)/"index.html").is_file())
         self.assertTrue((ROOT/"site"/"cases"/"motorsport"/"index.html").is_file())
-        self.assertIn("/cases/motorsport/",(ROOT/"site"/"docs"/"index.html").read_text())
+        self.assertIn("/cases/motorsport/",(ROOT/"site"/"automotivo"/"index.html").read_text())
     def test_cli_104_synthetic_input_only(self):
         path=ROOT/"projetos"/"11-motorsport-f1-mlops"/SLUGS[104]/"main.py"
         outcome=subprocess.run([sys.executable,str(path)],capture_output=True,text=True,timeout=25,check=True)

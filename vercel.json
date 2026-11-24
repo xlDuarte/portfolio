@@ -2,5 +2,154 @@
   "version": 2,
   "buildCommand": null,
   "outputDirectory": "site",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/industry",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/industry/arquivo",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/industry/arquivo.html",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/motorsport",
+      "destination": "/automotivo/",
+      "permanent": true
+    },
+    {
+      "source": "/motorsport/racing",
+      "destination": "/automotivo/f1/",
+      "permanent": true
+    },
+    {
+      "source": "/f1",
+      "destination": "/automotivo/f1/",
+      "permanent": true
+    },
+    {
+      "source": "/f1-models",
+      "destination": "/motorsport/f1-pip/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/sobre/",
+      "permanent": true
+    },
+    {
+      "source": "/docs",
+      "destination": "/industrial/#catalogo",
+      "permanent": true
+    },
+    {
+      "source": "/releases",
+      "destination": "/sobre/#versoes",
+      "permanent": true
+    },
+    {
+      "source": "/packages",
+      "destination": "/sobre/#versoes",
+      "permanent": true
+    },
+    {
+      "source": "/cases",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/41",
+      "destination": "/cases/nlp/041/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/42",
+      "destination": "/cases/nlp/042/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/43",
+      "destination": "/cases/nlp/043/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/44",
+      "destination": "/cases/nlp/044/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/45",
+      "destination": "/cases/nlp/045/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/46",
+      "destination": "/cases/nlp/046/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/47",
+      "destination": "/cases/nlp/047/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/48",
+      "destination": "/cases/nlp/048/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/49",
+      "destination": "/cases/nlp/049/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/50",
+      "destination": "/cases/nlp/050/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.plot.ly https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.openf1.org https://api.jolpi.ca; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }

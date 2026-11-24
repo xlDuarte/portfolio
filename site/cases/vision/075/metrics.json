@@ -1,0 +1,13 @@
+{
+  "project_id": 75,
+  "name": "Stamped serial OCR",
+  "result": {
+    "serial": "AB1234",
+    "method": "OpenCV Otsu threshold + Tesseract OCR",
+    "real_stamping_validation": false
+  },
+  "source": "SYNTHETIC OpenCV-rendered images",
+  "input_image_real": false,
+  "production_validated": false,
+  "limitations": "No field images, production detection metrics or safety certification"
+}

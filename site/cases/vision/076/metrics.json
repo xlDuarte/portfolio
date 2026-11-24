@@ -1,0 +1,22 @@
+{
+  "project_id": 76,
+  "name": "Surface crack porosity and oxidation",
+  "result": {
+    "synthetic_label": "crack",
+    "crack_boxes": [
+      [
+        8,
+        13,
+        78,
+        70
+      ]
+    ],
+    "pore_boxes": [],
+    "oxidized_pixel_ratio": 0.0,
+    "method": "OpenCV HSV and component geometry"
+  },
+  "source": "SYNTHETIC OpenCV-rendered images",
+  "input_image_real": false,
+  "production_validated": false,
+  "limitations": "No field images, production detection metrics or safety certification"
+}

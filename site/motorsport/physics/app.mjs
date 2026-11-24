@@ -19,9 +19,9 @@ function plot(title,series,xlabel,ylabel){
  const section=document.createElement('section'),h=document.createElement('h3');h.textContent=title;section.append(h);
  const all=series.flatMap(s=>s.data),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);
  const xmin=xs.reduce((a,b)=>Math.min(a,b),Infinity),xmax=xs.reduce((a,b)=>Math.max(a,b),-Infinity),ymin=ys.reduce((a,b)=>Math.min(a,b),0),ymax=ys.reduce((a,b)=>Math.max(a,b),-Infinity);
- const colors=['#02d2e3','#ffbd69','#ee7596','#93d88b','#bea5ff'];
+ const colors=['#b8122b','#b45309','#9d174d','#1b7a48','#5b21b6'];
  const paths=series.map((s,i)=>{const stride=Math.max(1,Math.ceil(s.data.length/1000)),pts=s.data.filter((_,j)=>j%stride===0||j===s.data.length-1);return '<polyline fill="none" stroke="'+colors[i%colors.length]+'" stroke-width="2" points="'+pts.map(p=>(65+(p[0]-xmin)/(xmax-xmin||1)*610)+','+(235-(p[1]-ymin)/(ymax-ymin||1)*200)).join(' ')+'"/>';}).join('');
- const chart=document.createElement('div');chart.innerHTML='<svg viewBox="0 0 720 280" role="img"><path d="M65 30V235H680" fill="none" stroke="#526d7b"/><text x="5" y="40">'+fmt(ymax)+'</text><text x="5" y="235">'+fmt(ymin)+'</text><text x="65" y="260">'+fmt(xmin)+'</text><text x="620" y="260">'+fmt(xmax)+'</text>'+paths+'</svg>';chart.firstChild.setAttribute('aria-label',title+'; eixo horizontal '+xlabel+'; vertical '+ylabel);section.append(chart);
+ const chart=document.createElement('div');chart.innerHTML='<svg viewBox="0 0 720 280" role="img"><path d="M65 30V235H680" fill="none" stroke="#c9ced5"/><text x="5" y="40">'+fmt(ymax)+'</text><text x="5" y="235">'+fmt(ymin)+'</text><text x="65" y="260">'+fmt(xmin)+'</text><text x="620" y="260">'+fmt(xmax)+'</text>'+paths+'</svg>';chart.firstChild.setAttribute('aria-label',title+'; eixo horizontal '+xlabel+'; vertical '+ylabel);section.append(chart);
  const legend=document.createElement('p');legend.textContent=xlabel+' / '+ylabel+' · '+series.map((s,i)=>s.name+' ('+['ciano','âmbar','rosa','verde','lilás'][i%5]+')').join(' · ');section.append(legend);$('#charts').append(section);
 }
 function calculate(){

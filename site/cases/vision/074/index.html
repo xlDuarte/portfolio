@@ -1,1 +1,44 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>#74 — Operator vigilance visual cue</title><style>:root{color-scheme:dark}*{box-sizing:border-box}body{background:#0c1623;color:#f0f5fa;margin:0;font:16px/1.65 system-ui,sans-serif}main{max-width:950px;margin:auto;padding:30px 22px 60px}a{color:#90e4d5}nav{display:flex;gap:18px}h1{font-size:clamp(2rem,4vw,2.8rem);line-height:1.2}.warn{padding:16px;background:#282436;border-left:4px solid #e8b765}.mono{white-space:pre-wrap;overflow-wrap:anywhere;background:#06111e;padding:15px;border-radius:8px;font:13px/1.6 monospace}footer{border-top:1px solid #425367;padding-top:20px;margin-top:30px}</style></head><body><main><nav><a href="/cases/vision/">← Projetos de Visão</a><a href="/">Portfólio</a></nav><p>Projeto #74 · Visão Computacional Industrial</p><h1>Operator vigilance visual cue</h1><p>Indicador PERCLOS de abertura ocular em desenhos, sem inferir fadiga real.</p><p><strong>Implementação:</strong> OpenCV imagem temporal.</p><div class="warn">Imagens e rótulos exclusivamente SINTÉTICOS. Demonstração executável, não detector homologado para inspeção industrial, segurança do trabalho, OCR em relevo ou monitoramento de pessoas.</div><h2>Executar e verificar</h2><pre class="mono">python -m pip install -r requirements-vision.txt
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#074 Monitoramento de Fadiga e Atenção em Operadores/Frota · Gabriel Reis Duarte</title>
+<meta name="description" content="Detecção de sinais visuais de sonolência ou distração em pontes rolantes, empilhadeiras e frotas.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/vision/074/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="#074 Monitoramento de Fadiga e Atenção em Operadores/Frota · Gabriel Reis Duarte">
+<meta property="og:description" content="Detecção de sinais visuais de sonolência ou distração em pontes rolantes, empilhadeiras e frotas.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/vision/074/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/vision/">Visão computacional</a></li><li aria-current="page">#074</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · Visão computacional · Projeto #074</p>
+  <h1>Monitoramento de Fadiga e Atenção em Operadores/Frota</h1>
+  <p class="lede">Detecção de sinais visuais de sonolência ou distração em pontes rolantes, empilhadeiras e frotas.</p>
+  <div class="note">Imagens e rótulos exclusivamente SINTÉTICOS. Demonstração executável, não detector homologado para inspeção industrial, segurança do trabalho, OCR em relevo ou monitoramento de pessoas.</div>
+</section>
+<div class="wrap cols">
+  <article class="case-body prose"><section data-evidence><h2>Resultados calculados</h2><p class="small muted">Gerado pelo próprio código do projeto e salvo em <code>metrics.json</code> ao lado desta página.</p><figure class="scene"><img src="input.png" alt="Imagem sintética de entrada gerada pelo projeto" width="240" height="240"><figcaption class="small muted">Imagem de entrada gerada pelo código (sintética).</figcaption></figure><dl class="metrics"><div><dt>frames</dt><dd>8</dd></div><div><dt>Closed frames</dt><dd>3</dd></div><div><dt>Perclos demo</dt><dd>0,375</dd></div></dl><ul><li><strong>Origem dos dados:</strong> SYNTHETIC OpenCV-rendered images</li><li><strong>Limitações:</strong> No field images, production detection metrics or safety certification</li><li><strong>Fatigue diagnosis:</strong> NOT VALIDATED: no real fatigue or emotion inference</li></ul></section><p><strong>Implementação:</strong> OpenCV imagem temporal.</p><h2>Executar e verificar</h2><pre class="mono">python -m pip install -r requirements-vision.txt</pre></article>
+  <aside class="aside">
+    <h2>Ficha</h2>
+    <ul><li>Projeto #074</li><li>Visão computacional</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <h2>Código</h2>
+    <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/08-vision/074-operator-driver-fatigue-monitoring">Pasta do projeto no GitHub</a></li></ul>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/vision/073/"><span class="small muted">Anterior</span>#073 Detecção e Contagem de Peças Forjadas e Estampadas</a><a class="next" href="/cases/vision/075/"><span class="small muted">Próximo</span>#075 Reconhecimento Óptico (OCR) de Gravações em Relevo/Punção</a></nav></div>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

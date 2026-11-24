@@ -1,13 +1,41 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Motorsport Engineering & MLOps #101–#111</title><meta name="description" content="Telemetria histórica da F1, estratégia de pneus, resultados e fontes de cada projeto."><style>:root{color-scheme:dark}*{box-sizing:border-box}body{background:#0a1723;color:#edf6fb;font:16px/1.65 system-ui,sans-serif;margin:0}main{max-width:1040px;margin:auto;padding:34px 22px 65px}a{color:#a2e7d7}nav{display:flex;gap:16px}h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.2}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}.tile{border:1px solid #335a69;border-radius:13px;background:#132a3b;padding:20px;display:block;color:inherit;text-decoration:none}.tile:hover{border-color:#91dace}.alert{border-left:4px solid #e4b85a;background:#292638;padding:17px;margin:23px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 monospace;background:#06111d;padding:17px;border-radius:9px}footer{margin-top:38px;border-top:1px solid #35536c;padding-top:17px}</style></head><body><main><nav><a href="/">← Portfólio</a><a href="/cases/">Estudos de Caso</a></nav><p>Motorsport & engenharia de performance · lote #101–#111</p><h1>Projetos de automobilismo</h1><p>Resultados via FastF1/Jolpica e telemetria histórica via OpenF1. As análises de sensores específicos exigem aquisição própria.</p><section class="grid"><a class="tile" href="./101/"><strong>#101 — Estratégia de pneus</strong><p>Ritmo estimado a partir de 1.004 voltas observadas no Bahrein em 2024.</p></a>
-<a class="tile" href="./102/"><strong>#102 — Telemetria e filtro de Kalman</strong><p>Velocidade, RPM, acelerador, freio e marcha medidos via OpenF1.</p></a>
-<a class="tile" href="./103/"><strong>#103 — Visão computacional onboard</strong><p>Requer vídeo onboard autorizado para calcular fluxo óptico.</p></a>
-<a class="tile" href="./104/"><strong>#104 — Vibração</strong><p>Importação de aquisição de acelerômetro em CSV.</p></a>
-<a class="tile" href="./105/"><strong>#105 — Inspeção radiográfica</strong><p>Requer radiografias de componentes com origem identificada.</p></a>
-<a class="tile" href="./106/"><strong>#106 — Avaliação de modelos</strong><p>Erros de previsão calculados sobre resultados históricos de corridas.</p></a>
-<a class="tile" href="./107/"><strong>#107 — Mensagens da direção de prova</strong><p>Busca nas comunicações registradas pela direção de prova no GP do Bahrein de 2024.</p></a>
-<a class="tile" href="./108/"><strong>#108 — Explicabilidade</strong><p>O relatório apresenta métricas de validação. A análise SHAP ainda está pendente.</p></a>
-<a class="tile" href="./109/"><strong>#109 — Replay do Bahrein</strong><p>Quatro minutos de trajetória e telemetria de três pilotos na corrida de 2024.</p></a>
-<a class="tile" href="./110/"><strong>#110 — Porsche Cup</strong><p>Importação de cargas, temperaturas e acelerações de uma aquisição Porsche.</p></a>
-<a class="tile" href="../../f1-models/"><strong>#111 — Modelos F1</strong><p>Oito modelos com resultados via FastF1/Jolpica. Treino em 2022 e validação em 2023.</p></a><a class="tile" href="/motorsport/active-aero/"><strong>112 — Aerodinâmica ativa</strong><p>Compare configurações das asas dianteira e traseira sobre a mesma velocidade observada. Importe coeficientes de CFD ou de ensaio e exporte uma geometria conceitual paramétrica.</p></a>
-<a class="tile" href="/motorsport/energy-recovery/"><strong>113 — Recuperação de energia</strong><p>Estime energia recuperável, perdas de conversão e evolução do estado de carga sobre telemetria real. Compare cenários e examine o balanço energético.</p></a>
-<a class="tile" href="/motorsport/lap-simulator/"><strong>114 — Simulador de tempo de volta</strong><p>Calcule um perfil de velocidade sobre geometria de pista importada. Compare setups A/B e examine a sensibilidade de massa, potência, aderência e aerodinâmica.</p></a></section><footer><a href="https://github.com/xlDuarte/portfolio/tree/main/motorsport_batch">Código, instalação e critérios de validação ↗</a></footer></main></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projetos automotivos #101–#111 · Gabriel Reis Duarte</title>
+<meta name="description" content="Projetos de automobilismo e MLOps #101–#111, separados em Fórmula 1, Porsche Cup e laboratório comum.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/motorsport/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projetos automotivos #101–#111 · Gabriel Reis Duarte">
+<meta property="og:description" content="Projetos de automobilismo e MLOps #101–#111, separados em Fórmula 1, Porsche Cup e laboratório comum.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/motorsport/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/automotivo.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+</head>
+<body data-niche="automotivo">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto" data-section-current>Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/automotivo/">Automotivo</a></li><li aria-current="page">Projetos #101–#111</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Automotivo de desempenho</p>
+  <h1>Projetos #101–#111</h1>
+  <p class="lede">Todos os projetos numerados de automobilismo e MLOps, organizados pelo lugar onde se aplicam.</p>
+</section>
+<section class="wrap section">
+  <div class="group"><div class="group-head"><h3><a href="/automotivo/f1/">Fórmula 1</a></h3><p>Dados reais OpenF1 e FastF1</p></div>
+    <ul class="index"><li><a class="row" href="/cases/motorsport/101/"><span class="id">#101</span><span class="title">Estratégia de pneus e janela de pit-stop</span><span class="desc">Ritmo estimado a partir de 1.004 voltas observadas no Bahrein 2024; compara planos de parada.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/102/"><span class="id">#102</span><span class="title">Telemetria e filtro de Kalman</span><span class="desc">Velocidade, RPM, acelerador e freio medidos via OpenF1; compara sensor, referência e filtro.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/107/"><span class="id">#107</span><span class="title">Arquivo da direção de prova</span><span class="desc">Busca nas mensagens oficiais da direção de prova registradas no GP do Bahrein 2024.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/109/"><span class="id">#109</span><span class="title">Replay de corrida</span><span class="desc">Pista navegável, classificação e telemetria sincronizadas em quatro minutos da corrida do Bahrein 2024.</span><span class="tags"></span></a></li><li><a class="row" href="/motorsport/f1-pip/"><span class="id">#111</span><span class="title">Modelos e probabilidades de corrida</span><span class="desc">Oito modelos ajustados em resultados reais de 2022 a 2024, validação temporal e simulação Monte Carlo de cenários.</span><span class="tags"></span></a></li></ul></div>
+  <div class="group"><div class="group-head"><h3><a href="/automotivo/porsche/">Porsche Cup</a></h3><p>Aquisição importada</p></div>
+    <ul class="index"><li><a class="row" href="/cases/motorsport/110/"><span class="id">#110</span><span class="title">Laboratório de engenharia Porsche Cup</span><span class="desc">Carga por roda, temperatura dos pneus e dinâmica veicular a partir de uma aquisição importada do carro.</span><span class="tags"></span></a></li></ul></div>
+  <div class="group"><div class="group-head"><h3><a href="/laboratorio/">Laboratório comum</a></h3><p>Serve à indústria e ao automobilismo</p></div>
+    <ul class="index"><li><a class="row" href="/cases/motorsport/103/"><span class="id">#103</span><span class="title">Visão computacional em vídeo onboard</span><span class="desc">Rastreamento de pontos e fluxo óptico. Serve a câmeras de linha de produção e a vídeo onboard.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/104/"><span class="id">#104</span><span class="title">Detecção de anomalias em vibração</span><span class="desc">Autoencoder LSTM contra baseline RMS em sinais de acelerômetro.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/105/"><span class="id">#105</span><span class="title">Inspeção radiográfica com CNN e Grad-CAM</span><span class="desc">Classificação de defeitos em radiografias geradas, com mapas de explicação visual.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/106/"><span class="id">#106</span><span class="title">MLOps com MLflow e FastAPI</span><span class="desc">Rastreamento de experimentos, artefatos recarregáveis e serviço de inferência em contêiner.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/motorsport/108/"><span class="id">#108</span><span class="title">Explicabilidade em risco de falha</span><span class="desc">SHAP sobre um modelo de falha com classes desbalanceadas e SMOTE apenas no treino.</span><span class="tags"></span></a></li></ul></div>
+</section>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

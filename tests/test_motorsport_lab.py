@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 class MotorsportLabTests(unittest.TestCase):
     def test_pages_and_real_captures(self):
         for id in ('101','102','103','104','106','109','110','111'):
-            p=ROOT/'site'/('f1-models/index.html' if id=='111' else f'cases/motorsport/{id}/index.html')
+            p=ROOT/'site'/('motorsport/f1-pip/index.html' if id=='111' else f'cases/motorsport/{id}/index.html')
             s=p.read_text()
             self.assertIn(f'data-lab="{id}"',s)
             if id in ('103', '104', '110'):

@@ -131,7 +131,7 @@ class TestAdvancedBatch(unittest.TestCase):
                 page=ROOT/"site"/"cases"/"advanced"/f"{project:03d}"/"index.html"
                 self.assertTrue(page.is_file())
         self.assertTrue((ROOT/"site"/"cases"/"advanced"/"index.html").is_file())
-        self.assertIn("/cases/advanced/",(ROOT/"site"/"docs"/"index.html").read_text())
+        self.assertIn("/cases/advanced/",(ROOT/"site"/"industrial"/"index.html").read_text())
         p=ROOT/"projetos"/"10-advanced"/e.SPECS[100]["slug"]/"main.py"
         completed=subprocess.run([sys.executable,str(p)],capture_output=True,text=True,
                                  check=True,timeout=30)

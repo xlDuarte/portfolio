@@ -1,147 +1,126 @@
 #!/usr/bin/env python3
-"""Build the static portfolio for GitHub Pages project subpaths.
+"""Build the GitHub Pages mirror as a set of redirects to the canonical site.
 
-Important: GitHub Pages for user/repo is served at /repo/ by default.
-Absolute /cases/... links must be rewritten to /repo/cases/... without
-changing external URLs, #anchors, query parameters or local file names.
-This builds into a *separate* output tree; source site/ is never modified.
+The portfolio is served from Vercel (see ``scripts/site_data.SITE_URL``). GitHub
+Pages keeps working for old links, but every page it serves is a tiny stub that
+points search engines (``rel=canonical`` + ``noindex``) and visitors
+(``meta refresh`` + ``location.replace`` keeping the #hash) to the same path on
+the canonical domain. Retired paths from ``site_data.REDIRECTS`` go straight to
+their new destination. The source ``site/`` tree is never modified.
 
 Usage:
- python scripts/prepare_pages.py --repo xlDuarte/portfolio --output _site
- python scripts/prepare_pages.py --base-path '' --site-url https://example.com --output _site
+  python scripts/prepare_pages.py --repo xlDuarte/portfolio --output _site
 """
 from __future__ import annotations
+
 import argparse
 import html
 import re
 import shutil
+import sys
 from pathlib import Path
-from urllib.parse import quote, urlsplit
-from xml.etree.ElementTree import Element, SubElement, ElementTree
 
-ROOT=Path(__file__).resolve().parents[1]
-_LINK_ATTR=re.compile(
-    r'(?P<attribute>\b(?:href|src|action|poster|data-src)\s*=\s*)'
-    r'(?P<quote>["\x27])(?P<value>[^"\x27]*)(?P=quote)',re.I)
-_CSS_URL=re.compile(r'url\(\s*(?P<quote>["\x27]?)(?P<url>/[^)"\x27]*)(?P=quote)\s*\)',re.I)
-_JS_ROUTES=re.compile(r'(?P<quote>["\x27])(?P<path>/(?:cases|assets|f1)(?:/[^"\x27\s]*)?)(?P=quote)')
-_TITLE=re.compile(r"<title>(.*?)</title>",re.I|re.S)
-_HEAD_END=re.compile(r"</head\s*>",re.I)
-_CNAME_RE=re.compile(r"^[a-z0-9][a-z0-9.-]*$",re.I)
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import site_data as D  # noqa: E402
 
-def clean_base_path(base_path:str)->str:
-    if base_path in ("","/"):return ""
-    if not re.fullmatch(r"/[a-zA-Z0-9_-]+/?",base_path):
+
+def clean_base_path(base_path: str) -> str:
+    if base_path in ("", "/"):
+        return ""
+    if not re.fullmatch(r"/[a-zA-Z0-9_-]+/?", base_path):
         raise ValueError("base-path must be one safe, optional repository segment")
     return base_path.rstrip("/")
 
-def rewrite_url(url:str,base_path:str)->str:
-    """Change only root-relative URLs, preserving external/protocol-relative."""
-    if not url.startswith("/") or url.startswith("//") or not base_path:return url
-    if url==base_path or url.startswith(base_path+"/"):return url
-    return base_path+url
 
-def rewrite_html(markup:str,base_path:str,canonical_url:str|None=None)->str:
-    base=clean_base_path(base_path)
-    def attr(match):
-        raw=match.group("value")
-        return (match.group("attribute")+match.group("quote")+
-                rewrite_url(raw,base)+match.group("quote"))
-    markup=_LINK_ATTR.sub(attr,markup)
-    markup=_CSS_URL.sub(lambda m:'url('+m.group("quote")+
-                        rewrite_url(m.group("url"),base)+m.group("quote")+')',markup)
-    # Existing inline navigation JS uses string literal paths.
-    markup=_JS_ROUTES.sub(lambda m:m.group("quote")+
-                          rewrite_url(m.group("path"),base)+m.group("quote"),markup)
-    if canonical_url and _HEAD_END.search(markup):
-        if not re.search(r'<link\b[^>]*rel=["\x27]canonical["\x27]',markup,re.I):
-            title_match=_TITLE.search(markup)
-            title=html.unescape(re.sub("<[^>]+>","",title_match.group(1))).strip() if title_match else "Industrial Analytics Portfolio"
-            safe=html.escape(title,quote=True)
-            snippet=('\n    <link rel="canonical" href="'+html.escape(canonical_url,quote=True)+'">'
-                     '\n    <meta property="og:type" content="website">'
-                     '\n    <meta property="og:title" content="'+safe+'">'
-                     '\n    <meta property="og:url" content="'+html.escape(canonical_url,quote=True)+'">'
-                     '\n')
-            markup=_HEAD_END.sub(lambda m:snippet+m.group(0),markup,count=1)
-    return markup
+def public_path(relative: str) -> str:
+    """site/ file path → canonical URL path (clean URLs, trailing slash for folders)."""
+    if relative == "index.html":
+        return "/"
+    if relative.endswith("/index.html"):
+        return "/" + relative[: -len("index.html")]
+    if relative.endswith(".html"):
+        return "/" + relative[: -len(".html")]
+    return "/" + relative
 
-def style_industrial_report(relative:str,markup:str)->str:
-    """Apply the shared theme only to numbered industrial reports, never F1 or the homepage."""
-    m=re.fullmatch(r"cases/(?:[a-z_-]+/)?(\d{3})/index\.html",relative)
-    if not m or not 1<=int(m[1])<=100 or "data-industrial-report" in markup:
-        return markup
-    num=int(m[1])
-    markup=_HEAD_END.sub('<link rel="stylesheet" href="/industry/report.css"></head>',markup,count=1)
-    bar=(f'<div class="ind-report-bar"><a href="/industry/#/projetos/{num}">← Ficha do projeto</a>'
-         f'<span>Gabriel Duarte / {num:03}</span></div>')
-    markup=re.sub(r"<body(\s[^>]*)?>",lambda b:b[0][:-1]+" data-industrial-report>"+bar,markup,count=1,flags=re.I)
-    def fold_code(m):
-        if re.search(r"(?:python(?:3)? -m pip|pip install|python projetos/)",m[0]):
-            return '<details class="ind-command"><summary>Ver comandos de reprodução</summary>'+m[0]+'</details>'
-        return m[0]
-    return re.sub(r"<pre(?:\s[^>]*)?>.*?</pre>",fold_code,markup,flags=re.S|re.I)
 
-def build(src:Path,dst:Path,base_path:str="/portfolio",
-          site_url:str="https://xlduarte.github.io")->dict:
-    base=clean_base_path(base_path)
-    src=Path(src).resolve();dst=Path(dst).resolve()
-    if not src.is_dir() or not (src/"index.html").is_file():
+def stub(target_url: str, base: str) -> str:
+    """HTML that forwards to ``target_url``; the inline script keeps the #fragment."""
+    t = html.escape(target_url, quote=True)
+    js_target = target_url.replace("\\", "\\\\").replace("'", "\\'")
+    return (
+        '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+        '<meta name="robots" content="noindex">'
+        f'<link rel="canonical" href="{t}">'
+        f'<meta http-equiv="refresh" content="0; url={t}">'
+        "<title>Portfólio de Gabriel Reis Duarte</title>"
+        f"<script>location.replace('{js_target}'+(location.hash||''))</script>"
+        "</head><body>"
+        f'<p>Este portfólio mudou de endereço: <a href="{t}">{t}</a></p>'
+        "</body></html>"
+    )
+
+
+def not_found_stub(site_url: str, base: str) -> str:
+    """404 page: forward any unknown /portfolio/... path to the same path on the canonical site."""
+    b = base.replace("'", "")
+    return (
+        '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex">'
+        "<title>Portfólio de Gabriel Reis Duarte</title>"
+        f"<script>var p=location.pathname;if('{b}'&&p.indexOf('{b}')===0)p=p.slice({len(b)})||'/';"
+        f"location.replace('{site_url}'+p+location.search+location.hash)</script></head>"
+        f'<body><p>Este portfólio mudou de endereço: <a href="{html.escape(site_url)}">{html.escape(site_url)}</a></p></body></html>'
+    )
+
+
+def build(src: Path, dst: Path, base_path: str = "/portfolio", site_url: str = D.SITE_URL) -> dict:
+    base = clean_base_path(base_path)
+    src = Path(src).resolve()
+    dst = Path(dst).resolve()
+    if not src.is_dir() or not (src / "index.html").is_file():
         raise ValueError("site/ with index.html must exist")
-    if src==dst or src in dst.parents and dst.name=="site":
-        raise ValueError("Refusing to overwrite source site")
-    if dst.exists():shutil.rmtree(dst)
-    shutil.copytree(src,dst)
-    cname=dst/"CNAME"
-    if cname.is_file():
-        domain=cname.read_text(encoding="utf-8").strip()
-        if not _CNAME_RE.fullmatch(domain):raise ValueError("Invalid Pages custom domain")
-        base=""
-        site_url="https://"+domain
-    site_url=site_url.rstrip("/")
-    files=sorted(dst.rglob("*.html"))
-    urls=[]
-    for path in files:
-        relative=path.relative_to(dst).as_posix()
-        public_path=relative.replace("index.html","") if relative.endswith("index.html") else relative
-        public_url=site_url+base+"/"+quote(public_path,safe="/-._~")
-        if relative=="index.html":public_url=site_url+base+"/"
-        raw=path.read_text(encoding="utf-8")
-        path.write_text(rewrite_html(style_industrial_report(relative,raw),base,public_url),encoding="utf-8")
-        if relative!="404.html":urls.append(public_url)
-    (dst/".nojekyll").touch()
-    root=Element("urlset",{"xmlns":"http://www.sitemaps.org/schemas/sitemap/0.9"})
-    for address in urls:
-        node=SubElement(root,"url")
-        SubElement(node,"loc").text=address
-    ElementTree(root).write(dst/"sitemap.xml",encoding="utf-8",xml_declaration=True)
-    (dst/"robots.txt").write_text(
-        "User-agent: *\nAllow: /\nSitemap: "+site_url+base+"/sitemap.xml\n",
-        encoding="utf-8")
-    if not (dst/"404.html").exists():
-        (dst/"404.html").write_text(
-            '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
-            '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<title>Página não encontrada · Automotive & Industrial Lab</title></head>'
-            '<body style="font:16px system-ui;background:#101923;color:white;padding:3rem">'
-            '<h1>Página não encontrada</h1><p>Esta rota não existe.</p>'
-            '<a style="color:#8be4d5" href="'+(base or "")+'/">'
-            'Voltar ao portfólio</a></body></html>',encoding="utf-8")
-    return {"pages":len(files),"sitemap_entries":len(urls),
-            "url":site_url+base+"/","output":str(dst)}
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument("--source",type=Path,default=ROOT/"site")
-    parser.add_argument("--output",type=Path,default=ROOT/"_site")
-    parser.add_argument("--repo",default="xlDuarte/portfolio")
-    parser.add_argument("--base-path",default=None)
-    parser.add_argument("--site-url",default=None)
-    p=parser.parse_args()
-    owner,name=p.repo.split("/",1)
-    path=("/"+name if name.lower()!=owner.lower()+".github.io" else "")
-    report=build(p.source,p.output,p.base_path if p.base_path is not None else path,
-                 p.site_url or "https://"+owner.lower()+".github.io")
-    print(report)
-if __name__=="__main__":
-    main()
+    if src == dst or src in dst.parents:
+        raise ValueError("Refusing to write inside the source site")
+    site_url = site_url.rstrip("/")
+    if dst.exists():
+        shutil.rmtree(dst)
+    dst.mkdir(parents=True)
+    pages = 0
+    for path in sorted(src.rglob("*.html")):
+        relative = path.relative_to(src).as_posix()
+        if relative == "404.html":
+            continue
+        out = dst / relative
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(stub(site_url + public_path(relative), base), encoding="utf-8")
+        pages += 1
+    redirects = 0
+    for old, new in D.REDIRECTS.items():
+        folder = dst / old.strip("/")
+        target = folder / "index.html" if not old.endswith(".html") else dst / old.lstrip("/")
+        if target.exists():
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(stub(site_url + new, base), encoding="utf-8")
+        redirects += 1
+    (dst / "404.html").write_text(not_found_stub(site_url, base), encoding="utf-8")
+    (dst / ".nojekyll").touch()
+    (dst / "robots.txt").write_text(f"User-agent: *\nDisallow:\nSitemap: {site_url}/sitemap.xml\n", encoding="utf-8")
+    return {"pages": pages, "redirects": redirects, "canonical": site_url + "/", "output": str(dst)}
 
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--source", type=Path, default=ROOT / "site")
+    parser.add_argument("--output", type=Path, default=ROOT / "_site")
+    parser.add_argument("--repo", default="xlDuarte/portfolio")
+    parser.add_argument("--base-path", default=None)
+    parser.add_argument("--site-url", default=D.SITE_URL)
+    p = parser.parse_args()
+    owner, name = p.repo.split("/", 1)
+    path = "/" + name if name.lower() != owner.lower() + ".github.io" else ""
+    print(build(p.source, p.output, p.base_path if p.base_path is not None else path, p.site_url))
+
+
+if __name__ == "__main__":
+    main()

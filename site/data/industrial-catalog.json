@@ -1,0 +1,752 @@
+[
+ {
+  "slug": "dados",
+  "projects": [
+   {
+    "id": 1,
+    "name": "Desempenho de Treinamento e Operadores",
+    "desc": "Correlação entre horas de capacitação técnica, curva de aprendizado e produtividade em células de manufatura.",
+    "code": "projetos/01-dados/001-operator-training-performance-analysis",
+    "page": "/cases/001/"
+   },
+   {
+    "id": 2,
+    "name": "Análise de Giro e Vendas de Reposição (Aftermarket)",
+    "desc": "Análise de cesta de peças, sazonalidade de componentes e margem de contribuição por linha automotiva.",
+    "code": "projetos/01-dados/002-aftermarket-auto-parts-sales-analysis",
+    "page": "/cases/002/"
+   },
+   {
+    "id": 3,
+    "name": "Catálogo de Documentação Técnica e Telemetria",
+    "desc": "Mapeamento de consumo de guias técnicos de engenharia, cobertura de tópicos (ETL, DAX, Cloud) e retenção.",
+    "code": "projetos/01-dados/003-technical-documentation-telemetry-catalog",
+    "page": "/cases/003/"
+   },
+   {
+    "id": 4,
+    "name": "Espectro Acústico e Vibração Veicular (NVH)",
+    "desc": "Extração de atributos de frequência sonora e amplitude harmônica em testes de bancada de motores.",
+    "code": "projetos/01-dados/004-acoustic-nvh-vibration-spectrum-analysis",
+    "page": "/cases/004/"
+   },
+   {
+    "id": 5,
+    "name": "Engajamento em Trilhas de Capacitação Industrial",
+    "desc": "Métricas de absorção de vídeos de segurança operacional, procedimentos padrão (SOPs) e alcance por planta.",
+    "code": "projetos/01-dados/005-engineering-knowledge-base-analytics",
+    "page": "/cases/005/"
+   },
+   {
+    "id": 6,
+    "name": "Performance de Portal B2B e E-Procurement",
+    "desc": "Funil de conversão de pedidos B2B, ticket médio de contratos industriais e eficiência de faturamento SAP.",
+    "code": "projetos/01-dados/006-b2b-industrial-e-procurement-analysis",
+    "page": "/cases/006/"
+   },
+   {
+    "id": 7,
+    "name": "Comportamento de Requisições e Compras (OEM/Tier-1)",
+    "desc": "Padrões de recorrência em ordens de compra no SAP/ARIBA, lotes econômicos e concentração de demanda.",
+    "code": "projetos/01-dados/007-oem-tier-1-purchasing-behavior",
+    "page": "/cases/007/"
+   },
+   {
+    "id": 8,
+    "name": "Consumo de Utilidades e Operações de Turno",
+    "desc": "Análise horária de demanda de insumos de apoio, picos entre turnos produtivos e redução de desperdício.",
+    "code": "projetos/01-dados/008-plant-shift-utilities-facility-analysis",
+    "page": "/cases/008/"
+   },
+   {
+    "id": 9,
+    "name": "Avaliação de Ativos Industriais e Imobilizado (CAPEX)",
+    "desc": "Análise multivariada de custo por metro quadrado fabril, depreciação de maquinário e localização logística.",
+    "code": "projetos/01-dados/009-industrial-asset-facility-valuation",
+    "page": "/cases/009/"
+   },
+   {
+    "id": 10,
+    "name": "Impacto de Disrupções Globais na Cadeia Produtiva",
+    "desc": "Estudo de séries históricas de paradas globais, contingência de insumos críticos e resiliência operacional.",
+    "code": "projetos/01-dados/010-supply-chain-disruption-impact-analysis",
+    "page": "/cases/supply/"
+   }
+  ]
+ },
+ {
+  "slug": "eda",
+  "projects": [
+   {
+    "id": 11,
+    "name": "Demografia de Frota Global e Eletrificação",
+    "desc": "Distribuição regional de frotas leves/pesadas, envelhecimento veicular e taxa de adoção híbrida/elétrica.",
+    "code": "projetos/02-eda/011-global-fleet-mobility-demographics-eda",
+    "page": "/cases/011/"
+   },
+   {
+    "id": 12,
+    "name": "Clima Organizacional, Segurança e Ergonomia Fabril",
+    "desc": "Correlação entre indicadores de ergonomia, absenteísmo, estabilidade de turno e zero acidentes.",
+    "code": "projetos/02-eda/012-workplace-safety-ergonomics-index-eda",
+    "page": "/cases/012/"
+   },
+   {
+    "id": 13,
+    "name": "Capacidade de Armazéns e Centros de Distribuição",
+    "desc": "Densidade de ocupação de posições-palete, giro por doca e custo de armazenagem por região.",
+    "code": "projetos/02-eda/013-logistics-hub-warehouse-capacity-eda",
+    "page": "/cases/013/"
+   },
+   {
+    "id": 14,
+    "name": "Benchmarks de Telemetria e Tempos de Volta (Motorsport)",
+    "desc": "Evolução histórica de performance, eficiência aerodinâmica e tempos de ciclo de alta precisão.",
+    "code": "projetos/02-eda/014-motorsport-telemetry-lap-benchmarks",
+    "page": "/cases/014/"
+   },
+   {
+    "id": 15,
+    "name": "Auditorias de Qualidade de Lotes e Fornecedores",
+    "desc": "Distribuição de notas de inspeção técnica de recebimento (IQF) e dispersão de não-conformidades.",
+    "code": "projetos/02-eda/015-component-quality-audit-ratings-eda",
+    "page": "/cases/015/"
+   },
+   {
+    "id": 16,
+    "name": "Telemetria de Pit-Stop e Troca Rápida de Ferramenta (SMED)",
+    "desc": "Análise estatística de micro-tempos de setup em usinagem/laminação inspirada em pit-stops de F1.",
+    "code": "projetos/02-eda/016-smed-high-speed-setup-telemetry-eda",
+    "page": "/cases/016/"
+   },
+   {
+    "id": 17,
+    "name": "Mapeamento de Competências em Engenharia e Indústria 4.0",
+    "desc": "Demanda por skills (Python, SAP, Power BI, IIoT, Java) no setor automotivo e metal-mecânico.",
+    "code": "projetos/02-eda/017-industrial-tech-talent-market-eda",
+    "page": "/cases/017/"
+   },
+   {
+    "id": 18,
+    "name": "Volatilidade de Ações Siderúrgicas e Automotivas",
+    "desc": "Correlação entre preço do aço/energia, margens de OEMs/Tier-1 e ciclos macroeconômicos.",
+    "code": "projetos/02-eda/018-automotive-steel-equity-market-eda",
+    "page": "/cases/018/"
+   },
+   {
+    "id": 19,
+    "name": "Tempos de Despacho e Logística Inbound/Outbound",
+    "desc": "Identificação de outliers em rotas de entrega, janelas de coleta e impacto climático no frete.",
+    "code": "projetos/02-eda/019-parts-dispatch-lead-time-eda",
+    "page": "/cases/019/"
+   },
+   {
+    "id": 20,
+    "name": "Causas-Raiz de Atrasos em Fretes Críticos e Aéreos",
+    "desc": "Decomposição de atrasos logísticos por modal, desembaraço fiscal e gargalos de terminal.",
+    "code": "projetos/02-eda/020-critical-freight-delay-root-cause-eda",
+    "page": "/cases/020/"
+   }
+  ]
+ },
+ {
+  "slug": "regression",
+  "projects": [
+   {
+    "id": 21,
+    "name": "Estimativa de CAPEX para Instalações Industriais",
+    "desc": "Regressão XGBoost para estimar investimento de implantação fabril com base em capacidade e utilidades.",
+    "code": "projetos/03-regression/021-industrial-facility-capex-valuation",
+    "page": "/cases/021/"
+   },
+   {
+    "id": 22,
+    "name": "Valor Residual e Depreciação de Frota Automotiva",
+    "desc": "Predição de valor de revenda/depreciação considerando quilometragem, telemetria de uso e manutenções.",
+    "code": "projetos/03-regression/022-fleet-vehicle-residual-value-model",
+    "page": "/cases/022/"
+   },
+   {
+    "id": 23,
+    "name": "Modelagem de Custos de Mão de Obra e Especialidades",
+    "desc": "Estimativa orçamentária de alocação de equipes técnicas por senioridade, stack e localização.",
+    "code": "projetos/03-regression/023-engineering-compensation-cost-model",
+    "page": "/cases/023/"
+   },
+   {
+    "id": 24,
+    "name": "Predição de Proficiência Técnica em Certificações",
+    "desc": "Modelo regressivo associando prática laboratorial ao desempenho em auditorias operacionais.",
+    "code": "projetos/03-regression/024-technical-certification-score-prediction",
+    "page": "/cases/024/"
+   },
+   {
+    "id": 25,
+    "name": "Projeção de Custos de Saúde Ocupacional e Sinistralidade",
+    "desc": "Estimativa atuarial de despesas médicas/segurança com base em fatores de risco ergonômico.",
+    "code": "projetos/03-regression/025-occupational-safety-cost-prediction",
+    "page": "/cases/025/"
+   },
+   {
+    "id": 26,
+    "name": "Precificação de Prêmio de Seguro de Maquinário e Frota",
+    "desc": "Regressão baseada em MTBF, idade do ativo, telemetria de operação e histórico de sinistros.",
+    "code": "projetos/03-regression/026-industrial-equipment-insurance-pricing",
+    "page": "/cases/026/"
+   },
+   {
+    "id": 27,
+    "name": "Previsão de Volume de Vendas de Forjados e Cilindros",
+    "desc": "Modelo preditivo de demanda comercial integrando carteira de pedidos, cotas e indicadores setoriais.",
+    "code": "projetos/03-regression/027-industrial-forgings-sales-regression",
+    "page": "/cases/027/"
+   },
+   {
+    "id": 28,
+    "name": "Dimensionamento de Custo de Hardware Industrial / Edge",
+    "desc": "Estimativa de TCO de servidores de borda (GPUs, RAM, proteção IP67) por especificação.",
+    "code": "projetos/03-regression/028-edge-workstation-hardware-cost-model",
+    "page": "/cases/028/"
+   },
+   {
+    "id": 29,
+    "name": "Predição de Consumo Elétrico em Fornos e Usinagem",
+    "desc": "Regressão multivariada para prever MWh por lote produtivo e evitar ultrapassagem de tarifa ponta.",
+    "code": "projetos/03-regression/029-furnace-machining-power-consumption",
+    "page": "/cases/029/"
+   },
+   {
+    "id": 30,
+    "name": "Estimativa de Lead-Time de Entrega Logística (ETA)",
+    "desc": "Predição precisa de tempo de trânsito combinando distância, peso da carga, rota e histórico SAP.",
+    "code": "projetos/03-regression/030-logistics-delivery-time-eta-prediction",
+    "page": "/cases/030/"
+   }
+  ]
+ },
+ {
+  "slug": "classification",
+  "projects": [
+   {
+    "id": 31,
+    "name": "Predição de Churn em Contratos B2B Industriais",
+    "desc": "Identificação preventiva de contas corporativas com risco de redução de volume ou migração.",
+    "code": "projetos/04-classification/031-b2b-industrial-contract-churn-prediction",
+    "page": "/cases/classification/031/"
+   },
+   {
+    "id": 32,
+    "name": "Aprovação Automatizada de Crédito para Fornecedores",
+    "desc": "Classificação de limites comerciais e adiantamentos na cadeia de suprimentos.",
+    "code": "projetos/04-classification/032-vendor-b2b-credit-approval-classifier",
+    "page": "/cases/classification/032/"
+   },
+   {
+    "id": 33,
+    "name": "Classificação de Risco de Contraparte e Compliance",
+    "desc": "Scoring binário/multiclasse de risco financeiro e regulatório em contratos corporativos.",
+    "code": "projetos/04-classification/033-counterparty-credit-compliance-risk",
+    "page": "/cases/classification/033/"
+   },
+   {
+    "id": 34,
+    "name": "Predição de Rotatividade (Turnover) em Operações",
+    "desc": "Detecção de fatores críticos de retenção de operadores especializados e engenheiros.",
+    "code": "projetos/04-classification/034-shop-floor-tech-attrition-prediction",
+    "page": "/cases/classification/034/"
+   },
+   {
+    "id": 35,
+    "name": "Triagem de Alertas de Cibersegurança e Phishing IT/OT",
+    "desc": "Classificação de comunicações maliciosas e ruído em redes corporativas e industriais.",
+    "code": "projetos/04-classification/035-it-ot-cybersecurity-alert-classifier",
+    "page": "/cases/classification/035/"
+   },
+   {
+    "id": 36,
+    "name": "Diagnóstico de Falha Crítica em Bombas e Atuadores",
+    "desc": "Classificação de saúde de sistemas hidráulicos de alta pressão a partir de pressão, vazão e vibração.",
+    "code": "projetos/04-classification/036-hydraulic-pump-failure-classification",
+    "page": "/cases/classification/036/"
+   },
+   {
+    "id": 37,
+    "name": "Classificação de Degradação Química de Lubrificantes",
+    "desc": "Análise físico-química de óleo industrial (viscosidade, partículas, acidez) para troca preditiva.",
+    "code": "projetos/04-classification/037-lubricant-degradation-classifier",
+    "page": "/cases/classification/037/"
+   },
+   {
+    "id": 38,
+    "name": "Detecção de Anomalias e Fraudes em Compras (SAP/SOX)",
+    "desc": "Identificação de fracionamento de ordens de compra, desvios de alçada e lançamentos atípicos.",
+    "code": "projetos/04-classification/038-sap-procurement-anomaly-detection",
+    "page": "/cases/classification/038/"
+   },
+   {
+    "id": 39,
+    "name": "Propensão de Recompra de Peças de Reposição",
+    "desc": "Classificador de probabilidade de reposição de componentes críticos em clientes da carteira.",
+    "code": "projetos/04-classification/039-spare-parts-reorder-propensity-model",
+    "page": "/cases/classification/039/"
+   },
+   {
+    "id": 40,
+    "name": "Predição de Inadimplência e Quebra de SLA Contratual",
+    "desc": "Modelo preventivo unindo histórico financeiro, atrasos de faturamento e risco jurídico.",
+    "code": "projetos/04-classification/040-contract-default-sla-breach-classifier",
+    "page": "/cases/classification/040/"
+   }
+  ]
+ },
+ {
+  "slug": "nlp",
+  "projects": [
+   {
+    "id": 41,
+    "name": "Análise de Sentimento em Garantias e Pós-Venda",
+    "desc": "Mineração de relatos técnicos de concessionárias e clientes industriais para detectar falhas de campo.",
+    "code": "projetos/05-nlp/041-warranty-field-feedback-sentiment",
+    "page": "/cases/nlp/041/"
+   },
+   {
+    "id": 42,
+    "name": "Filtro Inteligente de Chamados de Service Desk",
+    "desc": "Descarte automático de chamados duplicados ou improcedentes no suporte SAP/TI.",
+    "code": "projetos/05-nlp/042-service-desk-noise-ticket-filter",
+    "page": "/cases/nlp/042/"
+   },
+   {
+    "id": 43,
+    "name": "Verificação de Alertas Regulatórios e Supply Chain",
+    "desc": "Validação automatizada de notícias de ruptura de fornecedores, tarifas e sanções comerciais.",
+    "code": "projetos/05-nlp/043-regulatory-supply-chain-alert-verifier",
+    "page": "/cases/nlp/043/"
+   },
+   {
+    "id": 44,
+    "name": "Classificação Automática de Ordens de Manutenção (SAP PM)",
+    "desc": "Categorização de notas de manutenção (elétrica, mecânica, hidráulica, automação) via texto livre.",
+    "code": "projetos/05-nlp/044-sap-pm-work-order-topic-classifier",
+    "page": "/cases/nlp/044/"
+   },
+   {
+    "id": 45,
+    "name": "Análise de Polaridade em Laudos de Inspeção Técnica",
+    "desc": "Classificação de severidade em pareceres de qualidade, auditoria interna e engenharia.",
+    "code": "projetos/05-nlp/045-technical-inspection-report-polarity",
+    "page": "/cases/nlp/045/"
+   },
+   {
+    "id": 46,
+    "name": "Triagem Semântica de Currículos de Engenharia e TI",
+    "desc": "Alinhamento automatizado de perfis técnicos às matrizes de competência industrial.",
+    "code": "projetos/05-nlp/046-engineering-tech-resume-classifier",
+    "page": "/cases/nlp/046/"
+   },
+   {
+    "id": 47,
+    "name": "Detecção de Criticidade e Urgência em Diários de Bordo",
+    "desc": "Identificação de relatos de quase-acidente ou estresse operacional em passagens de turno.",
+    "code": "projetos/05-nlp/047-shift-log-criticality-urgency-nlp",
+    "page": "/cases/nlp/047/"
+   },
+   {
+    "id": 48,
+    "name": "Scanner de Conformidade Ética e Governança Corporativa",
+    "desc": "Auditoria automatizada de conformidade comunicacional alinhada a políticas de compliance.",
+    "code": "projetos/05-nlp/048-compliance-governance-text-scanner",
+    "page": "/cases/nlp/048/"
+   },
+   {
+    "id": 49,
+    "name": "Roteador Multilíngue de Documentação Global (PT/EN/ES)",
+    "desc": "Detecção automática de idioma e encaminhamento de especificações técnicas multinacionais.",
+    "code": "projetos/05-nlp/049-multi-plant-documentation-language-router",
+    "page": "/cases/nlp/049/"
+   },
+   {
+    "id": 50,
+    "name": "Sumarização Executiva de Normas ISO, SOPs e Contratos",
+    "desc": "Geração de resumos executivos estruturados a partir de manuais técnicos e cláusulas regulatórias.",
+    "code": "projetos/05-nlp/050-sop-iso-contract-summarizer",
+    "page": "/cases/nlp/050/"
+   }
+  ]
+ },
+ {
+  "slug": "recommendation",
+  "projects": [
+   {
+    "id": 51,
+    "name": "Recomendador de Playbooks e Vídeos de Manutenção",
+    "desc": "Sugestão imediata do procedimento visual correto com base no código de falha da máquina.",
+    "code": "projetos/06-recommendation/051-maintenance-playbook-video-recommender",
+    "page": "/cases/recommendation/051/"
+   },
+   {
+    "id": 52,
+    "name": "Matcher de Assinaturas Acústicas de Diagnóstico",
+    "desc": "Busca por similaridade de cosseno entre ruídos captados no motor e banco de falhas conhecidas.",
+    "code": "projetos/06-recommendation/052-acoustic-diagnostic-signature-matcher",
+    "page": "/cases/recommendation/052/"
+   },
+   {
+    "id": 53,
+    "name": "Recomendador de Normas Técnicas e Manuais de Engenharia",
+    "desc": "Recuperação inteligente de normas ABNT/ISO/DIN relevantes para cada projeto de engenharia.",
+    "code": "projetos/06-recommendation/053-engineering-standard-manual-finder",
+    "page": "/cases/recommendation/053/"
+   },
+   {
+    "id": 54,
+    "name": "Recomendação Cruzada de Ferramentaria e Insumos (MRO)",
+    "desc": "Sugestão de insertos, rolamentos e EPIs complementares na abertura de requisição SAP.",
+    "code": "projetos/06-recommendation/054-tooling-spare-parts-recommender",
+    "page": "/cases/recommendation/054/"
+   },
+   {
+    "id": 55,
+    "name": "Trilha Recomendada de Capacitação (Six Sigma / Dados)",
+    "desc": "Plano de estudo personalizado conforme lacunas identificadas na matriz de polivalência.",
+    "code": "projetos/06-recommendation/055-industrial-upskilling-path-recommender",
+    "page": "/cases/recommendation/055/"
+   },
+   {
+    "id": 56,
+    "name": "Alocação Inteligente de Engenheiros por Projeto",
+    "desc": "Recomendação de especialistas internos para forças-tarefa de melhoria contínua e Kaizen.",
+    "code": "projetos/06-recommendation/056-project-to-engineer-skill-matcher",
+    "page": "/cases/recommendation/056/"
+   },
+   {
+    "id": 57,
+    "name": "Feed Personalizado de Inteligência de Commodities e Setor",
+    "desc": "Curadoria automatizada de boletins sobre aço, energia, frete marítimo e regulação.",
+    "code": "projetos/06-recommendation/057-industrial-market-intelligence-feed",
+    "page": "/cases/recommendation/057/"
+   },
+   {
+    "id": 58,
+    "name": "Recomendador de Fornecedores Homologados (ARIBA)",
+    "desc": "Ranking de fornecedores ideais por histórico de qualidade (IQF), prazo (OTIF) e preço.",
+    "code": "projetos/06-recommendation/058-approved-supplier-recommender-ariba",
+    "page": "/cases/recommendation/058/"
+   },
+   {
+    "id": 59,
+    "name": "Recomendador de Rotas e Modais Logísticos",
+    "desc": "Seleção da melhor combinação transportadora/rota considerando risco climático e tarifa.",
+    "code": "projetos/06-recommendation/059-optimal-logistics-route-carrier-engine",
+    "page": "/cases/recommendation/059/"
+   },
+   {
+    "id": 60,
+    "name": "Otimizador de Lotes de Compra e Kits de Manutenção",
+    "desc": "Geração automática de listas de materiais (BOM) completas para paradas programadas.",
+    "code": "projetos/06-recommendation/060-automated-bom-maintenance-kit-engine",
+    "page": "/cases/recommendation/060/"
+   }
+  ]
+ },
+ {
+  "slug": "timeseries",
+  "projects": [
+   {
+    "id": 61,
+    "name": "Forecasting de Preços de Aço, Ligas Metálicas e Insumos",
+    "desc": "Modelagem ARIMA/Prophet de custos de matérias-primas siderúrgicas para planejamento de compras.",
+    "code": "projetos/07-timeseries/061-steel-alloy-commodity-forecasting",
+    "page": "/cases/timeseries/061/"
+   },
+   {
+    "id": 62,
+    "name": "Previsão S&OP de Faturamento e Demanda Industrial",
+    "desc": "Decomposição sazonal e projeção de demanda em múltiplos horizontes para alinhamento fabril.",
+    "code": "projetos/07-timeseries/062-s-op-industrial-sales-forecasting",
+    "page": "/cases/timeseries/062/"
+   },
+   {
+    "id": 63,
+    "name": "Previsão Termodinâmica e Impacto Climático na Planta",
+    "desc": "Modelagem do efeito da temperatura/umidade externa sobre torres de resfriamento e fornos.",
+    "code": "projetos/07-timeseries/063-plant-thermal-load-weather-forecast",
+    "page": "/cases/timeseries/063/"
+   },
+   {
+    "id": 64,
+    "name": "Forecasting de Demanda de Energia em Horário de Ponta",
+    "desc": "Previsão horária de carga elétrica industrial para otimização de contratos no mercado livre.",
+    "code": "projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast",
+    "page": "/cases/timeseries/064/"
+   },
+   {
+    "id": 65,
+    "name": "Previsão de Tráfego de Mensagens IIoT e APIs Corporativas",
+    "desc": "Dimensionamento preditivo de throughput em brokers MQTT/Kafka e gateways de dados.",
+    "code": "projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting",
+    "page": "/cases/timeseries/065/"
+   },
+   {
+    "id": 66,
+    "name": "Previsão de Consumo de Ferramentaria e ICS Críticos",
+    "desc": "Projeção de ponto de pedido dinâmico para evitar ruptura de itens críticos no SAP.",
+    "code": "projetos/07-timeseries/066-critical-ics-tooling-demand-forecast",
+    "page": "/cases/timeseries/066/"
+   },
+   {
+    "id": 67,
+    "name": "Previsão de Ocupação de Centros de Usinagem e Docas",
+    "desc": "Modelagem de agendamentos de máquina e janelas de recebimento logístico.",
+    "code": "projetos/07-timeseries/067-machining-center-dock-slot-forecast",
+    "page": "/cases/timeseries/067/"
+   },
+   {
+    "id": 68,
+    "name": "Análise de Volatilidade Cambial em Importação de Insumos",
+    "desc": "Modelagem de séries temporais de alta frequência para proteção cambial (hedge) em compras.",
+    "code": "projetos/07-timeseries/068-fx-volatility-analysis-for-imports",
+    "page": "/cases/timeseries/068/"
+   },
+   {
+    "id": 69,
+    "name": "Monitoramento e Previsão de Emissões Atmosféricas (ESG)",
+    "desc": "Projeção de indicadores ambientais e material particulado para conformidade regulatória.",
+    "code": "projetos/07-timeseries/069-industrial-esg-emissions-forecasting",
+    "page": "/cases/timeseries/069/"
+   },
+   {
+    "id": 70,
+    "name": "Previsão de Taxa de Consumo (Burn-Rate) de Insumos Químicos",
+    "desc": "Previsão semanal de consumo de fluidos de corte, gases industriais e refratários.",
+    "code": "projetos/07-timeseries/070-consumables-burn-rate-forecasting",
+    "page": "/cases/timeseries/070/"
+   }
+  ]
+ },
+ {
+  "slug": "vision",
+  "projects": [
+   {
+    "id": 71,
+    "name": "Verificação Automática de EPIs no Chão de Fábrica",
+    "desc": "Detecção em tempo real do uso de capacete, óculos de proteção e protetor facial em áreas quentes.",
+    "code": "projetos/08-vision/071-shop-floor-ppe-compliance-detection",
+    "page": "/cases/vision/071/"
+   },
+   {
+    "id": 72,
+    "name": "Interface HMI sem Toque por Gestos para Operadores",
+    "desc": "Controle de painéis operacionais por visão computacional para operadores usando luvas pesadas.",
+    "code": "projetos/08-vision/072-touchless-hmi-hand-gesture-control",
+    "page": "/cases/vision/072/"
+   },
+   {
+    "id": 73,
+    "name": "Detecção e Contagem de Peças Forjadas e Estampadas",
+    "desc": "Localização via bounding-box e verificação dimensional de componentes na esteira.",
+    "code": "projetos/08-vision/073-forged-stamped-part-detection",
+    "page": "/cases/vision/073/"
+   },
+   {
+    "id": 74,
+    "name": "Monitoramento de Fadiga e Atenção em Operadores/Frota",
+    "desc": "Detecção de sinais visuais de sonolência ou distração em pontes rolantes, empilhadeiras e frotas.",
+    "code": "projetos/08-vision/074-operator-driver-fatigue-monitoring",
+    "page": "/cases/vision/074/"
+   },
+   {
+    "id": 75,
+    "name": "Reconhecimento Óptico (OCR) de Gravações em Relevo/Punção",
+    "desc": "Leitura automatizada de códigos de corrida siderúrgica e lotes gravados em superfícies metálicas.",
+    "code": "projetos/08-vision/075-stamped-serial-die-cast-ocr",
+    "page": "/cases/vision/075/"
+   },
+   {
+    "id": 76,
+    "name": "Detecção de Trincas Superficiais, Porosidade e Oxidação",
+    "desc": "Segmentação de defeitos metalúrgicos superficiais em cilindros laminadores e blocos.",
+    "code": "projetos/08-vision/076-surface-crack-oxidation-detection",
+    "page": "/cases/vision/076/"
+   },
+   {
+    "id": 77,
+    "name": "Reconhecimento de Sinalização para AGVs e Sistemas ADAS",
+    "desc": "Identificação de placas de limite de velocidade, pare e rotas demarcadas para veículos autônomos.",
+    "code": "projetos/08-vision/077-agv-adas-traffic-sign-recognition",
+    "page": "/cases/vision/077/"
+   },
+   {
+    "id": 78,
+    "name": "Classificação Automática de Sucata Metálica e Resíduos",
+    "desc": "Separação visual de cavacos, ligas ferrosas/não-ferrosas e resíduos industriais.",
+    "code": "projetos/08-vision/078-scrap-metal-recycling-classifier",
+    "page": "/cases/vision/078/"
+   },
+   {
+    "id": 79,
+    "name": "Rastreamento de Caminhões e Movimentação no Pátio",
+    "desc": "Monitoramento automatizado de fila de pesagem, docas de carga e tempo de permanência.",
+    "code": "projetos/08-vision/079-plant-yard-vehicle-fleet-tracking",
+    "page": "/cases/vision/079/"
+   },
+   {
+    "id": 80,
+    "name": "Classificação de Microestrutura Metalográfica por Imagem",
+    "desc": "Classificação de fases metalúrgicas (perlita, martensita, bainita) em imagens de microscopia.",
+    "code": "projetos/08-vision/080-metallurgical-microstructure-classifier",
+    "page": "/cases/vision/080/"
+   }
+  ]
+ },
+ {
+  "slug": "business",
+  "projects": [
+   {
+    "id": 81,
+    "name": "Predição de Lifetime Value (LTV) de Contas Industriais",
+    "desc": "Valoração econômica de contratos de longo prazo com montadoras e clientes siderúrgicos.",
+    "code": "projetos/09-business/081-b2b-account-lifetime-value-ltv",
+    "page": "/cases/business/081/"
+   },
+   {
+    "id": 82,
+    "name": "Dashboard Executivo de OEE, Cotas e Performance (Gerdau)",
+    "desc": "Consolidação estratégica de KPIs produtivos, comerciais e logísticos com DAX avançado.",
+    "code": "projetos/09-business/082-executive-oee-commercial-bi-dashboard",
+    "page": "/cases/business/082/"
+   },
+   {
+    "id": 83,
+    "name": "Análise de Retorno de Iniciativas Comerciais e Feiras B2B",
+    "desc": "Avaliação de custo de aquisição, conversão de cotações técnicas e margem gerada.",
+    "code": "projetos/09-business/083-b2b-commercial-campaign-roi-analysis",
+    "page": "/cases/business/083/"
+   },
+   {
+    "id": 84,
+    "name": "Segmentação ABC/RFM de Fornecedores e Clientes",
+    "desc": "Clusterização estratégica da base de compras (SAP/ARIBA) e carteira de clientes.",
+    "code": "projetos/09-business/084-supplier-client-abc-rfm-segmentation",
+    "page": "/cases/business/084/"
+   },
+   {
+    "id": 85,
+    "name": "Auditoria Contínua de Pagamentos e Conformidade SOX",
+    "desc": "Verificação automatizada de duplicidades, desvios fiscais e conformidade em contas a pagar.",
+    "code": "projetos/09-business/085-sox-payment-audit-anomaly-detection",
+    "page": "/cases/business/085/"
+   },
+   {
+    "id": 86,
+    "name": "Matriz de Risco e Heatmap Operacional (Sistema Prontos)",
+    "desc": "Mapeamento crítico de probabilidade × impacto financeiro/operacional para governança.",
+    "code": "projetos/09-business/086-operational-risk-matrix-heatmap",
+    "page": "/cases/business/086/"
+   },
+   {
+    "id": 87,
+    "name": "Otimização de Portfólio de Projetos de Inovação (CAPEX)",
+    "desc": "Priorização de investimentos tecnológicos por VPL, TIR, Payback e alinhamento estratégico.",
+    "code": "projetos/09-business/087-capex-innovation-portfolio-analysis",
+    "page": "/cases/business/087/"
+   },
+   {
+    "id": 88,
+    "name": "Projeção de Faturamento e Conciliação Contábil-Fiscal",
+    "desc": "Previsão de fechamento mensal integrando expedição física, notas emitidas e impostos.",
+    "code": "projetos/09-business/088-industrial-billing-revenue-projection",
+    "page": "/cases/business/088/"
+   },
+   {
+    "id": 89,
+    "name": "Spend Analytics e Eficiência de Compras no SAP Ariba",
+    "desc": "Análise de saving em cotações, lead-time de compras e aderência a contratos corporativos.",
+    "code": "projetos/09-business/089-sap-ariba-procurement-spend-analytics",
+    "page": "/cases/business/089/"
+   },
+   {
+    "id": 90,
+    "name": "Análise de Custos de Transformação, Tarifas e Horas Extras",
+    "desc": "Apoio à Controladoria na análise de custos industriais, tarifas operacionais e alocação.",
+    "code": "projetos/09-business/090-manufacturing-cost-tariff-analytics",
+    "page": "/cases/business/090/"
+   }
+  ]
+ },
+ {
+  "slug": "advanced",
+  "projects": [
+   {
+    "id": 91,
+    "name": "Motor End-to-End de Governança e Risco de Fornecedores",
+    "desc": "Arquitetura completa integrando dados financeiros, compliance jurídico (LGPD/SOX) e scoring.",
+    "code": "projetos/10-advanced/091-end-to-end-vendor-governance-risk-engine",
+    "page": "/cases/advanced/091/"
+   },
+   {
+    "id": 92,
+    "name": "Monitoramento em Tempo Real de Anomalias Transacionais ERP",
+    "desc": "Pipeline de streaming via Kafka/FastAPI para auditar movimentações críticas de estoque em tempo real.",
+    "code": "projetos/10-advanced/092-real-time-erp-ot-anomaly-detection",
+    "page": "/cases/advanced/092/"
+   },
+   {
+    "id": 93,
+    "name": "Plataforma IA de Mapeamento de Competências Técnicas",
+    "desc": "Aplicação corporativa para avaliação de aderência técnica em vagas de engenharia e TI.",
+    "code": "projetos/10-advanced/093-ai-technical-competency-screening-platform",
+    "page": "/cases/advanced/093/"
+   },
+   {
+    "id": 94,
+    "name": "Sistema Integrado de Previsão de Demanda e Estoque Crítico",
+    "desc": "Solução ponta a ponta conectando previsão estatística à geração de requisições SAP.",
+    "code": "projetos/10-advanced/094-integrated-s-op-ics-demand-system",
+    "page": "/cases/advanced/094/"
+   },
+   {
+    "id": 95,
+    "name": "Plataforma de Retenção e Saúde de Contratos B2B",
+    "desc": "Monitoramento contínuo de SLA, entregas logísticas (OTIF) e satisfação de clientes industriais.",
+    "code": "projetos/10-advanced/095-enterprise-b2b-contract-retention-platform",
+    "page": "/cases/advanced/095/"
+   },
+   {
+    "id": 96,
+    "name": "Motor de Recomendação de Parâmetros de Setup (MES)",
+    "desc": "Sugestão em tempo real de parâmetros ótimos de máquina para maximizar OEE na troca de lote.",
+    "code": "projetos/10-advanced/096-real-time-mes-setup-recommendation-engine",
+    "page": "/cases/advanced/096/"
+   },
+   {
+    "id": 97,
+    "name": "Plataforma Ciberfísica de Manutenção Preditiva (RUL)",
+    "desc": "Ingestão de telemetria vibracional/térmica, inferência Weibull/ML e abertura de ordem preventiva.",
+    "code": "projetos/10-advanced/097-cyber-physical-predictive-maintenance-system",
+    "page": "/cases/advanced/097/"
+   },
+   {
+    "id": 98,
+    "name": "Classificador Inteligente de Desenhos Técnicos, NFs e Contratos",
+    "desc": "Automação documental combinando OCR, NLP e visão para triagem de pastas de engenharia (PAs).",
+    "code": "projetos/10-advanced/098-ai-engineering-document-invoice-classifier",
+    "page": "/cases/advanced/098/"
+   },
+   {
+    "id": 99,
+    "name": "Centro de Comando em Tempo Real de Qualidade e Segurança",
+    "desc": "Dashboard operacional de baixa latência consolidando alertas de chão de fábrica e desvios.",
+    "code": "projetos/10-advanced/099-real-time-quality-safety-command-center",
+    "page": "/cases/advanced/099/"
+   },
+   {
+    "id": 100,
+    "name": "Plataforma Corporativa End-to-End de Business Intelligence",
+    "desc": "Arquitetura completa (SAP/ARIBA/MES → ETL Power Query/Python/SQL → Star Schema → Power BI DAX).",
+    "code": "projetos/10-advanced/100-end-to-end-industrial-bi-data-platform",
+    "page": "/cases/advanced/100/"
+   }
+  ]
+ }
+]

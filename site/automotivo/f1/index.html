@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fórmula 1 · Gabriel Reis Duarte</title>
+<meta name="description" content="Ferramentas e projetos de Fórmula 1 com dados reais: probabilidades de corrida, estratégia de pneus, replay, aerodinâmica ativa, recuperação de energia e tempo de volta.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/automotivo/f1/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fórmula 1 · Gabriel Reis Duarte">
+<meta property="og:description" content="Ferramentas e projetos de Fórmula 1 com dados reais: probabilidades de corrida, estratégia de pneus, replay, aerodinâmica ativa, recuperação de energia e tempo de volta.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/automotivo/f1/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/automotivo.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.subnav{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--rule)}.subnav a{text-decoration:none;padding:10px 14px;margin-bottom:-1px;border-bottom:2px solid transparent;color:var(--slate);font-weight:600}.subnav a[aria-current]{color:var(--accent);border-color:var(--accent)}.subnav a:hover{color:var(--graphite)}</style></head>
+<body data-niche="automotivo">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto" data-section-current>Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/automotivo/">Automotivo</a></li><li aria-current="page">Fórmula 1</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Automotivo de desempenho</p>
+  <h1>Fórmula 1</h1>
+  <p class="lede">Probabilidades, estratégia e física de pista calculadas sobre sessões reais públicas.</p>
+  <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/" aria-current="page">Fórmula 1</a><a href="/automotivo/porsche/">Porsche Cup</a></nav>
+</section>
+<section class="wrap section" aria-labelledby="ferramentas">
+  <h2 id="ferramentas">Ferramentas interativas</h2>
+  <p class="muted">Rodam no navegador. Carregue o recorte real do Bahrein 2024 ou importe um CSV exportado pelo FastF1.</p>
+  <div class="features"><article class="feature"><h3><a href="/motorsport/f1-pip/">Modelos e probabilidades de corrida</a></h3><p>Oito modelos ajustados em resultados reais de 2022 a 2024, validação temporal e simulação Monte Carlo de cenários.</p><span class="tag">Dados reais</span><span class="tag">Monte Carlo</span><span class="tag">scikit-learn</span></article><article class="feature"><h3><a href="/motorsport/insights/">Análise de corrida em cinco ferramentas</a></h3><p>Comparação de curvas, probabilidade de pódio, cenários de campeonato, ritmo de corrida e trajetória.</p><span class="tag">OpenF1</span><span class="tag">FastF1</span></article><article class="feature"><h3><a href="/motorsport/active-aero/">Aerodinâmica ativa</a></h3><p>Compromisso entre carga e arrasto sobre velocidade medida; importa coeficientes de CFD ou ensaio.</p><span class="tag">Física</span><span class="tag">Telemetria real</span></article><article class="feature"><h3><a href="/motorsport/energy-recovery/">Recuperação de energia</a></h3><p>Energia recuperável na frenagem, perdas de conversão e estado de carga estimado ao longo da volta.</p><span class="tag">Física</span><span class="tag">Telemetria real</span></article><article class="feature"><h3><a href="/motorsport/lap-simulator/">Simulador de tempo de volta</a></h3><p>Perfil de velocidade sobre geometria de pista importada, com comparação de setups A/B.</p><span class="tag">Física</span><span class="tag">Simulação</span></article></div>
+</section>
+<section class="wrap section" aria-labelledby="projetos">
+  <h2 id="projetos">Projetos</h2>
+  <ul class="index"><li><a class="row" href="/cases/motorsport/101/"><span class="id">#101</span><span class="title">Estratégia de pneus e janela de pit-stop</span><span class="desc">Ritmo estimado a partir de 1.004 voltas observadas no Bahrein 2024; compara planos de parada.</span><span class="tags"><span class="tag">Dados reais</span><span class="tag">XGBoost</span></span></a></li><li><a class="row" href="/cases/motorsport/102/"><span class="id">#102</span><span class="title">Telemetria e filtro de Kalman</span><span class="desc">Velocidade, RPM, acelerador e freio medidos via OpenF1; compara sensor, referência e filtro.</span><span class="tags"><span class="tag">Dados reais</span><span class="tag">EKF</span></span></a></li><li><a class="row" href="/cases/motorsport/107/"><span class="id">#107</span><span class="title">Arquivo da direção de prova</span><span class="desc">Busca nas mensagens oficiais da direção de prova registradas no GP do Bahrein 2024.</span><span class="tags"><span class="tag">Dados reais</span><span class="tag">Busca</span></span></a></li><li><a class="row" href="/cases/motorsport/109/"><span class="id">#109</span><span class="title">Replay de corrida</span><span class="desc">Pista navegável, classificação e telemetria sincronizadas em quatro minutos da corrida do Bahrein 2024.</span><span class="tags"><span class="tag">Dados reais</span><span class="tag">Visualização</span></span></a></li></ul>
+</section>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

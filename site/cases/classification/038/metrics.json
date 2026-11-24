@@ -1,0 +1,30 @@
+{
+  "project_id": 38,
+  "title": "SAP Procurement Anomaly Detection",
+  "source": "synthetic deterministic generator, not real observations",
+  "train_rows": 360,
+  "calibration_rows": 120,
+  "test_rows": 120,
+  "positive_test_count": 61,
+  "threshold_selected_on_calibration": 0.35,
+  "dummy_roc_auc": 0.5,
+  "logistic_roc_auc": 0.8147,
+  "gradient_boosting_roc_auc": 0.7213,
+  "average_precision": 0.7459,
+  "f1": 0.6849,
+  "precision": 0.5882,
+  "recall": 0.8197,
+  "brier_score": 0.2219,
+  "confusion_matrix": [
+    [
+      24,
+      35
+    ],
+    [
+      11,
+      50
+    ]
+  ],
+  "leakage_control": "preprocessing fit on train; threshold optimized on calibration; test untouched",
+  "limitation": "synthetic generated labels; no external validation, production decisioning or measured impact"
+}
