@@ -181,7 +181,7 @@ Legenda de prioridade: **A** = fenômeno físico com dado real disponível; **B*
 | 107 | RAG industrial | recuperação | Avaliação de recuperação (recall@k, MRR) com conjunto anotado | C |
 | 108 | SHAP + SMOTE | SHAP | Calibração pós-SMOTE e comparação com pesos de classe | C |
 | 109 | Replay F1 | replay | Interpolação por spline na distância percorrida e sincronização de tempo | A |
-| **110** | **Engenharia de performance** | **fórmulas ilustrativas ("proxy QSS")** | **Pneu Pacejka MF, transferência de carga, envelope GGV, simulador QSS na geometria real do Bahrein, calibração e validação contra a telemetria de Verstappen, modelo térmico do pneu** | **A** |
+| **110** | **Engenharia de performance** | **fórmulas ilustrativas ("proxy QSS")** | **Pneu Pacejka MF, transferência de carga, envelope GGV, simulador QSS na geometria real do Bahrein, calibração e validação contra a telemetria de Verstappen (fase 1); modelo térmico do pneu na fase 2** | **A** |
 | 111 | F1 PIP | Monte Carlo + ML | Pace bayesiano hierárquico (piloto, equipe, composto) e calibração das probabilidades | A |
 
 ## 4. Fases de execução (uma PR por fase)
@@ -189,7 +189,7 @@ Legenda de prioridade: **A** = fenômeno físico com dado real disponível; **B*
 | Fase | Tema | Projetos | Por que nessa ordem |
 |---|---|---|---|
 | **1** | **Dinâmica veicular e simulador de volta** | **#110, ferramenta de tempo de volta; base para #101, #102, #014** | **Nicho principal, dado real disponível e física mais pesada** |
-| 2 | Estratégia de corrida e pace bayesiano | #101, #111, #014 | Reusa o modelo de pneu e degradação da fase 1 |
+| 2 | Estratégia de corrida, modelo térmico e de desgaste do pneu, pace bayesiano | #101, #110, #111, #014 | Reusa o modelo de pneu da fase 1 |
 | 3 | Estimação de estado | #102, #109 | Reusa o modelo de bicicleta com Pacejka |
 | 4 | Física de falha e confiabilidade | #004, #036, #037, #097, #104, #052 | Um gerador de rolamento e degradação comum, com dado real (CWRU, C-MAPSS) |
 | 5 | Energia, térmica e ambiente | #008, #029, #063, #064, #069, #070, #090 | Balanços de energia e dado público (INMET, ONS) |
