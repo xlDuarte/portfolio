@@ -2,7 +2,8 @@
 
 Everything the hero draws comes from files already in the repository:
 
-* Sakhir centre line, car positions, speed and gear: the OpenF1 excerpt in
+* Sakhir centre line, car positions, speed, gear and derived accelerations/brake temperature
+  (see scripts/telemetry_physics.py): the OpenF1 excerpt in
   ``site/motorsport/data/bahrain-2024-race.json`` (observed data, 4-minute window,
   3 drivers).
 * Production line availability, performance and quality: ``case_studies/data/oee_shifts.csv``
@@ -17,9 +18,13 @@ from __future__ import annotations
 import csv
 import json
 import math
-from bisect import bisect_left
 from datetime import datetime
+from dataclasses import asdict
 from pathlib import Path
+
+import numpy as np
+
+from telemetry_physics import BrakeDiscModel, kinematics, resample_hold, resample_linear
 
 ROOT = Path(__file__).resolve().parents[1]
 RACE = ROOT / "site" / "motorsport" / "data" / "bahrain-2024-race.json"
@@ -81,37 +86,49 @@ def track_and_cars(race: dict) -> tuple[dict, list[dict], dict]:
     track = {"units": "decimetre", "points": [norm(*p) for p in centre],
              "extent_dm": [round(max(xs) - min(xs)), round(max(ys) - min(ys))]}
 
-    n = int((t1 - t0) * SAMPLE_HZ)
+    n = int(round((t1 - t0) * SAMPLE_HZ))
+    t = np.arange(n) / SAMPLE_HZ                       # seconds from window start
+    disc = BrakeDiscModel()
     cars = []
     for num in window["drivers"]:
         loc = race["location"][str(num)]
         tel = race["telemetry"][str(num)]
-        lt = [_ts(p["date"]) for p in loc]
-        tt = [_ts(p["date"]) for p in tel]
-        laps = sorted((_ts(l["date_start"]), l["lap_number"]) for l in race["laps"]
+        tl = np.array([_ts(p["date"]) for p in loc]) - t0
+        tt = np.array([_ts(p["date"]) for p in tel]) - t0
+        x = resample_linear(tl, np.array([p["x"] for p in loc], float), t)
+        y = resample_linear(tl, np.array([p["y"] for p in loc], float), t)
+        z = resample_linear(tl, np.array([p["z"] for p in loc], float), t)
+        speed_kmh = resample_linear(tt, np.array([p["speed"] for p in tel], float), t)
+        throttle = resample_linear(tt, np.array([p["throttle"] for p in tel], float), t)
+        gear = resample_hold(tt, np.array([p["n_gear"] for p in tel]), t)
+        brake = resample_hold(tt, np.array([p["brake"] for p in tel]), t)
+        kin = kinematics(t, x / 10.0, y / 10.0, speed_kmh / 3.6)
+        disc_c = disc.simulate(t, kin.speed, kin.a_long)
+        laps = sorted((_ts(l["date_start"]) - t0, l["lap_number"]) for l in race["laps"]
                       if l["driver_number"] == num and l.get("date_start"))
-        samples = []
-        for k in range(n):
-            t = t0 + k / SAMPLE_HZ
-            i = min(max(bisect_left(lt, t), 1), len(lt) - 1)
-            a, b = loc[i - 1], loc[i]
-            f = 0.0 if lt[i] == lt[i - 1] else min(max((t - lt[i - 1]) / (lt[i] - lt[i - 1]), 0.0), 1.0)
-            x = a["x"] + (b["x"] - a["x"]) * f
-            y = a["y"] + (b["y"] - a["y"]) * f
-            z = a["z"] + (b["z"] - a["z"]) * f
-            j = min(bisect_left(tt, t), len(tt) - 1)
-            s = tel[j]
-            lap_no = max((ln for ts, ln in laps if ts <= t), default=None)
-            samples.append(norm(x, y, z) + [s["speed"], s["n_gear"], s["throttle"], s["brake"], lap_no])
+        lap_t = np.array([a for a, _ in laps]); lap_n = np.array([b for _, b in laps])
+        lap = resample_hold(lap_t, lap_n, t)
+        samples = [norm(*xyz) + [int(round(sp)), int(g), int(round(th)), int(b), int(lp),
+                                 round(float(al), 2), round(float(lo), 2), int(round(dc))]
+                   for xyz, sp, g, th, b, lp, al, lo, dc in zip(zip(x, y, z), speed_kmh, gear, throttle, brake, lap,
+                                                               kin.a_lat_g, kin.a_long_g, disc_c)]
         d = drivers[num]
         cars.append({"number": num, "code": d["name_acronym"], "name": d["full_name"].title(),
-                     "fields": ["x", "y", "z", "speed_kmh", "gear", "throttle_pct", "brake", "lap"],
-                     "samples": samples})
+                     "fields": ["x", "y", "z", "speed_kmh", "gear", "throttle_pct", "brake", "lap",
+                                "a_lat_g", "a_long_g", "brake_disc_c"],
+                     "samples": samples,
+                     "summary": {"a_lat_g_max": round(float(np.max(np.abs(kin.a_lat_g))), 2),
+                                 "a_long_g_min": round(float(np.min(kin.a_long_g)), 2),
+                                 "a_long_g_max": round(float(np.max(kin.a_long_g)), 2),
+                                 "brake_disc_c_range": [int(disc_c.min()), int(disc_c.max())]}})
     meta = {"provider": race["provider"], "origin": race["origin"],
             "session": f'{race["session"]["circuit_short_name"]} {race["session"]["date_start"][:4]}, '
                        f'{race["session"]["session_name"]}',
             "window": [window["start"], window["end"]], "sample_hz": SAMPLE_HZ,
-            "race_laps": max(l["lap_number"] for l in race["laps"])}
+            "race_laps": max(l["lap_number"] for l in race["laps"]),
+            "models": {"kinematics": "Savitzky-Golay on a 4 Hz clock; a_lat = v * yaw rate",
+                       "brake_disc": {k: v for k, v in asdict(disc).items() if k != "notes"},
+                       "brake_disc_notes": list(disc.notes)}}
     return track, cars, meta
 
 
@@ -184,6 +201,8 @@ def main() -> None:
     (OUT_DIR / "hero-fallback.svg").write_text(fallback_svg(track, oee), encoding="utf-8")
     print("hero-data.json", (OUT_DIR / "hero-data.json").stat().st_size, "bytes;",
           "OEE", oee["oee_weighted"], [(l["line"], l["oee"]) for l in oee["lines"]])
+    for car in cars:
+        print(car["code"], car["summary"])
 
 
 if __name__ == "__main__":

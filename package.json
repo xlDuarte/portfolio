@@ -5,7 +5,8 @@
   "description": "Front-end bundles for the static site (Three.js + GSAP).",
   "type": "module",
   "scripts": {
-    "build:hero": "esbuild frontend/hero/main.js --bundle --format=esm --minify --target=es2020 --legal-comments=external --outfile=site/assets/hero/hero.js"
+    "build:hero": "esbuild frontend/hero/main.js --bundle --format=esm --minify --target=es2020 --legal-comments=external --outfile=site/assets/hero/hero.js",
+    "test": "node --test \"frontend/**/*.test.mjs\""
   },
   "devDependencies": {
     "esbuild": "0.28.2",

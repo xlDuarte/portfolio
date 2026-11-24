@@ -6,6 +6,16 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/prototipos/heroi",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/prototipos/heroi/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/industry",
       "destination": "/industrial/",
       "permanent": true
