@@ -11,5 +11,5 @@ langchain>=1.5.2
 mlflow>=3.17.1
 shap>=0.44.0
 imbalanced-learn>=0.11.0
-fastapi>=0.100.0
+fastapi>=0.165.0
 streamlit>=1.66.0
