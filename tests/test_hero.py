@@ -32,20 +32,38 @@ class TestHeroData(unittest.TestCase):
             self.assertEqual(len(car["samples"]), 240 * f1["sample_hz"])
         self.assertEqual(len(f1["track"]["points"]), 360)
 
-    def test_assets_and_prototype_page(self):
+    def test_home_carries_the_hero_and_the_prototype_is_retired(self):
         for name in ("hero.js", "hero.css", "hero-fallback.svg"):
             self.assertTrue((HERO / name).is_file(), name)
-        page = (ROOT / "site" / "prototipos" / "heroi" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('name="robots" content="noindex"', page)
-        self.assertIn('import("/assets/hero/hero.js")', page)
-        self.assertNotIn("/prototipos/", (ROOT / "site" / "sitemap.xml").read_text(encoding="utf-8"))
+        home = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('import("/assets/hero/hero.js")', home)
+        self.assertIn('class="stage"', home)
+        self.assertFalse((ROOT / "site" / "prototipos" / "heroi" / "index.html").exists())
+        vercel = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+        self.assertIn({"source": "/prototipos/heroi/", "destination": "/", "permanent": True}, vercel["redirects"])
+
+    def test_home_numbers_come_from_the_payload(self):
+        home = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
+        oee = f'{self.data["industrial"]["oee_weighted"] * 100:.1f}%'.replace(".", ",")
+        self.assertIn(f"<strong data-oee>{oee}</strong>", home)
+        self.assertIn(f'de {self.data["f1"]["race_laps"]}</strong>', home)
 
     def test_caption_states_the_display_exaggeration_used_in_code(self):
         import re
-        code = (ROOT / "frontend" / "hero" / "main.js").read_text(encoding="utf-8")
+        code = (ROOT / "frontend" / "hero" / "f1.js").read_text(encoding="utf-8")
         factor = re.search(r"elevation:\s*(\d+),", code).group(1)
-        page = (ROOT / "site" / "prototipos" / "heroi" / "index.html").read_text(encoding="utf-8")
-        self.assertIn(f"exagerado <span data-elevation>{factor}</span> vezes", page)
+        home = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
+        self.assertIn(f"exagerado <span data-elevation>{factor}</span> vezes", home)
+
+    def test_derived_physics_is_plausible(self):
+        """Accelerations and disc temperatures must sit inside physically plausible bands for an F1 car."""
+        for car in self.data["f1"]["cars"]:
+            s = car["summary"]
+            self.assertTrue(2.5 <= s["a_lat_g_max"] <= 6.5, (car["code"], s))
+            self.assertTrue(-6.5 <= s["a_long_g_min"] <= -2.0, (car["code"], s))
+            self.assertTrue(0.8 <= s["a_long_g_max"] <= 2.2, (car["code"], s))
+            lo, hi = s["brake_disc_c_range"]
+            self.assertTrue(150 <= lo < hi <= 1200, (car["code"], s))
 
 
 if __name__ == "__main__":

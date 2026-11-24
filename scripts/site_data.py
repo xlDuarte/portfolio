@@ -131,6 +131,7 @@ SHARED_PROJECTS = [
 
 # Old URLs → new destinations. Used by vercel.json and by the GitHub Pages stubs.
 REDIRECTS = {
+    "/prototipos/heroi/": "/",
     "/industry/": "/industrial/",
     "/industry/arquivo": "/industrial/",
     "/industry/arquivo.html": "/industrial/",

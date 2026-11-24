@@ -219,8 +219,8 @@ Estudo de caso:
 
 | Item | Valor | Meta |
 |---|---|---|
-| Dados do herói (`hero-data.json`) | 91 KB, 30 KB gzip | ≤ 2,5 MB por cena |
-| Módulo 3D (Three.js 0.187 + GSAP 3.15, minificado) | 647 KB, 178 KB gzip | Carregado só depois do `load`, em tempo ocioso |
+| Dados do herói (`hero-data.json`) | 134 KB, 49 KB gzip (Fase 1, com cinemática) | ≤ 2,5 MB por cena |
+| Módulo 3D (Three.js 0.187 + GSAP 3.15 + motor de cena, minificado) | 198 KB gzip (Fase 1) | Carregado só depois do `load`, em tempo ocioso |
 | Primeiro conteúdo | HTML + CSS + SVG estático; nenhum JS no caminho crítico | LCP < 2,5 s |
 | Pausa | Fora da tela (IntersectionObserver) e com a aba oculta | — |
 | Resolução | DPR limitado a 2 | — |
@@ -232,3 +232,27 @@ Lighthouse em celular real fica para a Fase 5; o ambiente desta fase só roda We
 1. Aprovação desta direção e do protótipo antes da Fase 1.
 2. Foto do GT3 Cup: escolher (a) foto própria, (b) Creative Commons ou (c) autorização escrita da Porsche.
 3. Fase 1 decide se o empacotamento fica no esbuild (hoje) ou passa para Vite.
+
+## 13. Fase 1: motor de cena, física e efeitos
+
+**Motor (`frontend/scene/engine.js`).** Uma tela, várias cenas. Cada vista renderiza num buffer do tamanho da sua maior largura possível e a composição mostra um recorte central, então a divisão animada "varre" entre as cenas sem realocar buffers. Três níveis de qualidade, escolhidos pelo aparelho e rebaixados sozinhos se o quadro passar de ~26 ms por 1,5 s:
+
+| Nível | Pós-processamento | DPR máx. |
+|---|---|---|
+| alta | GTAO (oclusão ambiente) + bloom HDR + MSAA 4× + vinheta e grão | 2 |
+| média | bloom HDR + vinheta e grão | 1,5 |
+| baixa | render direto | 1 |
+
+`?q=0|1|2` força um nível (para testes). Mapeamento de tons Khronos PBR Neutral, que preserva as cores de material e o fundo claro.
+
+**Física (`frontend/scene/physics.js`, testada em `physics.test.mjs`).**
+
+| Elemento | Modelo | Parâmetros declarados |
+|---|---|---|
+| Faíscas de solda | Balística com arrasto quadrático implícito; convecção newtoniana + radiação (Stefan–Boltzmann); quique com restituição e atrito de Coulomb | Gota de aço de 0,2 mm: k = 0,27 1/m, h = 3,9 1/s, ε = 0,8, e = 0,38, μ = 0,45 |
+| Cor das faíscas e dos discos | Lei de Planck integrada nas funções CIE 1931 (ajuste de Wyman, Sloan e Shirley, 2013) → sRGB linear; intensidade ∝ T⁴ | Tabela de 500 a 4000 K |
+| Peças reprovadas | Corpo rígido por impulsos: restituição na normal, atrito de Coulomb na tangente, giro pelo deslizamento; passo fixo de 240 Hz | e = 0,22, μ = 0,6, cubo de 0,21 m |
+| Carros | Arfagem e rolagem por massa-mola-amortecedor de 2ª ordem alimentado pelas acelerações derivadas | 2,2 Hz / ζ 0,65 (arfagem), 2,6 Hz / ζ 0,7 (rolagem); exagero de 1,2°/g e 1,0°/g |
+| Faíscas de titânio | Mesmo integrador, partícula mais quente e de resfriamento lento (combustão) | Gatilho ilustrativo: acelerador > 97% e > 265 km/h |
+
+**Cinemática em Python (`scripts/telemetry_physics.py`, testada em `tests/test_telemetry_physics.py`).** Savitzky–Golay sobre relógio uniforme de 4 Hz: a_long = dv/dt pelo canal de velocidade; a_lat = v·dψ/dt pelo rumo da trajetória suavizada. A amostragem pública (~3,7 Hz) atenua picos: a frenagem aparece entre −2,8 e −3,9 g, onde registradores de bordo mostrariam cerca de −5 g. Temperatura do disco dianteiro por modelo de massa térmica única integrado com RK4 (convecção forçada + radiação, potência de frenagem descontado o arrasto); resultado entre ~280 e ~810 °C no trecho, faixa plausível, mas é estimativa.

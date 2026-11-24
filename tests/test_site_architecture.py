@@ -67,8 +67,8 @@ def resolve(page: Path, href: str) -> Path | None:
 class TestNiches(unittest.TestCase):
     def test_home_presents_two_niches_and_shared_lab(self):
         home = read("index.html")
-        self.assertEqual(home.count('class="niche ind"'), 1)
-        self.assertEqual(home.count('class="niche auto"'), 1)
+        self.assertEqual(home.count('class="half ind"'), 1)
+        self.assertEqual(home.count('class="half auto"'), 1)
         self.assertIn('href="/industrial/"', home)
         self.assertIn('href="/automotivo/"', home)
         self.assertIn('href="/laboratorio/"', home)

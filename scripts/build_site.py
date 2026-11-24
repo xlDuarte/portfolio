@@ -243,47 +243,117 @@ def row_html(pid, title, desc, href, tags) -> str:
             f'<span class="tags">{tags}</span></a></li>')
 
 
+HERO_DATA = SITE / "assets" / "hero" / "hero-data.json"
+PORTRAIT = ('<img class="{cls}" src="/assets/gabriel-retrato-480.webp" '
+            'srcset="/assets/gabriel-retrato-480.webp 480w, /assets/gabriel-retrato-960.webp 960w" '
+            'sizes="{sizes}" width="480" height="600" alt="Gabriel Reis Duarte de óculos escuros e camiseta branca, '
+            'num deck de madeira à beira de um lago" loading="{loading}" decoding="async">')
+HERO_SCRIPT = """<script type="module">
+const root = document.querySelector(".stage");
+const hasGL = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+if (hasGL && root) {
+  const start = () => import("/assets/hero/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+  if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), { once: true });
+} else if (root) {
+  root.dataset.state = "fallback";
+}
+</script>"""
+
+
+def pct_br(v: float) -> str:
+    return f"{v * 100:.1f}%".replace(".", ",")
+
+
+def hero_html(n_ind: int) -> str:
+    """Home hero. Static numbers come from hero-data.json so text and scene never disagree."""
+    data = json.loads(HERO_DATA.read_text(encoding="utf-8"))
+    ind, f1 = data["industrial"], data["f1"]
+    names = {c["code"]: c["name"] for c in f1["cars"]}
+    laps = sorted({s[7] for c in f1["cars"] for s in c["samples"] if s[7]})
+    rows = "".join(
+        f'<tr><th scope="row">{esc(l["line"].split("-")[-1])}</th><td>{pct_br(l["availability"])}</td>'
+        f'<td>{pct_br(l["performance"])}</td><td>{pct_br(l["quality"])}</td></tr>' for l in ind["lines"])
+    status = "".join(f'<p>Linha {esc(l["line"].split("-")[-1])} <span class="status" data-status="{i}" data-state="run">em operação</span></p>'
+                     for i, l in enumerate(ind["lines"]))
+    cars = "".join(f'<p data-car="{esc(c["code"])}"><b>{esc(c["code"])}</b><span data-v>—</span><span data-g></span></p>'
+                   for c in f1["cars"])
+    lead = f1["cars"][0]
+    who = ", ".join(names[c["code"]] for c in f1["cars"][:-1]) + " e " + names[f1["cars"][-1]["code"]]
+    return f"""
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-head">
+    <h1 class="hero-name" id="hero-title">{esc(D.AUTHOR)}</h1>
+    <p class="lede">Dados, software e engenharia para dois nichos: a operação industrial e o automobilismo de desempenho.</p>
+  </div>
+  <div class="stage" data-state="static">
+    <div class="stage-under" aria-hidden="true"><span></span><span></span></div>
+    <div class="stage-view">
+      <img class="stage-fallback" src="/assets/hero/hero-fallback.svg" width="1200" height="560" alt="">
+      <canvas aria-hidden="true"></canvas>
+    </div>
+    <div class="hud hud-ind" aria-hidden="true">
+      <p class="hud-title">OEE ponderado <strong data-oee>{pct_br(ind["oee_weighted"])}</strong></p>
+      {status}
+    </div>
+    <div class="hud hud-auto" aria-hidden="true">
+      <div class="hud-cols">
+        <div>
+          <p class="hud-title">Sakhir {esc(f1["session"][7:11])} <strong data-lap>Volta {laps[0]} de {f1["race_laps"]}</strong></p>
+          {cars}
+          <p class="hud-sub">Disco dianteiro de {esc(lead["code"])} (modelo) <strong data-disc>—</strong></p>
+        </div>
+        <figure class="gg-wrap">
+          <canvas class="gg" width="104" height="104"></canvas>
+          <figcaption><span>lateral <strong data-glat>—</strong></span><span data-glong>—</span></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="halves">
+      <div class="half ind">
+        <div class="view-dim" aria-hidden="true"></div>
+        <div class="cap">
+          <h2><a class="half-link" href="/industrial/">Industrial</a></h2>
+          <p class="origin">Dados sintéticos, semente fixa</p>
+          <p>Operação fabril, custos e cadeia de suprimentos: {len(D.INDUSTRIAL_FEATURED)} estudos de caso completos e {n_ind} projetos de dados. Na maquete, a esteira para pela disponibilidade, corre pelo desempenho, solda cada peça e descarta as reprovadas pela qualidade.</p>
+          <table class="readout">
+            <caption>OEE ponderado pelo tempo programado: <strong>{pct_br(ind["oee_weighted"])}</strong></caption>
+            <thead><tr><th scope="col">Linha</th><th scope="col">Disponib.</th><th scope="col">Desemp.</th><th scope="col">Qualidade</th></tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
+      </div>
+      <div class="half auto">
+        <div class="view-dim" aria-hidden="true"></div>
+        <div class="cap">
+          <h2><a class="half-link" href="/automotivo/">Automotivo de desempenho</a></h2>
+          <p class="origin">Dados reais, OpenF1</p>
+          <p>Fórmula 1 ({len(D.F1_TOOLS)} ferramentas, {len(D.F1_PROJECTS)} projetos) e Porsche Cup. A maquete reproduz quatro minutos do GP do Bahrein de 2024 com {esc(who)}, relevo de Sakhir exagerado <span data-elevation>4</span> vezes.</p>
+          <p class="legend">Cor da pista: velocidade de {esc(lead["name"].split()[-1])} na volta<span class="ramp" aria-hidden="true"></span><span data-speed-range>—</span></p>
+          <p class="legend">Forças g estimadas da telemetria pública (picos subestimados pela amostragem de ~3,7 Hz); temperatura do disco por modelo térmico. Inclinação dos carros exagerada para leitura.</p>
+        </div>
+      </div>
+    </div>
+    <span class="seam" aria-hidden="true"></span>
+    <a class="bridge" href="/laboratorio/"><strong>Laboratório comum</strong><span>{len(D.SHARED_PROJECTS)} projetos para os dois nichos</span></a>
+  </div>
+</section>"""
+
+
 def build_home(groups) -> None:
     n_ind = sum(len(g["projects"]) for g in groups)
     p = Page("/", f"{D.AUTHOR} · Dados para indústria e automobilismo",
              "Portfólio de Gabriel Reis Duarte: dados, software e engenharia aplicados a operações industriais e ao automobilismo de desempenho (Fórmula 1 e Porsche Cup).",
              og_image="/assets/og/default.png")
-    main = f"""
-<section class="wrap page-head home-head">
-  <div class="home-intro">
-    <h1>Gabriel Reis Duarte</h1>
-    <p class="lede">Dados, software e engenharia aplicados a dois nichos: a operação industrial e o automobilismo de desempenho.</p>
+    portrait = PORTRAIT.format(cls="home-portrait", sizes="(max-width: 720px) 40vw, 240px", loading="lazy")
+    main = hero_html(n_ind) + f"""
+<section class="wrap section home-about">
+  {portrait}
+  <div>
+    <h2>Quem faz</h2>
+    <p>Sou analista de dados com formação em Direito, Análise e Desenvolvimento de Sistemas e Ciência da Computação (2026). Trabalhei com supply chain, logística e controladoria na indústria e estudo telemetria e física de pista no automobilismo.</p>
+    <p><a href="/sobre/">Experiência, formação e método</a></p>
   </div>
-  <img class="home-portrait" src="/assets/gabriel-racing-640.webp" width="320" height="320" alt="Gabriel Reis Duarte com macacão de kart, no autódromo">
-</section>
-<section class="wrap" aria-label="Nichos">
-  <div class="split">
-    <a class="niche ind" href="/industrial/">
-      <h2>Industrial</h2>
-      <p>Operação fabril, custos, cadeia de suprimentos e qualidade. Do dado de chão de fábrica ao indicador que a liderança usa.</p>
-      <ul>
-        <li><span>Estudos de caso completos</span><span>{len(D.INDUSTRIAL_FEATURED)}</span></li>
-        <li><span>Projetos de dados e machine learning</span><span>{n_ind}</span></li>
-        <li><span>Ferramentas</span><span>Python, SQL, Power BI, scikit-learn</span></li>
-      </ul>
-      <span class="go">Ver projetos industriais</span>
-    </a>
-    <a class="niche auto" href="/automotivo/">
-      <h2>Automotivo de desempenho</h2>
-      <p>Telemetria, estratégia e física de pista em duas categorias: Fórmula 1 e Porsche Cup.</p>
-      <ul>
-        <li><span>Fórmula 1</span><span>{len(D.F1_TOOLS)} ferramentas, {len(D.F1_PROJECTS)} projetos</span></li>
-        <li><span>Porsche Cup</span><span>Laboratório de engenharia</span></li>
-        <li><span>Dados reais</span><span>OpenF1 e FastF1</span></li>
-      </ul>
-      <span class="go">Ver projetos automotivos</span>
-    </a>
-  </div>
-  <a class="shared" href="/laboratorio/">
-    <span class="swatch" aria-hidden="true"></span>
-    <span><strong>Laboratório comum</strong><span class="muted small">Visão computacional, vibração, MLOps e explicabilidade: {len(D.SHARED_PROJECTS)} projetos que servem aos dois nichos.</span></span>
-    <span class="go small">Abrir laboratório</span>
-  </a>
 </section>
 <section class="wrap section">
   <h2>Como ler este portfólio</h2>
@@ -292,13 +362,12 @@ def build_home(groups) -> None:
     <p>O código está aberto no GitHub, com testes automatizados rodando a cada alteração. Os resultados mostram que o método funciona como descrito; não são ganho medido em uma empresa.</p>
   </div>
 </section>"""
-    css = ("<style>.home-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}"
-           ".home-head h1{font-size:clamp(3rem,8vw,5.6rem);font-stretch:70%;margin:0 0 .2em}"
-           ".home-portrait{width:clamp(120px,22vw,220px);aspect-ratio:1;object-fit:cover;object-position:50% 30%;border-radius:10px;border:1px solid var(--rule)}"
-           ".cols-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}"
-           "@media(max-width:720px){.home-head{grid-template-columns:1fr}.home-portrait{width:120px;order:-1}.cols-2{grid-template-columns:1fr;gap:0}}</style>")
-    p.extra_head = css
-    write(p, main)
+    p.extra_head = ('<link rel="stylesheet" href="/assets/hero/hero.css">'
+                    "<style>.home-about{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center}"
+                    ".home-portrait{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:10px}"
+                    ".cols-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}"
+                    "@media(max-width:720px){.home-about{grid-template-columns:1fr;gap:20px}.home-portrait{max-width:280px}.cols-2{grid-template-columns:1fr;gap:0}}</style>")
+    write(p, main, body_extra=HERO_SCRIPT)
 
 
 def build_industrial(groups) -> None:
@@ -557,7 +626,7 @@ def build_sobre() -> None:
       <ul class="plain">{edu}</ul>
     </div>
     <aside class="aside">
-      <img src="/assets/gabriel-racing-640.webp" width="300" height="300" alt="Gabriel Reis Duarte" class="about-photo">
+      {PORTRAIT.format(cls="about-photo", sizes="300px", loading="eager")}
       <h2>Contato</h2>
       <ul><li><a href="{D.LINKEDIN_URL}">LinkedIn</a></li><li><a href="{D.REPO_URL}">GitHub</a></li><li>Vale do Paraíba, SP</li></ul>
     </aside>
@@ -578,7 +647,7 @@ def build_sobre() -> None:
                     ".timeline .when{color:var(--slate);font-variant-numeric:tabular-nums;font-size:.9375rem}"
                     ".timeline h3{margin:0 0 2px}.timeline p{margin:0 0 6px}"
                     ".plain{padding-left:1.1em}.plain li{margin:.4em 0}"
-                    ".about-photo{width:100%;max-width:300px;aspect-ratio:1;object-fit:cover;object-position:50% 30%;border-radius:10px;margin-bottom:24px}"
+                    ".about-photo{width:100%;max-width:300px;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:10px;margin-bottom:24px}"
                     "@media(max-width:560px){.timeline li{grid-template-columns:1fr;gap:4px}}</style>")
     write(p, main)
 
@@ -1129,6 +1198,7 @@ def write_vercel() -> None:
 
 
 RETIRED = [
+    "prototipos/heroi/index.html", "assets/gabriel-racing-640.webp",
     "industry/arquivo.html", "industry/index.html", "industry/industrial.mjs", "industry/catalog.mjs",
     "industry/industrial.css", "industry/report.css", "motorsport/index.html", "motorsport/effects.js", "motorsport/effects.css",
     "motorsport/asset-scene.js", "motorsport/racing/index.html", "motorsport/racing/racing.css",

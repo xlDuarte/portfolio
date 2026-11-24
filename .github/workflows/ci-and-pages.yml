@@ -24,6 +24,14 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: npm}
+      - name: Front-end physics tests and reproducible bundle (site/assets/hero/hero.js)
+        run: |
+          npm ci
+          npm test
+          npm run build:hero
+          git diff --exit-code -- site/assets/hero
       - name: Install OCR runtime
         run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr
       - name: Install all core domain dependencies (heavy CNN/MLflow tested separately)

@@ -17,46 +17,75 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.home-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}.home-head h1{font-size:clamp(3rem,8vw,5.6rem);font-stretch:70%;margin:0 0 .2em}.home-portrait{width:clamp(120px,22vw,220px);aspect-ratio:1;object-fit:cover;object-position:50% 30%;border-radius:10px;border:1px solid var(--rule)}.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}@media(max-width:720px){.home-head{grid-template-columns:1fr}.home-portrait{width:120px;order:-1}.cols-2{grid-template-columns:1fr;gap:0}}</style></head>
+<link rel="stylesheet" href="/assets/hero/hero.css"><style>.home-about{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center}.home-portrait{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:10px}.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}@media(max-width:720px){.home-about{grid-template-columns:1fr;gap:20px}.home-portrait{max-width:280px}.cols-2{grid-template-columns:1fr;gap:0}}</style></head>
 <body>
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><!-- /ds:header -->
 <main id="conteudo">
 
-<section class="wrap page-head home-head">
-  <div class="home-intro">
-    <h1>Gabriel Reis Duarte</h1>
-    <p class="lede">Dados, software e engenharia aplicados a dois nichos: a operação industrial e o automobilismo de desempenho.</p>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-head">
+    <h1 class="hero-name" id="hero-title">Gabriel Reis Duarte</h1>
+    <p class="lede">Dados, software e engenharia para dois nichos: a operação industrial e o automobilismo de desempenho.</p>
   </div>
-  <img class="home-portrait" src="/assets/gabriel-racing-640.webp" width="320" height="320" alt="Gabriel Reis Duarte com macacão de kart, no autódromo">
+  <div class="stage" data-state="static">
+    <div class="stage-under" aria-hidden="true"><span></span><span></span></div>
+    <div class="stage-view">
+      <img class="stage-fallback" src="/assets/hero/hero-fallback.svg" width="1200" height="560" alt="">
+      <canvas aria-hidden="true"></canvas>
+    </div>
+    <div class="hud hud-ind" aria-hidden="true">
+      <p class="hud-title">OEE ponderado <strong data-oee>77,5%</strong></p>
+      <p>Linha A <span class="status" data-status="0" data-state="run">em operação</span></p><p>Linha B <span class="status" data-status="1" data-state="run">em operação</span></p>
+    </div>
+    <div class="hud hud-auto" aria-hidden="true">
+      <div class="hud-cols">
+        <div>
+          <p class="hud-title">Sakhir 2024 <strong data-lap>Volta 2 de 57</strong></p>
+          <p data-car="VER"><b>VER</b><span data-v>—</span><span data-g></span></p><p data-car="PER"><b>PER</b><span data-v>—</span><span data-g></span></p><p data-car="SAI"><b>SAI</b><span data-v>—</span><span data-g></span></p>
+          <p class="hud-sub">Disco dianteiro de VER (modelo) <strong data-disc>—</strong></p>
+        </div>
+        <figure class="gg-wrap">
+          <canvas class="gg" width="104" height="104"></canvas>
+          <figcaption><span>lateral <strong data-glat>—</strong></span><span data-glong>—</span></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="halves">
+      <div class="half ind">
+        <div class="view-dim" aria-hidden="true"></div>
+        <div class="cap">
+          <h2><a class="half-link" href="/industrial/">Industrial</a></h2>
+          <p class="origin">Dados sintéticos, semente fixa</p>
+          <p>Operação fabril, custos e cadeia de suprimentos: 5 estudos de caso completos e 100 projetos de dados. Na maquete, a esteira para pela disponibilidade, corre pelo desempenho, solda cada peça e descarta as reprovadas pela qualidade.</p>
+          <table class="readout">
+            <caption>OEE ponderado pelo tempo programado: <strong>77,5%</strong></caption>
+            <thead><tr><th scope="col">Linha</th><th scope="col">Disponib.</th><th scope="col">Desemp.</th><th scope="col">Qualidade</th></tr></thead>
+            <tbody><tr><th scope="row">A</th><td>89,4%</td><td>90,1%</td><td>96,3%</td></tr><tr><th scope="row">B</th><td>89,4%</td><td>90,1%</td><td>96,1%</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="half auto">
+        <div class="view-dim" aria-hidden="true"></div>
+        <div class="cap">
+          <h2><a class="half-link" href="/automotivo/">Automotivo de desempenho</a></h2>
+          <p class="origin">Dados reais, OpenF1</p>
+          <p>Fórmula 1 (5 ferramentas, 4 projetos) e Porsche Cup. A maquete reproduz quatro minutos do GP do Bahrein de 2024 com Max Verstappen, Sergio Perez e Carlos Sainz, relevo de Sakhir exagerado <span data-elevation>4</span> vezes.</p>
+          <p class="legend">Cor da pista: velocidade de Verstappen na volta<span class="ramp" aria-hidden="true"></span><span data-speed-range>—</span></p>
+          <p class="legend">Forças g estimadas da telemetria pública (picos subestimados pela amostragem de ~3,7 Hz); temperatura do disco por modelo térmico. Inclinação dos carros exagerada para leitura.</p>
+        </div>
+      </div>
+    </div>
+    <span class="seam" aria-hidden="true"></span>
+    <a class="bridge" href="/laboratorio/"><strong>Laboratório comum</strong><span>5 projetos para os dois nichos</span></a>
+  </div>
 </section>
-<section class="wrap" aria-label="Nichos">
-  <div class="split">
-    <a class="niche ind" href="/industrial/">
-      <h2>Industrial</h2>
-      <p>Operação fabril, custos, cadeia de suprimentos e qualidade. Do dado de chão de fábrica ao indicador que a liderança usa.</p>
-      <ul>
-        <li><span>Estudos de caso completos</span><span>5</span></li>
-        <li><span>Projetos de dados e machine learning</span><span>100</span></li>
-        <li><span>Ferramentas</span><span>Python, SQL, Power BI, scikit-learn</span></li>
-      </ul>
-      <span class="go">Ver projetos industriais</span>
-    </a>
-    <a class="niche auto" href="/automotivo/">
-      <h2>Automotivo de desempenho</h2>
-      <p>Telemetria, estratégia e física de pista em duas categorias: Fórmula 1 e Porsche Cup.</p>
-      <ul>
-        <li><span>Fórmula 1</span><span>5 ferramentas, 4 projetos</span></li>
-        <li><span>Porsche Cup</span><span>Laboratório de engenharia</span></li>
-        <li><span>Dados reais</span><span>OpenF1 e FastF1</span></li>
-      </ul>
-      <span class="go">Ver projetos automotivos</span>
-    </a>
+<section class="wrap section home-about">
+  <img class="home-portrait" src="/assets/gabriel-retrato-480.webp" srcset="/assets/gabriel-retrato-480.webp 480w, /assets/gabriel-retrato-960.webp 960w" sizes="(max-width: 720px) 40vw, 240px" width="480" height="600" alt="Gabriel Reis Duarte de óculos escuros e camiseta branca, num deck de madeira à beira de um lago" loading="lazy" decoding="async">
+  <div>
+    <h2>Quem faz</h2>
+    <p>Sou analista de dados com formação em Direito, Análise e Desenvolvimento de Sistemas e Ciência da Computação (2026). Trabalhei com supply chain, logística e controladoria na indústria e estudo telemetria e física de pista no automobilismo.</p>
+    <p><a href="/sobre/">Experiência, formação e método</a></p>
   </div>
-  <a class="shared" href="/laboratorio/">
-    <span class="swatch" aria-hidden="true"></span>
-    <span><strong>Laboratório comum</strong><span class="muted small">Visão computacional, vibração, MLOps e explicabilidade: 5 projetos que servem aos dois nichos.</span></span>
-    <span class="go small">Abrir laboratório</span>
-  </a>
 </section>
 <section class="wrap section">
   <h2>Como ler este portfólio</h2>
@@ -66,6 +95,16 @@
   </div>
 </section>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module">
+const root = document.querySelector(".stage");
+const hasGL = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+if (hasGL && root) {
+  const start = () => import("/assets/hero/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+  if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), { once: true });
+} else if (root) {
+  root.dataset.state = "fallback";
+}
+</script>
 </body>
 </html>
