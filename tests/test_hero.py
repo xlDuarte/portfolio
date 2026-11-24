@@ -40,6 +40,13 @@ class TestHeroData(unittest.TestCase):
         self.assertIn('import("/assets/hero/hero.js")', page)
         self.assertNotIn("/prototipos/", (ROOT / "site" / "sitemap.xml").read_text(encoding="utf-8"))
 
+    def test_caption_states_the_display_exaggeration_used_in_code(self):
+        import re
+        code = (ROOT / "frontend" / "hero" / "main.js").read_text(encoding="utf-8")
+        factor = re.search(r"elevation:\s*(\d+),", code).group(1)
+        page = (ROOT / "site" / "prototipos" / "heroi" / "index.html").read_text(encoding="utf-8")
+        self.assertIn(f"exagerado <span data-elevation>{factor}</span> vezes", page)
+
 
 if __name__ == "__main__":
     unittest.main()
