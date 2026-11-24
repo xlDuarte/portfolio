@@ -4,7 +4,7 @@ Registro de origem, licença e crédito de cada imagem ou marca de terceiros usa
 
 | Arquivo | Assunto | Origem | Licença | Crédito | Situação |
 |---|---|---|---|---|---|
-| `site/assets/photos/911-gt3-cup-{800,1600}.webp` | Porsche 911 GT3 Cup em pista | Fornecida pelo dono do site em 24/11/2026 | A confirmar | A confirmar | Pendente |
+| `site/assets/photos/911-gt3-cup-{800,1600}.webp` | Porsche 911 GT3 Cup em pista (imagem sintética) | Gerada com o ChatGPT pelo dono do site, 24/11/2026 | Saída de IA do dono do site; marcas da Porsche AG em uso nominativo | "Imagem gerada por IA (ChatGPT)" | Confirmada |
 
 ## Regras
 
@@ -12,3 +12,5 @@ Registro de origem, licença e crédito de cada imagem ou marca de terceiros usa
 2. Uso nominativo: identifica a categoria estudada; nunca como marca do site.
 3. Toda página que usa imagem ou marca de terceiros mostra o aviso "Projeto independente, sem vínculo…" e, quando confirmado, o crédito (o teste `test_every_third_party_image_has_provenance` confere).
 4. Material do Porsche Newsroom é destinado a jornalistas e não a uso comercial ou promocional; usar só com autorização escrita.
+
+5. Imagem gerada por IA é identificada como tal na legenda e no texto alternativo, para não passar por fotografia.

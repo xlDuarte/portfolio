@@ -630,10 +630,10 @@ def gt3_photo() -> str:
     """Category photo. Credit text comes from SOURCES.json so provenance and caption never diverge."""
     src = {e["file"]: e for e in json.loads(BRAND_SOURCES.read_text(encoding="utf-8"))["files"]}
     entry = src["assets/photos/911-gt3-cup-1600.webp"]
-    credit = "" if entry["status"] == "pending" else f' Foto: {esc(entry["credit"])}.'
+    credit = "" if entry["status"] == "pending" else f' {esc(entry["credit"])}, não é fotografia.'
     return f"""<figure class="gt3-photo">
   <img src="/assets/photos/911-gt3-cup-1600.webp" srcset="/assets/photos/911-gt3-cup-800.webp 800w, /assets/photos/911-gt3-cup-1600.webp 1600w"
-       sizes="(max-width: 1240px) 100vw, 1160px" width="1600" height="900" alt="Porsche 911 GT3 Cup prata, vermelho e grafite contornando uma curva" decoding="async" fetchpriority="high">
+       sizes="(max-width: 1240px) 100vw, 1160px" width="1600" height="900" alt="Imagem gerada por IA de um Porsche 911 GT3 Cup prata, vermelho e grafite contornando uma curva" decoding="async" fetchpriority="high">
   <figcaption>O 911 GT3 Cup, carro da categoria estudada no laboratório.{credit} Projeto independente, sem vínculo com a Porsche AG.</figcaption>
 </figure>"""
 
