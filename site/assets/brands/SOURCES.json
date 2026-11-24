@@ -20,6 +20,66 @@
       "status": "confirmed",
       "added": "2026-11-24",
       "processing": "redimensionada, metadados EXIF removidos"
+    },
+    {
+      "file": "assets/brands/formula-1.svg",
+      "subject": "F1",
+      "origin": "simple-icons 16.38.1 (npm), slug f1; fonte declarada pelo projeto: https://www.formula1.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #E10600 aplicada, sem alteração do desenho"
+    },
+    {
+      "file": "assets/brands/porsche.svg",
+      "subject": "Porsche",
+      "origin": "simple-icons 16.38.1 (npm), slug porsche; fonte declarada pelo projeto: https://www.porsche.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #B12B28 aplicada, sem alteração do desenho"
+    },
+    {
+      "file": "assets/brands/red-bull.svg",
+      "subject": "Red Bull",
+      "origin": "simple-icons 16.38.1 (npm), slug redbull; fonte declarada pelo projeto: https://www.redbull.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #DB0A40 aplicada, sem alteração do desenho"
+    },
+    {
+      "file": "assets/brands/ferrari.svg",
+      "subject": "Ferrari",
+      "origin": "simple-icons 16.38.1 (npm), slug ferrari; fonte declarada pelo projeto: https://www.ferrari.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #D40000 aplicada, sem alteração do desenho"
+    },
+    {
+      "file": "assets/brands/mclaren.svg",
+      "subject": "McLaren",
+      "origin": "simple-icons 16.38.1 (npm), slug mclaren; fonte declarada pelo projeto: https://cars.mclaren.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #FF0000 aplicada, sem alteração do desenho"
+    },
+    {
+      "file": "assets/brands/aston-martin.svg",
+      "subject": "Aston Martin",
+      "origin": "simple-icons 16.38.1 (npm), slug astonmartin; fonte declarada pelo projeto: https://www.astonmartin.com",
+      "license": "Desenho do ícone: CC0-1.0 (simple-icons). A marca pertence ao seu titular; uso nominativo para identificar o assunto",
+      "credit": "pertencem aos seus titulares",
+      "status": "confirmed",
+      "added": "2026-11-24",
+      "processing": "SVG do pacote, cor oficial #00665E aplicada, sem alteração do desenho"
     }
   ]
 }

@@ -5,6 +5,9 @@ Registro de origem, licença e crédito de cada imagem ou marca de terceiros usa
 | Arquivo | Assunto | Origem | Licença | Crédito | Situação |
 |---|---|---|---|---|---|
 | `site/assets/photos/911-gt3-cup-{800,1600}.webp` | Porsche 911 GT3 Cup em pista (imagem sintética) | Gerada com o ChatGPT pelo dono do site, 24/11/2026 | Saída de IA do dono do site; marcas da Porsche AG em uso nominativo | "Imagem gerada por IA (ChatGPT)" | Confirmada |
+| `site/assets/brands/{formula-1,porsche,red-bull,ferrari,mclaren,aston-martin}.svg` | Marcas F1, Porsche e equipes | Pacote npm `simple-icons` 16.38.1 (fonte declarada por ícone no `SOURCES.json`) | Desenho do ícone CC0-1.0; marcas dos titulares, uso nominativo | "Marcas pertencem aos seus titulares" | Confirmada |
+
+Logos monocromáticos (uma cor oficial), vetoriais. Faltam Mercedes, Alpine, Williams, Haas, Racing Bulls e Sauber: o pacote não os inclui e o ambiente de build não alcança os sites das equipes. Enquanto isso, essas equipes aparecem só pelo nome.
 
 ## Regras
 

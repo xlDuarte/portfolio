@@ -79,3 +79,4 @@
 .gt3-photo{margin:0 auto 28px;max-width:var(--page);padding:0 var(--gutter)}
 .gt3-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:10px}
 .gt3-photo figcaption{font-size:var(--step--1);color:var(--slate);padding:10px 0 0}
+.brand-mark{width:.95em;height:.95em;vertical-align:-.12em;margin-right:.35em}

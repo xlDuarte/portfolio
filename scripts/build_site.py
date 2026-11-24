@@ -500,9 +500,9 @@ def build_automotivo() -> None:
              section="automotivo", niche="automotivo", crumbs=[("Início", "/"), ("Automotivo", "/automotivo/")])
     garages = hub_stage("automotivo", f"""<div class="halves">
   <div class="half auto" data-half="0"><div class="view-dim" aria-hidden="true"></div>
-    <div class="cap"><h2><a class="half-link" href="/automotivo/f1/">Fórmula 1</a></h2><p>{len(D.F1_TOOLS)} ferramentas e {len(D.F1_PROJECTS)} projetos com sessões reais.</p></div></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/f1/"><img class="brand-mark" src="/assets/brands/formula-1.svg" alt="" width="30" height="30">Fórmula 1</a></h2><p>{len(D.F1_TOOLS)} ferramentas e {len(D.F1_PROJECTS)} projetos com sessões reais.</p></div></div>
   <div class="half auto" data-half="1"><div class="view-dim" aria-hidden="true"></div>
-    <div class="cap"><h2><a class="half-link" href="/automotivo/porsche/">Porsche Cup</a></h2><p>Laboratório de engenharia: carga por roda, pneus e dinâmica.</p></div></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/porsche/"><img class="brand-mark" src="/assets/brands/porsche.svg" alt="" width="30" height="30">Porsche Cup</a></h2><p>Laboratório de engenharia: carga por roda, pneus e dinâmica.</p></div></div>
 </div><span class="seam" aria-hidden="true"></span><p class="hub-hint wrap">Carros genéricos, não réplicas. Arraste para girar a plataforma.</p>""", cls="is-split", label="Garagens de Fórmula 1 e Porsche Cup")
     main = f"""
 <section class="wrap page-head">
@@ -547,11 +547,12 @@ def build_f1() -> None:
     main = f"""
 <section class="wrap page-head">
   <p class="kicker">Automotivo de desempenho</p>
-  <h1>Fórmula 1</h1>
+  <h1><img class="brand-mark" src="/assets/brands/formula-1.svg" alt="" width="40" height="40">Fórmula 1</h1>
   <p class="lede">Probabilidades, estratégia e física de pista calculadas sobre sessões reais públicas.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/" aria-current="page">Fórmula 1</a><a href="/automotivo/porsche/">Porsche Cup</a></nav>
 </section>
 {hub_stage("f1", f1_hud(), label="Replay de quatro minutos do GP do Bahrein de 2024")}
+<p class="wrap small muted">Marcas e logotipos pertencem aos seus titulares. Projeto independente, sem vínculo com a Fórmula 1, a FIA ou as equipes.</p>
 <section class="wrap section" aria-labelledby="ferramentas">
   <h2 id="ferramentas">Ferramentas interativas</h2>
   <p class="muted">Rodam no navegador. Carregue o recorte real do Bahrein 2024 ou importe um CSV exportado pelo FastF1.</p>
@@ -597,7 +598,7 @@ def build_porsche() -> None:
     main = f"""
 <section class="wrap page-head">
   <p class="kicker">Automotivo de desempenho</p>
-  <h1>Porsche Cup</h1>
+  <h1><img class="brand-mark" src="/assets/brands/porsche.svg" alt="" width="40" height="40">Porsche Cup</h1>
   <p class="lede">Engenharia de pista para um carro de turismo de competição: o que cada roda está fazendo, a cada instante.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/">Fórmula 1</a><a href="/automotivo/porsche/" aria-current="page">Porsche Cup</a></nav>
 </section>
@@ -634,7 +635,7 @@ def gt3_photo() -> str:
     return f"""<figure class="gt3-photo">
   <img src="/assets/photos/911-gt3-cup-1600.webp" srcset="/assets/photos/911-gt3-cup-800.webp 800w, /assets/photos/911-gt3-cup-1600.webp 1600w"
        sizes="(max-width: 1240px) 100vw, 1160px" width="1600" height="900" alt="Imagem gerada por IA de um Porsche 911 GT3 Cup prata, vermelho e grafite contornando uma curva" decoding="async" fetchpriority="high">
-  <figcaption>O 911 GT3 Cup, carro da categoria estudada no laboratório.{credit} Projeto independente, sem vínculo com a Porsche AG.</figcaption>
+  <figcaption>O 911 GT3 Cup, carro da categoria estudada no laboratório.{credit} Marcas pertencem aos seus titulares. Projeto independente, sem vínculo com a Porsche AG.</figcaption>
 </figure>"""
 
 

@@ -132,7 +132,7 @@ class TestDesignSystem(unittest.TestCase):
         self.assertIn(":focus-visible", css)
 
     def test_legacy_brand_artwork_stays_removed(self):
-        banned = ["red-bull.svg", "porsche-motorsport.svg", "models/assets/f1.svg", "media.formula1.com", "concept-helmet"]
+        banned = ["porsche-motorsport.svg", "models/assets/f1.svg", "media.formula1.com", "concept-helmet"]  # hotlinks and removed art
         for page in list(PAGES) + list(SITE.rglob("*.mjs")) + list(SITE.rglob("*.js")):
             s = page.read_text(encoding="utf-8", errors="ignore")
             for token in banned:
