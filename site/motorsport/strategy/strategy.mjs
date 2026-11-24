@@ -2,7 +2,7 @@ import {calculate,detail,configure} from './model.mjs';
 import {fail} from '../data/load.mjs';
 const evidence=await fetch(new URL('../data/strategy-real.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Dados indisponíveis');return r.json()}).then(configure).catch(e=>{fail(e);throw e});
 const $=s=>document.querySelector(s),root=$('#demo'),fmt=(x,n=1)=>x.toLocaleString('pt-BR',{minimumFractionDigits:n,maximumFractionDigits:n}),time=s=>`${Math.floor(s/3600)}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${(s%60).toFixed(1).padStart(4,'0')}`;
-let laps=57,loss=22.4,result,selected,filter='all',charts=[];
+let laps=57,loss=24.2,result,selected,filter='all',charts=[];
 const plan=r=>r.stops.length===1?'S → H':'S → H → S',stops=r=>r.stops.map(x=>'L'+x).join(' / ');
 function select(row){selected=row;render()}
 function recalc(){result=calculate(laps,loss);selected=result.best;render()}
