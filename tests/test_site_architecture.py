@@ -170,6 +170,8 @@ class TestLinksAndDeploy(unittest.TestCase):
         sources = {r["source"] for r in cfg["redirects"]}
         for old in ("/industry", "/motorsport", "/f1", "/about", "/motorsport/racing"):
             self.assertIn(old, sources)
+            self.assertIn(old + "/", sources)  # trailingSlash:true matches the slash form
+        self.assertIn("/industry/arquivo/", sources)  # cleanUrls form of arquivo.html
         keys = {h["key"] for block in cfg["headers"] for h in block["headers"]}
         for header in ("Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy"):
             self.assertIn(header, keys)

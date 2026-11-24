@@ -11,7 +11,17 @@
       "permanent": true
     },
     {
+      "source": "/industry/",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
       "source": "/industry/arquivo",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/industry/arquivo/",
       "destination": "/industrial/",
       "permanent": true
     },
@@ -26,7 +36,17 @@
       "permanent": true
     },
     {
+      "source": "/motorsport/",
+      "destination": "/automotivo/",
+      "permanent": true
+    },
+    {
       "source": "/motorsport/racing",
+      "destination": "/automotivo/f1/",
+      "permanent": true
+    },
+    {
+      "source": "/motorsport/racing/",
       "destination": "/automotivo/f1/",
       "permanent": true
     },
@@ -36,7 +56,17 @@
       "permanent": true
     },
     {
+      "source": "/f1/",
+      "destination": "/automotivo/f1/",
+      "permanent": true
+    },
+    {
       "source": "/f1-models",
+      "destination": "/motorsport/f1-pip/",
+      "permanent": true
+    },
+    {
+      "source": "/f1-models/",
       "destination": "/motorsport/f1-pip/",
       "permanent": true
     },
@@ -46,7 +76,17 @@
       "permanent": true
     },
     {
+      "source": "/about/",
+      "destination": "/sobre/",
+      "permanent": true
+    },
+    {
       "source": "/docs",
+      "destination": "/industrial/#catalogo",
+      "permanent": true
+    },
+    {
+      "source": "/docs/",
       "destination": "/industrial/#catalogo",
       "permanent": true
     },
@@ -56,7 +96,17 @@
       "permanent": true
     },
     {
+      "source": "/releases/",
+      "destination": "/sobre/#versoes",
+      "permanent": true
+    },
+    {
       "source": "/packages",
+      "destination": "/sobre/#versoes",
+      "permanent": true
+    },
+    {
+      "source": "/packages/",
       "destination": "/sobre/#versoes",
       "permanent": true
     },
@@ -66,7 +116,17 @@
       "permanent": true
     },
     {
+      "source": "/cases/",
+      "destination": "/industrial/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/41",
+      "destination": "/cases/nlp/041/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/41/",
       "destination": "/cases/nlp/041/",
       "permanent": true
     },
@@ -76,7 +136,17 @@
       "permanent": true
     },
     {
+      "source": "/cases/nlp/42/",
+      "destination": "/cases/nlp/042/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/43",
+      "destination": "/cases/nlp/043/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/43/",
       "destination": "/cases/nlp/043/",
       "permanent": true
     },
@@ -86,7 +156,17 @@
       "permanent": true
     },
     {
+      "source": "/cases/nlp/44/",
+      "destination": "/cases/nlp/044/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/45",
+      "destination": "/cases/nlp/045/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/45/",
       "destination": "/cases/nlp/045/",
       "permanent": true
     },
@@ -96,7 +176,17 @@
       "permanent": true
     },
     {
+      "source": "/cases/nlp/46/",
+      "destination": "/cases/nlp/046/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/47",
+      "destination": "/cases/nlp/047/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/47/",
       "destination": "/cases/nlp/047/",
       "permanent": true
     },
@@ -106,12 +196,27 @@
       "permanent": true
     },
     {
+      "source": "/cases/nlp/48/",
+      "destination": "/cases/nlp/048/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/49",
       "destination": "/cases/nlp/049/",
       "permanent": true
     },
     {
+      "source": "/cases/nlp/49/",
+      "destination": "/cases/nlp/049/",
+      "permanent": true
+    },
+    {
       "source": "/cases/nlp/50",
+      "destination": "/cases/nlp/050/",
+      "permanent": true
+    },
+    {
+      "source": "/cases/nlp/50/",
       "destination": "/cases/nlp/050/",
       "permanent": true
     }
