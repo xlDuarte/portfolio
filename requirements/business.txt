@@ -1,5 +1,5 @@
 numpy>=1.26,<3
 pandas>=3.0.6,<4
-scikit-learn>=1.4,<2
+scikit-learn>=1.9.1,<2
 matplotlib>=3.8,<4
 streamlit>=1.66.0,<2
