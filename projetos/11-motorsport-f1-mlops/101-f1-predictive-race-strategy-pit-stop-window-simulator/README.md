@@ -1,3 +1,5 @@
+> **Atualização científica (fase 2):** ritmo de corrida por modelo misto bayesiano (Gibbs, verossimilhança escolhida por CRPS fora da amostra), efeito do combustível separado pela física do simulador de volta, perda por parada medida (24,2 s), decisão de estratégia sobre 1.200 sorteios da posterior e programação dinâmica estocástica com safety car. Código em [`race_strategy/`](../../../race_strategy/), método em [docs/physics/STRATEGY.md](../../../docs/physics/STRATEGY.md).
+
 > **Auditoria do lote #101–#110:** Modelos XGBoost e RandomForestRegressor ajustados em voltas artificiais agrupadas por sessão; simulador físico original de pit-stop preservado. **Tecnologias comprováveis neste projeto:** Python, Scikit-learn, XGBoost, NumPy, Pandas; simulador matemático de stint. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
 
 ## Como executar a implementação atual
