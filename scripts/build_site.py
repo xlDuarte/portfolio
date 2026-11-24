@@ -1096,8 +1096,14 @@ def write_sitemap() -> None:
 def write_vercel() -> None:
     redirects = []
     for src, dst in D.REDIRECTS.items():
-        s = src.rstrip("/") or "/"
-        redirects.append({"source": s, "destination": dst, "permanent": True})
+        # trailingSlash:true turns "/industry" into "/industry/" before matching, and
+        # cleanUrls turns "/x.html" into "/x/": emit every spelling Vercel may match.
+        base = src.rstrip("/")
+        if base.endswith(".html"):
+            base = base[:-5]
+        for s in dict.fromkeys([base, base + "/", src]):
+            if all(r["source"] != s for r in redirects):
+                redirects.append({"source": s, "destination": dst, "permanent": True})
     csp = ("default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.plot.ly https://cdn.jsdelivr.net; "
            "style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; "
            "connect-src 'self' https://api.openf1.org https://api.jolpi.ca; frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
