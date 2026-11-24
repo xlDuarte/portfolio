@@ -1,0 +1,25 @@
+{
+  "note": "Provenance of every third-party image or mark under site/assets/photos and site/assets/brands. Checked by tests/test_site_architecture.py.",
+  "files": [
+    {
+      "file": "assets/photos/911-gt3-cup-800.webp",
+      "subject": "Porsche 911 GT3 Cup em pista",
+      "origin": "Fornecida pelo dono do site em 2026-11-24 (arquivo enviado na conversa de desenvolvimento)",
+      "license": "pendente: confirmar origem e termos de uso",
+      "credit": "pendente",
+      "status": "pending",
+      "added": "2026-11-24",
+      "processing": "redimensionada, metadados EXIF removidos"
+    },
+    {
+      "file": "assets/photos/911-gt3-cup-1600.webp",
+      "subject": "Porsche 911 GT3 Cup em pista",
+      "origin": "Fornecida pelo dono do site em 2026-11-24 (arquivo enviado na conversa de desenvolvimento)",
+      "license": "pendente: confirmar origem e termos de uso",
+      "credit": "pendente",
+      "status": "pending",
+      "added": "2026-11-24",
+      "processing": "redimensionada, metadados EXIF removidos"
+    }
+  ]
+}

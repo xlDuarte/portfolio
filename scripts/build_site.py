@@ -601,6 +601,7 @@ def build_porsche() -> None:
   <p class="lede">Engenharia de pista para um carro de turismo de competição: o que cada roda está fazendo, a cada instante.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/">Fórmula 1</a><a href="/automotivo/porsche/" aria-current="page">Porsche Cup</a></nav>
 </section>
+{gt3_photo()}
 {hub_stage("porsche", porsche_panel(), cls="with-panel", label="Carro GT com modelo de carga por roda")}
 <section class="wrap section">
   <div class="cols">
@@ -620,6 +621,21 @@ def build_porsche() -> None:
 </section>"""
     p.extra_head = SUBNAV_CSS + HUB_HEAD
     write(p, main, body_extra=hub_script("porsche"))
+
+
+BRAND_SOURCES = SITE / "assets" / "brands" / "SOURCES.json"
+
+
+def gt3_photo() -> str:
+    """Category photo. Credit text comes from SOURCES.json so provenance and caption never diverge."""
+    src = {e["file"]: e for e in json.loads(BRAND_SOURCES.read_text(encoding="utf-8"))["files"]}
+    entry = src["assets/photos/911-gt3-cup-1600.webp"]
+    credit = "" if entry["status"] == "pending" else f' Foto: {esc(entry["credit"])}.'
+    return f"""<figure class="gt3-photo">
+  <img src="/assets/photos/911-gt3-cup-1600.webp" srcset="/assets/photos/911-gt3-cup-800.webp 800w, /assets/photos/911-gt3-cup-1600.webp 1600w"
+       sizes="(max-width: 1240px) 100vw, 1160px" width="1600" height="900" alt="Porsche 911 GT3 Cup prata, vermelho e grafite contornando uma curva" decoding="async" fetchpriority="high">
+  <figcaption>O 911 GT3 Cup, carro da categoria estudada no laboratório.{credit} Projeto independente, sem vínculo com a Porsche AG.</figcaption>
+</figure>"""
 
 
 def porsche_panel() -> str:
