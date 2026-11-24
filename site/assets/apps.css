@@ -49,3 +49,5 @@ body main h1{font-family:var(--font)!important;font-stretch:78%!important;font-w
 .app-head .metrics div{display:block!important;padding:14px 16px!important}
 .app-head .metrics dt{font-size:var(--step--1)!important;color:var(--slate)!important;margin:0 0 4px!important}
 .app-head .metrics dd{font-size:var(--step-2)!important;text-align:left!important;margin:0!important;white-space:nowrap}
+/* Primary action buttons that sit on the accent colour need white text (WCAG AA). */
+#run,.run-actions button[type=submit],button.primary{color:#fff!important}

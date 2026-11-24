@@ -29,7 +29,7 @@
   <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
 </section>
 <div class="wrap cols">
-  <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre>python -m pip install -r requirements/timeseries.txt
+  <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --save
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
   <aside class="aside">

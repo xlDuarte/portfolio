@@ -706,12 +706,14 @@ def tidy_content(nodes: list, soup: BeautifulSoup) -> str:
         if not (table.parent and "table-wrap" in (table.parent.get("class") or [])):
             w = soup.new_tag("div", attrs={"class": "table-wrap"})
             table.wrap(w)
+    for pre in wrapper.find_all("pre"):
+        pre["tabindex"] = "0"  # scrollable code must be keyboard-reachable (WCAG 2.1.1)
     for img in wrapper.find_all("img"):
         img["loading"] = "lazy"
         img.attrs.pop("style", None)
     for el in wrapper.find_all(True):
         el.attrs.pop("style", None)
-        if el.name not in ("div", "dl", "table", "td", "th", "code", "pre", "span", "img", "a", "section", "figure", "canvas", "select", "input", "button", "label", "output", "details", "summary"):
+        if el.name not in ("div", "dl", "table", "td", "th", "code", "pre", "tabindex", "span", "img", "a", "section", "figure", "canvas", "select", "input", "button", "label", "output", "details", "summary"):
             if el.get("class"):
                 el.attrs.pop("class", None)
     return wrapper.decode_contents()

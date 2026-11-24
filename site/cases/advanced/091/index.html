@@ -29,7 +29,7 @@
   <div class="note"><strong>Transparência:</strong> apenas dados sintéticos. Kafka requer broker ativo e CI separado; DAX não executado. Não existe integração SAP, controle industrial, acesso a pessoas reais, segurança de produção ou impacto econômico comprovado.</div>
 </section>
 <div class="wrap cols">
-  <article class="case-body prose"><h2>Executar o pipeline</h2><pre>python -m pip install -r requirements/advanced.txt
+  <article class="case-body prose"><h2>Executar o pipeline</h2><pre tabindex="0">python -m pip install -r requirements/advanced.txt
 python projetos/10-advanced/091-end-to-end-vendor-governance-risk-engine/main.py --save
 uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000</pre><footer>Validação apenas para métricas sobre fixtures geradas localmente. É necessária homologação externa antes de aplicações empresariais.</footer></article>
   <aside class="aside">
