@@ -174,3 +174,30 @@ export class SpringDamper {
     return this.x;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Turntable with rotational inertia: I dω/dt = τ_drive − c ω − μ sign(ω) (+ user impulses).
+// Viscous (c) and Coulomb (μ) friction stop a free spin in finite time; a small drive torque
+// (feed-forward + proportional) settles the table back to `idle` rad/s after a flick.
+export class Turntable {
+  constructor({ inertia = 1, viscous = 0.35, coulomb = 0.12, idle = 0.18, drive = 0.25 } = {}) {
+    Object.assign(this, { I: inertia, c: viscous, mu: coulomb, idle, drive });
+    this.theta = 0; this.omega = idle;
+  }
+  impulse(angularMomentum) { this.omega += angularMomentum / this.I; }
+  step(dt, held = false) {
+    if (held) return this.theta;
+    const sub = Math.max(1, Math.ceil(dt / (1 / 240))), h = dt / sub;
+    for (let i = 0; i < sub; i++) {
+      // Motor: feed-forward that balances friction at idle, plus a proportional correction.
+      const motor = this.c * this.idle + this.mu * Math.sign(this.idle) + this.drive * (this.idle - this.omega);
+      const tau = motor - this.c * this.omega;
+      const fr = this.mu * Math.sign(this.omega);
+      const next = this.omega + ((tau - fr) / this.I) * h;
+      // Coulomb friction cannot reverse the motion within one step.
+      this.omega = Math.sign(next) !== Math.sign(this.omega) && Math.abs(tau) < this.mu ? 0 : next;
+      this.theta += this.omega * h;
+    }
+    return this.theta;
+  }
+}

@@ -75,3 +75,13 @@ test("spring-damper step response overshoot matches theory for ζ = 0.7", () => 
   const theory = Math.exp((-0.7 * Math.PI) / Math.sqrt(1 - 0.49));
   assert.ok(Math.abs(peak - 1 - theory) < 0.01, `overshoot ${peak - 1} vs ${theory}`);
 });
+
+import { Turntable } from "./physics.js";
+test("turntable: a flick decays back to the idle speed, never overshooting into reverse", () => {
+  const t = new Turntable({ idle: 0.2 });
+  t.impulse(6);
+  let minOmega = Infinity;
+  for (let i = 0; i < 240 * 30; i++) { t.step(1 / 240); minOmega = Math.min(minOmega, t.omega); }
+  assert.ok(Math.abs(t.omega - 0.2) < 0.05, `omega ${t.omega}`);
+  assert.ok(minOmega > -1e-9, "must not spin backwards");
+});

@@ -46,3 +46,23 @@ export class GGDiagram {
 export function formatG(v) {
   return `${NUM.format(Math.abs(v))} g`;
 }
+
+/**
+ * Position HTML tags over projected 3D points, using the same centred crop as the Stage
+ * composite, and nudge colliding tags upwards.
+ * @param items  [{ world: Vector3 }]   @param tags  HTMLElement[]   @param rect  view rect (y from bottom)
+ * @param buf    view buffer size        @param H     canvas height  @param camera  view camera
+ */
+export function placeTags(items, tags, rect, buf, H, camera, proj) {
+  const placed = items.map((r, i) => {
+    proj.copy(r.world).project(camera);
+    const bx = ((proj.x + 1) / 2) * buf.w, by = ((1 - proj.y) / 2) * buf.h;
+    return { i, x: rect.x + bx - (buf.w - rect.w) / 2, y: (H - rect.y - rect.h) + by - (buf.h - rect.h) / 2, off: proj.z > 1 };
+  }).sort((p, q) => q.y - p.y);
+  placed.forEach((p, n) => {
+    for (let j = 0; j < n; j++) if (Math.abs(placed[j].x - p.x) < 62 && Math.abs(placed[j].y - p.y) < 22) p.y = placed[j].y - 22;
+    const tag = tags[p.i];
+    tag.style.transform = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
+    tag.hidden = p.off || p.x < rect.x || p.x > rect.x + rect.w || p.y < H - rect.y - rect.h || p.y > H - rect.y;
+  });
+}

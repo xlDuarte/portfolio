@@ -252,13 +252,37 @@ HERO_SCRIPT = """<script type="module">
 const root = document.querySelector(".stage");
 const hasGL = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
 if (hasGL && root) {
-  const start = () => import("/assets/hero/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
+  const start = () => import("/assets/js/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
   const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
   if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), { once: true });
 } else if (root) {
   root.dataset.state = "fallback";
 }
 </script>"""
+
+
+def hub_script(entry: str) -> str:
+    """Load a hub scene only with WebGL, after the page has rendered; otherwise keep static content."""
+    return f"""<script type="module">
+const root = document.querySelector("[data-hub]");
+const gl = (() => {{ try {{ const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); }} catch {{ return false; }} }})();
+const needsGL = root && root.dataset.hub !== "sobre";
+if (root && (gl || !needsGL)) {{
+  const start = () => import("/assets/js/hub-{entry}.js").then((m) => m.mount(root)).catch(() => {{ root.dataset.state = "fallback"; }});
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+  if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), {{ once: true }});
+}} else if (root) {{
+  root.dataset.state = "fallback";
+}}
+</script>"""
+
+
+HUB_HEAD = '<link rel="stylesheet" href="/assets/hero/hero.css"><link rel="stylesheet" href="/assets/hubs/hubs.css">'
+
+
+def hub_stage(entry: str, inner: str = "", cls: str = "", label: str = "") -> str:
+    return (f'<section class="hub-stage {cls}" data-hub="{entry}" data-state="static" aria-label="{esc(label)}">'
+            f'<div class="hub-view"><canvas aria-hidden="true"></canvas></div>{inner}</section>')
 
 
 def pct_br(v: float) -> str:
@@ -397,6 +421,7 @@ def build_industrial(groups) -> None:
   <h1>Industrial</h1>
   <p class="lede">Dados de operação, custos e cadeia de suprimentos, tratados com o mesmo rigor de uma análise que vai para a diretoria.</p>
 </section>
+{hub_stage("industrial", '<p class="hub-hint wrap">Gêmeo digital: cada estação é um estudo de caso e se move com os números dele (dados sintéticos). Clique numa estação para abrir o estudo.</p>', label="Gêmeo digital dos cinco estudos de caso")}
 <section class="wrap section" aria-labelledby="destaques">
   <h2 id="destaques">Estudos de caso completos</h2>
   <p class="muted">Cinco estudos com problema, método, base de dados versionada, gráfico, métricas e código. São o melhor ponto de partida.</p>
@@ -410,8 +435,8 @@ def build_industrial(groups) -> None:
 </section>"""
     p.extra_head = ("<style>.jump{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 40px}"
                     ".jump a{font-size:.875rem;text-decoration:none;padding:6px 10px;border:1px solid var(--rule);border-radius:999px;color:var(--slate)}"
-                    ".jump a:hover{border-color:var(--accent);color:var(--accent)}</style>")
-    write(p, main)
+                    ".jump a:hover{border-color:var(--accent);color:var(--accent)}</style>" + HUB_HEAD)
+    write(p, main, body_extra=hub_script("industrial"))
 
 
 DOMAIN_PAGES = {"eda", "regression", "classification", "nlp", "recommendation", "timeseries", "vision", "business", "advanced"}
@@ -473,11 +498,18 @@ def build_automotivo() -> None:
     p = Page("/automotivo/", "Automotivo de desempenho",
              "Projetos de engenharia de corrida: Fórmula 1 com dados reais OpenF1/FastF1 e laboratório de engenharia Porsche Cup.",
              section="automotivo", niche="automotivo", crumbs=[("Início", "/"), ("Automotivo", "/automotivo/")])
+    garages = hub_stage("automotivo", f"""<div class="halves">
+  <div class="half auto" data-half="0"><div class="view-dim" aria-hidden="true"></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/f1/">Fórmula 1</a></h2><p>{len(D.F1_TOOLS)} ferramentas e {len(D.F1_PROJECTS)} projetos com sessões reais.</p></div></div>
+  <div class="half auto" data-half="1"><div class="view-dim" aria-hidden="true"></div>
+    <div class="cap"><h2><a class="half-link" href="/automotivo/porsche/">Porsche Cup</a></h2><p>Laboratório de engenharia: carga por roda, pneus e dinâmica.</p></div></div>
+</div><span class="seam" aria-hidden="true"></span><p class="hub-hint wrap">Carros genéricos, não réplicas. Arraste para girar a plataforma.</p>""", cls="is-split", label="Garagens de Fórmula 1 e Porsche Cup")
     main = f"""
 <section class="wrap page-head">
   <h1>Automotivo de desempenho</h1>
   <p class="lede">Engenharia de corrida com dados: telemetria, estratégia, física de pista e dinâmica veicular.</p>
 </section>
+{garages}
 <section class="wrap" aria-label="Categorias">
   <div class="tiles">
     <a class="tile" href="/automotivo/f1/"><h3>Fórmula 1</h3>
@@ -499,7 +531,8 @@ def build_automotivo() -> None:
   <p><a href="/cases/motorsport/">Ver a lista completa dos projetos #101–#111</a></p>
   <p class="small muted">Projeto independente, sem vínculo com a Fórmula 1, a FIA, a Porsche ou equipes. Marcas citadas pertencem aos seus titulares.</p>
 </section>"""
-    write(p, main)
+    p.extra_head = HUB_HEAD
+    write(p, main, body_extra=hub_script("automotivo"))
 
 
 def build_f1() -> None:
@@ -518,6 +551,7 @@ def build_f1() -> None:
   <p class="lede">Probabilidades, estratégia e física de pista calculadas sobre sessões reais públicas.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/" aria-current="page">Fórmula 1</a><a href="/automotivo/porsche/">Porsche Cup</a></nav>
 </section>
+{hub_stage("f1", f1_hud(), label="Replay de quatro minutos do GP do Bahrein de 2024")}
 <section class="wrap section" aria-labelledby="ferramentas">
   <h2 id="ferramentas">Ferramentas interativas</h2>
   <p class="muted">Rodam no navegador. Carregue o recorte real do Bahrein 2024 ou importe um CSV exportado pelo FastF1.</p>
@@ -527,8 +561,22 @@ def build_f1() -> None:
   <h2 id="projetos">Projetos</h2>
   <ul class="index">{rows}</ul>
 </section>"""
-    p.extra_head = SUBNAV_CSS
-    write(p, main)
+    p.extra_head = SUBNAV_CSS + HUB_HEAD
+    write(p, main, body_extra=hub_script("f1"))
+
+
+def f1_hud() -> str:
+    data = json.loads(HERO_DATA.read_text(encoding="utf-8"))["f1"]
+    rows = "".join(f'<tr data-car="{esc(c["code"])}"><th scope="row">{esc(c["code"])}</th><td data-v>—</td><td data-g>—</td>'
+                   f'<td data-lat>—</td><td data-lon>—</td><td data-disc>—</td></tr>' for c in data["cars"])
+    return f"""<div class="hud hud-f1" aria-hidden="true">
+  <p class="hud-title">Sakhir 2024 <strong data-lap>Volta 2 de {data["race_laps"]}</strong></p>
+  <div class="hud-cols">
+    <table class="hud-table"><thead><tr><th></th><th>Veloc.</th><th>Marcha</th><th>Lateral</th><th>Longit.</th><th>Disco*</th></tr></thead><tbody>{rows}</tbody></table>
+    <canvas class="gg" width="104" height="104"></canvas>
+  </div>
+  <p class="hud-sub">*Disco dianteiro por modelo térmico. Forças g estimadas da telemetria pública.</p>
+</div>"""
 
 
 SUBNAV_CSS = ("<style>.subnav{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--rule)}"
@@ -553,6 +601,7 @@ def build_porsche() -> None:
   <p class="lede">Engenharia de pista para um carro de turismo de competição: o que cada roda está fazendo, a cada instante.</p>
   <nav class="subnav" aria-label="Categorias automotivas"><a href="/automotivo/f1/">Fórmula 1</a><a href="/automotivo/porsche/" aria-current="page">Porsche Cup</a></nav>
 </section>
+{hub_stage("porsche", porsche_panel(), cls="with-panel", label="Carro GT com modelo de carga por roda")}
 <section class="wrap section">
   <div class="cols">
     <div>
@@ -569,8 +618,32 @@ def build_porsche() -> None:
     </aside>
   </div>
 </section>"""
-    p.extra_head = SUBNAV_CSS
-    write(p, main)
+    p.extra_head = SUBNAV_CSS + HUB_HEAD
+    write(p, main, body_extra=hub_script("porsche"))
+
+
+def porsche_panel() -> str:
+    """Controls for the load-transfer model (ranges = LIMITS in site/motorsport/porsche/model.mjs)."""
+    def slider(id_, label, lo, hi, step, val, unit):
+        return (f'<div class="ctl"><label for="{id_}">{label}</label><input type="range" id="{id_}" min="{lo}" max="{hi}" step="{step}" value="{val}">'
+                f'<output for="{id_}">{val} {unit}</output></div>')
+    cells = "".join(f'<td data-w="{w}">—</td>' for w in ("FL", "FR", "RL", "RR"))
+    return f"""<div class="pc-panel wrap">
+  <div class="pc-controls">
+    <p class="pc-title">Cenário</p>
+    {slider("pc-speed", "Velocidade", 60, 240, 1, 160, "km/h")}
+    {slider("pc-ay", "Aceleração lateral", -1.2, 1.2, 0.01, 0.8, "g")}
+    {slider("pc-ax", "Aceleração longitudinal", -0.8, 0.5, 0.01, 0, "g")}
+    <button type="button" class="btn secondary" data-auto hidden>Voltar ao ciclo automático</button>
+  </div>
+  <div class="pc-out" data-loads>
+    <table class="readout"><caption>Carga vertical por roda (modelo do laboratório)</caption>
+      <thead><tr><th scope="col">Diant. esq.</th><th scope="col">Diant. dir.</th><th scope="col">Tras. esq.</th><th scope="col">Tras. dir.</th></tr></thead>
+      <tbody><tr>{cells}</tr></tbody></table>
+    <dl class="pc-kpis"><div><dt>Carga no eixo dianteiro</dt><dd data-front>—</dd></div><div><dt>Downforce</dt><dd data-down>—</dd></div><div><dt>Uso da aderência</dt><dd data-util>—</dd></div></dl>
+    <p class="small muted">Transferência de carga longitudinal e lateral, downforce e distribuição de rolagem do modelo #110. Carro genérico, não réplica; inclinação exagerada cerca de 2× para leitura.</p>
+  </div>
+</div>"""
 
 
 def build_lab() -> None:
@@ -587,6 +660,7 @@ def build_lab() -> None:
   <h1>Laboratório comum</h1>
   <p class="lede">Técnicas que funcionam igual na fábrica e na pista. Um sensor de vibração num mancal e num câmbio pede o mesmo método.</p>
 </section>
+{hub_stage("lab", LAB_PANEL, cls="with-panel", label="Nuvem de pontos que muda entre três técnicas")}
 <section class="wrap section" aria-labelledby="projetos">
   <h2 id="projetos">Projetos</h2>
   <ul class="index">{rows}</ul>
@@ -600,8 +674,20 @@ def build_lab() -> None:
       <div class="actions"><a class="btn secondary" href="{D.REPO_URL}/blob/main/TECHNOLOGY_GAP_MATRIX_INTEGRATED.csv">Matriz de evidências</a></div></div>
   </div>
 </section>"""
-    p.extra_head = "<style>.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media(max-width:720px){.cols-2{grid-template-columns:1fr;gap:16px}}</style>"
-    write(p, main)
+    p.extra_head = "<style>.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media(max-width:720px){.cols-2{grid-template-columns:1fr;gap:16px}}</style>" + HUB_HEAD
+    write(p, main, body_extra=hub_script("lab"))
+
+
+LAB_PANEL = """<div class="lab-panel wrap">
+  <div class="lab-tabs" role="group" aria-label="Técnica mostrada">
+    <button type="button" data-shape aria-pressed="true">Vibração</button>
+    <button type="button" data-shape aria-pressed="false">Raio-X</button>
+    <button type="button" data-shape aria-pressed="false">Fluxo óptico</button>
+  </div>
+  <div data-panel="vibracao"><p>Modos de vibração de uma placa apoiada, superpostos. O mesmo sinal aparece num mancal de fábrica e numa suspensão. <a href="/cases/motorsport/104/">Projeto #104: anomalias em vibração</a></p></div>
+  <div data-panel="raiox" hidden><p>Uma engrenagem inspecionada por pontos; em vermelho, a trinca na raiz do dente que o modelo destaca. <a href="/cases/motorsport/105/">Projeto #105: raio-X com CNN e Grad-CAM</a></p></div>
+  <div data-panel="fluxo" hidden><p>Vórtice de Rankine: núcleo girando como corpo rígido, velocidade caindo com 1/r fora dele. É o tipo de campo que o fluxo óptico mede em vídeo. <a href="/cases/motorsport/103/">Projeto #103: visão computacional em vídeo</a></p></div>
+</div>"""
 
 
 def build_sobre() -> None:
@@ -609,20 +695,24 @@ def build_sobre() -> None:
              "Gabriel Reis Duarte: formação em sistemas, ciência da computação, direito e finanças; experiência em análise de dados industrial, backend e redação técnica.",
              section="sobre", crumbs=[("Início", "/"), ("Sobre", "/sobre/")])
     exp = "".join(
-        f'<li><span class="when">{esc(w)}</span><div><h3>{esc(r)}</h3><p class="muted small">{esc(o)}</p><p>{esc(d)}</p></div></li>'
-        for w, o, r, d in D.EXPERIENCE)
+        f'<li><span class="when">{esc(w)}</span><h3>{esc(r)}</h3><p class="muted small">{esc(o)}</p><p>{esc(d)}</p></li>'
+        for w, o, r, d in reversed(D.EXPERIENCE))
     edu = "".join(f"<li>{esc(e)}</li>" for e in D.EDUCATION)
     main = f"""
 <section class="wrap page-head">
   <h1>Sobre</h1>
   <p class="lede">Trabalho na fronteira entre dados, software e engenharia. Venho do direito empresarial, passei pelo desenvolvimento backend e hoje construo análises e modelos para operação industrial e para o automobilismo.</p>
 </section>
+<section class="section tl" data-hub="sobre" data-state="static" aria-labelledby="exp-title">
+  <div class="wrap tl-head"><h2 id="exp-title">Experiência</h2>
+    <div class="tl-nav"><button type="button" class="btn secondary" data-tl-prev aria-label="Etapa anterior">Anterior</button><button type="button" class="btn secondary" data-tl-next aria-label="Próxima etapa">Próxima</button></div></div>
+  <div class="tl-progress" aria-hidden="true"><span></span></div>
+  <div class="tl-scroller" tabindex="0" role="region" aria-label="Linha do tempo, da mais antiga para a mais recente"><ol class="tl-track">{exp}</ol></div>
+</section>
 <section class="wrap section">
   <div class="cols">
     <div>
-      <h2>Experiência</h2>
-      <ol class="timeline">{exp}</ol>
-      <h2 style="margin-top:48px">Formação</h2>
+      <h2>Formação</h2>
       <ul class="plain">{edu}</ul>
     </div>
     <aside class="aside">
@@ -648,8 +738,8 @@ def build_sobre() -> None:
                     ".timeline h3{margin:0 0 2px}.timeline p{margin:0 0 6px}"
                     ".plain{padding-left:1.1em}.plain li{margin:.4em 0}"
                     ".about-photo{width:100%;max-width:300px;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:10px;margin-bottom:24px}"
-                    "@media(max-width:560px){.timeline li{grid-template-columns:1fr;gap:4px}}</style>")
-    write(p, main)
+                    "@media(max-width:560px){.timeline li{grid-template-columns:1fr;gap:4px}}</style>" + HUB_HEAD)
+    write(p, main, body_extra=hub_script("sobre"))
 
 
 def build_404() -> None:

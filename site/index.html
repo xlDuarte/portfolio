@@ -99,7 +99,7 @@
 const root = document.querySelector(".stage");
 const hasGL = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
 if (hasGL && root) {
-  const start = () => import("/assets/hero/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
+  const start = () => import("/assets/js/hero.js").then((m) => m.mountHero(root)).catch(() => { root.dataset.state = "fallback"; });
   const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
   if (document.readyState === "complete") idle(start); else addEventListener("load", () => idle(start), { once: true });
 } else if (root) {
