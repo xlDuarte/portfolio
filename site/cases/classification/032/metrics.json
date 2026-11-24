@@ -1,0 +1,30 @@
+{
+  "project_id": 32,
+  "title": "Vendor B2B Credit Approval",
+  "source": "synthetic deterministic generator, not real observations",
+  "train_rows": 360,
+  "calibration_rows": 120,
+  "test_rows": 120,
+  "positive_test_count": 64,
+  "threshold_selected_on_calibration": 0.35,
+  "dummy_roc_auc": 0.5,
+  "logistic_roc_auc": 0.738,
+  "gradient_boosting_roc_auc": 0.6476,
+  "average_precision": 0.6528,
+  "f1": 0.6879,
+  "precision": 0.5806,
+  "recall": 0.8438,
+  "brier_score": 0.2491,
+  "confusion_matrix": [
+    [
+      17,
+      39
+    ],
+    [
+      10,
+      54
+    ]
+  ],
+  "leakage_control": "preprocessing fit on train; threshold optimized on calibration; test untouched",
+  "limitation": "synthetic generated labels; no external validation, production decisioning or measured impact"
+}

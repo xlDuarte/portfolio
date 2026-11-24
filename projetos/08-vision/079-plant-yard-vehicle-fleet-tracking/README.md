@@ -6,7 +6,7 @@
 
 ## Execução
 ```bash
-python -m pip install -r requirements-vision.txt
+python -m pip install -r requirements/vision.txt
 python projetos/08-vision/079-plant-yard-vehicle-fleet-tracking/main.py --save
 python -m unittest discover -s tests -p test_vision_batch.py -v
 ```

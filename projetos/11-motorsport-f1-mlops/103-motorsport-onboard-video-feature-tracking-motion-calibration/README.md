@@ -3,7 +3,7 @@
 ## Como executar a implementação atual
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements/motorsport-core.txt
 python projetos/11-motorsport-f1-mlops/103-motorsport-onboard-video-feature-tracking-motion-calibration/main.py
 python -m unittest discover -s tests -p test_motorsport_batch.py -v
 ```
@@ -27,7 +27,7 @@ reports endpoint error against the known simulation transform.
 ## Run
 
 Install `opencv-python-headless>=4.8,<5`, `numpy>=1.24,<3` with
-`requirements-case-studies.txt`, then run
+`requirements/case-studies.txt`, then run
 `python projetos/11-motorsport-f1-mlops/103-motorsport-onboard-video-feature-tracking-motion-calibration/main.py`
 
 Run regression tests: `python -m unittest discover -s tests -v`.

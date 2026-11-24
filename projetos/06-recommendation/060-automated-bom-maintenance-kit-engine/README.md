@@ -9,7 +9,7 @@ Explosão recursiva de conjuntos e subconjuntos, multiplicação por quantidade 
 
 ## Executar
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/060-automated-bom-maintenance-kit-engine/main.py --query PUMP-100 --filters-json '{"units":2,"pack_size":5}' --save
 python -m streamlit run projetos/06-recommendation/060-automated-bom-maintenance-kit-engine/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

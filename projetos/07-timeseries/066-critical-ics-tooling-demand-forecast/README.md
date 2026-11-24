@@ -9,7 +9,7 @@ Demanda de ferramentas e insumos críticos não observada. Gerador determinísti
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/066-critical-ics-tooling-demand-forecast/main.py --save
 python projetos/07-timeseries/066-critical-ics-tooling-demand-forecast/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

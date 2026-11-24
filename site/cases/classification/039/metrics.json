@@ -1,0 +1,30 @@
+{
+  "project_id": 39,
+  "title": "Spare Parts Reorder Propensity",
+  "source": "synthetic deterministic generator, not real observations",
+  "train_rows": 360,
+  "calibration_rows": 120,
+  "test_rows": 120,
+  "positive_test_count": 62,
+  "threshold_selected_on_calibration": 0.25,
+  "dummy_roc_auc": 0.5,
+  "logistic_roc_auc": 0.7197,
+  "gradient_boosting_roc_auc": 0.6766,
+  "average_precision": 0.7121,
+  "f1": 0.6623,
+  "precision": 0.5543,
+  "recall": 0.8226,
+  "brier_score": 0.2489,
+  "confusion_matrix": [
+    [
+      17,
+      41
+    ],
+    [
+      11,
+      51
+    ]
+  ],
+  "leakage_control": "preprocessing fit on train; threshold optimized on calibration; test untouched",
+  "limitation": "synthetic generated labels; no external validation, production decisioning or measured impact"
+}

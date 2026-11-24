@@ -1,0 +1,4 @@
+-r vision.txt
+tensorflow-cpu>=2.16,<2.20
+# PyTorch is installed separately from the official CPU-only index.
+# python -m pip install --no-cache-dir torch==2.5.1+cpu --index-url https://download.pytorch.org/whl/cpu

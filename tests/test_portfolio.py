@@ -43,34 +43,30 @@ class TestPortfolioIntegrity(unittest.TestCase):
                 self.assertEqual(code,0,msg=stderr)
 
     def test_frontend_github_links(self):
-        for rel in ('site/industry/arquivo.html','site/f1/index.html'):
-            s=(ROOT/rel).read_text(encoding='utf8')
-            with self.subTest(file=rel):
+        import json
+        groups=json.loads((ROOT/'site/data/industrial-catalog.json').read_text(encoding='utf8'))
+        for p in (p for g in groups for p in g['projects']):
+            s=(ROOT/'site'/p['page'].strip('/')/'index.html').read_text(encoding='utf8')
+            with self.subTest(project=p['id']):
                 self.assertIn(REPO_BASE,s)
-                self.assertNotIn('gabrielrduarte/automotive-industrial-lab',s)
-                self.assertNotIn('xlDuarte/automotive-industrial-lab',s)
-                self.assertIn('Synthetic index (not validated)',s)
-                self.assertIn('Generated example',s)
-                self.assertIn('README.md ↗',s)
-                self.assertNotIn('Score do Modelo (R² / F1)',s)
+                self.assertNotIn('automotive-industrial-lab/',s.replace('gabriel-automotive-industrial-lab.vercel.app',''))
+                self.assertIn('sintétic',s.lower())
 
     def test_industrial_catalog_links_and_evidence(self):
         import json
-        site=ROOT/'site'/'industry'
-        self.assertIn(REPO_BASE,(site/'index.html').read_text())
-        src=(site/'catalog.mjs').read_text().splitlines()[0]
-        groups=json.loads(src.removeprefix('export default ').removesuffix(';'))
+        hub=(ROOT/'site'/'industrial'/'index.html').read_text()
+        groups=json.loads((ROOT/'site/data/industrial-catalog.json').read_text())
         projects=[p for group in groups for p in group['projects']]
         self.assertEqual(sorted(p['id'] for p in projects),list(range(1,101)))
         for p in projects:
             with self.subTest(project=p['id']):
                 self.assertTrue((ROOT/p['code']).is_dir())
-                if p['view']:
-                    self.assertTrue((site/p['view']/'index.html').is_file())
+                self.assertTrue((ROOT/'site'/p['page'].strip('/')/'index.html').is_file())
+                self.assertIn(f'href="{p["page"]}"',hub)
         for n in (1,8,9):
             data=json.loads((ROOT/f'site/cases/{n:03}/metrics.json').read_text())
             self.assertIn('synthetic',data['dataset'])
-        self.assertIn('Base sintética reproduzível',(site/'industrial.mjs').read_text())
+        self.assertIn('base sintética',hub.lower())
 
     def test_f1_walk_forward_leakage_protection(self):
         src=ROOT/'f1-predictive-intelligence/main.py'
@@ -91,8 +87,8 @@ class TestPortfolioIntegrity(unittest.TestCase):
             engine.predict_event_walk_forward([past],target_future,'2026-02-02T00:00:00Z')
 
     def test_site_pages_and_ci_scope(self):
-        self.assertTrue((ROOT/'site/industry/index.html').is_file())
-        self.assertTrue((ROOT/'site/f1/index.html').is_file())
+        for rel in ('industrial','automotivo','automotivo/f1','automotivo/porsche','laboratorio','sobre'):
+            self.assertTrue((ROOT/'site'/rel/'index.html').is_file(),rel)
         yml=(ROOT/'.github/workflows/ci-and-pages.yml').read_text(encoding='utf8')
         self.assertIn('path: _site',yml)
         self.assertIn('unittest discover -s tests',yml)

@@ -9,7 +9,7 @@ Ranking contextual de peças MRO, filtrando compatibilidade com o tipo de ativo,
 
 ## Execução
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/054-tooling-spare-parts-recommender/main.py --query "rolamento para bomba hidráulica" --save
 python -m streamlit run projetos/06-recommendation/054-tooling-spare-parts-recommender/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

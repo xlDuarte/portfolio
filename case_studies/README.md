@@ -5,7 +5,7 @@ All datasets in `data/` are deterministic and **entirely synthetic**, generated 
 ## Run locally
 
 ```bash
-python -m pip install -r requirements-case-studies.txt
+python -m pip install -r requirements/case-studies.txt
 python case_studies/generate_data.py
 python case_studies/analytics.py
 python -m unittest discover -s tests -v

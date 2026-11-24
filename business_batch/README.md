@@ -18,7 +18,7 @@
 ## Execute
 
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python -m unittest discover -s tests -p test_business_batch.py -v
 python -m business_batch.engine 82 --save
 python -m business_batch.engine 87 --save

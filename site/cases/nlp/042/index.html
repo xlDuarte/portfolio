@@ -1,2 +1,45 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>#42 — Service Desk Noise &amp; Ticket Filter</title><style>:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0a1421;color:#f3f8fd;font:16px/1.65 system-ui,sans-serif}main{max-width:1020px;margin:auto;padding:35px 20px 70px}a{color:#99ead7}nav{display:flex;gap:16px;flex-wrap:wrap}.meta{color:#abd2cb;font-weight:650;letter-spacing:.07em;text-transform:uppercase;font-size:.8rem}h1{font-size:clamp(2rem,4vw,3rem);line-height:1.16}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}.card{display:block;padding:19px;background:#14273b;border:1px solid #31556a;border-radius:12px;text-decoration:none;color:inherit}.card:hover,.card:focus{border-color:#8bf0d4}.alert{border-left:4px solid #efba66;padding:12px 16px;background:#292438;margin:20px 0}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#08131f;padding:18px;border-radius:8px}footer{margin-top:35px;border-top:1px solid #29465f;padding-top:20px}</style></head><body><main><nav><a href="/cases/nlp/">← Projetos NLP</a><a href="/">Portfólio</a></nav><p class="meta">NLP industrial · Projeto #42</p><h1>Service Desk Noise &amp; Ticket Filter</h1><p class="alert"><strong>Limite científico:</strong> exemplos e rótulos artificiais. Nenhum desempenho empresarial, precisão externa ou implantação foi comprovado.</p><p>Classificador real com baseline e teste em templates não vistos. NLTK, Hugging Face Tokenizers e Scikit-learn, sem pesos pré-treinados.</p><h2>Classes demonstradas</h2><p>noise · actionable</p><h2>Reprodução local</h2><pre>python -m pip install -r requirements-nlp.txt
-python projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py --text &quot;Mensagem promocional com desconto de assinatura&quot;</pre><p><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py">Código do projeto ↗</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/05-nlp/042-service-desk-noise-ticket-filter/README.md">Metodologia e limitações ↗</a></p><footer>Experimento demonstrativo. Necessita validação independente e revisão humana para decisões.</footer></main></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#042 Filtro Inteligente de Chamados de Service Desk · Gabriel Reis Duarte</title>
+<meta name="description" content="Descarte automático de chamados duplicados ou improcedentes no suporte SAP/TI.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/nlp/042/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="#042 Filtro Inteligente de Chamados de Service Desk · Gabriel Reis Duarte">
+<meta property="og:description" content="Descarte automático de chamados duplicados ou improcedentes no suporte SAP/TI.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/nlp/042/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/nlp/">Texto e documentos</a></li><li aria-current="page">#042</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · Texto e documentos · Projeto #042</p>
+  <h1>Filtro Inteligente de Chamados de Service Desk</h1>
+  <p class="lede">Descarte automático de chamados duplicados ou improcedentes no suporte SAP/TI.</p>
+  <div class="note"><strong>Limite científico:</strong> exemplos e rótulos artificiais. Nenhum desempenho empresarial, precisão externa ou implantação foi comprovado.</div>
+</section>
+<div class="wrap cols">
+  <article class="case-body prose"><h2>Classes demonstradas</h2><p>noise · actionable</p><h2>Reprodução local</h2><pre tabindex="0">python -m pip install -r requirements/nlp.txt
+python projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py --text "Mensagem promocional com desconto de assinatura"</pre><footer>Experimento demonstrativo. Necessita validação independente e revisão humana para decisões.</footer></article>
+  <aside class="aside">
+    <h2>Ficha</h2>
+    <ul><li>Projeto #042</li><li>Texto e documentos</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <h2>Código</h2>
+    <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/05-nlp/042-service-desk-noise-ticket-filter">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py">Código do projeto</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/05-nlp/042-service-desk-noise-ticket-filter/README.md">Metodologia e limitações</a></li></ul>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/nlp/041/"><span class="small muted">Anterior</span>#041 Análise de Sentimento em Garantias e Pós-Venda</a><a class="next" href="/cases/nlp/043/"><span class="small muted">Próximo</span>#043 Verificação de Alertas Regulatórios e Supply Chain</a></nav></div>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

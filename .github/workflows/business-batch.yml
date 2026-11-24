@@ -1,10 +1,10 @@
 name: Business finance and BI 081–090 verification
 on:
   pull_request:
-    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements-business.txt','.github/workflows/business-batch.yml','site/cases/business/**']
+    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements/business.txt','.github/workflows/business-batch.yml','site/cases/business/**']
   push:
     branches: [main,batch-081-090-business-finance-bi]
-    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements-business.txt','.github/workflows/business-batch.yml']
+    paths: ['business_batch/**','projetos/09-business/**','tests/test_business_batch.py','requirements/business.txt','.github/workflows/business-batch.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,9 +22,9 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements-business.txt
+          cache-dependency-path: requirements/business.txt
       - name: Install Python, SQL and Streamlit dependencies
-        run: python -m pip install -r requirements-business.txt
+        run: python -m pip install -r requirements/business.txt
       - name: Compile finance analytics sources
         run: python -m compileall -q business_batch projetos/09-business tests/test_business_batch.py
       - name: SQL, ML, reconciliation, finance and DAX-template acceptance

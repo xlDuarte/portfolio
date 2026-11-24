@@ -1,0 +1,9 @@
+-r motorsport-core.txt
+tensorflow-cpu>=2.16,<2.20
+mlflow>=3.17.1,<4
+pypdf>=5,<7
+reportlab>=4,<5
+langchain-core>=0.3,<2
+langchain-text-splitters>=0.3,<2
+imbalanced-learn>=0.13,<0.15
+shap>=0.46,<0.49

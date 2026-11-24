@@ -11,7 +11,7 @@ Treina RandomForestRegressor com atributos de 12 meses anteriores e prevê marge
 
 ## Execução verificável
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/081-b2b-account-lifetime-value-ltv/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v

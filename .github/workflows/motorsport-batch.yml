@@ -7,7 +7,7 @@ on:
       - 'projetos/11-motorsport-f1-mlops/**'
       - 'tests/test_motorsport_batch.py'
       - 'tests/test_motorsport_advanced.py'
-      - 'requirements-motorsport*.txt'
+      - 'requirements/motorsport*.txt'
       - '.github/workflows/motorsport-batch.yml'
       - 'site/cases/motorsport/**'
   push:
@@ -17,7 +17,7 @@ on:
       - 'projetos/11-motorsport-f1-mlops/**'
       - 'tests/test_motorsport_batch.py'
       - 'tests/test_motorsport_advanced.py'
-      - 'requirements-motorsport*.txt'
+      - 'requirements/motorsport*.txt'
       - '.github/workflows/motorsport-batch.yml'
   workflow_dispatch:
 concurrency:
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Install numerical/CV/ML and interactive UI dependencies
-        run: python -m pip install -r requirements-motorsport-core.txt
+        run: python -m pip install -r requirements/motorsport-core.txt
       - run: python -m compileall -q motorsport_batch motorsport projetos/11-motorsport-f1-mlops tests/test_motorsport_batch.py
       - name: Test 101 RF/XGB, EKF, Lucas-Kanade, replay and tire dynamics
         run: python -m unittest discover -s tests -p test_motorsport_batch.py -v
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install --no-cache-dir -r requirements-motorsport-tf.txt
+      - run: python -m pip install --no-cache-dir -r requirements/motorsport-tf.txt
       - name: Fit actual LSTM and CNN, calculate held-out Grad-CAM
         run: python -m unittest discover -s tests -p test_motorsport_advanced.py -v
       - name: Run model-training CLI entrypoints
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install --no-cache-dir -r requirements-motorsport-mlops.txt
+      - run: python -m pip install --no-cache-dir -r requirements/motorsport-mlops.txt
       - name: Train/test tracked MLflow artifacts, LangChain PDFs and XGBoost SHAP
         run: python -m unittest discover -s tests -p test_motorsport_advanced.py -v
       - name: Run actual document, tracking and explainability pipelines

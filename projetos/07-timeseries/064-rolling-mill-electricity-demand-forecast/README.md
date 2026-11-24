@@ -9,7 +9,7 @@ Consumo fabril de energia em demanda de ponta simulada. Gerador determinístico 
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/main.py --save
 python projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

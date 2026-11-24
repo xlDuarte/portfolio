@@ -17,7 +17,7 @@
 
 ## Instalação
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python -m unittest discover -s tests -p test_recommendation_batch.py -v
 python -m recommendation_batch.engine 51 --query "bearing vibration pump" --save
 python -m recommendation_batch.engine 59 --query "Pindamonhangaba>Santos" --filters-json '{"modes":["truck","rail"]}'

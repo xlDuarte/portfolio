@@ -6,7 +6,7 @@ on:
       - 'nlp_batch/**'
       - 'projetos/05-nlp/**'
       - 'tests/test_nlp_batch.py'
-      - 'requirements-nlp.txt'
+      - 'requirements/nlp.txt'
       - '.github/workflows/nlp-batch.yml'
       - 'site/cases/nlp/**'
   push:
@@ -15,7 +15,7 @@ on:
       - 'nlp_batch/**'
       - 'projetos/05-nlp/**'
       - 'tests/test_nlp_batch.py'
-      - 'requirements-nlp.txt'
+      - 'requirements/nlp.txt'
       - '.github/workflows/nlp-batch.yml'
       - 'site/cases/nlp/**'
   workflow_dispatch:
@@ -37,9 +37,9 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements-nlp.txt
+          cache-dependency-path: requirements/nlp.txt
       - name: Install NLP dependencies (no model download)
-        run: python -m pip install -r requirements-nlp.txt
+        run: python -m pip install -r requirements/nlp.txt
       - name: Compile sources
         run: python -m compileall -q nlp_batch projetos/05-nlp tests/test_nlp_batch.py
       - name: Train classifiers and test evidence workflows

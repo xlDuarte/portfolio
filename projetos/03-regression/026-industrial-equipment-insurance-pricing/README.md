@@ -16,7 +16,7 @@ Estimated synthetic insurance premium for machinery and fleets; cannot be used f
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/026-industrial-equipment-insurance-pricing/main.py
 python -m regression_batch.engine 26 --save
 ```

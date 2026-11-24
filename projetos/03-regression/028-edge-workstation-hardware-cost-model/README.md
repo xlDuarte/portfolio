@@ -16,7 +16,7 @@ Predicted procurement cost of rugged industrial edge workstations from hardware 
 
 ## Run
 ```bash
-python -m pip install -r requirements-regression.txt
+python -m pip install -r requirements/regression.txt
 python projetos/03-regression/028-edge-workstation-hardware-cost-model/main.py
 python -m regression_batch.engine 28 --save
 ```

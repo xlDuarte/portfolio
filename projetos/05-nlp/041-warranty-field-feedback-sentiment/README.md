@@ -11,7 +11,7 @@ Classifica satisfação e reclamações de garantia em três polaridades; use co
 
 ## Executar
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/041-warranty-field-feedback-sentiment/main.py --text "Cliente relata falha repetida na garantia e solicita substituição" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

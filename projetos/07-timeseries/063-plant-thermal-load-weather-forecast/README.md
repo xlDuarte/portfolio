@@ -9,7 +9,7 @@ Validação walk-forward com 3 origens de corte (168, 192 e 216 observações) e
 
 ## Executar
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/063-plant-thermal-load-weather-forecast/main.py --save
 python projetos/07-timeseries/063-plant-thermal-load-weather-forecast/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

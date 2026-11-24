@@ -1,3 +1,29 @@
+# Publicação
+
+## Endereço oficial: Vercel
+
+O site é publicado pela Vercel a partir de `site/`, sem etapa de build no servidor:
+**https://gabriel-automotive-industrial-lab.vercel.app**. O arquivo `vercel.json` (gerado por `scripts/build_site.py`) define:
+
+- `cleanUrls` e `trailingSlash`;
+- redirecionamentos permanentes das URLs antigas (`/industry/`, `/motorsport/`, `/f1/`, `/about/`…), listados em `scripts/site_data.py`;
+- cabeçalhos de segurança (CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`).
+
+`site/` já inclui `404.html`, `sitemap.xml` e `robots.txt`. Cada página tem `canonical` e Open Graph apontando para a Vercel.
+
+## GitHub Pages: só redirecionamento
+
+`scripts/prepare_pages.py` gera em `_site/` um stub por página que redireciona para o mesmo caminho na Vercel (com `canonical`, `noindex`, `meta refresh` e o `#hash` preservado). URLs aposentadas vão direto ao novo destino e a `404.html` encaminha qualquer caminho desconhecido. Assim, links antigos de `xlduarte.github.io/portfolio/` continuam funcionando sem duplicar conteúdo no Google.
+
+```bash
+python scripts/prepare_pages.py --repo xlDuarte/portfolio --output _site
+python -m unittest discover -s tests -p test_pages_release.py -v
+```
+
+---
+
+## Histórico (antes da migração para a Vercel)
+
 # Publicação no GitHub Pages
 
 ## URL e arquitetura

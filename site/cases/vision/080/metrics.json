@@ -1,0 +1,11 @@
+{
+  "project_id": 80,
+  "name": "Metallurgical microstructure classifier",
+  "result": {
+    "trained_cnn": "Run --deep for actual PyTorch training"
+  },
+  "source": "SYNTHETIC OpenCV-rendered images",
+  "input_image_real": false,
+  "production_validated": false,
+  "limitations": "No field images, production detection metrics or safety certification"
+}

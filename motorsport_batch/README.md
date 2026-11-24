@@ -18,7 +18,7 @@
 ## Installation and verification
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements/motorsport-core.txt
 python -m unittest discover -s tests -p test_motorsport_batch.py -v
 python projetos/11-motorsport-f1-mlops/101-f1-predictive-race-strategy-pit-stop-window-simulator/main.py --fit-ml
 python -m streamlit run motorsport_batch/replay.py
@@ -28,10 +28,10 @@ python -m streamlit run motorsport_batch/performance.py
 Heavy frameworks are installed separately for CI resource isolation:
 
 ```bash
-python -m pip install -r requirements-motorsport-tf.txt
+python -m pip install -r requirements/motorsport-tf.txt
 RUN_MOTORSPORT_TF=1 python -m unittest discover -s tests -p test_motorsport_advanced.py -v
 
-python -m pip install -r requirements-motorsport-mlops.txt
+python -m pip install -r requirements/motorsport-mlops.txt
 RUN_MOTORSPORT_ADVANCED=1 python -m unittest discover -s tests -p test_motorsport_advanced.py -v
 ```
 

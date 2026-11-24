@@ -7,7 +7,7 @@ No XGBoost, TensorFlow, business credit-approval service, automated hiring, live
 The canonical `main.py` for every case #031–#040 now uses `classification_batch.engine.evaluate(number)`. The old duplicated `classification_main.py` scripts are compatibility entrypoints and must not be mistaken for additional projects.
 
 ```bash
-python -m pip install -r requirements-classification.txt
+python -m pip install -r requirements/classification.txt
 python -m unittest discover -s tests -p test_classification_batch.py -v
 python projetos/04-classification/031-b2b-industrial-contract-churn-prediction/main.py
 python -m classification_batch.engine 40

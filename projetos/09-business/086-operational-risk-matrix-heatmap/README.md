@@ -9,7 +9,7 @@ Matriz de risco operacional de 5 × 5 com cálculo probabilidade × impacto, agr
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/086-operational-risk-matrix-heatmap/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v

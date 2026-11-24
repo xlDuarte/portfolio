@@ -16,7 +16,7 @@ Tecnologias **efetivamente utilizadas**: Pandas e NumPy para validação/cálcul
 ## Como reproduzir
 A partir da raiz do repositório:
 ```bash
-pip install -r requirements-eda.txt
+pip install -r requirements/eda.txt
 python projetos/02-eda/015-component-quality-audit-ratings-eda/main.py
 python projetos/02-eda/015-component-quality-audit-ratings-eda/main.py --report-dir /tmp/eda-015
 python -m unittest discover -s tests -v

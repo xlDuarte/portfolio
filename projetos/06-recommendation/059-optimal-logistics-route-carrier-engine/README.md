@@ -9,7 +9,7 @@ Motor de rotas em grafo dirigido artificial: enumera caminhos simples entre cida
 
 ## Reproduzir
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/059-optimal-logistics-route-carrier-engine/main.py --query "Pindamonhangaba>Santos" --save
 python -m streamlit run projetos/06-recommendation/059-optimal-logistics-route-carrier-engine/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

@@ -3,7 +3,7 @@
 ## Execução comprovável
 
 ```bash
-python -m pip install -r requirements-motorsport-core.txt
+python -m pip install -r requirements/motorsport-core.txt
 python -m streamlit run motorsport_batch/performance.py
 ```
 

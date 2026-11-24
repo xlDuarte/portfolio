@@ -108,7 +108,7 @@ def prophet_forecast(history: pd.DataFrame, horizon: int, project: int) -> dict:
     try:
         from prophet import Prophet
     except ImportError as exc:
-        raise RuntimeError("Prophet is required; install requirements-timeseries.txt") from exc
+        raise RuntimeError("Prophet is required; install requirements/timeseries.txt") from exc
     logging.getLogger("cmdstanpy").setLevel(logging.WARNING)
     logging.getLogger("prophet").setLevel(logging.WARNING)
     frame = pd.DataFrame({"ds":pd.to_datetime(history.observation_date),

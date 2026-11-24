@@ -1,10 +1,35 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Dez projetos de regressão: Scikit-learn e XGBoost executáveis com baselines e holdout em dados sintéticos."><title>Projetos de regressão — #021–#030</title><style>body{background:#08131e;color:#e9f3fb;font:17px/1.7 system-ui;max-width:920px;padding:28px;margin:auto}a{color:#90f2de}li{padding:7px}h1{line-height:1.1}</style></head><body><a href="/">← Portfólio</a><h1>Regressão · Projetos #021–#030</h1><p>Estudos demonstrativos com datasets artificiais versionados e treinamento verdadeiro de modelos Scikit-learn e XGBoost. Não há garantia de generalização para dados reais.</p><ol><li><a href="/cases/021/">#021 — Industrial Facility CAPEX Valuation</a></li>
-<li><a href="/cases/022/">#022 — Fleet &amp; Vehicle Residual Value Model</a></li>
-<li><a href="/cases/023/">#023 — Engineering Compensation &amp; Cost Model</a></li>
-<li><a href="/cases/024/">#024 — Technical Certification Score Prediction</a></li>
-<li><a href="/cases/025/">#025 — Occupational Safety Cost Prediction</a></li>
-<li><a href="/cases/026/">#026 — Industrial Equipment Insurance Pricing</a></li>
-<li><a href="/cases/027/">#027 — Industrial Forgings Sales Regression</a></li>
-<li><a href="/cases/028/">#028 — Edge &amp; Workstation Hardware Cost Model</a></li>
-<li><a href="/cases/029/">#029 — Furnace &amp; Machining Power Consumption</a></li>
-<li><a href="/cases/030/">#030 — Logistics Delivery Time (ETA) Prediction</a></li></ol></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regressão · projetos #021–#030 · Gabriel Reis Duarte</title>
+<meta name="description" content="Regressão: 10 projetos industriais (#021–#030). Scikit-learn e XGBoost contra baseline, com MAE e R² em holdout.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/regression/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Regressão · projetos #021–#030 · Gabriel Reis Duarte">
+<meta property="og:description" content="Regressão: 10 projetos industriais (#021–#030). Scikit-learn e XGBoost contra baseline, com MAE e R² em holdout.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/regression/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+</head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li aria-current="page">Regressão</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · #021–#030</p>
+  <h1>Regressão</h1>
+  <p class="lede">Scikit-learn e XGBoost contra baseline, com MAE e R² em holdout.</p>
+  <div class="note"><p>Exercícios técnicos sobre bases sintéticas com semente fixa. Cada projeto roda de verdade e tem teste automatizado; não representam resultado medido em empresa.</p></div>
+</section>
+<section class="wrap section"><ul class="index"><li><a class="row" href="/cases/021/"><span class="id">#021</span><span class="title">Estimativa de CAPEX para Instalações Industriais</span><span class="desc">Regressão XGBoost para estimar investimento de implantação fabril com base em capacidade e utilidades.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/022/"><span class="id">#022</span><span class="title">Valor Residual e Depreciação de Frota Automotiva</span><span class="desc">Predição de valor de revenda/depreciação considerando quilometragem, telemetria de uso e manutenções.</span><span class="tags"><span class="tag feature">Mais completo</span></span></a></li><li><a class="row" href="/cases/023/"><span class="id">#023</span><span class="title">Modelagem de Custos de Mão de Obra e Especialidades</span><span class="desc">Estimativa orçamentária de alocação de equipes técnicas por senioridade, stack e localização.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/024/"><span class="id">#024</span><span class="title">Predição de Proficiência Técnica em Certificações</span><span class="desc">Modelo regressivo associando prática laboratorial ao desempenho em auditorias operacionais.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/025/"><span class="id">#025</span><span class="title">Projeção de Custos de Saúde Ocupacional e Sinistralidade</span><span class="desc">Estimativa atuarial de despesas médicas/segurança com base em fatores de risco ergonômico.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/026/"><span class="id">#026</span><span class="title">Precificação de Prêmio de Seguro de Maquinário e Frota</span><span class="desc">Regressão baseada em MTBF, idade do ativo, telemetria de operação e histórico de sinistros.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/027/"><span class="id">#027</span><span class="title">Previsão de Volume de Vendas de Forjados e Cilindros</span><span class="desc">Modelo preditivo de demanda comercial integrando carteira de pedidos, cotas e indicadores setoriais.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/028/"><span class="id">#028</span><span class="title">Dimensionamento de Custo de Hardware Industrial / Edge</span><span class="desc">Estimativa de TCO de servidores de borda (GPUs, RAM, proteção IP67) por especificação.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/029/"><span class="id">#029</span><span class="title">Predição de Consumo Elétrico em Fornos e Usinagem</span><span class="desc">Regressão multivariada para prever MWh por lote produtivo e evitar ultrapassagem de tarifa ponta.</span><span class="tags"></span></a></li><li><a class="row" href="/cases/030/"><span class="id">#030</span><span class="title">Estimativa de Lead-Time de Entrega Logística (ETA)</span><span class="desc">Predição precisa de tempo de trânsito combinando distância, peso da carga, rota e histórico SAP.</span><span class="tags"></span></a></li></ul></section>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

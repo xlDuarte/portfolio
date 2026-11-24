@@ -11,7 +11,7 @@ Sinais de vibração artificiais processados com FFT e características espectra
 
 ## Executar
 ```bash
-python -m pip install -r requirements-recommendation.txt
+python -m pip install -r requirements/recommendation.txt
 python projetos/06-recommendation/052-acoustic-diagnostic-signature-matcher/main.py --query "bearing_fault" --save
 python -m streamlit run projetos/06-recommendation/052-acoustic-diagnostic-signature-matcher/streamlit_app.py
 python -m unittest discover -s tests -p test_recommendation_batch.py -v

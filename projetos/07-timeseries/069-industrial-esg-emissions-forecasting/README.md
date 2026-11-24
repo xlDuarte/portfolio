@@ -9,7 +9,7 @@ Emissões industriais simuladas, não medições auditadas. Unidade alvo: **tCO2
 
 ## Executar
 ```bash
-python -m pip install -r requirements-timeseries.txt
+python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --save
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --future --save
 python -m unittest discover -s tests -p test_timeseries_batch.py -v

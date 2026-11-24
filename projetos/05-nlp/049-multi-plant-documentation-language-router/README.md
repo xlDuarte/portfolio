@@ -7,7 +7,7 @@
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/049-multi-plant-documentation-language-router/main.py --text "Inspecionar os rolamentos antes do início do turno" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

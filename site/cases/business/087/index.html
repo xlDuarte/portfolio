@@ -1,3 +1,46 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>#87 — CAPEX Innovation Portfolio Analysis</title><style>:root{color-scheme:dark}body{background:#0b1823;color:#e9f3f8;font:16px/1.65 system-ui,sans-serif;margin:0}main{max-width:900px;padding:32px 23px;margin:auto}a{color:#95e8d7}nav{display:flex;gap:16px}h1{line-height:1.2;font-size:clamp(2rem,4vw,2.8rem)}.alert{border-left:4px solid #d7ac5c;background:#2b2532;padding:15px}.cmd{font:13px/1.6 ui-monospace,monospace;background:#06101b;border-radius:9px;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere}footer{margin-top:38px;border-top:1px solid #254760;padding-top:17px}</style></head><body><main><nav><a href="/cases/business/">← BI & Finanças</a><a href="/">Portfólio</a></nav><p>Estudo de caso industrial · #87</p><h1>CAPEX Innovation Portfolio Analysis</h1><p>Seleção por VPL de projetos de inovação sob restrição orçamentária</p><div class="alert"><strong>Limites:</strong> ERP e indicadores totalmente fictícios, sem SAP/Ariba, desempenho financeiro real, relatório Power BI Desktop testado ou conformidade regulatória comprovada.</div><h2>Pipeline auditável</h2><p>Consulta SQL realmente executada em SQLite, cálculo Python/Pandas específico, relatório JSON e visualização Matplotlib. Arquivos Power Query/DAX disponíveis como templates editáveis, não executados por CI.</p><h2>Reprodução</h2><pre class="cmd">python -m pip install -r requirements-business.txt
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#087 Otimização de Portfólio de Projetos de Inovação (CAPEX) · Gabriel Reis Duarte</title>
+<meta name="description" content="Priorização de investimentos tecnológicos por VPL, TIR, Payback e alinhamento estratégico.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/business/087/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="#087 Otimização de Portfólio de Projetos de Inovação (CAPEX) · Gabriel Reis Duarte">
+<meta property="og:description" content="Priorização de investimentos tecnológicos por VPL, TIR, Payback e alinhamento estratégico.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/business/087/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/business/">BI e finanças</a></li><li aria-current="page">#087</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · BI e finanças · Projeto #087</p>
+  <h1>Otimização de Portfólio de Projetos de Inovação (CAPEX)</h1>
+  <p class="lede">Priorização de investimentos tecnológicos por VPL, TIR, Payback e alinhamento estratégico.</p>
+  <div class="note"><strong>Limites:</strong> ERP e indicadores totalmente fictícios, sem SAP/Ariba, desempenho financeiro real, relatório Power BI Desktop testado ou conformidade regulatória comprovada.</div>
+</section>
+<div class="wrap cols">
+  <article class="case-body prose"><h2>Pipeline auditável</h2><p>Consulta SQL realmente executada em SQLite, cálculo Python/Pandas específico, relatório JSON e visualização Matplotlib. Arquivos Power Query/DAX disponíveis como templates editáveis, não executados por CI.</p><h2>Reprodução</h2><pre class="cmd" tabindex="0">python -m pip install -r requirements/business.txt
 python projetos/09-business/087-capex-innovation-portfolio-analysis/main.py --save
-python -m streamlit run business_batch/app.py</pre><p><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/09-business/087-capex-innovation-portfolio-analysis/main.py">Código ↗</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/business_batch/sql/87.sql">SQL ↗</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/09-business/087-capex-innovation-portfolio-analysis/README.md">Método e limites ↗</a></p><footer>Revisão humana obrigatória para análise financeira, seleção de investimentos e conformidade.</footer></main></body></html>
+python -m streamlit run business_batch/app.py</pre><footer>Revisão humana obrigatória para análise financeira, seleção de investimentos e conformidade.</footer></article>
+  <aside class="aside">
+    <h2>Ficha</h2>
+    <ul><li>Projeto #087</li><li>BI e finanças</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <h2>Código</h2>
+    <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/09-business/087-capex-innovation-portfolio-analysis">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/09-business/087-capex-innovation-portfolio-analysis/main.py">Código</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/business_batch/sql/087.sql">SQL</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/09-business/087-capex-innovation-portfolio-analysis/README.md">Método e limites</a></li></ul>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/business/086/"><span class="small muted">Anterior</span>#086 Matriz de Risco e Heatmap Operacional (Sistema Prontos)</a><a class="next" href="/cases/business/088/"><span class="small muted">Próximo</span>#088 Projeção de Faturamento e Conciliação Contábil-Fiscal</a></nav></div>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

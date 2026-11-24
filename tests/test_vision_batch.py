@@ -109,6 +109,6 @@ class VisionAcceptance(unittest.TestCase):
             self.assertIn("vision_batch.engine",(base/"main.py").read_text())
             self.assertTrue((ROOT/"site"/"cases"/"vision"/f"{i:03d}"/"index.html").is_file())
         self.assertTrue((ROOT/"site"/"cases"/"vision"/"index.html").is_file())
-        self.assertIn("/cases/vision/",(ROOT/"site"/"docs"/"index.html").read_text())
+        self.assertIn("/cases/vision/",(ROOT/"site"/"industrial"/"index.html").read_text())
 
 if __name__=="__main__":unittest.main()

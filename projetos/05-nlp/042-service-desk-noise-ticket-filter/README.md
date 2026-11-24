@@ -11,7 +11,7 @@ Distingue publicidade/ruído de chamados técnicos acionáveis; não apaga chama
 
 ## Executar
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/042-service-desk-noise-ticket-filter/main.py --text "Mensagem promocional com desconto de assinatura" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

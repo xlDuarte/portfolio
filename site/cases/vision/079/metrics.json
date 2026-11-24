@@ -1,0 +1,68 @@
+{
+  "project_id": 79,
+  "name": "Plant yard vehicle multi-object tracking",
+  "result": {
+    "unique_tracks": 2,
+    "track_paths": {
+      "1": [
+        [
+          18,
+          25
+        ],
+        [
+          22,
+          25
+        ],
+        [
+          26,
+          25
+        ],
+        [
+          30,
+          25
+        ],
+        [
+          34,
+          25
+        ],
+        [
+          38,
+          25
+        ]
+      ],
+      "2": [
+        [
+          31,
+          68
+        ],
+        [
+          35,
+          68
+        ],
+        [
+          39,
+          68
+        ],
+        [
+          43,
+          68
+        ],
+        [
+          47,
+          68
+        ],
+        [
+          51,
+          68
+        ]
+      ]
+    },
+    "frames": 6,
+    "method": "OpenCV detections + nearest centroid association",
+    "real_vehicle_identity": false
+  },
+  "source": "SYNTHETIC OpenCV-rendered images",
+  "input_image_real": false,
+  "production_validated": false,
+  "limitations": "No field images, production detection metrics or safety certification"
+}

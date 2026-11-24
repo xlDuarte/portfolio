@@ -11,7 +11,7 @@ Compara margem de contribuição entre campanhas e controles artificiais de aloc
 
 ## Execução verificável
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/083-b2b-commercial-campaign-roi-analysis/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v

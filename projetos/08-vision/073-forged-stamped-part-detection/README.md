@@ -10,7 +10,7 @@ Detecção e contagem de peças não sobrepostas em imagens sintéticas.
 ## Execução
 ```bash
 sudo apt-get install -y tesseract-ocr
-python -m pip install -r requirements-vision.txt
+python -m pip install -r requirements/vision.txt
 python projetos/08-vision/073-forged-stamped-part-detection/main.py --save
 python -m unittest discover -s tests -p test_vision_batch.py -v
 ```

@@ -1,1 +1,44 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>#001 | Project #001 — Desempenho de Treinamento e Operadores</title><meta name="description" content="Estudo de caso reproduzível #001 com dados sintéticos, indicadores auditáveis e código Python."><style>body{margin:0;background:#0b1422;color:#eff7fe;font:16px/1.65 system-ui,sans-serif}main{max-width:980px;margin:auto;padding:36px 24px}a{color:#8de4e6}h1{font-size:clamp(1.8rem,4vw,3.1rem);line-height:1.2}img{width:100%;height:auto;background:white;border-radius:14px}.notice{background:#153444;border-left:4px solid #52e1ce;padding:16px;border-radius:8px}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #34445b;padding:8px;text-align:left;vertical-align:top;word-break:break-word}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.chip{display:block;border:1px solid #456073;padding:12px;border-radius:10px}</style></head><body><main><a href="../../index.html">← Portfólio</a> · <a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/01-dados/001-operator-training-performance-analysis">Código e documentação GitHub ↗</a><p>ANÁLISE DE DADOS / PROJETO #001</p><h1>Project #001 — Desempenho de Treinamento e Operadores</h1><p class="notice">DADOS 100% SINTÉTICOS. Métricas produzidas por código efetivamente executado. Sem dado SAP real, sem impacto industrial observado e sem relatório Power BI homologado.</p><h2>Visualização calculada</h2><img src="chart.svg" alt="Gráfico do estudo #001 calculado com Matplotlib usando dados sintéticos"><h2>Métricas reproduzíveis</h2><table><tr><th>dataset</th><td>synthetic / reproducible, not operational evidence</td></tr><tr><th>project</th><td>1</td></tr><tr><th>operators</th><td>180</td></tr><tr><th>training_hours_total</th><td>2691.0</td></tr><tr><th>mean_pre</th><td>58.44</td></tr><tr><th>mean_post</th><td>65.62</td></tr><tr><th>paired_gain_pp</th><td>7.17</td></tr><tr><th>bootstrap_95pct_ci_pp</th><td>[6.06, 8.49]</td></tr><tr><th>quality_gain_pp</th><td>1.33</td></tr><tr><th>interpretation</th><td>Paired descriptive improvement on synthetic operators. NOT causal training impact.</td></tr></table><h2>Reprodutibilidade</h2><div class="grid"><a class="chip" href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/engine.py">Motor Python / Pandas / NumPy</a><a class="chip" href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/data/001.csv">CSV sintético versionado</a><a class="chip" href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/notebooks/001.ipynb">Notebook Jupyter</a><a class="chip" href="https://github.com/xlDuarte/portfolio/blob/main/tests/test_analytics_batch1.py">Testes de regressão</a></div><p>As tabelas são um resumo estático das métricas calculadas. Não afirmamos conectividade com SAP, Power BI ou operação produtiva.</p></main></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#001 Desempenho de Treinamento e Operadores · Gabriel Reis Duarte</title>
+<meta name="description" content="Correlação entre horas de capacitação técnica, curva de aprendizado e produtividade em células de manufatura.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/001/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="#001 Desempenho de Treinamento e Operadores · Gabriel Reis Duarte">
+<meta property="og:description" content="Correlação entre horas de capacitação técnica, curva de aprendizado e produtividade em células de manufatura.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/001/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/industrial/#dados">Análise de dados</a></li><li aria-current="page">#001</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · Análise de dados · Projeto #001</p>
+  <h1>Desempenho de Treinamento e Operadores</h1>
+  <p class="lede">Correlação entre horas de capacitação técnica, curva de aprendizado e produtividade em células de manufatura.</p>
+  <div class="note">DADOS 100% SINTÉTICOS. Métricas produzidas por código efetivamente executado. Sem dado SAP real, sem impacto industrial observado e sem relatório Power BI homologado.</div>
+</section>
+<div class="wrap cols">
+  <article class="case-body prose"><h2>Visualização calculada</h2><img alt="Gráfico do estudo #001 calculado com Matplotlib usando dados sintéticos" loading="lazy" src="chart.svg"/><h2>Métricas reproduzíveis</h2><div class="table-wrap"><table><tr><th>Base de dados</th><td>synthetic / reproducible, not operational evidence</td></tr><tr><th>Projeto</th><td>1</td></tr><tr><th>operators</th><td>180</td></tr><tr><th>Training hours total</th><td class="r num">2,69</td></tr><tr><th>Mean pre</th><td class="r num">58,44</td></tr><tr><th>Mean post</th><td class="r num">65,62</td></tr><tr><th>Paired gain pp</th><td class="r num">7,17</td></tr><tr><th>Bootstrap 95pct ci pp</th><td>[6.06, 8.49]</td></tr><tr><th>Quality gain pp</th><td class="r num">1,33</td></tr><tr><th>interpretation</th><td>Paired descriptive improvement on synthetic operators. NOT causal training impact.</td></tr></table></div><h2>Reprodutibilidade</h2><div class="grid"></div><p>As tabelas são um resumo estático das métricas calculadas. Não afirmamos conectividade com SAP, Power BI ou operação produtiva.</p></article>
+  <aside class="aside">
+    <h2>Ficha</h2>
+    <ul><li>Projeto #001</li><li>Análise de dados</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <h2>Código</h2>
+    <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/01-dados/001-operator-training-performance-analysis">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/engine.py">Motor Python / Pandas / NumPy</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/data/001.csv">CSV sintético versionado</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/notebooks/001.ipynb">Notebook Jupyter</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/tests/test_analytics_batch1.py">Testes de regressão</a></li></ul>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><span></span><a class="next" href="/cases/002/"><span class="small muted">Próximo</span>#002 Análise de Giro e Vendas de Reposição (Aftermarket)</a></nav></div>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

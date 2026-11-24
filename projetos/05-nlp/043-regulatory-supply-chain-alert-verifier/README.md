@@ -9,7 +9,7 @@ Compara alegações a fontes textuais fornecidas, retorna IDs das fontes e indic
 
 ## Executar
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/043-regulatory-supply-chain-alert-verifier/main.py --text "O comunicado fictício LOG-17 proíbe remessas de aço em junho." --save
 python projetos/05-nlp/043-regulatory-supply-chain-alert-verifier/main.py --text "O comunicado fictício LOG-17 proíbe remessas de aço em junho." --evidence-file nlp_batch/examples/evidence.json
 python -m unittest discover -s tests -p test_nlp_batch.py -v

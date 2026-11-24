@@ -1,3 +1,0 @@
--r requirements-case-studies.txt
-jupyterlab>=4.0,<5
-ipykernel>=6.0,<7

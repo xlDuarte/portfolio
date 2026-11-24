@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gabriel-automotive-industrial-lab.vercel.app/sitemap.xml

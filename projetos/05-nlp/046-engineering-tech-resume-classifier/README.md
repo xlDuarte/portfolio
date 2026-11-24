@@ -11,7 +11,7 @@ Identificação de áreas técnicas em currículos fictícios: dados, software, 
 
 ## Reprodução
 ```bash
-python -m pip install -r requirements-nlp.txt
+python -m pip install -r requirements/nlp.txt
 python projetos/05-nlp/046-engineering-tech-resume-classifier/main.py --text "Experiência técnica com SQL dashboards e análise de dados" --save
 python -m unittest discover -s tests -p test_nlp_batch.py -v
 ```

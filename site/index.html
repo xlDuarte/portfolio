@@ -1,57 +1,71 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8f7">
-  <meta name="description" content="Gabriel Reis Duarte — tecnologia aplicada a dados, indústria e automobilismo. Conheça dois laboratórios: Industrial Intelligence e Motorsport Engineering.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Gabriel Reis Duarte — Tecnologia, Dados & Motorsport">
-  <meta property="og:description" content="Dois universos, uma visão: inteligência industrial e engenharia de performance automotiva.">
-  <title>Gabriel Reis Duarte — Tecnologia, Dados & Motorsport</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#f7f8f7;--ink:#141819;--muted:#5b676a;--line:#d9e0e0;--cyan:#009eaa;--dark:#111a1c;--font:'DM Sans',Arial,sans-serif;--display:Manrope,Arial,sans-serif}
-    *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}a{color:inherit}a:focus-visible{outline:3px solid var(--cyan);outline-offset:5px}::selection{background:#92e6e4;color:#111}
-    .page{width:min(1232px,calc(100% - 88px));margin:0 auto}header{height:90px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line)}.logo{font-family:var(--display);font-weight:800;letter-spacing:-.075em;font-size:27px;text-decoration:none}.logo span{color:var(--cyan)}nav{display:flex;gap:34px;align-items:center}nav a{font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;font-weight:700}nav a:hover{color:var(--cyan)}.availability{font-size:12px;color:#516769;display:flex;align-items:center;gap:8px}.availability:before{content:'';display:block;width:7px;height:7px;background:var(--cyan);border-radius:50%}
-    .hero{padding:92px 0 60px;display:grid;grid-template-columns:1.6fr .55fr;gap:50px;align-items:end}.eyebrow{font:700 11px/1.4 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}h1{font-family:var(--display);font-weight:800;letter-spacing:-.078em;line-height:1.04;font-size:clamp(56px,7vw,112px);margin:24px 0 24px}.intro{font-size:clamp(18px,2vw,22px);max-width:720px;color:#465257;line-height:1.48;margin:0}.hero-aside{border-left:1px solid var(--line);padding-left:27px;margin-bottom:7px;font-size:13px;color:#657075}.hero-aside strong{display:block;color:var(--ink);font-size:15px;font-weight:700;margin-bottom:12px}.hero-aside p{margin:0}
-    .section-label{display:flex;align-items:center;gap:17px;margin:44px 0 19px;color:#4e5d60;font-size:11px;letter-spacing:.17em;font-weight:700;text-transform:uppercase}.section-label:after{content:'';flex:1;height:1px;background:var(--line)}.choices{display:grid;grid-template-columns:1fr 1fr;gap:17px}.choice{position:relative;display:flex;flex-direction:column;min-height:355px;padding:31px;overflow:hidden;text-decoration:none;isolation:isolate;transition:transform .24s ease,box-shadow .24s ease}.choice:hover{transform:translateY(-5px);box-shadow:0 22px 60px #00000012}.choice:focus-visible{outline-offset:6px}.choice.industry{background:#141e20;color:#f3f8f8}.choice.racing{background:#e5eef0;color:#10181a;border:1px solid #cbdcdd}.choice-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:2;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}.circle-arrow{border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;width:39px;height:39px;font-size:20px;line-height:1;transition:background .2s,color .2s}.choice:hover .circle-arrow{background:#0bd3db;color:#101719;border-color:#0bd3db}.choice-bottom{margin-top:auto;position:relative;z-index:2;max-width:435px}.choice h2{font-family:var(--display);letter-spacing:-.055em;font-size:clamp(33px,3.5vw,53px);line-height:1.07;margin:0 0 12px}.choice p{font-size:14px;opacity:.78;margin:0;max-width:365px}.industry:before{content:'';position:absolute;right:-75px;top:67px;width:430px;height:200px;border:1px solid #6dbbc25c;transform:rotate(-26deg);box-shadow:0 0 0 25px #23515525,0 0 0 55px #23515515,0 0 0 85px #2351550b}.industry:after{content:'01 / SYSTEMS';position:absolute;top:110px;right:36px;opacity:.2;font:700 11px var(--display);letter-spacing:.15em;transform:rotate(-26deg)}.racing .track{position:absolute;right:-60px;top:35px;width:330px;height:250px;color:#06b4c1;opacity:.85;filter:drop-shadow(0 0 11px #009eaa40)}.racing:after{content:'';position:absolute;inset:0;background-image:radial-gradient(#5783893d .7px,transparent .7px);background-size:16px 16px;mask-image:linear-gradient(to left,#000,transparent 80%);z-index:-1}
-    .bio{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.4fr;gap:56px;padding:65px 0 75px;margin-top:95px}.bio h2{font:800 clamp(28px,4vw,48px)/1.12 var(--display);letter-spacing:-.055em;margin:16px 0 0}.bio p{font-size:16px;color:#516164;line-height:1.8;margin:0 0 17px;max-width:630px}.skills{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.skills span{font-size:12px;font-weight:700;border:1px solid var(--line);padding:7px 11px;color:#4e5a5d}
-    footer{border-top:1px solid var(--line);padding:28px 0 44px;display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px;color:#536165}footer a{text-decoration:none;font-weight:700;margin-left:21px}footer a:hover{color:var(--cyan)}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;gap:24px;padding-top:65px}.hero-aside{max-width:500px}.choices{gap:12px}.choice{min-height:315px;padding:25px}.bio{grid-template-columns:1fr;gap:25px}}
-    @media(max-width:620px){.page{width:min(100% - 38px,480px)}header{height:75px}.logo{font-size:24px}nav{gap:17px}nav a{font-size:11px}nav a:first-child{display:none}.availability{display:none}.hero{padding:58px 0 25px}h1{font-size:clamp(49px,12vw,74px);margin:19px 0}.intro{font-size:17px}.hero-aside{font-size:12px}.choices{grid-template-columns:1fr}.choice{min-height:290px}.racing .track{width:270px;right:-30px;top:15px}.section-label{margin-top:32px}.bio{margin-top:64px;padding:44px 0}.bio p{font-size:15px}footer{flex-wrap:wrap}footer a{margin:0 17px 0 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.choice,.circle-arrow{transition:none}.choice:hover{transform:none}}
-  
-    /* Pessoal-first hero: a compact illustrative portrait, not a third project catalog. */
-    .hero{grid-template-columns:minmax(0,1fr) minmax(205px,290px);align-items:center;gap:clamp(24px,4.5vw,68px)}
-    .hero-persona{display:flex;flex-direction:column;gap:17px;min-width:0}
-    .hero-portrait{margin:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#dfe9ea;box-shadow:0 16px 50px #162b321c;position:relative;isolation:isolate;aspect-ratio:1.15}
-    .hero-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 28%;filter:saturate(.90) contrast(1.03)}
-    .hero-portrait:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,#050e17a8 100%);pointer-events:none}
-    .hero-portrait figcaption{position:absolute;z-index:1;left:14px;right:14px;bottom:10px;color:#fff;font:700 11px/1.35 var(--font);letter-spacing:.04em}
-    .hero-portrait figcaption span{color:#c7d9df;font-weight:400}
-    .hero-aside{margin:0;max-width:none}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;align-items:start}.hero-persona{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);align-items:center;gap:20px}.hero-portrait{width:100%;aspect-ratio:1.05}}
-    @media(max-width:620px){.hero-persona{grid-template-columns:minmax(110px,38%) minmax(0,1fr);gap:12px}.hero-aside{padding-left:14px}.hero-portrait figcaption{font-size:9px;left:9px;bottom:6px}.hero-portrait figcaption span{display:none}}
-</style>
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Reis Duarte · Dados para indústria e automobilismo</title>
+<meta name="description" content="Portfólio de Gabriel Reis Duarte: dados, software e engenharia aplicados a operações industriais e ao automobilismo de desempenho (Fórmula 1 e Porsche Cup).">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gabriel Reis Duarte · Dados para indústria e automobilismo">
+<meta property="og:description" content="Portfólio de Gabriel Reis Duarte: dados, software e engenharia aplicados a operações industriais e ao automobilismo de desempenho (Fórmula 1 e Porsche Cup).">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/default.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.home-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}.home-head h1{font-size:clamp(3rem,8vw,5.6rem);font-stretch:70%;margin:0 0 .2em}.home-portrait{width:clamp(120px,22vw,220px);aspect-ratio:1;object-fit:cover;object-position:50% 30%;border-radius:10px;border:1px solid var(--rule)}.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}@media(max-width:720px){.home-head{grid-template-columns:1fr}.home-portrait{width:120px;order:-1}.cols-2{grid-template-columns:1fr;gap:0}}</style></head>
 <body>
-  <div class="page">
-    <header><a href="./" class="logo" aria-label="Gabriel Duarte, página inicial">GD<span>.</span></a><nav aria-label="Navegação principal"><a href="#sobre">Sobre</a><a href="#explorar">Explorar</a><a href="#contato">Contato</a></nav><span class="availability">Dados · Indústria · Motorsport</span></header>
-    <main>
-      <section class="hero" aria-labelledby="main-title">
-        <div><div class="eyebrow">Tecnologia aplicada ao mundo real / portfólio profissional</div><h1 id="main-title">Gabriel<br>Reis Duarte<span style="color:var(--cyan)">.</span></h1><p class="intro">Desenvolvo soluções que conectam <strong>dados, software e engenharia</strong> — da inteligência operacional à performance no automobilismo.</p></div>
-        <div class="hero-persona"><figure class="hero-portrait"><img src="./assets/gabriel-portrait.webp" alt="Retrato artístico de Gabriel Reis Duarte, parte da identidade visual do portfólio" width="199" height="150" loading="eager" decoding="async"><figcaption>Gabriel Reis Duarte <span>· Retrato criativo</span></figcaption></figure><aside class="hero-aside"><strong>Uma visão. Dois laboratórios.</strong><p>Da análise industrial à engenharia aplicada ao automobilismo.</p></aside></div>
-      </section>
-      <section id="explorar" aria-labelledby="explore-title"><div class="section-label" id="explore-title">Escolha uma área para explorar</div><div class="choices">
-        <a class="choice industry" href="./industry/" aria-label="Explorar laboratório de Indústria e Dados"><div class="choice-top"><span>01 / Industrial Intelligence</span><span class="circle-arrow" aria-hidden="true">↗</span></div><div class="choice-bottom"><h2>Indústria<br>&amp; Dados</h2><p>Analytics, Business Intelligence, automação, Machine Learning e soluções para operações industriais.</p></div></a>
-        <a class="choice racing" href="./motorsport/" aria-label="Explorar laboratório Automotivo e F1"><svg aria-hidden="true" class="track" viewBox="0 0 360 275" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M79 167C74 118 128 65 180 78L244 101C274 111 299 97 314 69L333 82C318 132 286 144 248 140L216 128C193 124 181 151 190 172L224 208C241 242 194 258 171 233L141 195C123 178 102 205 87 205C54 204 49 178 79 167Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M79 167C74 118 128 65 180 78L244 101C274 111 299 97 314 69L333 82C318 132 286 144 248 140L216 128C193 124 181 151 190 172L224 208C241 242 194 258 171 233L141 195C123 178 102 205 87 205C54 204 49 178 79 167Z" stroke="#ffffff" stroke-width="1" stroke-dasharray="6 11"/></svg><div class="choice-top"><span>02 / Motorsport Lab</span><span class="circle-arrow" aria-hidden="true">↗</span></div><div class="choice-bottom"><h2>Automotivo<br>&amp; F1</h2><p>Telemetria, estratégia, simulação, dinâmica veicular e inteligência preditiva aplicada à pista.</p></div></a>
-      </div></section>
-      <section id="sobre" class="bio" aria-labelledby="bio-title"><div><div class="eyebrow">Sobre mim</div><h2 id="bio-title">Engenharia de ideias.<br>Execução com dados.</h2></div><div><p>Meu foco é aproximar tecnologia e engenharia de problemas concretos. Trabalho com análise, desenvolvimento e prototipagem de soluções que ajudam a compreender sistemas complexos e apoiar decisões.</p><p>O portfólio reúne estudos reproduzíveis e projetos de pesquisa. Dados sintéticos e demonstrações são identificados como tal; projetos em desenvolvimento não são apresentados como sistemas homologados em produção.</p><div class="skills" aria-label="Áreas de trabalho"><span>Python &amp; SQL</span><span>Data Analytics</span><span>Machine Learning</span><span>BI</span><span>Automotive Technology</span></div></div></section>
-    </main>
-    <footer id="contato"><span>© <span id="year">2026</span> Gabriel Reis Duarte · Brasil</span><div><a href="https://github.com/xlDuarte" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/gabrielrduarte" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></footer>
-  </div><script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head home-head">
+  <div class="home-intro">
+    <h1>Gabriel Reis Duarte</h1>
+    <p class="lede">Dados, software e engenharia aplicados a dois nichos: a operação industrial e o automobilismo de desempenho.</p>
+  </div>
+  <img class="home-portrait" src="/assets/gabriel-racing-640.webp" width="320" height="320" alt="Gabriel Reis Duarte com macacão de kart, no autódromo">
+</section>
+<section class="wrap" aria-label="Nichos">
+  <div class="split">
+    <a class="niche ind" href="/industrial/">
+      <h2>Industrial</h2>
+      <p>Operação fabril, custos, cadeia de suprimentos e qualidade. Do dado de chão de fábrica ao indicador que a liderança usa.</p>
+      <ul>
+        <li><span>Estudos de caso completos</span><span>5</span></li>
+        <li><span>Projetos de dados e machine learning</span><span>100</span></li>
+        <li><span>Ferramentas</span><span>Python, SQL, Power BI, scikit-learn</span></li>
+      </ul>
+      <span class="go">Ver projetos industriais</span>
+    </a>
+    <a class="niche auto" href="/automotivo/">
+      <h2>Automotivo de desempenho</h2>
+      <p>Telemetria, estratégia e física de pista em duas categorias: Fórmula 1 e Porsche Cup.</p>
+      <ul>
+        <li><span>Fórmula 1</span><span>5 ferramentas, 4 projetos</span></li>
+        <li><span>Porsche Cup</span><span>Laboratório de engenharia</span></li>
+        <li><span>Dados reais</span><span>OpenF1 e FastF1</span></li>
+      </ul>
+      <span class="go">Ver projetos automotivos</span>
+    </a>
+  </div>
+  <a class="shared" href="/laboratorio/">
+    <span class="swatch" aria-hidden="true"></span>
+    <span><strong>Laboratório comum</strong><span class="muted small">Visão computacional, vibração, MLOps e explicabilidade: 5 projetos que servem aos dois nichos.</span></span>
+    <span class="go small">Abrir laboratório</span>
+  </a>
+</section>
+<section class="wrap section">
+  <h2>Como ler este portfólio</h2>
+  <div class="cols-2">
+    <p>Cada projeto diz de onde vêm os dados. Os projetos de Fórmula 1 usam sessões reais públicas (OpenF1 e FastF1). Os projetos industriais usam bases sintéticas geradas com semente fixa, porque dados de fábrica são confidenciais.</p>
+    <p>O código está aberto no GitHub, com testes automatizados rodando a cada alteração. Os resultados mostram que o método funciona como descrito; não são ganho medido em uma empresa.</p>
+  </div>
+</section>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
 </body>
 </html>

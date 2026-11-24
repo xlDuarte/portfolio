@@ -1,0 +1,12 @@
+{
+  "project_id": 71,
+  "name": "Shop-floor PPE compliance",
+  "result": {
+    "helmet_color_mask": 0.08854,
+    "trained_cnn": "Run --deep for actual TensorFlow training"
+  },
+  "source": "SYNTHETIC OpenCV-rendered images",
+  "input_image_real": false,
+  "production_validated": false,
+  "limitations": "No field images, production detection metrics or safety certification"
+}

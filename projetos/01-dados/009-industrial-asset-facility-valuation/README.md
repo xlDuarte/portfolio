@@ -23,7 +23,7 @@ O dataset versionado [`analytics_batch1/data/009.csv`](../../../analytics_batch1
 A partir da raiz do repositório:
 
 ```bash
-pip install -r requirements-case-studies.txt
+pip install -r requirements/case-studies.txt
 python projetos/01-dados/009-industrial-asset-facility-valuation/main.py
 python projetos/01-dados/009-industrial-asset-facility-valuation/main.py --report-dir reports/009
 python -m unittest discover -s tests -v

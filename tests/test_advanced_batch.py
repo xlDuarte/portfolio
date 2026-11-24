@@ -1,5 +1,6 @@
 """Integration tests of ten actual synthetic stream/ML/SQL projects."""
 from __future__ import annotations
+from contextlib import closing
 import json
 import sqlite3
 import subprocess
@@ -74,7 +75,7 @@ class TestAdvancedBatch(unittest.TestCase):
 
     def test_event_schema_checks_and_idempotency(self):
         rows=e.generate(91,24)
-        with e.connect() as conn:
+        with closing(e.connect()) as conn:
             first=e.ingest(conn,rows)
             second=e.ingest(conn,rows)
             self.assertEqual(first["inserted"],24)
@@ -131,7 +132,7 @@ class TestAdvancedBatch(unittest.TestCase):
                 page=ROOT/"site"/"cases"/"advanced"/f"{project:03d}"/"index.html"
                 self.assertTrue(page.is_file())
         self.assertTrue((ROOT/"site"/"cases"/"advanced"/"index.html").is_file())
-        self.assertIn("/cases/advanced/",(ROOT/"site"/"docs"/"index.html").read_text())
+        self.assertIn("/cases/advanced/",(ROOT/"site"/"industrial"/"index.html").read_text())
         p=ROOT/"projetos"/"10-advanced"/e.SPECS[100]["slug"]/"main.py"
         completed=subprocess.run([sys.executable,str(p)],capture_output=True,text=True,
                                  check=True,timeout=30)

@@ -6,7 +6,7 @@
 
 **Reprodução:**
 ```bash
-python -m pip install -r requirements-case-studies.txt
+python -m pip install -r requirements/case-studies.txt
 python projetos/03-regression/021-industrial-facility-capex-valuation/main.py
 python -m unittest discover -s tests -v
 ```

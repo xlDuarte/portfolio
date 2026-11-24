@@ -1,0 +1,11 @@
+-r case-studies.txt
+-r eda.txt
+-r regression.txt
+-r classification.txt
+-r nlp.txt
+-r recommendation.txt
+-r timeseries.txt
+-r vision.txt
+-r business.txt
+-r advanced.txt
+-r motorsport-core.txt

@@ -1,3 +1,46 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>#65 — IIoT Broker &amp; API Traffic Forecasting</title><style>:root{color-scheme:dark}*{box-sizing:border-box}body{background:#091520;color:#eaf4fa;font:16px/1.65 system-ui;margin:0}main{max-width:1070px;margin:auto;padding:36px 22px 80px}a{color:#9ee9dc}nav{display:flex;flex-wrap:wrap;gap:18px}.tag{font-size:.82rem;color:#99e8dc;letter-spacing:.12em;text-transform:uppercase;font-weight:bold}h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.14}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}.card{display:block;border:1px solid #315267;background:#12273a;padding:19px;border-radius:12px;color:inherit;text-decoration:none}.card:hover,.card:focus{border-color:#78cdbb}.note{border-left:4px solid #edbd64;padding:15px;background:#252136;margin:22px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:18px;background:#03101b;border-radius:10px;font:13px/1.6 ui-monospace,Consolas,monospace}footer{margin-top:37px;padding-top:20px;border-top:1px solid #2c526b}</style></head><body><main><nav><a href="/cases/timeseries/">← Forecasting</a><a href="/">Portfólio</a></nav><p class="tag">Forecasting · Projeto #65</p><h1>IIoT Broker &amp; API Traffic Forecasting</h1><p>Tráfego de APIs e mensagens IIoT artificiais</p><div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre>python -m pip install -r requirements-timeseries.txt
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#065 Previsão de Tráfego de Mensagens IIoT e APIs Corporativas · Gabriel Reis Duarte</title>
+<meta name="description" content="Dimensionamento preditivo de throughput em brokers MQTT/Kafka e gateways de dados.">
+<link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/cases/timeseries/065/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="#065 Previsão de Tráfego de Mensagens IIoT e APIs Corporativas · Gabriel Reis Duarte">
+<meta property="og:description" content="Dimensionamento preditivo de throughput em brokers MQTT/Kafka e gateways de dados.">
+<meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/cases/timeseries/065/">
+<meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/industrial.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/ds.css">
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<body data-niche="industrial">
+<!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/timeseries/">Séries temporais</a></li><li aria-current="page">#065</li></ol></nav><!-- /ds:header -->
+<main id="conteudo">
+
+<section class="wrap page-head">
+  <p class="kicker">Industrial · Séries temporais · Projeto #065</p>
+  <h1>Previsão de Tráfego de Mensagens IIoT e APIs Corporativas</h1>
+  <p class="lede">Dimensionamento preditivo de throughput em brokers MQTT/Kafka e gateways de dados.</p>
+  <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
+</section>
+<div class="wrap cols">
+  <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py --save
-python projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py --future --save</pre><p><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py">Código Python ↗</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/README.md">Metodologia e limitações ↗</a></p><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></main></body></html>
+python projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
+  <aside class="aside">
+    <h2>Ficha</h2>
+    <ul><li>Projeto #065</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <h2>Código</h2>
+    <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/065-iiot-broker-api-traffic-forecasting/README.md">Metodologia e limitações</a></li></ul>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/timeseries/064/"><span class="small muted">Anterior</span>#064 Forecasting de Demanda de Energia em Horário de Ponta</a><a class="next" href="/cases/timeseries/066/"><span class="small muted">Próximo</span>#066 Previsão de Consumo de Ferramentaria e ICS Críticos</a></nav></div>
+</main>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+</body>
+</html>

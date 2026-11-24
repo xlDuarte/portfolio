@@ -11,7 +11,7 @@ Compras e fornecedores via consultas SQL e Pandas: gasto por categoria, concentr
 
 ## Instalação e execução
 ```bash
-python -m pip install -r requirements-business.txt
+python -m pip install -r requirements/business.txt
 python projetos/09-business/089-sap-ariba-procurement-spend-analytics/main.py --save
 python -m streamlit run business_batch/app.py
 python -m unittest discover -s tests -p test_business_batch.py -v
