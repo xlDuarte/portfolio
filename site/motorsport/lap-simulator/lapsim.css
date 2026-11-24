@@ -1,0 +1,65 @@
+/* Lap simulator (frontend/lapsim). Uses the design-system tokens from ds.css. */
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ls{--c-curva:#1d4e9e;--c-pot:#1b7a48;--c-ader:#a85d00;--c-fren:#b8122b;margin-top:28px}
+.ls h2{font-size:var(--step-2);margin:0 0 14px}
+.ls h3{font-size:var(--step-0);margin:28px 0 8px}
+.ls-note{color:var(--slate);font-size:var(--step--1);max-width:var(--measure)}
+.ls-lede{max-width:var(--measure);color:var(--graphite)}
+.ls-summary{margin-bottom:40px}
+.ls-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;margin:0 0 10px}
+.ls-kpis div{background:var(--paper);padding:14px 16px}
+.ls-kpis dt{font-size:var(--step--1);color:var(--slate);margin:0 0 4px}
+.ls-kpis dd{margin:0;font-size:var(--step-2);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ls-stage,.ls-work,.ls-section{margin:0 0 56px}
+.ls-stage-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;align-items:start}
+.ls figure{margin:0}
+.ls figcaption{font-size:var(--step--1);color:var(--slate);margin-top:8px;max-width:var(--measure)}
+.ls-map svg{width:100%;height:auto;display:block;background:var(--wash);border-radius:var(--radius);touch-action:none}
+.ls-legend{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin:8px 0 0;font-size:var(--step--1)}
+.ls-legend span{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.ls-canvas{position:relative;aspect-ratio:1/0.82;background:linear-gradient(180deg,var(--paper),var(--wash));border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.ls-canvas canvas{width:100%;height:100%;display:block;cursor:grab}
+.ls-canvas canvas:active{cursor:grabbing}
+.ls-fallback{position:absolute;inset:auto 16px 16px;margin:0;font-size:var(--step--1);color:var(--slate);display:none}
+.ls-canvas[data-state=fallback] .ls-fallback{display:block}
+.ls-canvas[data-state=fallback] canvas{display:none}
+.ls-axis-label{position:absolute;left:0;top:0;font-size:11px;color:var(--slate);pointer-events:none;white-space:nowrap;margin:-7px 0 0 4px}
+.ls-check{display:inline-flex;align-items:center;gap:6px;margin:6px 16px 0 0;color:var(--graphite)}
+.ls-toggles{display:block}
+.ls-work-grid{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:28px;align-items:start}
+.ls-controls{border:1px solid var(--rule);border-radius:var(--radius);padding:16px;background:var(--paper)}
+.ls-controls .ls-note{margin-top:0}
+.ls-slider{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin:0 0 14px}
+.ls-slider label{font-size:var(--step--1);font-weight:600}
+.ls-slider output{font-size:var(--step--1);font-variant-numeric:tabular-nums;text-align:right}
+.ls-slider input{grid-column:1/-1;width:100%;accent-color:var(--auto)}
+.ls-slider small{grid-column:1/-1;color:var(--slate);font-size:12px}
+.ls-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center}
+.ls-actions button,.ls-file{font:inherit;font-size:var(--step--1);padding:8px 12px;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper);color:var(--graphite);cursor:pointer}
+.ls-actions button:hover{border-color:var(--graphite)}
+.ls-actions button:disabled{opacity:.5;cursor:default}
+.ls-file input{display:block;margin-top:4px;font-size:12px}
+.ls-kpis-live{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ls-kpis-live dd{font-size:var(--step-1)}
+.ls-regime-bar{display:flex;height:22px;border-radius:var(--radius);overflow:hidden;margin:0 0 14px}
+.ls-regime-bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;min-width:2px}
+.ls-chart svg{width:100%;height:auto;display:block}
+.ls-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}
+.ls-corr svg{max-width:340px}
+.ls-table{width:100%;border-collapse:collapse;font-size:var(--step--1);font-variant-numeric:tabular-nums;margin:0 0 18px}
+.ls-table caption{text-align:left;color:var(--slate);padding:0 0 6px}
+.ls-table th,.ls-table td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.ls-table thead th{color:var(--slate);font-weight:600;border-bottom-color:var(--rule-strong)}
+.ls-table tbody th{font-weight:600}
+.ls-steps{padding-left:1.2em;max-width:78ch}
+.ls-steps li{margin-bottom:22px}
+.ls-steps li h3{margin:0 0 6px}
+.ls-method math[display=block]{margin:12px 0;overflow-x:auto;max-width:100%;font-size:1.05em}
+.ls-checks{max-width:78ch;padding-left:1.2em}
+.ls-checks li{margin-bottom:10px}
+.ls-refs{font-size:var(--step--1);color:var(--slate);max-width:78ch}
+.ls code{font-family:var(--mono);font-size:.92em;background:var(--wash);padding:1px 5px;border-radius:4px}
+@media (max-width:900px){
+  .ls-stage-grid,.ls-work-grid,.ls-two{grid-template-columns:1fr}
+  .ls-kpis,.ls-kpis-live{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

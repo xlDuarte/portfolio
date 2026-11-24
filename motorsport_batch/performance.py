@@ -2,6 +2,10 @@
 
 This is NOT ChassisSim, not FLIR camera analysis, and has no calibrated tire
 measurements. Existing mathematical classes are reused rather than rewritten.
+
+The illustrative "QSS proxy" of Day 4 is superseded by :mod:`vehicle_dynamics`: Magic Formula
+tyre, load transfer, g-g-V envelope and a quasi-steady-state lap simulation calibrated on real
+OpenF1 telemetry of the 2024 Bahrain GP (see :func:`bahrain_lap` and docs/physics/LAPSIM.md).
 """
 from __future__ import annotations
 import importlib.util
@@ -57,6 +61,24 @@ def scenario(downforce=2.65,drag=.94,grip=1.03):
     }
     return days
 
+def bahrain_lap(**overrides) -> dict:
+    """Lap of the calibrated car on the Bahrain 2024 line, optionally with changed parameters.
+
+    Keys: mass, power, cla, cda, lambda_muy, lambda_mux, aero_balance, h_cg (SI units)."""
+    import json
+    from vehicle_dynamics import Car, MagicFormula, Track, simulate
+    data = json.loads((Path(__file__).resolve().parents[1] / "site/motorsport/data/lapsim-bahrain.json").read_text(encoding="utf-8"))
+    spec = dict(data["car"])
+    tyre = MagicFormula(**spec.pop("tyre"))
+    car = Car(**spec, tyre=tyre).with_(**overrides) if overrides else Car(**spec, tyre=tyre)
+    t = data["track"]
+    track = Track(np.array(t["s"]), np.array(t["x"]), np.array(t["y"]), np.array(t["z"]), np.array(t["kappa"]),
+                  np.array(t["grade"]), t["length_m"], {})
+    res = simulate(car, track)
+    return {"lap_time_s": round(res.lap_time, 3), "v_max_kmh": round(float(res.v.max()) * 3.6, 1),
+            "v_min_kmh": round(float(res.v.min()) * 3.6, 1), "measured_lap_s": data["calibration"]["VER"]["lap_time_meas_s"]}
+
+
 def run_app():
     st.set_page_config(page_title="Motorsport Performance Lab",layout="wide")
     st.title("Motorsport Performance Lab — physics proxy")
@@ -65,7 +87,9 @@ def run_app():
     with left:cl=st.slider("Downforce (coef. fictício)",1.5,4.0,2.65,.05)
     with right:cd=st.slider("Drag (coef. fictício)",.5,1.5,.94,.01)
     metrics=scenario(cl,cd)
-    st.metric("Proxy de tempo de volta",f'{metrics["day4_qss_proxy"]["predicted_laptime_s"]:.3f}s')
+    st.metric("Proxy de tempo de volta (fórmula ilustrativa antiga)",f'{metrics["day4_qss_proxy"]["predicted_laptime_s"]:.3f}s')
+    lap=bahrain_lap(cla=cl*3.72/2.65, cda=cd*1.633/.94)
+    st.metric("Volta QSS calibrada, Bahrein 2024",f'{lap["lap_time_s"]:.3f}s',f'{lap["lap_time_s"]-lap["measured_lap_s"]:+.3f}s vs. volta real de VER')
     st.plotly_chart(go.Figure(data=[go.Heatmap(z=thermal_grid(),colorscale="Hot")])
                     .update_layout(title="Três zonas térmicas — simulação"),use_container_width=True)
     st.dataframe(pd.DataFrame(sweep()),use_container_width=True)

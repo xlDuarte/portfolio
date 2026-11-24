@@ -95,4 +95,13 @@ class TestMotorsportCore(unittest.TestCase):
         path=ROOT/"projetos"/"11-motorsport-f1-mlops"/SLUGS[104]/"main.py"
         outcome=subprocess.run([sys.executable,str(path)],capture_output=True,text=True,timeout=25,check=True)
         self.assertEqual(json.loads(outcome.stdout)["project_id"],104)
+class TestCalibratedLap(unittest.TestCase):
+    def test_bahrain_lap_matches_calibration_and_reacts_to_mass(self):
+        from motorsport_batch.performance import bahrain_lap
+        base = bahrain_lap()
+        self.assertLess(abs(base["lap_time_s"] - base["measured_lap_s"]), 0.5)
+        heavier = bahrain_lap(mass=952.0)
+        self.assertGreater(heavier["lap_time_s"], base["lap_time_s"] + 0.5)
+
+
 if __name__=="__main__":unittest.main()

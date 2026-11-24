@@ -2,11 +2,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulador de tempo de volta · Gabriel Reis Duarte</title>
-<meta name="description" content="Calcule um perfil de velocidade sobre geometria de pista importada. Compare setups A/B e examine a sensibilidade de massa, potência, aderência e aerodinâmica.">
+<meta name="description" content="Simulador quase-estático de volta com pneu Pacejka, transferência de carga e envelope g-g-V, calibrado e validado na telemetria real do GP do Bahrein 2024.">
 <link rel="canonical" href="https://gabriel-automotive-industrial-lab.vercel.app/motorsport/lap-simulator/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Simulador de tempo de volta · Gabriel Reis Duarte">
-<meta property="og:description" content="Calcule um perfil de velocidade sobre geometria de pista importada. Compare setups A/B e examine a sensibilidade de massa, potência, aderência e aerodinâmica.">
+<meta property="og:description" content="Simulador quase-estático de volta com pneu Pacejka, transferência de carga e envelope g-g-V, calibrado e validado na telemetria real do GP do Bahrein 2024.">
 <meta property="og:url" content="https://gabriel-automotive-industrial-lab.vercel.app/motorsport/lap-simulator/">
 <meta property="og:image" content="https://gabriel-automotive-industrial-lab.vercel.app/assets/og/automotivo.png">
 <meta property="og:locale" content="pt_BR">
@@ -15,5 +15,147 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<link rel="stylesheet" href="../physics/lab.css"><link rel="stylesheet" href="/assets/apps.css">
-</head><body data-mode="lap" data-niche="automotivo"><!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto" data-section-current>Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/automotivo/">Automotivo</a></li><li><a href="/automotivo/f1/">Fórmula 1</a></li><li aria-current="page">Simulador de tempo de volta</li></ol></nav><!-- /ds:header --><main id="conteudo"><!-- ds:hero --><div class="page-head app-head"><p class="kicker">Fórmula 1 · Laboratório de física</p><h1>Simulador de tempo de volta</h1><p class="lede">Descubra onde um ajuste muda o ritmo. Calcule um perfil de velocidade sobre geometria de pista importada. Compare setups A/B e examine a sensibilidade de massa, potência, aderência e aerodinâmica.</p><nav class="subnav" aria-label="Laboratórios de física"><a href="/motorsport/active-aero/">Aerodinâmica ativa</a><a href="/motorsport/energy-recovery/">Recuperação de energia</a><a href="/motorsport/lap-simulator/" aria-current="page">Tempo de volta</a></nav></div><!-- /ds:hero --><div class="workspace" id="lab"><aside><form id="parameters" class="panel"><p class="eyebrow">01 / Hipóteses do modelo</p><p class="notice">Valores iniciais são um cenário editável, sem representar especificações de uma equipe ou regulamento.</p><label>Massa · kg<input name="mass" type="number" step="any" value="800" required></label><label>Potência nas rodas · kW<input name="power_kw" type="number" step="any" value="600" required></label><label>Coeficiente de aderência<input name="mu" type="number" step="any" value="1.5" required></label><label>Limite de desaceleração · g<input name="brake_g" type="number" step="any" value="4" required></label><label>Limite de velocidade · km/h<input name="max_kmh" type="number" step="any" value="350" required></label><label>Densidade do ar · kg/m³<input name="rho" type="number" step="any" value="1.225" required></label><label>Cd × área · m²<input name="cd_area" type="number" step="any" value="1" required></label><label>Cl↓ × área · m²<input name="cl_area" type="number" step="any" value="3" required></label><button class="primary" type="submit">Calcular cenário</button></form><section class="panel"><h3>Comparar A/B</h3><p>Calcule A, fixe a referência e ajuste os parâmetros para calcular B sobre os mesmos dados.</p><button id="pin" disabled>Fixar resultado A</button><p id="comparison">Nenhuma referência fixada.</p></section></aside><div><section class="panel"><p class="eyebrow">02 / Dados e proveniência</p><label>Origem / sessão / ensaio<input id="provenance" type="text" placeholder="Identifique origem, piloto, volta ou ensaio"></label><label>Geometria discretizada da pista · CSV<input id="dataset" type="file" accept=".csv,text/csv"></label><code>length_m,curvature_1pm</code><div class="actions"><button id="template">Baixar cabeçalho CSV</button></div><p id="data-info">Nenhum dado carregado.</p><p class="notice">Pista fechada, segmentos ≤50 m. Curvatura derivada de posição FastF1 é uma estimativa e requer inspeção; use levantamento preciso para validação.</p><p><a href="../physics/export_fastf1.py" download>Exportador FastF1 · Python</a> · <a href="https://github.com/xlDuarte/portfolio/tree/main/site/motorsport/physics">Instalação e metodologia</a></p></section><section class="panel"><p class="eyebrow">03 / Resultados calculados</p><p id="status" role="status">Carregue os dados para iniciar.</p><div id="kpis" class="kpis"></div><div id="charts"></div><div class="actions"><button id="json" disabled>Relatório JSON</button><button id="csv" disabled>Série CSV</button></div><details><summary>Tabela de resultados</summary><div id="table" class="table-wrap"></div></details><div id="sensitivity"></div></section></div></div><section class="panel"><p class="eyebrow">04 / Método e validade</p><h2>Hipóteses verificáveis.</h2><p>Modelo pontual periódico, pista plana, carga aerodinâmica quadrática e círculo de atrito. Passagens de aceleração/frenagem até convergência. Potência constante nas rodas e limite de frenagem explícito. A discretização controla o erro; repita com segmentos menores. Sem suspensão, mapa de motor, sensibilidade de carga do pneu ou otimização de trajetória. A sensibilidade ±10% varia um parâmetro por vez e não constitui um ótimo global.</p><p>Resultados são estimativas independentes. Nenhum dado ausente é preenchido com uma sessão artificial. Os arquivos importados não têm origem ou calibração verificadas automaticamente.</p><p>Referências: <a href="https://docs.fastf1.dev/">FastF1</a> · <a href="https://openf1.org/">OpenF1</a> · <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/">NASA: equação de arrasto</a> · <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/lift-equation/">NASA: equação de sustentação</a></p></section></main><noscript>Ative JavaScript para calcular os modelos.</noscript><script type="module" src="../physics/app.mjs"></script><!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --></body></html>
+<link rel="stylesheet" href="lapsim.css"><link rel="stylesheet" href="/assets/apps.css">
+</head><body data-niche="automotivo"><!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto" data-section-current>Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/automotivo/">Automotivo</a></li><li><a href="/automotivo/f1/">Fórmula 1</a></li><li aria-current="page">Simulador de tempo de volta</li></ol></nav><!-- /ds:header --><main id="conteudo"><!-- ds:hero --><div class="page-head app-head"><p class="kicker">Fórmula 1 · Laboratório de física</p><h1>Simulador de tempo de volta</h1><p class="lede">Física de pista calibrada na telemetria real. Pneu Pacejka, transferência de carga, envelope g-g-V e traçado de curvatura mínima no GP do Bahrein 2024. Mude o carro e veja onde a volta ganha ou perde tempo.</p><nav class="subnav" aria-label="Laboratórios de física"><a href="/motorsport/active-aero/">Aerodinâmica ativa</a><a href="/motorsport/energy-recovery/">Recuperação de energia</a><a href="/motorsport/lap-simulator/" aria-current="page">Tempo de volta</a></nav></div><!-- /ds:hero --><div class="ls" id="lapsim" data-state="loading">
+
+<section class="ls-summary" aria-labelledby="ls-sum-title">
+  <h2 id="ls-sum-title" class="visually-hidden">Resumo da volta calibrada</h2>
+  <dl class="ls-kpis" id="ls-kpis">
+    <div><dt>Volta simulada</dt><dd data-k="sim">—</dd></div>
+    <div><dt>Volta real de Verstappen</dt><dd data-k="real">—</dd></div>
+    <div><dt>Erro de velocidade (RMSE)</dt><dd data-k="rmse">—</dd></div>
+    <div><dt>Variância explicada (R²)</dt><dd data-k="r2">—</dd></div>
+  </dl>
+  <p class="ls-note" id="ls-sum-note">Carregando a pista, o carro calibrado e a telemetria…</p>
+</section>
+
+<section class="ls-stage" aria-labelledby="ls-stage-title">
+  <h2 id="ls-stage-title">Onde o carro está limitado</h2>
+  <div class="ls-stage-grid">
+    <figure class="ls-map">
+      <svg id="ls-map" viewBox="0 0 600 420" role="img" aria-labelledby="ls-map-cap"></svg>
+      <figcaption id="ls-map-cap">Traçado de curvatura mínima do Bahrein, colorido pelo limite que governa cada trecho da volta simulada. A linha fina cinza é o traçado de referência do OpenF1.</figcaption>
+      <ul class="ls-legend" id="ls-map-legend"></ul>
+    </figure>
+    <figure class="ls-ggv">
+      <div class="ls-canvas" id="ls-ggv" data-state="static"><canvas aria-hidden="true"></canvas>
+        <p class="ls-fallback">O envelope 3D precisa de WebGL. Os mesmos dados estão no gráfico de velocidade e na tabela de calibração abaixo.</p></div>
+      <figcaption>Envelope g-g-V do carro calibrado: para cada velocidade (eixo vertical), as acelerações lateral e longitudinal possíveis. Arraste para girar.
+        <label class="ls-check"><input type="checkbox" id="ls-cloud" checked> Mostrar acelerações medidas (VER, PER, SAI)</label></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="ls-work" aria-labelledby="ls-work-title">
+  <h2 id="ls-work-title">Mude o carro</h2>
+  <div class="ls-work-grid">
+    <form class="ls-controls" id="ls-controls" aria-describedby="ls-controls-note">
+      <p id="ls-controls-note" class="ls-note">Os valores iniciais são os calibrados na volta 3 de Verstappen. Cada mudança refaz o envelope g-g-V e a volta inteira no navegador.</p>
+      <div id="ls-sliders"></div>
+      <div class="ls-actions">
+        <button type="button" id="ls-reset">Voltar ao calibrado</button>
+        <button type="button" id="ls-pin">Fixar como referência A</button>
+      </div>
+    </form>
+    <div class="ls-results">
+      <dl class="ls-kpis ls-kpis-live" id="ls-live" aria-live="polite">
+        <div><dt>Tempo de volta</dt><dd data-k="lap">—</dd></div>
+        <div><dt>Diferença para o calibrado</dt><dd data-k="delta">—</dd></div>
+        <div><dt>Velocidade máxima</dt><dd data-k="vmax">—</dd></div>
+        <div><dt>Velocidade mínima</dt><dd data-k="vmin">—</dd></div>
+      </dl>
+      <div class="ls-regime-bar" id="ls-regime-bar" role="img" aria-label="Parcela do tempo de volta em cada regime"></div>
+      <figure class="ls-chart">
+        <svg id="ls-speed" viewBox="0 0 760 320" role="img" aria-labelledby="ls-speed-cap"></svg>
+        <figcaption id="ls-speed-cap">Velocidade ao longo da volta: simulação atual, carro calibrado e amostras medidas de Verstappen (OpenF1, ~4 Hz). A faixa embaixo mostra o regime limitante.
+          <span class="ls-toggles"><label class="ls-check"><input type="checkbox" data-drv="PER"> Pérez</label><label class="ls-check"><input type="checkbox" data-drv="SAI"> Sainz</label></span></figcaption>
+      </figure>
+      <figure class="ls-chart">
+        <svg id="ls-gg" viewBox="0 0 760 330" role="img" aria-labelledby="ls-gg-cap"></svg>
+        <figcaption id="ls-gg-cap">Diagrama g-g da volta: acelerações da simulação atual (linha) e as estimadas da telemetria de Verstappen (pontos). Os contornos são o limite do carro a 100, 200 e 300 km/h. A derivada da velocidade amostrada a ~4 Hz atenua os picos de frenagem medidos.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="ls-section" aria-labelledby="ls-cal-title">
+  <h2 id="ls-cal-title">Calibração e validação</h2>
+  <p class="ls-lede">Cinco parâmetros que a telemetria de velocidade consegue identificar foram estimados por máximo a posteriori. O ajuste usa a volta 3 de Verstappen: 356 amostras de velocidade, o tempo oficial da volta e priors da literatura. Os demais parâmetros do carro ficaram fixos como hipótese.</p>
+  <div class="ls-two">
+    <div class="table-wrap"><table class="ls-table" id="ls-params"><caption>Estimativas com erro-padrão (aproximação de Laplace, corrigida pela autocorrelação dos resíduos)</caption></table></div>
+    <figure class="ls-chart ls-corr"><svg id="ls-corr" viewBox="0 0 320 300" role="img" aria-labelledby="ls-corr-cap"></svg>
+      <figcaption id="ls-corr-cap">Correlação entre as estimativas. Valores perto de ±1 mostram o que a velocidade não separa: aderência lateral × C<sub>L</sub>·A, e potência × C<sub>D</sub>·A.</figcaption></figure>
+  </div>
+  <h3>Fora da amostra</h3>
+  <p class="ls-lede">O mesmo carro, sem reajuste, comparado a voltas que não entraram no ajuste. As voltas 2 e 4 estão só em parte dentro da janela de quatro minutos do OpenF1.</p>
+  <div class="table-wrap"><table class="ls-table" id="ls-valid"><caption>Validação com os parâmetros de Verstappen fixos</caption></table></div>
+  <h3>Cada piloto calibrado no próprio carro</h3>
+  <div class="table-wrap"><table class="ls-table" id="ls-drivers"><caption>Ajuste independente na volta 3 de cada piloto</caption></table></div>
+  <p class="ls-note">Pérez e Sainz andavam no ar sujo de quem estava à frente. Parte da diferença em C<sub>L</sub>·A e C<sub>D</sub>·A é esse efeito, não o carro, e o modelo não separa os dois.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="ls-unc-title">
+  <h2 id="ls-unc-title">Incerteza e robustez</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="ls-tornado" viewBox="0 0 420 320" role="img" aria-labelledby="ls-tornado-cap"></svg>
+      <figcaption id="ls-tornado-cap">Sensibilidade do tempo de volta: segundos por +1 % em cada parâmetro (diferença central). Negativo = a volta fica mais rápida.</figcaption></figure>
+    <div>
+      <div class="table-wrap"><table class="ls-table" id="ls-mc"><caption>Propagação de Monte Carlo da incerteza dos parâmetros</caption></table></div>
+      <div class="table-wrap"><table class="ls-table" id="ls-conv"><caption>Convergência numérica no passo Δs</caption></table></div>
+      <div class="table-wrap"><table class="ls-table" id="ls-corridor"><caption>Hipótese de largura útil da pista</caption></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="ls-section" aria-labelledby="ls-tyre-title">
+  <h2 id="ls-tyre-title">O pneu</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="ls-fy" viewBox="0 0 420 300" role="img" aria-labelledby="ls-fy-cap"></svg>
+      <figcaption id="ls-fy-cap">Força lateral pela Magic Formula em quatro cargas verticais. O pico cresce menos que a carga: é a sensibilidade de carga que faz a transferência de carga custar aderência.</figcaption></figure>
+    <figure class="ls-chart"><svg id="ls-mu" viewBox="0 0 420 300" role="img" aria-labelledby="ls-mu-cap"></svg>
+      <figcaption id="ls-mu-cap">Coeficiente de atrito de pico em função da carga, já escalado por λ<sub>μy</sub> calibrado.</figcaption></figure>
+  </div>
+  <p class="ls-note">A forma da curva (rigidez, pico em 7 a 9°) é uma hipótese de ordem de grandeza da literatura. A telemetria de velocidade identifica só o fator de escala λ<sub>μ</sub>.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="ls-method-title">
+  <h2 id="ls-method-title">Método</h2>
+  <ol class="ls-steps">
+    <li><h3>Traçado</h3>
+      <p>As 2.883 posições dos três pilotos na janela foram projetadas num traçado de referência. Cada coordenada foi ajustada por série de Fourier periódica com penalidade de rugosidade. O λ foi escolhido por validação cruzada generalizada.</p>
+      <math display="block"><mrow><munder><mo movablelimits="false">min</mo><mi>c</mi></munder><msup><mrow><mo>‖</mo><mi mathvariant="normal">Φ</mi><mi>c</mi><mo>−</mo><mi>x</mi><mo>‖</mo></mrow><mn>2</mn></msup><mo>+</mo><mi>λ</mi><mo>∫</mo><msup><mrow><mi>x</mi><mo>″</mo><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mi>d</mi><mi>s</mi></mrow></math>
+      <p>As posições dos três carros coincidem entre si com 4 cm de RMS. Isso mostra que o OpenF1 publica posições já projetadas num mapa, não GPS bruto. Por isso, a trajetória de corrida foi reconstruída como o traçado de curvatura mínima dentro de ±4,5 m desse mapa, com a curvatura do traçado deslocado linearizada:</p>
+      <math display="block"><mrow><munder><mo movablelimits="false">min</mo><mrow><mo>|</mo><msub><mi>n</mi><mi>i</mi></msub><mo>|</mo><mo>≤</mo><mi>w</mi></mrow></munder><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo>(</mo><msub><mi>κ</mi><mi>i</mi></msub><mo>+</mo><msubsup><mi>n</mi><mi>i</mi><mo>″</mo></msubsup><mo>+</mo><msubsup><mi>κ</mi><mi>i</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>i</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></mrow></math></li>
+    <li><h3>Pneu</h3>
+      <p>Magic Formula de Pacejka, escorregamento puro, com sensibilidade de carga e de pressão na estrutura MF 6.1:</p>
+      <math display="block"><mrow><msub><mi>F</mi><mi>y</mi></msub><mo>=</mo><mi>D</mi><mi>sin</mi><mo>[</mo><mi>C</mi><mi>arctan</mi><mo>(</mo><mi>B</mi><mi>α</mi><mo>−</mo><mi>E</mi><mo>(</mo><mi>B</mi><mi>α</mi><mo>−</mo><mi>arctan</mi><mi>B</mi><mi>α</mi><mo>)</mo><mo>)</mo><mo>]</mo><mo>,</mo><mspace width="1em"/><mi>D</mi><mo>=</mo><msub><mi>λ</mi><mrow><mi>μ</mi><mi>y</mi></mrow></msub><mo>(</mo><msub><mi>p</mi><mrow><mi>D</mi><mi>y</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>p</mi><mrow><mi>D</mi><mi>y</mi><mn>2</mn></mrow></msub><mi>d</mi><msub><mi>f</mi><mi>z</mi></msub><mo>)</mo><msub><mi>F</mi><mi>z</mi></msub></mrow></math></li>
+    <li><h3>Carro</h3>
+      <p>Arrasto e downforce quadráticos, transferência longitudinal e lateral por eixo, equilíbrio de guinada em regime e elipse de atrito por eixo:</p>
+      <math display="block"><mrow><msup><mrow><mo>(</mo><mfrac><msub><mi>F</mi><mrow><mi>x</mi><mo>,</mo><mi>i</mi></mrow></msub><mrow><munder><mo>∑</mo><mi>w</mi></munder><msub><mi>μ</mi><mi>x</mi></msub><mo>(</mo><msub><mi>F</mi><mrow><mi>z</mi><mo>,</mo><mi>w</mi></mrow></msub><mo>)</mo><msub><mi>F</mi><mrow><mi>z</mi><mo>,</mo><mi>w</mi></mrow></msub></mrow></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo>(</mo><mfrac><msub><mi>F</mi><mrow><mi>y</mi><mo>,</mo><mi>i</mi></mrow></msub><mrow><munder><mo>∑</mo><mi>w</mi></munder><msub><mi>μ</mi><mi>y</mi></msub><mo>(</mo><msub><mi>F</mi><mrow><mi>z</mi><mo>,</mo><mi>w</mi></mrow></msub><mo>)</mo><msub><mi>F</mi><mrow><mi>z</mi><mo>,</mo><mi>w</mi></mrow></msub></mrow></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>≤</mo><mn>1</mn><mo>,</mo><mspace width="1em"/><msub><mi>F</mi><mrow><mi>x</mi><mo>,</mo><mi>r</mi></mrow></msub><mi>v</mi><mo>≤</mo><mi>P</mi></mrow></math></li>
+    <li><h3>Volta</h3>
+      <p>Velocidade-limite de curva por bisseção, passagens de aceleração e frenagem integrando <math><mrow><mi>d</mi><mo>(</mo><msup><mi>v</mi><mn>2</mn></msup><mo>)</mo><mo>/</mo><mi>d</mi><mi>s</mi><mo>=</mo><mn>2</mn><mo>(</mo><msub><mi>a</mi><mi>x</mi></msub><mo>−</mo><mi>g</mi><mi>sin</mi><mi>θ</mi><mo>)</mo></mrow></math> pelo método de Heun (segunda ordem), com a elevação medida.</p></li>
+    <li><h3>Calibração</h3>
+      <p>Máximo a posteriori com priors gaussianos, mínimos quadrados não lineares (região de confiança refletiva) e covariância de Laplace. A covariância é corrigida pelo tamanho efetivo de amostra n(1−ρ)/(1+ρ), porque os resíduos ao longo da volta são autocorrelacionados.</p>
+      <math display="block"><mrow><mover><mi>θ</mi><mo>^</mo></mover><mo>=</mo><mi>arg</mi><munder><mo movablelimits="false">min</mo><mi>θ</mi></munder><munder><mo>∑</mo><mi>i</mi></munder><mfrac><msup><mrow><mo>(</mo><msub><mi>v</mi><mi>i</mi></msub><mo>(</mo><mi>θ</mi><mo>)</mo><mo>−</mo><msubsup><mi>v</mi><mi>i</mi><mtext>med</mtext></msubsup><mo>)</mo></mrow><mn>2</mn></msup><msubsup><mi>σ</mi><mi>v</mi><mn>2</mn></msubsup></mfrac><mo>+</mo><mfrac><msup><mrow><mo>(</mo><mi>T</mi><mo>(</mo><mi>θ</mi><mo>)</mo><mo>−</mo><msup><mi>T</mi><mtext>med</mtext></msup><mo>)</mo></mrow><mn>2</mn></msup><msubsup><mi>σ</mi><mi>T</mi><mn>2</mn></msubsup></mfrac><mo>+</mo><munder><mo>∑</mo><mi>j</mi></munder><mfrac><msup><mrow><mo>(</mo><msub><mi>θ</mi><mi>j</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>j</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><msubsup><mi>τ</mi><mi>j</mi><mn>2</mn></msubsup></mfrac></mrow></math></li>
+  </ol>
+  <h3>O que foi verificado e o que não foi</h3>
+  <ul class="ls-checks">
+    <li><strong>Verificado contra solução analítica (21 testes Python, 5 em JavaScript):</strong> derivada e pico da Magic Formula, conservação de carga, limite μg no skidpad, aceleração limitada por potência P/(mv), frenagem limitada pelo eixo dianteiro com balanço fixo, efeito da rampa g·sin θ, curvatura e giro total de 360° num círculo, volta num círculo em 2πR/√(μgR), recuperação de parâmetros conhecidos num traçado sintético.</li>
+    <li><strong>Validado contra dado real:</strong> perfil de velocidade e tempo de volta de três pilotos no GP do Bahrein 2024 (tabelas acima).</li>
+    <li><strong>Não validado:</strong> forma da curva do pneu, temperatura, desgaste, gestão de energia, ar sujo e trajetória individual de cada piloto. λ<sub>μx</sub> e λ<sub>μy</sub> medem a aderência usada numa volta de corrida, não a capacidade do pneu.</li>
+    <li><strong>Porta para o navegador:</strong> o código JavaScript desta página reproduz o Python com diferença máxima de 0,014 km/h no perfil de velocidade (teste automatizado).</li>
+  </ul>
+  <p class="ls-refs">Referências: H. B. Pacejka, <cite>Tire and Vehicle Dynamics</cite>, 3ª ed., 2012 · W. F. e D. L. Milliken, <cite>Race Car Vehicle Dynamics</cite>, 1995 · D. Brayshaw e M. Harrison, Proc. IMechE D 219, 2005 · F. Braghin et al., Vehicle System Dynamics 46, 2008 · A. Heilmeier et al., Vehicle System Dynamics 58, 2020 · P. Craven e G. Wahba, Numer. Math. 31, 1979 · dados: <a href="https://openf1.org/">OpenF1</a>. Código: <a href="https://github.com/xlDuarte/portfolio/tree/main/vehicle_dynamics">vehicle_dynamics</a> e <a href="https://github.com/xlDuarte/portfolio/tree/main/frontend/lapsim">frontend/lapsim</a>.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="ls-csv-title">
+  <h2 id="ls-csv-title">Simular outra pista</h2>
+  <p class="ls-lede">Importe a geometria discretizada de uma pista fechada e rode o carro atual sobre ela. Colunas: <code>s_m,kappa_1pm</code> e, se houver, <code>grade_rad</code>. Até 20.000 linhas, passo de até 10 m.</p>
+  <div class="ls-actions"><label class="ls-file">Arquivo CSV<input type="file" id="ls-csv" accept=".csv,text/csv"></label><button type="button" id="ls-csv-bahrain" disabled>Voltar ao Bahrein</button></div>
+  <p id="ls-csv-status" role="status" class="ls-note">Nenhum arquivo importado. O Bahrein está carregado.</p>
+</section>
+
+</div>
+<noscript><p class="ls-note">Os cálculos desta página rodam em JavaScript. O código e os dados estão no repositório.</p></noscript>
+<script type="module" src="/assets/js/lapsim.js"></script>
+</main><!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --></body></html>
