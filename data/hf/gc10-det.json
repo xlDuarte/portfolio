@@ -1,0 +1,15 @@
+{
+  "repo_id": "imaadd05/gc10-det",
+  "title": "GC10-DET — defeitos superficiais em chapa de aço (10 classes, caixas em COCO)",
+  "projects": [76, 73],
+  "license": "CC-BY-4.0",
+  "license_note": "Licença declarada pelo espelho da Roboflow; o repositório original (Baidu Pan) não declara licença. Por isso não versionamos as imagens: baixamos no build.",
+  "redistribute": false,
+  "source": {
+    "original": "https://github.com/lvxiaoming2019/GC10-DET-Metallic-Surface-Defect-Datasets",
+    "intermediate": "https://universe.roboflow.com/nanjing-university-of-information-science-and-technology/gc10-det-zukta (versão 5)",
+    "citation": "Lv, X.; Duan, F.; Jiang, J.J.; Fu, X.; Gan, L. Deep Metallic Surface Defect Detection: The New Benchmark and Detection Network. Sensors 2020, 20(6), 1562. doi:10.3390/s20061562"
+  },
+  "expected": {"images": 2294, "classes": 10},
+  "include": ["train/*", "test/*", "valid/*", "README.roboflow.txt", "README.dataset.txt"]
+}
