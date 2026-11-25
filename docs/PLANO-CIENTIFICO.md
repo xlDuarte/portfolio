@@ -190,7 +190,7 @@ Legenda de prioridade: **A** = fenômeno físico com dado real disponível; **B*
 |---|---|---|---|
 | **1 ✔** | **Dinâmica veicular e simulador de volta** | **#110, ferramenta de tempo de volta; base para #101, #102, #014** | **Nicho principal, dado real disponível e física mais pesada** |
 | 2 ✔ | Estratégia sob incerteza, energia e temperatura do pneu, ritmo bayesiano | #101, #110 (feito); base de #014 e #111 | Reusa o modelo de pneu da fase 1 ([método](physics/STRATEGY.md)) |
-| 3 | Estimação de estado e calibração de probabilidades | #102, #109, #111, #014 | Reusa o modelo de bicicleta com Pacejka; #111 e #014 usam o modelo de ritmo da fase 2 |
+| 3 ✔ | Estimação de estado e calibração de probabilidades | #102, #111, #014 (feito); #109 (sincronização de fluxos) adiado para a fase 11 | Reusa o modelo de bicicleta com Pacejka; #111 e #014 usam o modelo de ritmo da fase 2 ([método](physics/ESTIMATION.md)) |
 | 4 | Física de falha e confiabilidade | #004, #036, #037, #097, #104, #052 | Um gerador de rolamento e degradação comum, com dado real (CWRU, C-MAPSS) |
 | 5 | Energia, térmica e ambiente | #008, #029, #063, #064, #069, #070, #090 | Balanços de energia e dado público (INMET, ONS) |
 | 6 | Materiais e visão física | #076, #080, #105, #073, #079, #074, #077, #075 | Geração física de imagem (Beer–Lambert, microestrutura) |

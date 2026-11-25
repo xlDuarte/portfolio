@@ -63,3 +63,7 @@
   .ls-stage-grid,.ls-work-grid,.ls-two{grid-template-columns:1fr}
   .ls-kpis,.ls-kpis-live{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+.ls-actions button[aria-pressed=true]{border-color:var(--graphite);color:var(--ink);font-weight:600}
+.ls-table caption{font-family:inherit;letter-spacing:normal;text-transform:none}
+.ls-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+@media (max-width:720px){.ls-three{grid-template-columns:1fr}}

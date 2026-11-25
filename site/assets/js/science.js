@@ -1,0 +1,1 @@
+var n=[["se",()=>import("./chunks/estimation-QNS77KDW.js")],["rk",()=>import("./chunks/ranking-IJGTDKNY.js")],["bm",()=>import("./chunks/benchmark-QXCUBDN7.js")]];for(let[o,s]of n)document.getElementById(o)&&s().then(t=>t.init()).catch(t=>{let e=document.getElementById(`${o}-status`);e&&(e.textContent=`N\xE3o foi poss\xEDvel carregar os dados da an\xE1lise (${t.message}).`)});

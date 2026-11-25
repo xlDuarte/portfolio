@@ -952,12 +952,27 @@ def evidence_html(folder: Path) -> str:
     return "".join(parts)
 
 
+# Industrial case pages that also carry an analysis of real data (phase 3 of docs/PLANO-CIENTIFICO.md):
+# the fragment goes between the page head and the original case body, which is kept as it was.
+REAL_SECTIONS = {
+    14: {"fragment": ROOT / "scripts" / "fragments" / "014-benchmark.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A análise principal usa as voltas reais do GP do Bahrein 2024 "
+                 "(OpenF1). O estudo exploratório original, mais abaixo, continua com dados sintéticos de semente fixa e serve "
+                 "de teste do pipeline.",
+         "fact": "Dados reais (OpenF1) + pipeline sintético"},
+}
+SCIENCE_SCRIPT = '<script type="module" src="/assets/js/science.js"></script>'
+LAPSIM_CSS = '<link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css">'
+
+
 def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> None:
     raw = file.read_text(encoding="utf-8")
     soup = BeautifulSoup(raw, "html.parser")
     title, note, nodes, links, subtitle = extract_case(soup)
     url = "/" + str(file.parent.relative_to(SITE)).replace("\\", "/") + "/"
-    scripts = [s for s in soup.find_all("script") if s.get("src") or (s.string and s.string.strip())]
+    scripts = [s for s in soup.find_all("script") if (s.get("src") or (s.string and s.string.strip()))
+               and "science.js" not in (s.get("src") or "")]
+    real = REAL_SECTIONS.get(rec["id"]) if kind == "industrial" and rec else None
     # Module scripts used by #104/#106 must keep their relative paths.
     extra_links = [l for l in soup.find_all("link", rel="stylesheet") if "strategy.css" not in l.get("href", "")]
     nodes = [n for n in nodes if not (isinstance(n, Tag) and n.has_attr("data-evidence"))]
@@ -981,6 +996,9 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
                  "Dados sintéticos com semente fixa"]
         section, niche = "industrial", "industrial"
         title = rec["name"]
+        if real:
+            note = real["note"]
+            facts[-1] = real["fact"]
     elif kind == "study":
         crumbs = [("Início", "/"), ("Industrial", "/industrial/"), (special["title"], url)]
         kicker = "Industrial · Estudo de caso completo" + (f" · Projeto #{rec['id']:03d}" if rec else "")
@@ -1015,6 +1033,7 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
             pager += f'<a class="next" href="{next_["page"]}"><span class="small muted">Próximo</span>#{next_["id"]:03d} {esc(next_["name"])}</a>'
         pager += "</nav>"
     note_block = f'<div class="note">{note}</div>' if note else ""
+    real_html = f'\n<div class="wrap">{real["fragment"].read_text(encoding="utf-8")}</div>' if real else ""
     facts_html = "".join(f"<li>{esc(f)}</li>" for f in facts)
     main = f"""
 <section class="wrap page-head">
@@ -1022,7 +1041,7 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
   <h1>{esc(title)}</h1>
   {f'<p class="lede">{esc(subtitle)}</p>' if subtitle else ''}
   {note_block}
-</section>
+</section>{real_html}
 <div class="wrap cols">
   <article class="case-body prose">{content}</article>
   <aside class="aside">
@@ -1035,8 +1054,8 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
 <div class="wrap">{pager}</div>"""
     keep_links = "".join(str(l) for l in extra_links if l.get("href", "").startswith(("../", "./")) and "ds.css" not in l.get("href", ""))
     p = Page(url, f"#{rec['id']:03d} {title}" if rec and kind == "industrial" else title, desc, section=section, niche=niche, crumbs=crumbs,
-             extra_head=PAGER_CSS + keep_links)
-    body_extra = "".join(str(s) for s in scripts if "plotly" not in (s.get("src") or ""))
+             extra_head=PAGER_CSS + keep_links + (LAPSIM_CSS if real else ""))
+    body_extra = "".join(str(s) for s in scripts if "plotly" not in (s.get("src") or "")) + (SCIENCE_SCRIPT if real else "")
     write(p, main, body_extra)
 
 
