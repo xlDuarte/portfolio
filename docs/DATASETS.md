@@ -17,6 +17,8 @@ O ambiente onde o Claude trabalha não alcança `huggingface.co`; os runners do 
 - em PR ou push que mexe num manifesto: testes offline, fixação dos manifestos novos, confronto dos já fixados com o Hub e download de três arquivos de cada; os manifestos atualizados ficam num artefato para o commit da fixação;
 - manualmente (aba Actions → "Hugging Face datasets" → Run workflow → nome do manifesto): download completo e verificado, como artefato que expira em um dia, para desenvolvimento.
 
+Os commits fixados também são impressos no log do workflow, porque o armazenamento de artefatos do GitHub (Azure Blob) não é acessível a partir do ambiente do Claude. Para o Claude trabalhar com os arquivos em si, é preciso liberar os domínios do Hub nas configurações de rede do Claude (claude.ai → Settings → Capabilities): `huggingface.co`, `cdn-lfs.huggingface.co`, `cas-bridge.xethub.hf.co` e, para artefatos do GitHub, o domínio `*.blob.core.windows.net` indicado no erro. Sem isso, a análise pesada roda no próprio GitHub Actions e só os resultados derivados voltam ao repositório.
+
 Datasets públicos não precisam de token. Para datasets com acesso restrito, cadastre um token de leitura como segredo do repositório `HF_TOKEN`; o script lê só a variável de ambiente, envia o token apenas a `huggingface.co` (nunca ao redirecionamento de armazenamento) e nunca o imprime. O segredo não é usado em pull requests.
 
 ## Catálogo inicial (fase 6, materiais e visão)
