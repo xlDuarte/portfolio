@@ -109,7 +109,11 @@ class TestEDA(unittest.TestCase):
         catalog=(ROOT/'site/cases/eda/index.html').read_text()
         for i in range(11,21):
             t=(ROOT/f'site/cases/{i:03d}/index.html').read_text()
-            self.assertIn('Dados integralmente sintéticos',t)
+            if i==14:   # phase 3: real OpenF1 benchmark on top, synthetic EDA kept below and labelled as such
+                self.assertIn('Dados reais e sintéticos, separados',t)
+                self.assertIn('dados sintéticos de semente fixa',t)
+            else:
+                self.assertIn('Dados integralmente sintéticos',t)
             self.assertIn('interactive.html',t)
             self.assertIn('chart.svg',t)
             self.assertIn(f'/cases/{i:03d}/',catalog)

@@ -1,3 +1,5 @@
+> **Atualização científica (fase 3):** benchmark com as voltas reais do GP do Bahrein 2024 (OpenF1): modelo hierárquico bayesiano por setor com erros t de Student, que separa piloto de composto, idade do pneu e evolução da corrida. Ritmo corrigido com IC 90 %, probabilidade de ranking, decomposição da diferença por setor e correlação dos resíduos entre setores. O estudo EDA abaixo continua sintético e serve de teste do pipeline. Código em [`race_strategy/benchmark.py`](../../../race_strategy/benchmark.py), método em [docs/physics/ESTIMATION.md](../../../docs/physics/ESTIMATION.md).
+
 # Projeto #014 — Motorsport Telemetry & Lap Benchmarks
 
 **Status:** estudo de caso EDA reproduzível com **dados completamente sintéticos**. Não há integração com sistemas operacionais, mercado financeiro, registros de segurança reais ou telemetria oficial de automobilismo.

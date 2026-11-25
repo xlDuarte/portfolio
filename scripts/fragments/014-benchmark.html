@@ -1,0 +1,62 @@
+<div class="ls" id="bm" data-state="loading">
+<section class="ls-section" aria-labelledby="bm-title">
+  <h2 id="bm-title">Benchmark de voltas com dados reais</h2>
+  <p class="ls-lede">Comparar pilotos pela mediana ou pela melhor volta mistura ritmo com condições: quem andou mais voltas de pneu novo, ou mais no fim da corrida com o tanque leve, parece mais rápido. Aqui cada um dos três setores oficiais do GP do Bahrein 2024 recebe um modelo hierárquico que separa o piloto do composto, da idade do pneu e da evolução da corrida. O resultado é o ritmo de cada piloto nas mesmas condições, com a incerteza de cada número.</p>
+  <dl class="ls-kpis">
+    <div><dt>Mais rápido, nas mesmas condições</dt><dd data-k="best">—</dd></div>
+    <div><dt>Probabilidade de ser o mais rápido</dt><dd data-k="pbest">—</dd></div>
+    <div><dt>Pilotos que mudam de posição</dt><dd data-k="moves">—</dd></div>
+    <div><dt>Correlação dos resíduos, setores 2 e 3</dt><dd data-k="corr">—</dd></div>
+  </dl>
+  <p class="ls-note" id="bm-kpi-note">Carregando o modelo…</p>
+  <p class="ls-note" id="bm-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="bm-pace-title">
+  <h2 id="bm-pace-title">Ritmo corrigido</h2>
+  <figure class="ls-chart"><svg id="bm-forest" viewBox="0 0 760 480" role="img" aria-labelledby="bm-forest-cap"></svg>
+    <figcaption id="bm-forest-cap">Soma dos três setores, em relação à média do grid, com intervalo de 90 % a posteriori. À direita, a mediana bruta das voltas limpas e a faixa de posição em 90 % dos sorteios.</figcaption></figure>
+  <h3>Onde a diferença aparece</h3>
+  <figure class="ls-chart"><svg id="bm-gap" viewBox="0 0 760 480" role="img" aria-labelledby="bm-gap-cap"></svg>
+    <figcaption id="bm-gap-cap">Diferença para o mais rápido, dividida por setor. Barras à esquerda do zero indicam setores em que o piloto foi mais rápido que ele.</figcaption></figure>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="bm-slope" viewBox="0 0 420 400" role="img" aria-labelledby="bm-slope-cap"></svg>
+      <figcaption id="bm-slope-cap">Posição pela mediana bruta e pelo ritmo corrigido. Em vermelho, mudanças de três posições ou mais.</figcaption></figure>
+    <div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de resultados"><table class="ls-table" id="bm-agree"><caption>Concordância entre o ranking corrigido e os rankings brutos</caption></table></div>
+      <p class="ls-note">A melhor volta e a volta ideal concordam menos com o ritmo corrigido que a mediana: dependem de uma única volta, em geral com pneu novo e tanque vazio, e por isso medem as condições mais que o piloto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ls-section" aria-labelledby="bm-sec-title">
+  <h2 id="bm-sec-title">O que cada setor revela</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de resultados"><table class="ls-table" id="bm-fixed"><caption>Efeitos comuns a todos os pilotos (média e intervalo de 90 %)</caption></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de resultados"><table class="ls-table" id="bm-corr"><caption>Correlação entre os resíduos dos setores numa mesma volta (intervalo de 95 % de Fisher)</caption></table></div>
+  <p class="ls-note">Com todas as voltas, os setores 1 e 2 se correlacionam: uma volta com tráfego perde tempo nos dois. Quando as voltas que o modelo t de Student rebaixou saem da conta, essa correlação some, mas a dos setores 2 e 3 fica. Hipótese: as duas sequências de curvas dependem do estado térmico dos pneus traseiros, que varia de uma volta para a outra. Os dados não bastam para confirmar essa causa.</p>
+  <p class="ls-note" id="bm-diag"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="bm-method-title">
+  <h2 id="bm-method-title">Método e limites</h2>
+  <ol class="ls-steps">
+    <li><h3>Modelo por setor</h3><p>Para a volta i do piloto d no setor k:</p>
+      <math display="block" tabindex="0"><mrow><msub><mi>t</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><mo>=</mo><msubsup><mi>β</mi><mn>0</mn><mi>k</mi></msubsup><mo>+</mo><msubsup><mi>β</mi><mi>H</mi><mi>k</mi></msubsup><msub><mi>H</mi><mi>i</mi></msub><mo>+</mo><msubsup><mi>β</mi><mrow><mi>c</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow><mi>k</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub><mo>+</mo><msup><mi>γ</mi><mi>k</mi></msup><mo>(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mn>30</mn><mo>)</mo><mo>+</mo><msubsup><mi>u</mi><mi>d</mi><mi>k</mi></msubsup><mo>+</mo><msubsup><mi>v</mi><mi>d</mi><mi>k</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><mo>,</mo><mspace width="1em"/><msub><mi>ε</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><mo>∼</mo><msub><mi>t</mi><mi>ν</mi></msub><mo>(</mo><mn>0</mn><mo>,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>)</mo></mrow></math>
+      <p>H indica o pneu duro, a é a idade do pneu e n a volta da corrida. É o mesmo amostrador de Gibbs do projeto de estratégia (#101), com erros t de Student: voltas com tráfego recebem peso menor em vez de serem apagadas à mão.</p></li>
+    <li><h3>Benchmark</h3><p>O ritmo do piloto em cada setor é u<sub>d</sub> + v<sub>d</sub>·a<sub>ref</sub>, comparado com a média do grid, no pneu duro com a<sub>ref</sub> = 10 voltas de uso. A soma dos setores é comparada com um modelo ajustado à volta inteira, como verificação.</p></li>
+    <li><h3>Ranking</h3><p>Cada sorteio da posterior gera uma ordem completa de pilotos. A probabilidade de ser o mais rápido e a faixa de posição saem da frequência nesses sorteios.</p></li>
+  </ol>
+  <h3>Limites</h3>
+  <ul class="ls-checks">
+    <li>Uma corrida, pista seca. Voltas de largada, de entrada e saída de box e acima de 110 s ficam fora. Ar sujo e disputa de posição só entram pelo peso menor das voltas atípicas.</li>
+    <li>Os setores são ajustados separadamente e a soma trata as três posteriores como independentes. A correlação positiva entre resíduos indica que o intervalo da soma está um pouco estreito.</li>
+    <li>Ritmo do conjunto piloto e carro: o modelo não separa um do outro.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python -m pip install -r requirements/site.txt
+python scripts/build_benchmark_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/race_strategy/benchmark.py">Código em race_strategy/benchmark.py</a> · <a href="/motorsport/data/benchmark-bahrain.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="bm-eda-title">
+  <h2 id="bm-eda-title">Pipeline exploratório original</h2>
+  <p class="ls-note">Abaixo fica o estudo exploratório da primeira versão, com 180 voltas sintéticas de semente fixa. Ele continua no portfólio como teste do pipeline de validação de esquema, SQL e gráficos; os números dele não descrevem nenhuma corrida.</p>
+</section>
+</div>
