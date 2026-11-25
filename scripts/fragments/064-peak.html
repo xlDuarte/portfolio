@@ -1,0 +1,47 @@
+<div class="ls" id="pk" data-state="loading">
+<section class="ls-section" aria-labelledby="pk-title">
+  <h2 id="pk-title">Previsão do pico diário de carga com dados reais do ONS</h2>
+  <p class="ls-lede">Contratos de demanda e compras no mercado de curto prazo dependem do pico de amanhã. O modelo aqui prevê o pico diário do subsistema Sudeste/Centro-Oeste um dia à frente: calendário brasileiro (feriados, pontes, dia da semana), sazonalidade, tendência, um termo de temperatura com ponto de equilíbrio e um resíduo autorregressivo. A pergunta que importa é quanto a temperatura ajuda quando ela também é uma previsão, com erro.</p>
+  <dl class="ls-kpis">
+    <div><dt>Erro médio com a temperatura observada</dt><dd data-k="mape">—</dd></div>
+    <div><dt>Erro médio repetindo a semana anterior</dt><dd data-k="naive">—</dd></div>
+    <div><dt>Cobertura da faixa de 90 % com incerteza da temperatura propagada</dt><dd data-k="cover">—</dd></div>
+    <div><dt>Maior pico diário da série</dt><dd data-k="rec">—</dd></div>
+  </dl>
+  <p class="ls-note" id="pk-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="pk-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="pk-fc-title">
+  <h2 id="pk-fc-title">O ano de teste</h2>
+  <figure class="ls-chart"><svg id="pk-series" viewBox="0 0 760 300" role="img" aria-labelledby="pk-series-cap"></svg>
+    <figcaption id="pk-series-cap">Pico diário real e previsão de um dia à frente com a faixa de 90 % do conjunto de 2.000 trajetórias, no cenário realista: temperatura prevista com erro de 1 °C e essa incerteza propagada pelo termo de temperatura.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Métricas de previsão"><table class="ls-table" id="pk-metrics"><caption>Período de teste, nunca usado no ajuste. CRPS mede a distribuição inteira da previsão; menor é melhor</caption></table></div>
+  <p class="ls-note" id="pk-value"></p>
+  <p class="ls-note">O erro de previsão de temperatura é simulado como ruído gaussiano sobre a temperatura observada, com semente fixa; o desvio real de um modelo numérico de um dia à frente fica nessa ordem de grandeza, mas varia com a estação e a região e não foi medido aqui.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="pk-hour-title">
+  <h2 id="pk-hour-title">Quando o pico acontece</h2>
+  <figure class="ls-chart"><svg id="pk-heat" viewBox="0 0 760 276" role="img" aria-labelledby="pk-heat-cap"></svg>
+    <figcaption id="pk-heat-cap">Contagem de dias por mês e hora do pico, 2019–2025. O pico do SE/CO é de fim de tarde e começo de noite o ano todo; nos meses quentes parte dos dias tem o pico à tarde, com a refrigeração.</figcaption></figure>
+  <figure class="ls-chart"><svg id="pk-aft" viewBox="0 0 760 260" role="img" aria-labelledby="pk-aft-cap"></svg>
+    <figcaption id="pk-aft-cap">Fração dos dias de cada ano com o pico entre 12 h e 16 h.</figcaption></figure>
+  <p class="ls-note">A fração de picos à tarde cai de 2019 para 2022 e oscila depois. Uma hipótese é a geração solar distribuída, que reduz a carga líquida vista pelo operador no meio do dia; outra são verões mais ou menos quentes e mudanças na forma como o ONS contabiliza a geração distribuída. Nenhuma das duas é testada aqui.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="pk-method-title">
+  <h2 id="pk-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Regressão linear com 7 indicadores de dia da semana, feriado, ponte, 3 pares de Fourier anuais, tendência e dois termos de temperatura em dobradiça no ponto de equilíbrio estimado no treino; resíduo AR(1) com φ estimado no treino.</li>
+    <li>Faixas por conjunto: inovações empíricas do treino reamostradas. Com temperatura incerta, cada trajetória sorteia T ~ N(T̂, σ²) antes de passar pela dobradiça, que é não linear.</li>
+    <li>Treino de 2019 a 2022 sem o confinamento de 2020; teste em 2023, enquanto há temperatura do INMET no conjunto de dados. Uma única divisão temporal: a diferença entre modelos tem incerteza que não foi quantificada por teste formal.</li>
+    <li>O pico do subsistema não é o pico de uma planta: a demanda contratada de uma indústria depende da operação dela. O método se transfere; os números não.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_energy_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/energy/forecast.py">Código em energy/forecast.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/ons/manifest.json">Manifesto ONS</a> · <a href="/data/energy.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="pk-old-title">
+  <h2 id="pk-old-title">Previsão original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a previsão da primeira versão, com série e alvos 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>

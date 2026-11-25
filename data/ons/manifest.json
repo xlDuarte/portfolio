@@ -1,0 +1,16 @@
+{
+ "source": "ONS \u2014 Operador Nacional do Sistema El\u00e9trico, Dados Abertos: curva de carga hor\u00e1ria por subsistema (dataset curva-carga-ho), MWmed",
+ "canonical_url": "https://dados.ons.org.br/dataset/curva-carga",
+ "mirror": "https://github.com/byviniciusdep/previsao-carga-energia",
+ "mirror_commit": "f40dac4cd8cc6fc029bfea0f7c32388eb3679511",
+ "cross_check": "CURVA_CARGA_2025.csv has the same git blob (ee3f68ac) in https://github.com/andredeomondes/monitor-carga-eletrica (commit 744915b)",
+ "files": {
+  "CURVA_CARGA_2019.csv": "23cc26534ef22c1da59496ef2064b90a3481ef41973256e5fdf69d7780fc9817",
+  "CURVA_CARGA_2020.csv": "838121d4ba5d8b0d3497da5b8f8522d6d2597e9ec00c6b3821e18e41ee4cc0c2",
+  "CURVA_CARGA_2021.csv": "b5d76ab85a6807479e054c1b3ac6462838ae4d8ced7c42f0f43e2c101b958345",
+  "CURVA_CARGA_2022.csv": "d56a7b23d4f987d862ce8268584907b372d3e79bfc241d5e46fd6bb4ed0fefaa",
+  "CURVA_CARGA_2023.csv": "3a7e07005bd991ade3cccf402b21737564713230f777e1bcda06b9c6e9a78096",
+  "CURVA_CARGA_2024.csv": "0c7e02591887591ec0a1e758eeb744dcd24c69e91c09e032ce7772838676cc32",
+  "CURVA_CARGA_2025.csv": "69a3d2560bf111e46d1fa356ee4be7c917ca89bf53ae16ab1af9f9e7477ff4c4"
+ }
+}

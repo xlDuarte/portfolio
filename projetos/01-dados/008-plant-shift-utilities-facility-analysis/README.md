@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5a):** linha de base de energia pela temperatura no método da ASHRAE Guideline 14, aplicada à carga horária real do subsistema SE/CO (ONS, 2019–2025) contra a temperatura real do INMET. Cinco formas de ponto de mudança com efeitos fixos de ano, seleção por BIC, n efetivo corrigido pela autocorrelação e bootstrap em blocos: ponto de equilíbrio de 21,0 °C [20,3; 21,7], 1,22 GW por grau acima dele, CV(RMSE) 3,7 %. Código em [`energy/changepoint.py`](../../../energy/changepoint.py), método em [docs/physics/ENERGY.md](../../../docs/physics/ENERGY.md).
+
 # Project #008 — Consumo de Utilidades e Operações de Turno
 ## Plant Shift Utilities & Facility Analysis
 
