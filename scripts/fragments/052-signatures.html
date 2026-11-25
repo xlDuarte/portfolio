@@ -1,0 +1,36 @@
+<div class="ls" id="sg" data-state="loading">
+<section class="ls-section" aria-labelledby="sg-title">
+  <h2 id="sg-title">Assinaturas de defeito no domínio da ordem</h2>
+  <p class="ls-lede">Comparar a vibração de uma máquina com uma biblioteca de defeitos conhecidos só funciona se a assinatura não depender da rotação do dia. As frequências de defeito de um rolamento são múltiplos fixos da rotação do eixo, então, medindo o espectro de envelope em ordens em vez de hertz, o pente do defeito fica no mesmo lugar em qualquer velocidade. Aqui a correspondência roda com vibração real do banco da Case Western Reserve University.</p>
+  <dl class="ls-kpis">
+    <div><dt>Acerto em outra carga, eixo em ordens</dt><dd data-k="ord">—</dd></div>
+    <div><dt>Acerto em outra carga, eixo em Hz</dt><dd data-k="hz">—</dd></div>
+    <div><dt>Acerto em rolamento novo, ordens</dt><dd data-k="size">—</dd></div>
+    <div><dt>Pista interna em rolamento novo</dt><dd data-k="ir">—</dd></div>
+  </dl>
+  <p class="ls-note">Média balanceada entre as quatro classes; 25 % seria o acaso.</p>
+  <p class="ls-note" id="sg-status" role="status"></p>
+</section>
+<section class="ls-section" aria-labelledby="sg-lib-title">
+  <h2 id="sg-lib-title">A biblioteca</h2>
+  <figure class="ls-chart"><svg id="sg-cent" viewBox="0 0 760 300" role="img" aria-labelledby="sg-cent-cap"></svg>
+    <figcaption id="sg-cent-cap">Assinatura média de cada classe a 0 hp: espectro do quadrado do envelope após pré-branqueamento cepstral, em dB acima da mediana local, reamostrado em ordens e normalizado. Linhas tracejadas nas ordens de BPFO, BPFI e 2·BSF calculadas da geometria do rolamento.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de acerto"><table class="ls-table" id="sg-tab"><caption>Acerto da classe mais parecida (similaridade de cosseno com a média de cada classe), por classe real</caption></table></div>
+  <p class="ls-note">A carga muda a rotação de 1.797 para cerca de 1.725 rpm, só 4 %. No terceiro harmônico de BPFI isso desloca a linha em quase 20 Hz, e a biblioteca em hertz deixa de reconhecer os defeitos de pista. Em ordens, a pista interna é reconhecida em todas as janelas, inclusive num rolamento que a biblioteca nunca viu. Os defeitos de esfera continuam difíceis pelo mesmo motivo do diagnóstico por envelope: quase não deixam pente.</p>
+</section>
+<section class="ls-section ls-method" aria-labelledby="sg-method-title">
+  <h2 id="sg-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Assinatura de cada janela de 1 s, eixo de 0,5 a 16 ordens em passos de 0,02 (ou de 15 a 480 Hz em passos de 0,6 Hz na comparação), normalizada para norma 1.</li>
+    <li>Duas bibliotecas: médias de classe a 0 hp, consultadas a 1–3 hp (mesmas peças, outra velocidade); e médias dos outros dois tamanhos de defeito, consultadas no tamanho que ficou de fora (outra peça). O saudável, que é um só, é separado por carga.</li>
+    <li>A versão anterior comparava RMS, frequência dominante e energia por banda de sinais sintéticos com vizinho mais próximo. Atributos em hertz têm o mesmo problema da biblioteca em Hz acima: dependem da velocidade.</li>
+    <li>Variação de velocidade dentro de uma gravação exigiria reamostragem angular com tacômetro; nestes dados a rotação é praticamente constante em cada registro.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/fetch_cwru.py
+python scripts/build_bearing_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/bearings/signatures.py">Código em bearings/signatures.py</a> · <a href="/data/bearings-cwru.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="sg-old-title">
+  <h2 id="sg-old-title">Versão anterior, com catálogo sintético</h2>
+  <p class="ls-note">Abaixo fica o recomendador original sobre um catálogo sintético, mantido como registro. Os números dele não descrevem nenhuma máquina.</p>
+</section>
+</div>

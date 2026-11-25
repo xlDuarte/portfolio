@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="laboratorio">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind">Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/" data-section-current>Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/laboratorio/">Laboratório</a></li><li aria-current="page">#104</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,19 +26,70 @@
   <p class="kicker">Laboratório comum · Projeto #104</p>
   <h1>Detecção de anomalias em vibração</h1>
   <p class="lede">Autoencoder LSTM contra baseline RMS em sinais de acelerômetro.</p>
-  
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> A avaliação principal usa vibração real do banco de rolamentos da Case Western Reserve University. A versão anterior, mais abaixo, usa séries sintéticas.</div>
 </section>
+<div class="wrap"><div class="ls" id="an" data-state="loading">
+<section class="ls-section" aria-labelledby="an-title">
+  <h2 id="an-title">Detectar anomalias em vibração real, e saber quando o número engana</h2>
+  <p class="ls-lede">A primeira versão deste projeto treinava um autoencoder LSTM e o comparava com um modelo de base por RMS, em séries sintéticas. Esta seção troca a pergunta: com vibração real de rolamentos (banco da Case Western Reserve University), o que um detector de anomalias e um classificador realmente aprendem? O conjunto tem um único rolamento saudável e um rolamento danificado por tipo e tamanho de defeito, cada um gravado em quatro cargas. Essa estrutura decide o que se pode concluir.</p>
+  <dl class="ls-kpis">
+    <div><dt>Menor AUC, indicadores físicos</dt><dd data-k="auc">—</dd></div>
+    <div><dt>Falso alarme no saudável a 0 hp</dt><dd data-k="fa0">—</dd></div>
+    <div><dt>Classificador espectral: janelas → rolamento novo</dt><dd data-k="leak">—</dd></div>
+    <div><dt>Indicadores físicos, rolamento novo</dt><dd data-k="phys">—</dd></div>
+  </dl>
+  <p class="ls-note" id="an-kpi-note">Carregando a avaliação…</p>
+  <p class="ls-note" id="an-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="an-det-title">
+  <h2 id="an-det-title">Detecção: a AUC alta esconde o problema</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="an-roc" viewBox="0 0 460 300" role="img" aria-labelledby="an-roc-cap"></svg>
+      <figcaption id="an-roc-cap">Curva ROC de todas as janelas com defeito contra as saudáveis, detector treinado só no saudável das outras cargas.</figcaption></figure>
+    <div>
+      <p class="ls-note">O detector é uma distância de Mahalanobis ao estado saudável, com a covariância encolhida por Ledoit–Wolf. Indicadores físicos: RMS, curtose, fator de crista, assimetria, proeminência das três frequências de defeito no envelope e curtose espectral máxima. Atributos espectrais: energia em 32 bandas de 0 a 6 kHz.</p>
+      <p class="ls-note" id="an-healthy"></p>
+    </div>
+  </div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de detecção"><table class="ls-table" id="an-det"><caption>AUC com intervalo de 95 % por reamostragem de registros; falso alarme e detecção no limiar do percentil 99 do treino</caption></table></div>
+</section>
+
+<section class="ls-section" aria-labelledby="an-cls-title">
+  <h2 id="an-cls-title">Classificação: o protocolo decide a nota</h2>
+  <figure class="ls-chart"><svg id="an-bars" viewBox="0 0 760 360" role="img" aria-labelledby="an-bars-cap"></svg>
+    <figcaption id="an-bars-cap">Acurácia balanceada de um classificador logístico com quatro classes (normal, pista interna, esfera, pista externa) em três protocolos de validação, e da regra física de envelope, que não usa rótulos.</figcaption></figure>
+  <p class="ls-note">Sortear janelas para treino e teste coloca pedaços da mesma gravação dos dois lados: o modelo espectral chega a 100 % reconhecendo a gravação, não o defeito. Deixar uma carga de fora quase não muda nada, porque o rolamento continua o mesmo. Só deixar um tamanho de defeito de fora põe no teste um rolamento fisicamente diferente, e aí o modelo espectral cai para perto de 60 %. Os indicadores físicos perdem menos, porque medem o mecanismo do defeito e não a assinatura de uma peça. A acurácia publicada com o primeiro protocolo nesses dados não diz quase nada sobre um rolamento novo (Hendriks, Dumond e Knox, 2022).</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="an-method-title">
+  <h2 id="an-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>500 janelas de 1 s de 40 registros reais a 12 kHz (lado do acionamento); 140 janelas saudáveis de um único rolamento.</li>
+    <li>Detecção: treino no saudável de três cargas, teste no saudável da quarta e em todas as janelas com defeito dessa carga. Intervalos por reamostragem de registros inteiros, não de janelas, porque janelas da mesma gravação não são independentes. Com só quatro registros saudáveis, esses intervalos são otimistas.</li>
+    <li>Classificação: regressão logística multinomial com penalização L2, ajustada por L-BFGS com gradiente exato. No protocolo por tamanho, o saudável de teste é a carga 0, 1 ou 2, alternando por dobra.</li>
+    <li>O autoencoder LSTM da versão anterior continua no código, com as séries sintéticas, mas não foi aplicado a estes dados: com uma única peça saudável e nove danificadas, um modelo com mais parâmetros tende a memorizar melhor as gravações. O protocolo por tamanho é o teste que qualquer modelo mais complexo precisaria passar.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/fetch_cwru.py
+python scripts/build_bearing_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/bearings/monitoring.py">Código em bearings/monitoring.py</a> · <a href="/data/bearings-cwru.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="an-old-title">
+  <h2 id="an-old-title">Versão anterior, com séries sintéticas</h2>
+  <p class="ls-note">Abaixo fica a comparação original entre o autoencoder LSTM e o modelo de base em séries sintéticas, mantida como registro. Os números dela não descrevem nenhuma máquina.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><section data-lab="104" id="demo"><p>Carregando análise…</p></section><p><a href="/motorsport/f1-pip/">Consultar modelos com dados reais da F1 ↗</a></p></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #104</li><li>Aplicação: Mancais e motores; suspensão e transmissão</li></ul>
+    <ul><li>Projeto #104</li><li>Aplicação: Mancais e motores; suspensão e transmissão</li><li>Dados reais (CWRU) + séries sintéticas</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/11-motorsport-f1-mlops/104-mechanical-vibration-time-series-anomaly-detection-lstm-vs-baseline">Pasta do projeto no GitHub</a></li></ul>
   </aside>
 </div>
 <div class="wrap"></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script src="../../../motorsport/data/import.mjs" type="module"></script>
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script src="../../../motorsport/data/import.mjs" type="module"></script><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

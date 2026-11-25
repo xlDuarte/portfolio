@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4a):** detecção de anomalias e classificação em vibração real do CWRU com três protocolos de validação. O classificador espectral cai de 100 % (janelas sorteadas) para 61 % (rolamento novo); indicadores físicos ficam em 74 %. AUC ≈ 1 com 100 % de falso alarme no saudável a 0 hp mostra por que a AUC sozinha engana. Código em [`bearings/monitoring.py`](../../../bearings/monitoring.py), método em [docs/physics/BEARINGS.md](../../../docs/physics/BEARINGS.md).
+
 > **Auditoria do lote #101–#110:** Treino efetivo de LSTM autoencoder TensorFlow/Keras sobre séries artificiais; calibração de erro pela validação e baseline RMS. **Tecnologias comprováveis neste projeto:** TensorFlow/Keras, Scikit-learn, NumPy; treinamento sob flag --run. Todos os resultados e testes são sintéticos, sem dados reais F1 ou indústria, sem homologação de produção. As demais tecnologias citadas no benchmark não estão implícitas neste projeto.
 
 ## Como executar a implementação atual

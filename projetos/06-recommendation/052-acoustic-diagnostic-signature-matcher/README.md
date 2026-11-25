@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4a):** correspondência de assinaturas de defeito no domínio da ordem com vibração real do CWRU. Em outra carga, 75 % de acerto balanceado em ordens contra 28 % em Hz; pista interna reconhecida em 100 % das janelas, inclusive em rolamento nunca visto. Código em [`bearings/signatures.py`](../../../bearings/signatures.py), método em [docs/physics/BEARINGS.md](../../../docs/physics/BEARINGS.md).
+
 # #52 — Acoustic Diagnostic Signature Matcher
 
 **Status:** funcionalidade específica executável, com entradas e dados exclusivamente sintéticos; não é prova de performance em produção.
