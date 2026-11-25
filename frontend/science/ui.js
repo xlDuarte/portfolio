@@ -61,7 +61,7 @@ export function forest(svg, rows, { width = 760, rowH = 18, xLabel, zero = true,
 
 // Line chart with optional shaded bands: series [{x:[], y:[], color, dash, width, label, band:{lo:[],hi:[]}}],
 // hbands [{lo, hi, color, label}] for horizontal reference bands, hlines [{y, color, dash, label}].
-export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, xDomain, yDomain, xFmt, yFmt, hbands = [], hlines = [] }) {
+export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, xDomain, yDomain, xFmt, yFmt, hbands = [], hlines = [], vlines = [], legend = true }) {
   clear(svg);
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
   const box = { l: 52, r: width - 14, t: 40, b: height - 40 };
@@ -74,6 +74,11 @@ export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, 
   const clip = v => Math.max(yd[0], Math.min(yd[1], v));
   hbands.forEach(b => el('rect', { x: box.l, width: box.r - box.l, y: y(clip(b.hi)), height: Math.max(y(clip(b.lo)) - y(clip(b.hi)), 0), fill: b.color, opacity: 0.35 }, svg));
   hlines.forEach(h => el('line', { x1: box.l, x2: box.r, y1: y(h.y), y2: y(h.y), stroke: h.color || SLATE, 'stroke-dasharray': h.dash || '4 3', 'stroke-width': 1.2 }, svg));
+  vlines.forEach(v => {
+    if (v.x < xd[0] || v.x > xd[1]) return;
+    el('line', { x1: x(v.x), x2: x(v.x), y1: box.t, y2: box.b, stroke: v.color || SLATE, 'stroke-dasharray': v.dash || '3 3', 'stroke-width': 1 }, svg);
+    if (v.label) text(svg, x(v.x) + 3, box.t + 10 + (v.dy || 0), v.label, { 'font-size': 10, fill: v.color || SLATE });
+  });
   series.forEach(s => {
     if (!s.band) return;
     const up = [], dn = [];
@@ -85,6 +90,7 @@ export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, 
     const pts = s.x.map((xv, i) => [xv, s.y[i]]).filter(p => p[1] !== null && Number.isFinite(p[1])).map(p => [p[0], clip(p[1])]);
     el('path', { d: path(pts, x, y), fill: 'none', stroke: s.color, 'stroke-width': s.width || 1.6, 'stroke-dasharray': s.dash, 'stroke-linejoin': 'round' }, svg);
   });
+  if (!legend) return { x, y, box };
   const lg = el('g', { 'font-size': 11 }, svg);
   let lx = box.l;
   [...series.filter(s => s.label), ...hbands.filter(b => b.label).map(b => ({ ...b, swatch: true }))].forEach(s => {

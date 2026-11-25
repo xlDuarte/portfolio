@@ -960,6 +960,19 @@ REAL_SECTIONS = {
                  "(OpenF1). O estudo exploratório original, mais abaixo, continua com dados sintéticos de semente fixa e serve "
                  "de teste do pipeline.",
          "fact": "Dados reais (OpenF1) + pipeline sintético"},
+    4: {"fragment": ROOT / "scripts" / "fragments" / "004-nvh.html",
+        "note": "<strong>Dados reais e sintéticos, separados.</strong> A análise principal usa 40 registros reais de vibração "
+                "do banco de rolamentos da Case Western Reserve University. O estudo original, mais abaixo, usa DADOS 100% "
+                "SINTÉTICOS e serve de teste do pipeline.",
+        "fact": "Dados reais (CWRU) + pipeline sintético"},
+    52: {"fragment": ROOT / "scripts" / "fragments" / "052-signatures.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A correspondência de assinaturas usa vibração real do banco "
+                 "de rolamentos da Case Western Reserve University. O recomendador original, mais abaixo, usa um catálogo sintético.",
+         "fact": "Dados reais (CWRU) + catálogo sintético"},
+    104: {"fragment": ROOT / "scripts" / "fragments" / "104-anomaly.html",
+          "note": "<strong>Dados reais e sintéticos, separados.</strong> A avaliação principal usa vibração real do banco de "
+                  "rolamentos da Case Western Reserve University. A versão anterior, mais abaixo, usa séries sintéticas.",
+          "fact": "Dados reais (CWRU) + séries sintéticas"},
 }
 SCIENCE_SCRIPT = '<script type="module" src="/assets/js/science.js"></script>'
 LAPSIM_CSS = '<link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css">'
@@ -972,7 +985,8 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
     url = "/" + str(file.parent.relative_to(SITE)).replace("\\", "/") + "/"
     scripts = [s for s in soup.find_all("script") if (s.get("src") or (s.string and s.string.strip()))
                and "science.js" not in (s.get("src") or "")]
-    real = REAL_SECTIONS.get(rec["id"]) if kind == "industrial" and rec else None
+    real = (REAL_SECTIONS.get(rec["id"]) if kind == "industrial" and rec else
+            REAL_SECTIONS.get(int(special["id"])) if kind == "shared" and special else None)
     # Module scripts used by #104/#106 must keep their relative paths.
     extra_links = [l for l in soup.find_all("link", rel="stylesheet") if "strategy.css" not in l.get("href", "")]
     nodes = [n for n in nodes if not (isinstance(n, Tag) and n.has_attr("data-evidence"))]
@@ -1019,6 +1033,9 @@ def case_page(file: Path, rec: dict | None, special: dict | None, kind: str) -> 
         title = special["title"]
         if not subtitle:
             subtitle = special["desc"]
+        if real:
+            note = real["note"]
+            facts.append(real["fact"])
 
     ext = [(t, h) for t, h in links if h != code]
     ext_html = "".join(f'<li><a href="{esc(h)}">{esc(t[:60])}</a></li>' for t, h in ext[:4])

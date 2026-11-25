@@ -19,3 +19,6 @@ portfolio-pages-preview.zip
 
 # Local audit outputs
 reports/integrated_portfolio_audit.json
+
+# phase 4: verified CWRU cache (scripts/fetch_cwru.py)
+data/external/

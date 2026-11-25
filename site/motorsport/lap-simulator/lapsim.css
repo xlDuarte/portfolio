@@ -67,3 +67,5 @@
 .ls-table caption{font-family:inherit;letter-spacing:normal;text-transform:none}
 .ls-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
 @media (max-width:720px){.ls-three{grid-template-columns:1fr}}
+.ls,.ls-section{min-width:0}
+.ls .table-wrap{max-width:100%}

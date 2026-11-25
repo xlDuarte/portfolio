@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/industrial/#dados">Análise de dados</a></li><li aria-current="page">#004</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,19 +26,100 @@
   <p class="kicker">Industrial · Análise de dados · Projeto #004</p>
   <h1>Espectro Acústico e Vibração Veicular (NVH)</h1>
   <p class="lede">Extração de atributos de frequência sonora e amplitude harmônica em testes de bancada de motores.</p>
-  <div class="note">DADOS 100% SINTÉTICOS. Métricas produzidas por código efetivamente executado. Sem dado SAP real, sem impacto industrial observado e sem relatório Power BI homologado.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> A análise principal usa 40 registros reais de vibração do banco de rolamentos da Case Western Reserve University. O estudo original, mais abaixo, usa DADOS 100% SINTÉTICOS e serve de teste do pipeline.</div>
 </section>
+<div class="wrap"><div class="ls" id="nv" data-state="loading">
+<section class="ls-section" aria-labelledby="nv-title">
+  <h2 id="nv-title">Diagnóstico de rolamentos com vibração real</h2>
+  <p class="ls-lede">Um defeito localizado num rolamento produz um impacto a cada passagem de uma esfera, numa taxa fixada pela geometria. Cada impacto faz a estrutura ressoar por alguns milissegundos. A informação do defeito não está no espectro comum, onde a ressonância domina, mas no envelope dessas ressonâncias. Aqui a análise de envelope roda sobre 40 registros reais do banco de ensaios da Case Western Reserve University, sem usar os rótulos para ajustar nada.</p>
+  <dl class="ls-kpis">
+    <div><dt>Registros de pista interna diagnosticados</dt><dd data-k="ir">—</dd></div>
+    <div><dt>Registros de pista externa diagnosticados</dt><dd data-k="or">—</dd></div>
+    <div><dt>Registros de esfera diagnosticados</dt><dd data-k="b">—</dd></div>
+    <div><dt>Falso alarme em janelas saudáveis</dt><dd data-k="fa">—</dd></div>
+  </dl>
+  <p class="ls-note" id="nv-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="nv-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="nv-env-title">
+  <h2 id="nv-env-title">O que o envelope mostra</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="nv-w-n" viewBox="0 0 380 150" role="img" aria-label="Forma de onda do rolamento saudável"></svg><figcaption>Rolamento saudável, registro 97, 0 hp: ruído sem estrutura.</figcaption></figure>
+    <figure class="ls-chart"><svg id="nv-w-or" viewBox="0 0 380 150" role="img" aria-label="Forma de onda com defeito na pista externa"></svg><figcaption>Pista externa com defeito de 0,007″, registro 130: impactos a cada 9,3 ms (BPFO = 107 Hz).</figcaption></figure>
+  </div>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="nv-ses-n" viewBox="0 0 380 220" role="img" aria-label="Espectro de envelope do rolamento saudável"></svg><figcaption>Saudável: nenhuma linha nas frequências de defeito.</figcaption></figure>
+    <figure class="ls-chart"><svg id="nv-ses-ir" viewBox="0 0 380 220" role="img" aria-label="Espectro de envelope com defeito na pista interna"></svg><figcaption>Pista interna, registro 105: pente em BPFI e harmônicos.</figcaption></figure>
+  </div>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="nv-ses-b" viewBox="0 0 380 220" role="img" aria-label="Espectro de envelope com defeito na esfera"></svg><figcaption>Esfera, registro 118: nada acima do fundo em 2·BSF.</figcaption></figure>
+    <figure class="ls-chart"><svg id="nv-ses-or" viewBox="0 0 380 220" role="img" aria-label="Espectro de envelope com defeito na pista externa"></svg><figcaption>Pista externa, registro 130: BPFO e três harmônicos.</figcaption></figure>
+  </div>
+  <p class="ls-note">Espectros do quadrado do envelope após pré-branqueamento cepstral, primeira janela de 1 s de cada registro, em dB acima da mediana do próprio espectro. Linhas tracejadas: BPFO (azul), BPFI (vermelho) e 2·BSF (âmbar), calculadas com a rotação medida no registro.</p>
+  <figure class="ls-chart"><svg id="nv-kurt" viewBox="0 0 760 180" role="img" aria-labelledby="nv-kurt-cap"></svg>
+    <figcaption id="nv-kurt-cap">Curtograma por STFT: a curtose espectral é alta onde impactos dominam o ruído. A banda de maior curtose é a escolhida para demodular no segundo caminho de processamento.</figcaption></figure>
+</section>
+
+<section class="ls-section" aria-labelledby="nv-res-title">
+  <h2 id="nv-res-title">Resultado nos 40 registros</h2>
+  <figure class="ls-chart"><svg id="nv-grid" viewBox="0 0 560 300" role="img" aria-labelledby="nv-grid-cap"></svg>
+    <figcaption id="nv-grid-cap">Cada célula é um registro: classe e tamanho do defeito nas linhas, carga do motor nas colunas. Verde: diagnóstico correto pela maioria das janelas. O número é a proeminência média da frequência de defeito da classe real (para os saudáveis, a maior das três).</figcaption></figure>
+  <div class="ls-two">
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Matriz de confusão, pré-branqueamento"><table class="ls-table" id="nv-conf-cpw"><caption>Janelas de 1 s, pré-branqueamento cepstral</caption></table></div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Matriz de confusão, curtose espectral"><table class="ls-table" id="nv-conf-sk"><caption>Janelas de 1 s, banda da curtose espectral</caption></table></div>
+  </div>
+  <p class="ls-note" id="nv-conf-note"></p>
+  <p class="ls-note">Pista interna em todos os 12 registros, pista externa em 8 de 12, esfera em nenhum. Os quatro registros de pista externa com 0,014″ não mostram BPFO em nenhuma carga, e os defeitos de esfera não deixam pente no envelope medido. Smith e Randall chegaram a conclusão parecida no estudo de referência desses dados: os defeitos de esfera são a categoria menos diagnosticável. Um classificador que acerte tudo nesses dados está reconhecendo outra coisa que não a física do defeito.</p>
+  <p class="ls-note" id="nv-fs"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="nv-sim-title">
+  <h2 id="nv-sim-title">Verificação com verdade conhecida</h2>
+  <p class="ls-lede">Para saber o que a cadeia de processamento consegue ver, o mesmo diagnóstico roda em sinais simulados: impactos na frequência de defeito com 1 % de variação aleatória do período, cada um excitando uma ressonância de 3,5 kHz, mais harmônicos da rotação e ruído. O limiar vem de simulações sem defeito, com 1 % de falso alarme.</p>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="nv-det-white" viewBox="0 0 460 280" role="img" aria-labelledby="nv-det-w-cap"></svg><figcaption id="nv-det-w-cap">Só ruído branco e harmônicos fracos da rotação.</figcaption></figure>
+    <figure class="ls-chart"><svg id="nv-det-mesh" viewBox="0 0 460 280" role="img" aria-labelledby="nv-det-m-cap"></svg><figcaption id="nv-det-m-cap">Com um engrenamento forte (27 dentes, 6 harmônicos) mascarando o espectro.</figcaption></figure>
+  </div>
+  <p class="ls-note">Linha cheia: pista externa; tracejada: pista interna, cujo sinal é modulado pela passagem na zona de carga e por isso exige SNR maior. Sem componentes discretos, a banda escolhida pela curtose é a melhor e o pré-branqueamento perde um pouco, porque também achata a ressonância. Com engrenamento, a banda da curtose deixa de ajudar e só o pré-branqueamento detecta antes de 12 dB. Os dois caminhos são complementares; a escolha certa depende do que mais há na máquina.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="nv-method-title">
+  <h2 id="nv-method-title">Método e limites</h2>
+  <ol class="ls-steps">
+    <li><h3>Cinemática</h3><p>Para n esferas de diâmetro d num diâmetro primitivo D, ângulo de contato φ e rotação f<sub>r</sub> da pista interna:</p>
+      <math display="block" tabindex="0"><mrow><mi>BPFO</mi><mo>=</mo><mfrac><mrow><mi>n</mi><msub><mi>f</mi><mi>r</mi></msub></mrow><mn>2</mn></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>d</mi><mi>D</mi></mfrac><mi>cos</mi><mi>φ</mi><mo>)</mo></mrow><mo>,</mo><mspace width="0.8em"/><mi>BPFI</mi><mo>=</mo><mfrac><mrow><mi>n</mi><msub><mi>f</mi><mi>r</mi></msub></mrow><mn>2</mn></mfrac><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mi>d</mi><mi>D</mi></mfrac><mi>cos</mi><mi>φ</mi><mo>)</mo></mrow><mo>,</mo><mspace width="0.8em"/><mi>BSF</mi><mo>=</mo><mfrac><mrow><mi>D</mi><msub><mi>f</mi><mi>r</mi></msub></mrow><mrow><mn>2</mn><mi>d</mi></mrow></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mfrac><mi>d</mi><mi>D</mi></mfrac><mi>cos</mi><mi>φ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>)</mo></mrow></mrow></math>
+      <p>Um defeito na esfera bate nas duas pistas, então a taxa de impactos é 2·BSF. Os valores calculados da geometria coincidem com os publicados pelo CWRU até a terceira casa decimal.</p></li>
+    <li><h3>Processamento</h3><p>Janelas de 1 s (resolução de 1 Hz, cerca de 30 rotações). Caminho 1: pré-branqueamento cepstral, y = IFFT(X/|X|), que zera a magnitude e mantém a fase. Caminho 2: filtro passa-faixa na banda de maior curtose espectral (Antoni, 2006), com largura de 750 a 1.500 Hz para preservar os harmônicos de BPFI. Nos dois, espectro do quadrado do envelope pela transformada de Hilbert.</p></li>
+    <li><h3>Indicador e decisão</h3><p>Para cada tipo de defeito, a média em dB dos três primeiros harmônicos sobre a mediana local, procurando o pico em ±1,5 % para acomodar o escorregamento das esferas. A janela recebe o tipo de maior indicador se ele passar o limiar τ, o percentil 99 do indicador nas janelas saudáveis. Nas janelas saudáveis avaliadas, τ vem das outras três cargas.</p></li>
+  </ol>
+  <h3>Limites</h3>
+  <ul class="ls-checks">
+    <li>Um único rolamento por tipo e tamanho de defeito, todos usinados por eletroerosão: é um ensaio de laboratório, não um desgaste natural.</li>
+    <li>Só existe um rolamento saudável no conjunto de dados; o falso alarme medido vale para ele.</li>
+    <li>O registro 99 (saudável, 2 hp) guarda também as variáveis do registro 98; usa-se a variável com o número do próprio registro. Os registros 98 e 99 não têm rotação gravada, e vale a nominal da carga.</li>
+    <li>Os dados são do sensor do lado do acionamento, amostrados a 12 kHz. Ressonâncias acima de 6 kHz não aparecem.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/fetch_cwru.py         # baixa e confere o SHA-256 dos 40 registros
+python scripts/build_bearing_data.py</pre><a href="https://github.com/xlDuarte/portfolio/tree/main/bearings">Código em bearings/</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/cwru/manifest.json">Manifesto com as somas de verificação</a> · <a href="/data/bearings-cwru.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="nv-old-title">
+  <h2 id="nv-old-title">Estudo original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a primeira versão deste projeto, com sinais sintéticos e espectro simples. Ela continua como teste do pipeline de esquema e gráficos; os números dela não descrevem nenhuma máquina.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Visualização calculada</h2><img alt="Gráfico do estudo #004 calculado com Matplotlib usando dados sintéticos" loading="lazy" src="chart.svg"/><h2>Métricas reproduzíveis</h2><div class="table-wrap"><table><tr><th>Base de dados</th><td>synthetic / reproducible, not operational evidence</td></tr><tr><th>Projeto</th><td>4</td></tr><tr><th>samples</th><td>2048</td></tr><tr><th>Sample rate hz</th><td class="r num">2,05</td></tr><tr><th>Nyquist hz</th><td class="r num">1,02</td></tr><tr><th>Rms g</th><td class="r num">0,261</td></tr><tr><th>Firing hz</th><td class="r num">100,0</td></tr><tr><th>Dominant peak hz</th><td class="r num">100,0</td></tr><tr><th>Dominant amplitude g</th><td class="r num">0,321</td></tr><tr><th>interpretation</th><td>Actual Hann-window FFT of synthetic engine vibration; not a calibrated test-bench measurement.</td></tr></table></div><h2>Reprodutibilidade</h2><div class="grid"></div><p>As tabelas são um resumo estático das métricas calculadas. Não afirmamos conectividade com SAP, Power BI ou operação produtiva.</p></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #004</li><li>Análise de dados</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #004</li><li>Análise de dados</li><li>Exercício técnico</li><li>Dados reais (CWRU) + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/01-dados/004-acoustic-nvh-vibration-spectrum-analysis">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/engine.py">Motor Python / Pandas / NumPy</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/data/004.csv">CSV sintético versionado</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/notebooks/004.ipynb">Notebook Jupyter</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/tests/test_analytics_batch1.py">Testes de regressão</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/003/"><span class="small muted">Anterior</span>#003 Catálogo de Documentação Técnica e Telemetria</a><a class="next" href="/cases/005/"><span class="small muted">Próximo</span>#005 Engajamento em Trilhas de Capacitação Industrial</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

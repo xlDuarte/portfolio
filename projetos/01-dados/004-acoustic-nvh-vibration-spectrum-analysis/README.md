@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4a):** diagnóstico de rolamentos com 40 registros reais de vibração do CWRU (SHA-256 conferido): cinemática do SKF 6205, pré-branqueamento cepstral, curtose espectral e espectro de envelope, decisão sem rótulos com limiar calibrado só no saudável. Pista interna 12/12, pista externa 8/12, esfera 0/12; verificação com sinais simulados de verdade conhecida. Código em [`bearings/`](../../../bearings/), método em [docs/physics/BEARINGS.md](../../../docs/physics/BEARINGS.md).
+
 # Project #004 — Espectro Acústico e Vibração Veicular (NVH)
 ## Acoustic NVH & Vibration Spectrum Analysis
 

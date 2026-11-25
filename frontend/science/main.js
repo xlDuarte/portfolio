@@ -4,6 +4,9 @@ const pages = [
   ['se', () => import('./estimation.js')],
   ['rk', () => import('./ranking.js')],
   ['bm', () => import('./benchmark.js')],
+  ['nv', () => import('./bearings.js').then(m => ({ init: m.initNVH }))],
+  ['an', () => import('./bearings.js').then(m => ({ init: m.initAnomaly }))],
+  ['sg', () => import('./bearings.js').then(m => ({ init: m.initSignatures }))],
 ];
 for (const [id, load] of pages) {
   const root = document.getElementById(id);
