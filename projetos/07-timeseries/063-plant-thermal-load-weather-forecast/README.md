@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5a):** clima real de Taubaté (INMET A728) reconstruído hora a hora, radiação por Hargreaves–Samani e um galpão hipotético 1R1C com temperatura sol-ar. A cobertura domina: 236 MWh/ano de resfriamento com telha metálica escura contra 16 com telha sanduíche branca. Mann–Kendall em Taubaté e São Paulo não detecta tendência com 7 e 16 anos de dados. Código em [`energy/climate.py`](../../../energy/climate.py), método em [docs/physics/ENERGY.md](../../../docs/physics/ENERGY.md).
+
 # #63 — Plant Thermal Load Weather Forecast
 
 **Implementação:** série industrial semanal inteiramente sintética em kWh_thermal/week; modelos reais **Statsmodels ExponentialSmoothing (ETS)** e **Prophet**, comparados com baseline ingênuo sazonal. Sem dados corporativos, previsões oficiais ou evidência de benefício econômico.

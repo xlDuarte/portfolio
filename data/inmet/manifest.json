@@ -1,0 +1,35 @@
+{
+ "source": "INMET \u2014 Instituto Nacional de Meteorologia, BDMEP, esta\u00e7\u00f5es autom\u00e1ticas, dados di\u00e1rios (A701 S\u00e3o Paulo Mirante, A652 Rio de Janeiro Forte de Copacabana, A521 Belo Horizonte Pampulha, A728 Taubat\u00e9)",
+ "canonical_url": "https://bdmep.inmet.gov.br/",
+ "mirror": "https://github.com/SousaLM/INMETdata",
+ "mirror_commit": "d1c9fbb",
+ "note": "Columns marked (AUT) are the BDMEP export; the remaining columns (FAO-56 evapotranspiration and radiation terms) were added by the mirror's author and are not used. The same four files have identical git blobs in https://github.com/vin-greggio/inmet (commit 18fe3a3), apparently a copy of the same export.",
+ "stations": {
+  "A701": {
+   "name": "S\u00e3o Paulo - Mirante",
+   "lat": -23.49638888,
+   "elev_m": 785.64
+  },
+  "A652": {
+   "name": "Rio de Janeiro - Forte de Copacabana",
+   "lat": -22.98833333,
+   "elev_m": 25.59
+  },
+  "A521": {
+   "name": "Belo Horizonte - Pampulha",
+   "lat": -19.88388888,
+   "elev_m": 854.02
+  },
+  "A728": {
+   "name": "Taubat\u00e9",
+   "lat": -23.04166666,
+   "elev_m": 582.26
+  }
+ },
+ "files": {
+  "dados_A701.csv": "b793a280da77b08d76f0c49eb5b22a8d2e334109f761b8bcc5656bc877ec1a19",
+  "dados_A652.csv": "e353c085b63d28cf5a4f27169e00e36600bee417d623649e60ec09e10b135bd8",
+  "dados_A521.csv": "fe65badc7e9b8ed49ec7d9cc1a0663597390eef65c746531304c455164b248b1",
+  "dados_A728.csv": "543fbe5b2c5c170bdb4b30b8d853597bfd2e1581fd1b0e90b9a1ba23841346d4"
+ }
+}

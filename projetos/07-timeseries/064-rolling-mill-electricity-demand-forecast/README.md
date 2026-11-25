@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5a):** previsão probabilística do pico diário real do SE/CO (ONS) um dia à frente, com calendário brasileiro, termo de temperatura com ponto de equilíbrio e resíduo AR(1). Erro de 1,66 % com a temperatura observada, 1,82 % sem temperatura e 3,91 % repetindo a semana anterior; com 1 °C de erro na previsão de temperatura o ganho some, e propagar essa incerteza devolve a cobertura de 90 %. Código em [`energy/forecast.py`](../../../energy/forecast.py), método em [docs/physics/ENERGY.md](../../../docs/physics/ENERGY.md).
+
 # #64 — Rolling Mill Electricity Demand Forecast
 
 **Status técnico:** previsão sobre série **inteiramente sintética** em MWh/week com treino real de **Statsmodels ETS** e **Prophet**, além de baseline sazonal.

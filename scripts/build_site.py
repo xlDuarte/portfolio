@@ -986,6 +986,19 @@ REAL_SECTIONS = {
           "note": "<strong>Dados reais e sintéticos, separados.</strong> A avaliação principal usa vibração real do banco de "
                   "rolamentos da Case Western Reserve University. A versão anterior, mais abaixo, usa séries sintéticas.",
           "fact": "Dados reais (CWRU) + séries sintéticas"},
+    8: {"fragment": ROOT / "scripts" / "fragments" / "008-baseline.html",
+        "note": "<strong>Dados reais e sintéticos, separados.</strong> A linha de base principal usa a carga horária real do ONS "
+                "(SE/CO, 2019–2025) e a temperatura real do INMET. A análise original de utilidades, mais abaixo, usa DADOS 100% "
+                "SINTÉTICOS e serve de teste do pipeline.",
+        "fact": "Dados reais (ONS + INMET) + pipeline sintético"},
+    63: {"fragment": ROOT / "scripts" / "fragments" / "063-climate.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> O clima é real (INMET, Taubaté e São Paulo); o galpão "
+                 "simulado é hipotético. O modelo original, mais abaixo, usa série e alvos 100% sintéticos.",
+         "fact": "Clima real (INMET) + galpão hipotético + pipeline sintético"},
+    64: {"fragment": ROOT / "scripts" / "fragments" / "064-peak.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A previsão principal usa a carga horária real do ONS e a "
+                 "temperatura real do INMET. A previsão original, mais abaixo, usa série e alvos 100% sintéticos.",
+         "fact": "Dados reais (ONS + INMET) + pipeline sintético"},
 }
 SCIENCE_SCRIPT = '<script type="module" src="/assets/js/science.js"></script>'
 LAPSIM_CSS = '<link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css">'

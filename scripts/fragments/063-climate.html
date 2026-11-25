@@ -1,0 +1,44 @@
+<div class="ls" id="cl" data-state="loading">
+<section class="ls-section" aria-labelledby="cl-title">
+  <h2 id="cl-title">Clima real do Vale do Paraíba e carga térmica de um galpão</h2>
+  <p class="ls-lede">Quanto o clima custa a uma planta depende menos da temperatura média do que da cobertura do prédio. Aqui o clima é real (estação automática do INMET em Taubaté) e o galpão é hipotético: 2.000 m², 8 m de pé-direito, mesma ocupação, quatro coberturas diferentes. Um modelo térmico de uma resistência e uma capacitância, dirigido pela temperatura hora a hora e pela radiação solar, calcula a temperatura interna sem ar-condicionado e a energia para mantê-la em 26 °C.</p>
+  <dl class="ls-kpis">
+    <div><dt>Resfriamento por ano: pior × melhor cobertura</dt><dd data-k="mwh">—</dd></div>
+    <div><dt>Horas por ano acima de 30 °C dentro, telha metálica escura</dt><dd data-k="hours">—</dd></div>
+    <div><dt>R² entre resfriamento anual e graus-dia</dt><dd data-k="r2">—</dd></div>
+    <div><dt>Tendência da temperatura em São Paulo, 2007–2022</dt><dd data-k="trend">—</dd></div>
+  </dl>
+  <p class="ls-note" id="cl-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="cl-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="cl-wh-title">
+  <h2 id="cl-wh-title">A semana mais quente</h2>
+  <figure class="ls-chart"><svg id="cl-week" viewBox="0 0 760 300" role="img" aria-labelledby="cl-week-cap"></svg>
+    <figcaption id="cl-week-cap">Temperatura externa reconstruída hora a hora e temperatura interna simulada nas quatro coberturas, sem refrigeração, na semana de maior média móvel de sete dias dos anos simulados.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Cenários de cobertura"><table class="ls-table" id="cl-scen"><caption>Faixa entre o menor e o maior ano simulado; resfriamento elétrico com COP 3</caption></table></div>
+  <p class="ls-note">A cobertura domina: isolar o telhado corta a energia de resfriamento em quase dez vezes, e pintá-lo de branco corta pouco mais da metade. Os graus-dia explicam só parte da variação de um ano para outro, porque o que pesa no galpão é a radiação no telhado, que entra pela temperatura sol-ar e não aparece nos graus-dia.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="cl-tr-title">
+  <h2 id="cl-tr-title">Há tendência no clima medido?</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Resumo anual de Taubaté"><table class="ls-table" id="cl-annual"><caption>Taubaté (A728), anos com pelo menos 330 dias válidos; graus-dia e dias quentes escalados para 365,25 dias</caption></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Testes de tendência"><table class="ls-table" id="cl-trend"><caption>Teste de Mann–Kendall e inclinação de Sen com intervalo de 95 %</caption></table></div>
+  <p class="ls-note">Em Taubaté há só sete anos completos, com lacunas longas (2021 tem 56 dias válidos), e nenhuma tendência é detectável. São Paulo tem 16 anos e também não mostra tendência significativa. Isso não contradiz o aquecimento regional documentado em séries longas: com 7 a 16 anos e a variabilidade de um ano para outro, o teste não tem poder para ver décimos de grau por década. A conclusão correta é que estes dados não medem tendência, e não que ela não existe.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="cl-method-title">
+  <h2 id="cl-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Dados diários do BDMEP/INMET (temperatura mínima, média e máxima). Temperatura horária reconstruída por duas meias-cossenoides entre a mínima ao nascer do sol e a máxima às 15 h. Radiação diária por Hargreaves–Samani (k<sub>Rs</sub> = 0,16, interior) sobre a radiação extraterrestre da FAO-56, distribuída no dia por um seno entre nascer e pôr do sol. Dias faltantes no meio dos anos simulados são preenchidos pela climatologia do dia do ano.</li>
+    <li>Galpão 1R1C: telhado acoplado à temperatura sol-ar T + αG/h<sub>e</sub> (h<sub>e</sub> = 17 W/m²K), paredes e 0,5 troca de ar por hora acoplados ao ar externo, capacitância efetiva de 100 kJ/m²K, 5 W/m² de cargas internas em horário de trabalho, Euler implícito com passo de 1 h e resfriamento ideal até 26 °C.</li>
+    <li>A temperatura interna sem refrigeração é um limite superior: galpões ventilados naturalmente trocam bem mais que 0,5 volume por hora, e a estratificação do ar não é modelada. As horas acima de 30 °C comparam coberturas; não descrevem um prédio real.</li>
+    <li>Mann–Kendall sem correção de autocorrelação (com séries anuais tão curtas, a correção não muda a conclusão). Dois pontos de estação não descrevem o clima de uma região.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_energy_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/energy/climate.py">Código em energy/climate.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/inmet/manifest.json">Manifesto INMET</a> · <a href="/data/energy.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="cl-old-title">
+  <h2 id="cl-old-title">Modelo original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica o modelo da primeira versão, com série e alvos 100% sintéticos, mantido como teste do pipeline.</p>
+</section>
+</div>

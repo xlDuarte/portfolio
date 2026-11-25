@@ -10,6 +10,9 @@ const pages = [
   ['ru', () => import('./degradation.js').then(m => ({ init: m.initRUL }))],
   ['pu', () => import('./degradation.js').then(m => ({ init: m.initPump }))],
   ['ol', () => import('./degradation.js').then(m => ({ init: m.initOil }))],
+  ['cp', () => import('./energy.js').then(m => ({ init: m.initChangepoint }))],
+  ['pk', () => import('./energy.js').then(m => ({ init: m.initPeak }))],
+  ['cl', () => import('./energy.js').then(m => ({ init: m.initClimate }))],
 ];
 for (const [id, load] of pages) {
   const root = document.getElementById(id);

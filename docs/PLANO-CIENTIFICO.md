@@ -193,7 +193,8 @@ Legenda de prioridade: **A** = fenômeno físico com dado real disponível; **B*
 | 3 ✔ | Estimação de estado e calibração de probabilidades | #102, #111, #014 (feito); #109 (sincronização de fluxos) adiado para a fase 11 | Reusa o modelo de bicicleta com Pacejka; #111 e #014 usam o modelo de ritmo da fase 2 ([método](physics/ESTIMATION.md)) |
 | 4a ✔ | Rolamentos com vibração real | #004, #104, #052 (feito) | 40 registros reais do CWRU com integridade verificada ([método](physics/BEARINGS.md)) |
 | 4b ✔ | Degradação e confiabilidade | #097, #036, #037 (feito) | RUL com NASA C-MAPSS; bomba e óleo com o banco hidráulico real da ZeMA ([método](physics/DEGRADATION.md)) |
-| 5 | Energia, térmica e ambiente | #008, #029, #063, #064, #069, #070, #090 | Balanços de energia e dado público (INMET, ONS) |
+| 5a ✔ | Energia e clima com dado público | #008, #064, #063 (feito) | Carga horária real do ONS e clima real do INMET: linha de base ASHRAE Guideline 14, previsão probabilística do pico e galpão térmico 1R1C ([método](physics/ENERGY.md)) |
+| 5b | Balanços térmicos e tarifa | #029, #070, #090, #069 | Forno e banho com balanço de energia, tarifa horo-sazonal por programação linear; pluma gaussiana depende de dado meteorológico horário |
 | 6 | Materiais e visão física | #076, #080, #105, #073, #079, #074, #077, #075 | Geração física de imagem (Beer–Lambert, microestrutura) |
 | 7 | Operações e cadeia de suprimentos | #002, #010, #013, #016, #019, #020, #059, #060, #066, #067, #094, #096 | Filas, estoque e simulação de eventos discretos |
 | 8 | Séries temporais e finanças com dado real | #018, #061, #062, #065, #068, #027 | Previsão probabilística e risco |

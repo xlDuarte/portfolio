@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/industrial/#dados">Análise de dados</a></li><li aria-current="page">#008</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,19 +26,65 @@
   <p class="kicker">Industrial · Análise de dados · Projeto #008</p>
   <h1>Consumo de Utilidades e Operações de Turno</h1>
   <p class="lede">Análise horária de demanda de insumos de apoio, picos entre turnos produtivos e redução de desperdício.</p>
-  <div class="note">DADOS 100% SINTÉTICOS. Métricas produzidas por código efetivamente executado. Sem dado SAP real, sem impacto industrial observado e sem relatório Power BI homologado.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> A linha de base principal usa a carga horária real do ONS (SE/CO, 2019–2025) e a temperatura real do INMET. A análise original de utilidades, mais abaixo, usa DADOS 100% SINTÉTICOS e serve de teste do pipeline.</div>
 </section>
+<div class="wrap"><div class="ls" id="cp" data-state="loading">
+<section class="ls-section" aria-labelledby="cp-title">
+  <h2 id="cp-title">Linha de base de energia pela temperatura, com a carga real do Sudeste/Centro-Oeste</h2>
+  <p class="ls-lede">Antes de dizer que uma planta economizou energia, é preciso saber quanto ela teria consumido no mesmo clima. O método da ASHRAE Guideline 14 faz isso com uma regressão por partes na temperatura externa: abaixo de um ponto de equilíbrio a carga quase não muda, acima dele cada grau a mais liga mais refrigeração. Aqui o método é aplicado a uma carga real e grande: a carga horária do subsistema Sudeste/Centro-Oeste publicada pelo ONS, contra a temperatura medida pelo INMET em São Paulo, no Rio de Janeiro e em Belo Horizonte.</p>
+  <dl class="ls-kpis">
+    <div><dt>Ponto de equilíbrio da carga</dt><dd data-k="tb">—</dd></div>
+    <div><dt>Carga adicional por grau acima dele</dt><dd data-k="slope">—</dd></div>
+    <div><dt>CV(RMSE) do modelo diário</dt><dd data-k="cv">—</dd></div>
+    <div><dt>Dias independentes, descontada a autocorrelação</dt><dd data-k="neff">—</dd></div>
+  </dl>
+  <p class="ls-note" id="cp-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="cp-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="cp-fit-title">
+  <h2 id="cp-fit-title">Carga e temperatura</h2>
+  <figure class="ls-chart"><svg id="cp-scatter" viewBox="0 0 760 320" role="img" aria-labelledby="cp-scatter-cap"></svg>
+    <figcaption id="cp-scatter-cap">Cada ponto é um dia útil. A carga foi corrigida pelo efeito de cada ano (crescimento econômico, perdas, geração distribuída), estimado na mesma regressão, para que todos os anos fiquem no nível de 2019. A curva vermelha é o modelo escolhido pelo critério de informação bayesiano.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Modelos de ponto de mudança"><table class="ls-table" id="cp-models"><caption>Cinco formas de modelo ajustadas aos mesmos dias, com efeitos fixos de ano</caption></table></div>
+  <p class="ls-note">A Guideline 14 aceita, para calibração mensal, CV(RMSE) até 15 % e erro médio normalizado (NMBE) dentro de ±5 %; com dados horários, 30 % e ±10 %. O modelo diário fica muito abaixo desses limites. O NMBE é zero por construção, porque a regressão tem intercepto. O que os limites não cobrem é a autocorrelação: dias vizinhos têm resíduos parecidos (ρ perto de 0,66), e a própria Guideline corrige o número de observações para n′ = n(1 − ρ)/(1 + ρ) ao calcular a incerteza de economias. Os intervalos do resumo vêm de um bootstrap em blocos de 28 dias, que preserva essa dependência.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="cp-year-title">
+  <h2 id="cp-year-title">Ano a ano e fim de semana</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Ajuste por ano"><table class="ls-table" id="cp-years"><caption>Modelo de duas inclinações ajustado separadamente em cada ano (2020 sem o confinamento de março a junho)</caption></table></div>
+  <p class="ls-note" id="cp-weekend"></p>
+  <p class="ls-note">Os pontos de equilíbrio anuais variam mais do que o intervalo do ajuste conjunto. Em um ano isolado há poucos dias acima de 24 °C, e o ponto de mudança e a inclinação se compensam: um ponto mais alto vem com uma inclinação mais forte. A leitura robusta é a do ajuste conjunto. A carga base cresce de 2019 para 2023; esta análise não separa as causas desse crescimento.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="cp-method-title">
+  <h2 id="cp-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Carga: média diária da carga horária verificada do subsistema SE/CO (ONS), 2019–2025, sem lacunas na série horária. Temperatura: média diária das estações automáticas A701, A652 e A521 do INMET; linhas fisicamente impossíveis (mínima acima da média, por exemplo) foram descartadas e contadas no JSON.</li>
+    <li>Dias úteis apenas: fins de semana, feriados nacionais, pontos facultativos (Carnaval, Corpus Christi) e pontes ficam de fora; o confinamento de 16/03 a 30/06/2020 também.</li>
+    <li>Modelos 2P, 3PC, 3PH, 4P e 5P com efeitos fixos de ano; pontos de mudança por busca em grade de 0,1 °C entre 14 e 27 °C, escolhidos por mínimos quadrados; seleção de forma pelo BIC.</li>
+    <li>A temperatura de três capitais é uma aproximação do clima de um subsistema que vai de Mato Grosso ao Espírito Santo. Umidade e radiação não entram. A regressão descreve associação com a temperatura; não separa o efeito do clima de outros fatores sazonais que andam junto com ele.</li>
+    <li>O mesmo método serve para a linha de base de uma planta: troque a carga do subsistema pela medição da subestação e a média de três capitais pela estação mais próxima.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_energy_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/energy/changepoint.py">Código em energy/changepoint.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/ons/manifest.json">Manifesto ONS</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/inmet/manifest.json">Manifesto INMET</a> · <a href="/data/energy.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="cp-old-title">
+  <h2 id="cp-old-title">Análise original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a análise da primeira versão, de consumo de utilidades por turno, feita com dados 100% sintéticos e mantida como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Visualização calculada</h2><img alt="Gráfico do estudo #008 calculado com Matplotlib usando dados sintéticos" loading="lazy" src="chart.svg"/><h2>Métricas reproduzíveis</h2><div class="table-wrap"><table><tr><th>Base de dados</th><td>synthetic / reproducible, not operational evidence</td></tr><tr><th>Projeto</th><td>8</td></tr><tr><th>readings</th><td>270</td></tr><tr><th>Total KWH</th><td class="r num">190,4</td></tr><tr><th>units</th><td class="r num">72,96</td></tr><tr><th>Weighted KWH per unit</th><td class="r num">2,61</td></tr><tr><th>Total cost BRL</th><td class="r num">155,1</td></tr><tr><th>interpretation</th><td>Intensity denominator accounts for units; compare product mix before attributing causes.</td></tr></table></div><h2>Reprodutibilidade</h2><div class="grid"></div><p>As tabelas são um resumo estático das métricas calculadas. Não afirmamos conectividade com SAP, Power BI ou operação produtiva.</p></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #008</li><li>Análise de dados</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #008</li><li>Análise de dados</li><li>Exercício técnico</li><li>Dados reais (ONS + INMET) + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/01-dados/008-plant-shift-utilities-facility-analysis">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/engine.py">Motor Python / Pandas / NumPy</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/data/008.csv">CSV sintético versionado</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/analytics_batch1/notebooks/008.ipynb">Notebook Jupyter</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/tests/test_analytics_batch1.py">Testes de regressão</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/007/"><span class="small muted">Anterior</span>#007 Comportamento de Requisições e Compras (OEM/Tier-1)</a><a class="next" href="/cases/009/"><span class="small muted">Próximo</span>#009 Avaliação de Ativos Industriais e Imobilizado (CAPEX)</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

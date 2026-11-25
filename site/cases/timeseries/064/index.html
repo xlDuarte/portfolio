@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/timeseries/">Séries temporais</a></li><li aria-current="page">#064</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,21 +26,69 @@
   <p class="kicker">Industrial · Séries temporais · Projeto #064</p>
   <h1>Forecasting de Demanda de Energia em Horário de Ponta</h1>
   <p class="lede">Previsão horária de carga elétrica industrial para otimização de contratos no mercado livre.</p>
-  <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> A previsão principal usa a carga horária real do ONS e a temperatura real do INMET. A previsão original, mais abaixo, usa série e alvos 100% sintéticos.</div>
 </section>
+<div class="wrap"><div class="ls" id="pk" data-state="loading">
+<section class="ls-section" aria-labelledby="pk-title">
+  <h2 id="pk-title">Previsão do pico diário de carga com dados reais do ONS</h2>
+  <p class="ls-lede">Contratos de demanda e compras no mercado de curto prazo dependem do pico de amanhã. O modelo aqui prevê o pico diário do subsistema Sudeste/Centro-Oeste um dia à frente: calendário brasileiro (feriados, pontes, dia da semana), sazonalidade, tendência, um termo de temperatura com ponto de equilíbrio e um resíduo autorregressivo. A pergunta que importa é quanto a temperatura ajuda quando ela também é uma previsão, com erro.</p>
+  <dl class="ls-kpis">
+    <div><dt>Erro médio com a temperatura observada</dt><dd data-k="mape">—</dd></div>
+    <div><dt>Erro médio repetindo a semana anterior</dt><dd data-k="naive">—</dd></div>
+    <div><dt>Cobertura da faixa de 90 % com incerteza da temperatura propagada</dt><dd data-k="cover">—</dd></div>
+    <div><dt>Maior pico diário da série</dt><dd data-k="rec">—</dd></div>
+  </dl>
+  <p class="ls-note" id="pk-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="pk-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="pk-fc-title">
+  <h2 id="pk-fc-title">O ano de teste</h2>
+  <figure class="ls-chart"><svg id="pk-series" viewBox="0 0 760 300" role="img" aria-labelledby="pk-series-cap"></svg>
+    <figcaption id="pk-series-cap">Pico diário real e previsão de um dia à frente com a faixa de 90 % do conjunto de 2.000 trajetórias, no cenário realista: temperatura prevista com erro de 1 °C e essa incerteza propagada pelo termo de temperatura.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Métricas de previsão"><table class="ls-table" id="pk-metrics"><caption>Período de teste, nunca usado no ajuste. CRPS mede a distribuição inteira da previsão; menor é melhor</caption></table></div>
+  <p class="ls-note" id="pk-value"></p>
+  <p class="ls-note">O erro de previsão de temperatura é simulado como ruído gaussiano sobre a temperatura observada, com semente fixa; o desvio real de um modelo numérico de um dia à frente fica nessa ordem de grandeza, mas varia com a estação e a região e não foi medido aqui.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="pk-hour-title">
+  <h2 id="pk-hour-title">Quando o pico acontece</h2>
+  <figure class="ls-chart"><svg id="pk-heat" viewBox="0 0 760 276" role="img" aria-labelledby="pk-heat-cap"></svg>
+    <figcaption id="pk-heat-cap">Contagem de dias por mês e hora do pico, 2019–2025. O pico do SE/CO é de fim de tarde e começo de noite o ano todo; nos meses quentes parte dos dias tem o pico à tarde, com a refrigeração.</figcaption></figure>
+  <figure class="ls-chart"><svg id="pk-aft" viewBox="0 0 760 260" role="img" aria-labelledby="pk-aft-cap"></svg>
+    <figcaption id="pk-aft-cap">Fração dos dias de cada ano com o pico entre 12 h e 16 h.</figcaption></figure>
+  <p class="ls-note">A fração de picos à tarde cai de 2019 para 2022 e oscila depois. Uma hipótese é a geração solar distribuída, que reduz a carga líquida vista pelo operador no meio do dia; outra são verões mais ou menos quentes e mudanças na forma como o ONS contabiliza a geração distribuída. Nenhuma das duas é testada aqui.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="pk-method-title">
+  <h2 id="pk-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Regressão linear com 7 indicadores de dia da semana, feriado, ponte, 3 pares de Fourier anuais, tendência e dois termos de temperatura em dobradiça no ponto de equilíbrio estimado no treino; resíduo AR(1) com φ estimado no treino.</li>
+    <li>Faixas por conjunto: inovações empíricas do treino reamostradas. Com temperatura incerta, cada trajetória sorteia T ~ N(T̂, σ²) antes de passar pela dobradiça, que é não linear.</li>
+    <li>Treino de 2019 a 2022 sem o confinamento de 2020; teste em 2023, enquanto há temperatura do INMET no conjunto de dados. Uma única divisão temporal: a diferença entre modelos tem incerteza que não foi quantificada por teste formal.</li>
+    <li>O pico do subsistema não é o pico de uma planta: a demanda contratada de uma indústria depende da operação dela. O método se transfere; os números não.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_energy_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/energy/forecast.py">Código em energy/forecast.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/ons/manifest.json">Manifesto ONS</a> · <a href="/data/energy.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="pk-old-title">
+  <h2 id="pk-old-title">Previsão original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a previsão da primeira versão, com série e alvos 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/main.py --save
 python projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #064</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #064</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados reais (ONS + INMET) + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/064-rolling-mill-electricity-demand-forecast/README.md">Metodologia e limitações</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/timeseries/063/"><span class="small muted">Anterior</span>#063 Previsão Termodinâmica e Impacto Climático na Planta</a><a class="next" href="/cases/timeseries/065/"><span class="small muted">Próximo</span>#065 Previsão de Tráfego de Mensagens IIoT e APIs Corporativas</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

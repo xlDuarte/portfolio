@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/timeseries/">Séries temporais</a></li><li aria-current="page">#063</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,21 +26,66 @@
   <p class="kicker">Industrial · Séries temporais · Projeto #063</p>
   <h1>Previsão Termodinâmica e Impacto Climático na Planta</h1>
   <p class="lede">Modelagem do efeito da temperatura/umidade externa sobre torres de resfriamento e fornos.</p>
-  <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> O clima é real (INMET, Taubaté e São Paulo); o galpão simulado é hipotético. O modelo original, mais abaixo, usa série e alvos 100% sintéticos.</div>
 </section>
+<div class="wrap"><div class="ls" id="cl" data-state="loading">
+<section class="ls-section" aria-labelledby="cl-title">
+  <h2 id="cl-title">Clima real do Vale do Paraíba e carga térmica de um galpão</h2>
+  <p class="ls-lede">Quanto o clima custa a uma planta depende menos da temperatura média do que da cobertura do prédio. Aqui o clima é real (estação automática do INMET em Taubaté) e o galpão é hipotético: 2.000 m², 8 m de pé-direito, mesma ocupação, quatro coberturas diferentes. Um modelo térmico de uma resistência e uma capacitância, dirigido pela temperatura hora a hora e pela radiação solar, calcula a temperatura interna sem ar-condicionado e a energia para mantê-la em 26 °C.</p>
+  <dl class="ls-kpis">
+    <div><dt>Resfriamento por ano: pior × melhor cobertura</dt><dd data-k="mwh">—</dd></div>
+    <div><dt>Horas por ano acima de 30 °C dentro, telha metálica escura</dt><dd data-k="hours">—</dd></div>
+    <div><dt>R² entre resfriamento anual e graus-dia</dt><dd data-k="r2">—</dd></div>
+    <div><dt>Tendência da temperatura em São Paulo, 2007–2022</dt><dd data-k="trend">—</dd></div>
+  </dl>
+  <p class="ls-note" id="cl-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="cl-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="cl-wh-title">
+  <h2 id="cl-wh-title">A semana mais quente</h2>
+  <figure class="ls-chart"><svg id="cl-week" viewBox="0 0 760 300" role="img" aria-labelledby="cl-week-cap"></svg>
+    <figcaption id="cl-week-cap">Temperatura externa reconstruída hora a hora e temperatura interna simulada nas quatro coberturas, sem refrigeração, na semana de maior média móvel de sete dias dos anos simulados.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Cenários de cobertura"><table class="ls-table" id="cl-scen"><caption>Faixa entre o menor e o maior ano simulado; resfriamento elétrico com COP 3</caption></table></div>
+  <p class="ls-note">A cobertura domina: isolar o telhado corta a energia de resfriamento em quase dez vezes, e pintá-lo de branco corta pouco mais da metade. Os graus-dia explicam só parte da variação de um ano para outro, porque o que pesa no galpão é a radiação no telhado, que entra pela temperatura sol-ar e não aparece nos graus-dia.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="cl-tr-title">
+  <h2 id="cl-tr-title">Há tendência no clima medido?</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Resumo anual de Taubaté"><table class="ls-table" id="cl-annual"><caption>Taubaté (A728), anos com pelo menos 330 dias válidos; graus-dia e dias quentes escalados para 365,25 dias</caption></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Testes de tendência"><table class="ls-table" id="cl-trend"><caption>Teste de Mann–Kendall e inclinação de Sen com intervalo de 95 %</caption></table></div>
+  <p class="ls-note">Em Taubaté há só sete anos completos, com lacunas longas (2021 tem 56 dias válidos), e nenhuma tendência é detectável. São Paulo tem 16 anos e também não mostra tendência significativa. Isso não contradiz o aquecimento regional documentado em séries longas: com 7 a 16 anos e a variabilidade de um ano para outro, o teste não tem poder para ver décimos de grau por década. A conclusão correta é que estes dados não medem tendência, e não que ela não existe.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="cl-method-title">
+  <h2 id="cl-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Dados diários do BDMEP/INMET (temperatura mínima, média e máxima). Temperatura horária reconstruída por duas meias-cossenoides entre a mínima ao nascer do sol e a máxima às 15 h. Radiação diária por Hargreaves–Samani (k<sub>Rs</sub> = 0,16, interior) sobre a radiação extraterrestre da FAO-56, distribuída no dia por um seno entre nascer e pôr do sol. Dias faltantes no meio dos anos simulados são preenchidos pela climatologia do dia do ano.</li>
+    <li>Galpão 1R1C: telhado acoplado à temperatura sol-ar T + αG/h<sub>e</sub> (h<sub>e</sub> = 17 W/m²K), paredes e 0,5 troca de ar por hora acoplados ao ar externo, capacitância efetiva de 100 kJ/m²K, 5 W/m² de cargas internas em horário de trabalho, Euler implícito com passo de 1 h e resfriamento ideal até 26 °C.</li>
+    <li>A temperatura interna sem refrigeração é um limite superior: galpões ventilados naturalmente trocam bem mais que 0,5 volume por hora, e a estratificação do ar não é modelada. As horas acima de 30 °C comparam coberturas; não descrevem um prédio real.</li>
+    <li>Mann–Kendall sem correção de autocorrelação (com séries anuais tão curtas, a correção não muda a conclusão). Dois pontos de estação não descrevem o clima de uma região.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_energy_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/energy/climate.py">Código em energy/climate.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/inmet/manifest.json">Manifesto INMET</a> · <a href="/data/energy.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="cl-old-title">
+  <h2 id="cl-old-title">Modelo original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica o modelo da primeira versão, com série e alvos 100% sintéticos, mantido como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/063-plant-thermal-load-weather-forecast/main.py --save
 python projetos/07-timeseries/063-plant-thermal-load-weather-forecast/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #063</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #063</li><li>Séries temporais</li><li>Exercício técnico</li><li>Clima real (INMET) + galpão hipotético + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/07-timeseries/063-plant-thermal-load-weather-forecast">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/063-plant-thermal-load-weather-forecast/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/063-plant-thermal-load-weather-forecast/README.md">Metodologia e limitações</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/timeseries/062/"><span class="small muted">Anterior</span>#062 Previsão S&amp;OP de Faturamento e Demanda Industrial</a><a class="next" href="/cases/timeseries/064/"><span class="small muted">Próximo</span>#064 Forecasting de Demanda de Energia em Horário de Ponta</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>
