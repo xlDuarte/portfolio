@@ -1,0 +1,90 @@
+name: Hugging Face datasets — pin and verify
+
+# The build sandbox cannot reach huggingface.co; GitHub-hosted runners can. This workflow
+#  - on pull requests and pushes that touch the fetcher or a manifest: runs the offline tests,
+#    pins every unpinned manifest to a commit SHA, checks pinned ones against the Hub tree and
+#    downloads a few files of each to prove the per-file hashes; the (possibly updated) manifests
+#    are uploaded as an artifact so the pins can be committed;
+#  - on manual dispatch: downloads one dataset in full, verified, as a short-lived artifact for
+#    development. Datasets marked redistribute=false are never committed to the repository.
+# No secret is needed for public datasets. HF_TOKEN (optional repository secret) is only used on
+# pushes and manual runs, never on pull requests.
+
+on:
+  pull_request:
+    paths: ["scripts/fetch_hf.py", "data/hf/**", "tests/test_fetch_hf.py", ".github/workflows/datasets-hf.yml"]
+  push:
+    branches: [main]
+    paths: ["scripts/fetch_hf.py", "data/hf/**", "tests/test_fetch_hf.py", ".github/workflows/datasets-hf.yml"]
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Manifest name in data/hf/ (without .json)"
+        required: true
+      limit:
+        description: "Download only the first N files (0 = all)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: datasets-hf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Offline tests
+        run: python -m unittest tests.test_fetch_hf -v
+      - name: Pin unpinned manifests and smoke-test every dataset
+        env:
+          HF_TOKEN: ${{ github.event_name == 'push' && secrets.HF_TOKEN || '' }}
+        run: |
+          set -euo pipefail
+          for f in data/hf/*.json; do
+            slug=$(basename "$f" .json)
+            if ! python -c "import json,sys; sys.exit(0 if 'revision' in json.load(open('$f')) else 1)"; then
+              python scripts/fetch_hf.py pin "$slug"
+            fi
+            python scripts/fetch_hf.py fetch "$slug" --limit 3
+          done
+          python scripts/fetch_hf.py list
+          git diff --stat -- data/hf || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hf-manifests
+          path: data/hf/*.json
+          retention-days: 7
+
+  fetch:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Download and verify
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          SLUG: ${{ inputs.slug }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          set -euo pipefail
+          [[ "$SLUG" =~ ^[a-z0-9-]+$ ]] || { echo "::error::invalid slug"; exit 1; }
+          [[ "$LIMIT" =~ ^[0-9]+$ ]] || { echo "::error::invalid limit"; exit 1; }
+          python scripts/fetch_hf.py fetch "$SLUG" --limit "$LIMIT"
+          du -sh "data/external/hf/$SLUG"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hf-${{ inputs.slug }}
+          path: data/external/hf/${{ inputs.slug }}
+          retention-days: 1

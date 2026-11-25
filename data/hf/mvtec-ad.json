@@ -1,0 +1,13 @@
+{
+  "repo_id": "foersben/mvtec-ad",
+  "title": "MVTec AD — detecção de anomalias industriais (subconjuntos metal_nut e screw)",
+  "projects": [76, 104],
+  "license": "CC-BY-NC-SA-4.0",
+  "license_note": "Uso não comercial, com atribuição e mesma licença. Não versionar no repositório; resultados derivados citam a fonte.",
+  "redistribute": false,
+  "source": {
+    "original": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+    "citation": "Bergmann, P.; Batzner, K.; Fauser, M.; Sattlegger, D.; Steger, C. The MVTec Anomaly Detection Dataset. International Journal of Computer Vision 129(4):1038–1059, 2021."
+  },
+  "include": ["metal_nut/*", "screw/*", "license.txt", "readme.txt"]
+}
