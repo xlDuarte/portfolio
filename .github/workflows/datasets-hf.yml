@@ -57,7 +57,8 @@ jobs:
             python scripts/fetch_hf.py fetch "$slug" --limit 3
           done
           python scripts/fetch_hf.py list
-          git diff --stat -- data/hf || true
+          # print pinned manifests too: artifact storage may be unreachable from where pins are committed
+          for f in data/hf/*.json; do echo "::group::$f"; cat "$f"; echo "::endgroup::"; done
       - uses: actions/upload-artifact@v4
         with:
           name: hf-manifests
