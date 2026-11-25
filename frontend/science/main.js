@@ -7,6 +7,9 @@ const pages = [
   ['nv', () => import('./bearings.js').then(m => ({ init: m.initNVH }))],
   ['an', () => import('./bearings.js').then(m => ({ init: m.initAnomaly }))],
   ['sg', () => import('./bearings.js').then(m => ({ init: m.initSignatures }))],
+  ['ru', () => import('./degradation.js').then(m => ({ init: m.initRUL }))],
+  ['pu', () => import('./degradation.js').then(m => ({ init: m.initPump }))],
+  ['ol', () => import('./degradation.js').then(m => ({ init: m.initOil }))],
 ];
 for (const [id, load] of pages) {
   const root = document.getElementById(id);

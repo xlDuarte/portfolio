@@ -1,6 +1,6 @@
 // Phase 4a — rolling-element bearings on real CWRU data, shared by three pages:
 // #004 envelope diagnosis (root "nv"), #104 anomaly detection (root "an"), #052 signatures (root "sg").
-import { $, table, chart, el, text, clear, fmt, pct, getJSON, INK, SLATE, RULE, BLUE, RED, GREEN, AMBER, GREY } from './ui.js';
+import { $, table, chart, bars, el, text, clear, fmt, pct, getJSON, INK, SLATE, BLUE, RED, GREEN, AMBER, GREY } from './ui.js';
 
 const URL = '/data/bearings-cwru.json';
 const CLS = { N: 'Normal', IR: 'Pista interna', B: 'Esfera', OR: 'Pista externa' };
@@ -104,29 +104,6 @@ export async function initNVH() {
 }
 
 // ---------------------------------------------------------------- #104
-function bars(svg, groups) {
-  clear(svg);
-  const W = 760, rh = 22, H = 30 + groups.reduce((a, g) => a + 22 + g.bars.length * rh + 14, 0) + 30;
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  const l = 230, r = W - 60, x = v => l + v * (r - l);
-  for (let v = 0; v <= 1.0001; v += 0.25) {
-    el('line', { x1: x(v), x2: x(v), y1: 20, y2: H - 30, stroke: RULE }, svg);
-    text(svg, x(v), H - 12, pct(v, 0), { 'text-anchor': 'middle', 'font-size': 10.5, fill: SLATE });
-  }
-  let y = 26;
-  groups.forEach(g => {
-    text(svg, 10, y + 12, g.label, { 'font-size': 11.5, 'font-weight': 600, fill: INK });
-    y += 22;
-    g.bars.forEach(b => {
-      el('rect', { x: l, y, width: Math.max(x(b.v) - l, 1), height: rh - 6, fill: b.color }, svg);
-      text(svg, l - 8, y + 12, b.name, { 'text-anchor': 'end', 'font-size': 11, fill: SLATE });
-      text(svg, x(b.v) + 6, y + 12, pct(b.v, 1), { 'font-size': 11, fill: INK });
-      y += rh;
-    });
-    y += 14;
-  });
-}
-
 export async function initAnomaly() {
   const d = await data(), m = d.monitoring;
   const P = m.detection.phys, S = m.detection.spec, C = m.classification;

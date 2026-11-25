@@ -1,0 +1,47 @@
+<div class="ls" id="pu" data-state="loading">
+<section class="ls-section" aria-labelledby="pu-title">
+  <h2 id="pu-title">Vazamento interno de bomba com dados reais de um banco hidráulico</h2>
+  <p class="ls-lede">Uma bomba de deslocamento fixo entrega um volume por rotação menos o que vaza internamente. Com desgaste, o vazamento cresce e a vazão cai. O problema é que o vazamento também cresce quando o óleo esquenta e fica mais fino: um classificador que aprende a vazão de uma máquina fria erra na mesma máquina quente. Aqui os dados são de um banco hidráulico real da ZeMA (Alemanha), com 2.205 ciclos em que bomba, válvula, acumulador e resfriador foram degradados juntos.</p>
+  <dl class="ls-kpis">
+    <div><dt>Acerto em temperatura nunca vista: estatísticos → física</dt><dd data-k="loco">—</dd></div>
+    <div><dt>Vazão prevista para óleo quente, modelo × medida (L/min)</dt><dd data-k="extrap">—</dd></div>
+    <div><dt>Vazão perdida: vazamento leve / severo (L/min)</dt><dd data-k="leak">—</dd></div>
+    <div><dt>Eficiência hidráulica: sã → severo</dt><dd data-k="eta">—</dd></div>
+  </dl>
+  <p class="ls-note" id="pu-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="pu-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="pu-phys-title">
+  <h2 id="pu-phys-title">Vazão, pressão e temperatura</h2>
+  <figure class="ls-chart"><svg id="pu-scatter" viewBox="0 0 760 300" role="img" aria-labelledby="pu-scatter-cap"></svg>
+    <figcaption id="pu-scatter-cap">Vazão de cada ciclo estável, lida a 156 bar a partir dos patamares de carga, contra a temperatura do óleo (um ponto a cada três ciclos). A curva é o modelo da bomba sã, ajustado só com o óleo a 36 e 45 °C: Q = Q<sub>th</sub> − K/ν(T), em que o vazamento laminar cresce com o inverso da viscosidade.</figcaption></figure>
+  <p class="ls-note">Teste da física fora da amostra: ajustado no óleo a 35–46 °C, o modelo prevê para os ciclos a 56 °C uma vazão média que difere da medida em 0,003 L/min. Uma reta em temperatura erra mais que isso. A viscosidade explica a queda de vazão da bomba sã.</p>
+  <p class="ls-note" id="pu-k"></p>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Estados do resfriador"><table class="ls-table" id="pu-state"><caption>Déficit de vazão em relação à bomba sã na mesma temperatura (mediana) e eficiência hidráulica p·Q/P<sub>elétrica</sub></caption></table></div>
+</section>
+
+<section class="ls-section" aria-labelledby="pu-cls-title">
+  <h2 id="pu-cls-title">Classificar o vazamento em outra temperatura</h2>
+  <figure class="ls-chart"><svg id="pu-bars" viewBox="0 0 760 300" role="img" aria-labelledby="pu-bars-cap"></svg>
+    <figcaption id="pu-bars-cap">Acurácia balanceada de um classificador logístico com três classes (sem vazamento, leve, severo), por conjunto de atributos e protocolo de validação.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Acerto por dobra"><table class="ls-table" id="pu-folds"><caption>Regime térmico nunca visto: acerto por estado do resfriador deixado de fora</caption></table></div>
+  <p class="ls-note">O resfriador foi trocado só duas vezes no ensaio, então cada estado dele é um bloco contínuo de ciclos com o óleo numa faixa de temperatura. Sortear ciclos mistura vizinhos quase idênticos entre treino e teste. Deixar um estado do resfriador de fora testa se o modelo aguenta uma temperatura que não viu. Os 34 atributos estatísticos (média e desvio de cada sensor) caem para perto de 60 %; os três atributos físicos com compensação de viscosidade ficam em 94 %.</p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="pu-method-title">
+  <h2 id="pu-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Patamares de carga: amostras a 10 Hz com variação de pressão abaixo de 0,3 bar, a partir de 1 s depois de cada degrau, com vazão acima de 2 L/min e fora do trecho de alívio a 191 bar. Em cada ciclo, regressão da vazão na pressão, lida a 156 bar.</li>
+    <li>Viscosidade pela equação de Walther (ASTM D341). O óleo do banco não é informado; supõe-se ISO VG 46 com índice de viscosidade perto de 100. A compensação usa só a razão de viscosidades, que muda pouco entre graus vizinhos.</li>
+    <li>A compensação (Q<sub>th</sub>, K) é ajustada em cada dobra só com ciclos de treino com bomba sã e estáveis. Atributos físicos: déficit de vazão, eficiência hidráulica e temperatura.</li>
+    <li>Um único banco de ensaio e um único conjunto de componentes; a generalização para outra bomba não foi testada.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/fetch_hydraulic.py     # baixa e confere o SHA-256 dos 20 arquivos
+python scripts/build_degradation_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/degradation/hydraulics.py">Código em degradation/hydraulics.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/hydraulic/manifest.json">Manifesto com as somas de verificação</a> · <a href="/data/degradation.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="pu-old-title">
+  <h2 id="pu-old-title">Classificador original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica o classificador da primeira versão, treinado em observações e rótulos 100% sintéticos, mantido como teste do pipeline.</p>
+</section>
+</div>
