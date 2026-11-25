@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/advanced/">Sistemas ponta a ponta</a></li><li aria-current="page">#097</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,21 +26,100 @@
   <p class="kicker">Industrial · Sistemas ponta a ponta · Projeto #097</p>
   <h1>Plataforma Ciberfísica de Manutenção Preditiva (RUL)</h1>
   <p class="lede">Ingestão de telemetria vibracional/térmica, inferência Weibull/ML e abertura de ordem preventiva.</p>
-  <div class="note"><strong>Transparência:</strong> apenas dados sintéticos. Kafka requer broker ativo e CI separado; DAX não executado. Não existe integração SAP, controle industrial, acesso a pessoas reais, segurança de produção ou impacto econômico comprovado.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> O prognóstico principal usa os conjuntos FD001 e FD003 do C-MAPSS (NASA), avaliados nos motores de teste oficiais. O sistema original, mais abaixo, usa apenas dados sintéticos.</div>
 </section>
+<div class="wrap"><div class="ls" id="ru" data-state="loading">
+<section class="ls-section" aria-labelledby="ru-title">
+  <h2 id="ru-title">Vida útil restante de turbofans com dados da NASA</h2>
+  <p class="ls-lede">Prever quando um motor vai falhar só é útil se a previsão vier com a incerteza certa: a decisão de tirar o motor de serviço depende da probabilidade de falha antes da próxima janela de manutenção, não de um número isolado. Aqui um modelo bayesiano de degradação roda sobre o C-MAPSS, o conjunto de referência da NASA para prognóstico, e é avaliado nos motores de teste oficiais.</p>
+  <div class="ls-actions" role="group" aria-label="Conjunto de dados">
+    <button type="button" data-fd="FD001" aria-pressed="true">FD001: um modo de falha</button>
+    <button type="button" data-fd="FD003" aria-pressed="false">FD003: dois modos de falha</button>
+  </div>
+  <dl class="ls-kpis">
+    <div><dt>RMSE perto da falha, bayesiano × ridge (ciclos)</dt><dd data-k="near">—</dd></div>
+    <div><dt>Cobertura do intervalo de 90 %</dt><dd data-k="cover">—</dd></div>
+    <div><dt>Custo de manutenção, bayesiano × ridge</dt><dd data-k="cost">—</dd></div>
+    <div><dt>Forma de Weibull das vidas</dt><dd data-k="shape">—</dd></div>
+  </dl>
+  <p class="ls-note" id="ru-kpi-note">Carregando o modelo…</p>
+  <p class="ls-note" id="ru-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="ru-hi-title">
+  <h2 id="ru-hi-title">Do sensor à trajetória de degradação</h2>
+  <figure class="ls-chart"><svg id="ru-paths" viewBox="0 0 760 280" role="img" aria-labelledby="ru-paths-cap"></svg>
+    <figcaption id="ru-paths-cap">Indicador de saúde de 25 motores de treino até a falha: combinação linear de 14 sensores ajustada para valer 0 no início e 1 no fim da vida. Faixa vermelha: o nível em que os motores de treino falharam.</figcaption></figure>
+  <div class="ls-three">
+    <figure class="ls-chart"><svg id="ru-ex0" viewBox="0 0 380 240" role="img" aria-labelledby="ru-ex0-cap"></svg><figcaption id="ru-ex0-cap"></figcaption></figure>
+    <figure class="ls-chart"><svg id="ru-ex1" viewBox="0 0 380 240" role="img" aria-labelledby="ru-ex1-cap"></svg><figcaption id="ru-ex1-cap"></figcaption></figure>
+    <figure class="ls-chart"><svg id="ru-ex2" viewBox="0 0 380 240" role="img" aria-labelledby="ru-ex2-cap"></svg><figcaption id="ru-ex2-cap"></figcaption></figure>
+  </div>
+  <p class="ls-note">Três motores de teste: os ciclos observados até hoje (preto), a trajetória a posteriori com faixa de 90 % (azul) e o limiar de falha. O motor com pouco desgaste visível recebe uma faixa larga, porque quase toda a informação vem da frota.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="ru-res-title">
+  <h2 id="ru-res-title">Previsões nos motores de teste</h2>
+  <figure class="ls-chart"><svg id="ru-fan" viewBox="0 0 760 320" role="img" aria-labelledby="ru-fan-cap"></svg>
+    <figcaption id="ru-fan-cap">Para cada motor de teste: intervalo de 90 % e mediana do modelo bayesiano, previsão do ridge e vida restante real.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Métricas gerais"><table class="ls-table" id="ru-metrics"><caption>Métricas nos motores de teste oficiais</caption></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Métricas por faixa"><table class="ls-table" id="ru-bins"><caption>Erro por faixa de vida restante real</caption></table></div>
+  <p class="ls-note">O ridge foi treinado com o alvo limitado a 125 ciclos e quase não prevê acima disso; como o conjunto de teste tem poucos motores muito longe da falha, esse teto acerta por construção. O modelo bayesiano não conhece esse desenho e, para motores ainda sem desgaste visível, devolve a vida típica da frota, com intervalo largo. Perto da falha, onde a decisão acontece, o erro dele fica em torno da metade do erro do ridge, ou menos.</p>
+  <h3>A decisão de manutenção</h3>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Decisão de manutenção"><table class="ls-table" id="ru-dec"><caption>Intervir agora ou esperar a próxima janela de 30 ciclos, com falha em serviço 10 vezes mais cara que uma intervenção planejada</caption></table></div>
+  <p class="ls-note">Com custo de falha 10 vezes o de intervenção, intervir vale a pena quando a probabilidade de falhar na janela passa de 1/10. Só um modelo que entrega essa probabilidade, e calibrada, aplica a regra. A previsão pontual do ridge deixa motores falharem porque erra justamente no lado otimista.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="ru-wb-title">
+  <h2 id="ru-wb-title">Distribuição das vidas</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="ru-weib" viewBox="0 0 460 280" role="img" aria-labelledby="ru-weib-cap"></svg>
+      <figcaption id="ru-weib-cap">Vidas dos motores de treino contra a Weibull ajustada por máxima verossimilhança.</figcaption></figure>
+    <div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Weibull"><table class="ls-table" id="ru-wb"><caption>Weibull de dois parâmetros, intervalos de 95 % pela informação observada</caption></table></div>
+      <p class="ls-note">Forma maior que 1 indica desgaste: o risco de falha cresce com a idade. B10 é o número de ciclos em que 10 % da frota já falhou.</p>
+      <p class="ls-note" id="ru-wb-note"></p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Validação cruzada"><table class="ls-table" id="ru-cv"><caption>Escolha do modelo por validação cruzada nos motores de treino (em negrito, o escolhido)</caption></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="ru-method-title">
+  <h2 id="ru-method-title">Método e limites</h2>
+  <ol class="ls-steps">
+    <li><h3>Indicador de saúde</h3><p>Regressão linear dos 14 sensores que variam com a degradação, padronizados, contra 0 nos primeiros 10 % e 1 nos últimos 10 % da vida de cada motor de treino (Wang et al., 2008).</p></li>
+    <li><h3>Trajetória aleatória</h3><p>Cada motor segue</p>
+      <math display="block" tabindex="0"><mrow><msub><mi>S</mi><mi>i</mi></msub><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msub><mi>a</mi><mi>i</mi></msub><mo>+</mo><msub><mi>b</mi><mi>i</mi></msub><mfrac><mrow><msup><mi>e</mi><mrow><msub><mi>γ</mi><mi>i</mi></msub><mi>t</mi></mrow></msup><mo>−</mo><mn>1</mn></mrow><msub><mi>γ</mi><mi>i</mi></msub></mfrac><mo>+</mo><mi>ε</mi><mo>,</mo><mspace width="1em"/><mo>(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><mi>ln</mi><msub><mi>b</mi><mi>i</mi></msub><mo>,</mo><mi>ln</mi><msub><mi>γ</mi><mi>i</mi></msub><mo>)</mo><mo>∼</mo><mi>𝒩</mi><mo>(</mo><msub><mi>μ</mi><mn>0</mn></msub><mo>,</mo><msub><mi>Σ</mi><mn>0</mn></msub><mo>)</mo></mrow></math>
+      <p>com a distribuição da frota estimada nos motores de treino. O ruído é inflado pela autocorrelação dos resíduos. Para um motor de teste, a posteriori vem de amostragem por importância com proposta de Laplace; cada sorteio, junto com um limiar de falha sorteado, dá um instante de falha.</p></li>
+    <li><h3>Escolha do modelo</h3><p>γ comum (0,01, 0,02 ou 0,03) contra γ próprio de cada motor, pelo CRPS da distribuição prevista em validação cruzada de 5 dobras por motor, cortando as trajetórias de treino em pontos aleatórios como no conjunto de teste. A vida restante real do teste só entra na avaliação final.</p></li>
+  </ol>
+  <h3>Limites</h3>
+  <ul class="ls-checks">
+    <li>O C-MAPSS é uma simulação de alta fidelidade de motor turbofan, não um registro de voo; os sensores têm ruído sintético.</li>
+    <li>O FD003 mistura dois modos de falha numa única trajetória por motor; um indicador linear único descreve mal os motores que degradam pelo fan.</li>
+    <li>O custo de manutenção é ilustrativo: a razão de 10 entre falha e intervenção é uma hipótese, não um dado da NASA.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_degradation_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/degradation/cmapss.py">Código em degradation/cmapss.py</a> · <a href="/data/degradation.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="ru-old-title">
+  <h2 id="ru-old-title">Versão anterior, com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica o sistema original de manutenção preditiva com eventos e RUL simulados, mantido como registro de arquitetura. Os números dele não descrevem nenhum motor.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Executar o pipeline</h2><pre tabindex="0">python -m pip install -r requirements/advanced.txt
 python projetos/10-advanced/097-cyber-physical-predictive-maintenance-system/main.py --save
 uvicorn advanced_batch.api:app --host 127.0.0.1 --port 8000</pre><footer>Validação apenas para métricas sobre fixtures geradas localmente. É necessária homologação externa antes de aplicações empresariais.</footer></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #097</li><li>Sistemas ponta a ponta</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #097</li><li>Sistemas ponta a ponta</li><li>Exercício técnico</li><li>Dados NASA C-MAPSS + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/10-advanced/097-cyber-physical-predictive-maintenance-system">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/10-advanced/097-cyber-physical-predictive-maintenance-system/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/10-advanced/097-cyber-physical-predictive-maintenance-system/README.md">Documentação</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/advanced/096/"><span class="small muted">Anterior</span>#096 Motor de Recomendação de Parâmetros de Setup (MES)</a><a class="next" href="/cases/advanced/098/"><span class="small muted">Próximo</span>#098 Classificador Inteligente de Desenhos Técnicos, NFs e Contratos</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

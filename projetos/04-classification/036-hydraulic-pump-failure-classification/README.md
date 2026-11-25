@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4b):** vazamento interno de bomba com 2.205 ciclos reais do banco hidráulico da ZeMA (UCI): vazão nos patamares de carga, compensação de viscosidade (Walther) validada fora da amostra e classificação em regime térmico nunca visto (94 % com atributos físicos compensados contra 60 % com estatísticos). Código em [`degradation/hydraulics.py`](../../../degradation/hydraulics.py), método em [docs/physics/DEGRADATION.md](../../../docs/physics/DEGRADATION.md).
+
 # #036 — Hydraulic Pump Failure Classification
 
 **Escopo comprovável:** classificador industrial de demonstração treinado em observações e rótulos **100% sintéticos**.

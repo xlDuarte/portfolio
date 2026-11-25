@@ -969,6 +969,19 @@ REAL_SECTIONS = {
          "note": "<strong>Dados reais e sintéticos, separados.</strong> A correspondência de assinaturas usa vibração real do banco "
                  "de rolamentos da Case Western Reserve University. O recomendador original, mais abaixo, usa um catálogo sintético.",
          "fact": "Dados reais (CWRU) + catálogo sintético"},
+    36: {"fragment": ROOT / "scripts" / "fragments" / "036-pump.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A análise principal usa 2.205 ciclos reais do banco "
+                 "hidráulico da ZeMA (UCI). O classificador original, mais abaixo, usa rótulos e observações inteiramente sintéticos.",
+         "fact": "Dados reais (ZeMA/UCI) + pipeline sintético"},
+    37: {"fragment": ROOT / "scripts" / "fragments" / "037-oil.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> Viscosidade e envelhecimento são calculados a partir das "
+                 "temperaturas reais do banco hidráulico da ZeMA (UCI). O classificador original, mais abaixo, usa rótulos e "
+                 "observações inteiramente sintéticos.",
+         "fact": "Temperaturas reais (ZeMA/UCI) + pipeline sintético"},
+    97: {"fragment": ROOT / "scripts" / "fragments" / "097-rul.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> O prognóstico principal usa os conjuntos FD001 e FD003 do "
+                 "C-MAPSS (NASA), avaliados nos motores de teste oficiais. O sistema original, mais abaixo, usa apenas dados sintéticos.",
+         "fact": "Dados NASA C-MAPSS + pipeline sintético"},
     104: {"fragment": ROOT / "scripts" / "fragments" / "104-anomaly.html",
           "note": "<strong>Dados reais e sintéticos, separados.</strong> A avaliação principal usa vibração real do banco de "
                   "rolamentos da Case Western Reserve University. A versão anterior, mais abaixo, usa séries sintéticas.",

@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4b):** vida útil restante com os conjuntos reais FD001 e FD003 do NASA C-MAPSS: indicador de saúde, trajetória de degradação com coeficientes aleatórios e posteriori por amostragem por importância, avaliada nos motores de teste oficiais. Perto da falha, RMSE de 5,7 ciclos contra 14,1 do ridge (FD001), intervalo de 90 % com 92 % de cobertura, e política de manutenção com custo 26 contra 124. Código em [`degradation/cmapss.py`](../../../degradation/cmapss.py), método em [docs/physics/DEGRADATION.md](../../../docs/physics/DEGRADATION.md).
+
 # #97 — Cyber-Physical Predictive Maintenance
 
 **Implementação:** Estimativa de vida útil remanescente com regressão supervisionada. Regressão RandomForest de RUL simulado, sem manutenção automática. Realmente processa eventos de domínio, armazena em SQLite via API e calcula indicadores/ML com Scikit-learn quando aplicável.

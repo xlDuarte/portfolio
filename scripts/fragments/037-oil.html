@@ -1,0 +1,40 @@
+<div class="ls" id="ol" data-state="loading">
+<section class="ls-section" aria-labelledby="ol-title">
+  <h2 id="ol-title">Viscosidade e envelhecimento do óleo a partir de temperaturas reais</h2>
+  <p class="ls-lede">O óleo hidráulico afina quando esquenta e oxida mais rápido quanto mais quente trabalha. As duas coisas podem ser calculadas a partir da temperatura medida, com física conhecida. Aqui as temperaturas vêm dos 2.205 ciclos reais do banco hidráulico da ZeMA, em que o resfriador foi degradado em três estados. A parte da viscosidade é validada pelos próprios dados da bomba; a do envelhecimento é uma estimativa com sensibilidade declarada.</p>
+  <dl class="ls-kpis">
+    <div><dt>Oxidação, resfriador quase falho × pleno</dt><dd data-k="ratio">—</dd></div>
+    <div><dt>Viscosidade média, quase falho × pleno (mm²/s)</dt><dd data-k="nu">—</dd></div>
+    <div><dt>Energia de ativação usada</dt><dd data-k="ea">—</dd></div>
+    <div><dt>Erro do modelo de viscosidade na vazão</dt><dd data-k="val">—</dd></div>
+  </dl>
+  <p class="ls-note" id="ol-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="ol-status" role="status"></p>
+</section>
+<section class="ls-section" aria-labelledby="ol-phys-title">
+  <h2 id="ol-phys-title">Temperatura, viscosidade e oxidação</h2>
+  <div class="ls-two">
+    <figure class="ls-chart"><svg id="ol-visc" viewBox="0 0 460 280" role="img" aria-labelledby="ol-visc-cap"></svg>
+      <figcaption id="ol-visc-cap">Viscosidade de um óleo ISO VG 46 pela equação de Walther, com a temperatura média do óleo em cada estado do resfriador.</figcaption></figure>
+    <figure class="ls-chart"><svg id="ol-arr" viewBox="0 0 460 280" role="img" aria-labelledby="ol-arr-cap"></svg>
+      <figcaption id="ol-arr-cap">Taxa de oxidação relativa a 40 °C pela lei de Arrhenius, para três energias de ativação.</figcaption></figure>
+  </div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Envelhecimento por estado"><table class="ls-table" id="ol-tab"><caption>Temperatura medida, viscosidade e oxidação relativa média por estado do resfriador</caption></table></div>
+  <p class="ls-note">Com o resfriador quase falho, o óleo trabalha cerca de 19 °C mais quente, tem menos da metade da viscosidade e oxida algumas vezes mais rápido, segundo a faixa de energias de ativação. A viscosidade não é só hipótese: a vazão da bomba sã medida no óleo quente bate com a prevista pelo modelo de viscosidade ajustado no óleo frio (projeto #036).</p>
+</section>
+<section class="ls-section ls-method" aria-labelledby="ol-method-title">
+  <h2 id="ol-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Viscosidade: log₁₀ log₁₀(ν + 0,7) = A − B log₁₀ T (ASTM D341), passando por ν₄₀ = 46 e ν₁₀₀ = 6,8 mm²/s. O grau do óleo do banco não é informado.</li>
+    <li>Oxidação: taxa ∝ exp(−Eₐ/RT). A energia central dobra a taxa a cada 10 °C perto de 65 °C, a regra prática para óleos minerais; 50 e 80 kJ/mol mostram a sensibilidade. Não há medida de oxidação neste conjunto de dados, então o fator é uma estimativa.</li>
+    <li>Não há análise de óleo real (número de acidez, água, partículas pela ISO 4406). O classificador sintético da primeira versão continua abaixo como teste do pipeline; os indicadores dele não foram trocados por dados reais.</li>
+    <li>TS1 é usada como temperatura do óleo; os quatro sensores de temperatura do banco ficam em pontos diferentes do circuito e diferem em alguns graus.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/fetch_hydraulic.py
+python scripts/build_degradation_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/degradation/hydraulics.py">Código em degradation/hydraulics.py</a> · <a href="/data/degradation.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="ol-old-title">
+  <h2 id="ol-old-title">Classificador original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica o classificador da primeira versão, treinado em observações e rótulos 100% sintéticos.</p>
+</section>
+</div>

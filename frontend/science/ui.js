@@ -82,12 +82,16 @@ export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, 
   series.forEach(s => {
     if (!s.band) return;
     const up = [], dn = [];
-    s.x.forEach((xv, i) => { if (s.band.lo[i] !== null && s.band.hi[i] !== null) { up.push([xv, clip(s.band.hi[i])]); dn.push([xv, clip(s.band.lo[i])]); } });
+    s.x.forEach((xv, i) => { if (xv >= xd[0] && xv <= xd[1] && s.band.lo[i] !== null && s.band.hi[i] !== null) { up.push([xv, clip(s.band.hi[i])]); dn.push([xv, clip(s.band.lo[i])]); } });
     const d = path(up, x, y) + ' L' + dn.reverse().map(p => `${x(p[0]).toFixed(1)},${y(p[1]).toFixed(1)}`).join(' L') + ' Z';
     el('path', { d, fill: s.color, opacity: 0.16, stroke: 'none' }, svg);
   });
   series.forEach(s => {
-    const pts = s.x.map((xv, i) => [xv, s.y[i]]).filter(p => p[1] !== null && Number.isFinite(p[1])).map(p => [p[0], clip(p[1])]);
+    const pts = s.x.map((xv, i) => [xv, s.y[i]]).filter(p => p[0] >= xd[0] && p[0] <= xd[1] && p[1] !== null && Number.isFinite(p[1])).map(p => [p[0], clip(p[1])]);
+    if (s.dots) {
+      pts.forEach(p => el('circle', { cx: x(p[0]), cy: y(p[1]), r: s.r || 1.8, fill: s.color, opacity: s.opacity ?? 0.6 }, svg));
+      return;
+    }
     el('path', { d: path(pts, x, y), fill: 'none', stroke: s.color, 'stroke-width': s.width || 1.6, 'stroke-dasharray': s.dash, 'stroke-linejoin': 'round' }, svg);
   });
   if (!legend) return { x, y, box };
@@ -95,6 +99,7 @@ export function chart(svg, series, { width = 760, height = 300, xLabel, yLabel, 
   let lx = box.l;
   [...series.filter(s => s.label), ...hbands.filter(b => b.label).map(b => ({ ...b, swatch: true }))].forEach(s => {
     if (s.swatch) el('rect', { x: lx, y: 5, width: 16, height: 10, fill: s.color, opacity: 0.5 }, lg);
+    else if (s.dots) el('circle', { cx: lx + 8, cy: 10, r: 3.5, fill: s.color }, lg);
     else el('line', { x1: lx, x2: lx + 16, y1: 10, y2: 10, stroke: s.color, 'stroke-width': 2.4, 'stroke-dasharray': s.dash }, lg);
     text(lg, lx + 20, 14, s.label, { fill: INK });
     lx += 30 + s.label.length * 6.1;
@@ -117,6 +122,30 @@ export function reliability(svg, models, { size = 260, title } = {}) {
       if (m.ci) el('line', { x1: x(b.forecast), x2: x(b.forecast), y1: y(b.lo), y2: y(b.hi), stroke: m.color, 'stroke-width': 1.2, opacity: 0.6 }, svg);
       el('circle', { cx: x(b.forecast), cy: y(b.observed), r: Math.min(2 + Math.sqrt(b.n) / 3, 8), fill: m.fill === false ? '#fff' : m.color, stroke: m.color, 'stroke-width': 1.4, opacity: 0.9 }, svg);
     });
+  });
+}
+
+// Grouped horizontal bars of proportions: groups [{label, bars:[{name, v, color}]}]
+export function bars(svg, groups) {
+  clear(svg);
+  const W = 760, rh = 22, H = 30 + groups.reduce((a, g) => a + 22 + g.bars.length * rh + 14, 0) + 30;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const l = 230, r = W - 60, x = v => l + v * (r - l);
+  for (let v = 0; v <= 1.0001; v += 0.25) {
+    el('line', { x1: x(v), x2: x(v), y1: 20, y2: H - 30, stroke: RULE }, svg);
+    text(svg, x(v), H - 12, pct(v, 0), { 'text-anchor': 'middle', 'font-size': 10.5, fill: SLATE });
+  }
+  let y = 26;
+  groups.forEach(g => {
+    text(svg, 10, y + 12, g.label, { 'font-size': 11.5, 'font-weight': 600, fill: INK });
+    y += 22;
+    g.bars.forEach(b => {
+      el('rect', { x: l, y, width: Math.max(x(b.v) - l, 1), height: rh - 6, fill: b.color }, svg);
+      text(svg, l - 8, y + 12, b.name, { 'text-anchor': 'end', 'font-size': 11, fill: SLATE });
+      text(svg, x(b.v) + 6, y + 12, pct(b.v, 1), { 'font-size': 11, fill: INK });
+      y += rh;
+    });
+    y += 14;
   });
 }
 

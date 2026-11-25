@@ -1,3 +1,5 @@
+> **Atualização científica (fase 4b):** viscosidade (ASTM D341) e oxidação (Arrhenius) do óleo calculadas a partir das temperaturas reais do banco hidráulico da ZeMA; a parte da viscosidade é validada pela vazão da bomba. O classificador abaixo continua sintético: não há análise de óleo real neste conjunto. Método em [docs/physics/DEGRADATION.md](../../../docs/physics/DEGRADATION.md).
+
 # #037 — Lubricant Degradation Classification
 
 **Escopo comprovável:** classificador industrial de demonstração treinado em observações e rótulos **100% sintéticos**.
