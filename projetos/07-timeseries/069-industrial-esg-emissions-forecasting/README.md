@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5b):** pluma gaussiana (Pasquill–Gifford, Briggs) dirigida por 4 anos de tempo horário real de Taubaté (INMET A728) para uma chaminé hipotética: campo de concentração anual, pior média de 24 h e emissão máxima compatível com os valores-guia da OMS (27 g/s de MP10, sem fundo). Método em [docs/physics/THERMAL.md](../../../docs/physics/THERMAL.md).
+
 # #69 — Industrial ESG Emissions Forecasting
 
 **Status:** motor de previsão executável; observações são 100% sintéticas, métricas não constituem acurácia de produção.

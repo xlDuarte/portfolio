@@ -1,0 +1,47 @@
+<div class="ls" id="tf" data-state="loading">
+<section class="ls-section" aria-labelledby="tf-title">
+  <h2 id="tf-title">Tarifa horossazonal com curva real de carga e tarifa real da ANEEL</h2>
+  <p class="ls-lede">A conta de energia de uma indústria do grupo A depende de três decisões: a modalidade (Verde ou Azul), a demanda contratada e o que roda no horário de ponta. Aqui as três são tomadas com dados reais: a curva de 15 minutos de uma siderúrgica (UCI, 2018) e as tarifas homologadas pela ANEEL para a EDP São Paulo, a distribuidora do Vale do Paraíba. A ligação da planta à EDP é hipotética; o resto é medido ou publicado.</p>
+  <dl class="ls-kpis">
+    <div><dt>Custo anual na Verde</dt><dd data-k="verde">—</dd></div>
+    <div><dt>Custo anual na Azul</dt><dd data-k="azul">—</dd></div>
+    <div><dt>Economia deslocando 30 % da ponta</dt><dd data-k="shift">—</dd></div>
+    <div><dt>Valor de 1 kWh tirado da ponta</dt><dd data-k="mwh">—</dd></div>
+  </dl>
+  <p class="ls-note" id="tf-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="tf-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="tf-mod-title">
+  <h2 id="tf-mod-title">Modalidade e contrato</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tarifas e custos"><table class="ls-table" id="tf-tariffs"><caption>Tarifas de aplicação A4 da EDP SP (TUSD + TE), REH 3.541/2025, e custo anual com a demanda contratada ótima de cada modalidade</caption></table></div>
+  <p class="ls-note" id="tf-breakeven"></p>
+  <figure class="ls-chart"><svg id="tf-contract" viewBox="0 0 760 240" role="img" aria-labelledby="tf-contract-cap"></svg>
+    <figcaption id="tf-contract-cap">Contratar pouco paga ultrapassagem (o dobro da tarifa sobre o excesso, acima de 5 % de tolerância); contratar muito paga demanda que não se usa. A tolerância deixa a curva com quinas.</figcaption></figure>
+</section>
+
+<section class="ls-section" aria-labelledby="tf-lp-title">
+  <h2 id="tf-lp-title">Deslocar carga para fora da ponta</h2>
+  <figure class="ls-chart"><svg id="tf-profile" viewBox="0 0 760 280" role="img" aria-labelledby="tf-profile-cap"></svg>
+    <figcaption id="tf-profile-cap">Média dos dias úteis, real e depois da otimização na Verde com 30 % de cada intervalo de ponta deslocável.</figcaption></figure>
+  <figure class="ls-chart"><svg id="tf-sweep" viewBox="0 0 760 260" role="img" aria-labelledby="tf-sweep-cap"></svg>
+    <figcaption id="tf-sweep-cap">Programa linear mês a mês (HiGHS): energia conservada dia a dia, demanda máxima de cada posto como variável; contrato reotimizado depois.</figcaption></figure>
+  <p class="ls-note" id="tf-sweep-note"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="tf-method-title">
+  <h2 id="tf-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Carga: UCI Machine Learning Repository, conjunto 851 (DAEWOO Steel, Gwangyang, Coreia do Sul, 2018, CC BY 4.0), 35.040 intervalos de 15 min; dois espelhos independentes com conteúdo idêntico. O intervalo que termina à meia-noite vem datado com o dia que se encerra e foi corrigido.</li>
+    <li>Tarifas: dados abertos da ANEEL. O servidor da ANEEL recusa conexões de data centers, inclusive deste ambiente, então os valores vêm de um espelho mantido por terceiros, que perdeu a vírgula decimal; a escala de 1/100 foi conferida com o componente Fio B de um segundo espelho independente (tabela abaixo), que tem de ser menor que a TUSD.</li>
+    <li>Regras da REN 1.000/2021: ponta de três horas em dias úteis (17h30–20h30 para a EDP SP, segundo fonte secundária, com teste das 18 h às 21 h), feriados nacionais fora da ponta, demanda faturada como o maior entre contratada e medida, ultrapassagem acima de 5 % cobrada em dobro.</li>
+    <li>Ficam de fora: ICMS, PIS/COFINS, bandeiras tarifárias, energia reativa excedente e contratação no mercado livre. O deslocamento supõe que uma fração fixa da carga de ponta pode ser feita mais tarde no mesmo dia, sem custo de processo.</li>
+  </ul>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Conferência de escala"><table class="ls-table" id="tf-scale"><caption>Conferência da escala das tarifas</caption></table></div>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_tariff_plume_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/tariff.py">thermal/tariff.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/aneel/manifest.json">Manifesto ANEEL</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/steel/manifest.json">Manifesto da carga</a> · <a href="/data/tariff_plume.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="tf-old-title">
+  <h2 id="tf-old-title">Análise original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a análise de custos da primeira versão, com dados 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>

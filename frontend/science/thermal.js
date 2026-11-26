@@ -124,3 +124,110 @@ export async function initBath() {
   $('bh-policy-note').textContent = `Demanda diária média de ${fmt(b.demand.mean, 1)} kg (desvio ${fmt(b.demand.sd, 1)} kg, zero nos fins de semana). O prazo do fornecedor varia de 4 a 10 dias (média ${fmt(b.demand.EL, 1)}, variância ${fmt(b.demand.VL, 2)} dias²). Ignorar essa variância encolhe o desvio da demanda no prazo de ${fmt(P.random_lead.sdL, 1)} para ${fmt(P.fixed_lead.sdL, 1)} kg e o ponto de pedido cai para ${fmt(P.fixed_lead.s, 0)} kg: o serviço fica em ${pct(P.fixed_lead.cycle_service, 0)} contra a meta de 99 %. Custos: R$ ${fmt(b.costs.K, 0)} por pedido, R$ ${fmt(b.costs.h, 2)} por kg·dia em estoque e R$ ${fmt(b.costs.p_stop / 1000, 0)} mil por dia de linha parada.`;
   $('bh-status').textContent = '';
 }
+
+// ---------------------------------------------------------------- #090 and #069
+const URL2 = '/data/tariff_plume.json';
+let cache2;
+const data2 = () => (cache2 ||= getJSON(URL2));
+const R$ = v => `R$ ${fmt(v / 1000, 0)} mil`;
+
+export async function initTariff() {
+  const d = (await data2()).tariff, B = d.base, tf = d.tariffs;
+  const sv = d.sweep.Verde, s3 = sv.find(s => s.alpha === 0.3);
+  set('tf', 'verde', R$(B.Verde.annual));
+  set('tf', 'azul', R$(B.Azul.annual));
+  set('tf', 'shift', R$(B.Verde.annual - s3.annual));
+  set('tf', 'mwh', `R$ ${fmt((tf.Verde.E_p - tf.Verde.E_fp) / 1000, 2)}/kWh`);
+  $('tf-kpi-note').textContent = `Curva real de 15 minutos de uma siderúrgica (${fmt(d.load.energy_mwh, 0)} MWh em 2018, pico de ${fmt(d.load.max_kw, 0)} kW, fator de carga ${pct(d.load.load_factor, 0)}) faturada nas tarifas de aplicação da EDP São Paulo para o subgrupo A4 (REH 3.541/2025, sem tributos nem bandeira), com a demanda contratada otimizada em cada modalidade. Economia anual na Verde se 30 % da carga de cada intervalo de ponta for deslocada para fora da ponta no mesmo dia (${fmt(s3.moved_mwh, 1)} MWh); a última métrica é quanto vale cada kWh tirado da ponta na Verde.`;
+  const p = d.load, x = p.profile_min.map(v => v / 60);
+  chart($('tf-profile'), [
+    { x, y: p.profile, color: INK, width: 1.6, label: 'dia útil médio, real' },
+    { x, y: p.profile_shifted, color: GREEN, width: 1.6, dash: '5 3', label: 'com 30 % da ponta deslocada (PL)' },
+  ], { height: 280, xLabel: 'hora do dia', yLabel: 'kW (média de 15 min)', xFmt: v => fmt(v, 0), yFmt: v => fmt(v, 0),
+    vlines: [{ x: 17.5, color: RED, label: 'ponta' }, { x: 20.5, color: RED }] });
+  table('tf-tariffs', ['Modalidade', 'Demanda na ponta (R$/kW)', 'Demanda fora da ponta (R$/kW)', 'Energia na ponta (R$/MWh)', 'Energia fora da ponta (R$/MWh)', 'Demanda contratada ótima (kW)', 'Custo anual'],
+    ['Verde', 'Azul'].map(n => [n, fmt(tf[n].D_p, 2) + (n === 'Verde' ? ' <small>(única)</small>' : ''), n === 'Verde' ? '—' : fmt(tf[n].D_fp, 2), fmt(tf[n].E_p, 2), fmt(tf[n].E_fp, 2),
+      n === 'Verde' ? fmt(B[n].Dc_p, 0) : `${fmt(B[n].Dc_p, 0)} / ${fmt(B[n].Dc_fp, 0)}`, `<strong>${R$(B[n].annual)}</strong>`]));
+  $('tf-breakeven').textContent = `A Azul cobra a demanda da ponta (R$ ${fmt(tf.Azul.D_p, 2)}/kW) e barateia a energia da ponta; a Verde faz o contrário. As duas empatam quando cada kW de pico na ponta é usado ${fmt(d.breakeven.hours, 0)} h por mês, de ${fmt(d.breakeven.peak_hours_month, 0)} h de ponta. Esta planta usa sua demanda de ponta entre ${fmt(Math.min(...d.breakeven.plant_hours), 0)} e ${fmt(Math.max(...d.breakeven.plant_hours), 0)} h por mês, abaixo do empate: a Verde é mais barata em todos os meses. Com a ponta das 18 h às 21 h, a Verde custaria ${R$(d.alt_peak_18_21.Verde)} e a Azul ${R$(d.alt_peak_18_21.Azul)}.`;
+  const cc = B.Verde.contract_curve;
+  chart($('tf-contract'), [{ x: cc.Dc, y: cc.annual.map(v => v / 1000), color: BLUE, width: 1.6, label: 'Verde: custo anual × demanda contratada' }],
+    { height: 240, xLabel: 'demanda contratada (kW)', yLabel: 'R$ mil por ano', xFmt: v => fmt(v, 0), yFmt: v => fmt(v, 0),
+      vlines: [{ x: B.Verde.Dc_p, color: RED, label: `ótimo: ${fmt(B.Verde.Dc_p, 0)} kW` }], yDomain: [Math.min(...cc.annual) / 1000 * 0.98, Math.min(...cc.annual) / 1000 * 1.12] });
+  const va = d.sweep.Verde, az = d.sweep.Azul;
+  chart($('tf-sweep'), [
+    { x: va.map(s => s.alpha * 100), y: va.map(s => s.annual / 1000), color: GREEN, width: 1.8, label: 'Verde' },
+    { x: az.map(s => s.alpha * 100), y: az.map(s => s.annual / 1000), color: BLUE, width: 1.8, label: 'Azul' },
+  ], { height: 260, xLabel: 'parcela da carga de ponta que pode ser deslocada (%)', yLabel: 'R$ mil por ano', xFmt: v => fmt(v, 0), yFmt: v => fmt(v, 0) });
+  $('tf-sweep-note').textContent = `Na Verde, cada MWh tirado da ponta economiza a diferença de tarifa de energia, R$ ${fmt(tf.Verde.E_p - tf.Verde.E_fp, 0)}, e a economia cresce em linha reta: o programa linear não precisa subir a demanda fora da ponta para acomodar a carga. Na Azul, deslocar também derruba a demanda de ponta cobrada, mas não o bastante para a Azul passar a Verde nem com metade da ponta deslocada (${R$(az[az.length - 1].annual)} contra ${R$(va[va.length - 1].annual)}).`;
+  table('tf-scale', ['Componente (A4)', 'TUSD do espelho ÷ 100 (R$/kW)', 'Fio B, segundo espelho (R$/kW)'],
+    [['Verde, demanda', fmt(tf.Verde.parts.D, 2), fmt(d.fiob['Verde Não se aplica'], 2)], ['Azul, demanda na ponta', fmt(tf.Azul.parts.D_p, 2), fmt(d.fiob['Azul Ponta'], 2)], ['Azul, demanda fora da ponta', fmt(tf.Azul.parts.D_fp, 2), fmt(d.fiob['Azul Fora ponta'], 2)]]);
+  $('tf-status').textContent = '';
+}
+
+function polarField(svg, field, dirs, xs, { max }) {
+  clear(svg);
+  const W = 520, c = W / 2, R = W / 2 - 40;
+  svg.setAttribute('viewBox', `0 0 ${W} ${W}`);
+  const lr = v => Math.log10(v / xs[0]) / Math.log10(xs[xs.length - 1] / xs[0]) * R;
+  const edges = xs.map((v, i) => i === 0 ? v : Math.sqrt(v * xs[i - 1]));
+  edges.push(xs[xs.length - 1]);
+  const step = (dirs[1] - dirs[0]) * Math.PI / 180;
+  dirs.forEach((dg, i) => {
+    const a0 = dg * Math.PI / 180 - step / 2, a1 = a0 + step;
+    field[i].forEach((v, j) => {
+      const r0 = lr(edges[j]), r1 = lr(edges[j + 1]);
+      const p = (r, a) => `${c + r * Math.sin(a)},${c - r * Math.cos(a)}`;
+      const t = Math.min(v / max, 1);
+      el('path', { d: `M${p(r0, a0)} L${p(r1, a0)} A${r1},${r1} 0 0 1 ${p(r1, a1)} L${p(r0, a1)} A${r0},${r0} 0 0 0 ${p(r0, a0)} Z`, fill: RED, opacity: (0.04 + 0.9 * Math.sqrt(t)).toFixed(3), stroke: 'none' }, svg);
+    });
+  });
+  [500, 1000, 2000, 5000, 10000].forEach(v => {
+    el('circle', { cx: c, cy: c, r: lr(v), fill: 'none', stroke: '#9aa3ad', 'stroke-dasharray': '2 3' }, svg);
+    text(svg, c + 3, c - lr(v) - 3, v >= 1000 ? `${v / 1000} km` : `${v} m`, { 'font-size': 10, fill: SLATE });
+  });
+  [['N', 0], ['L', 90], ['S', 180], ['O', 270]].forEach(([n, a]) => text(svg, c + (R + 16) * Math.sin(a * Math.PI / 180), c - (R + 16) * Math.cos(a * Math.PI / 180) + 4, n, { 'text-anchor': 'middle', 'font-size': 12, fill: INK }));
+  el('circle', { cx: c, cy: c, r: 3, fill: INK }, svg);
+}
+
+function windRose(svg, rose, bins) {
+  clear(svg);
+  const W = 420, c = W / 2, R = W / 2 - 40;
+  svg.setAttribute('viewBox', `0 0 ${W} ${W}`);
+  const tot = rose.map(r => r.reduce((a, b) => a + b, 0)), mx = Math.max(...tot);
+  const cols = ['#c6dbef', '#9ecae1', '#6baed6', '#3182bd', '#08519c'];
+  const step = 22.5 * Math.PI / 180;
+  rose.forEach((row, i) => {
+    let acc = 0;
+    const a0 = i * step - step * 0.42, a1 = i * step + step * 0.42;
+    row.forEach((v, k) => {
+      const r0 = Math.sqrt(acc / mx) * R, r1 = Math.sqrt((acc + v) / mx) * R;
+      acc += v;
+      if (v <= 0) return;
+      const p = (r, a) => `${c + r * Math.sin(a)},${c - r * Math.cos(a)}`;
+      el('path', { d: `M${p(r0, a0)} L${p(r1, a0)} A${r1},${r1} 0 0 1 ${p(r1, a1)} L${p(r0, a1)} A${r0},${r0} 0 0 0 ${p(r0, a0)} Z`, fill: cols[k], stroke: '#fff', 'stroke-width': 0.5 }, svg);
+    });
+  });
+  [['N', 0], ['L', 90], ['S', 180], ['O', 270]].forEach(([n, a]) => text(svg, c + (R + 16) * Math.sin(a * Math.PI / 180), c - (R + 16) * Math.cos(a * Math.PI / 180) + 4, n, { 'text-anchor': 'middle', 'font-size': 12, fill: INK }));
+  const labs = bins.map((b, k) => k < bins.length - 1 ? `${b}–${bins[k + 1]}` : `≥ ${b}`);
+  labs.forEach((l, k) => { el('rect', { x: 8, y: 8 + k * 16, width: 12, height: 10, fill: cols[k] }, svg); text(svg, 24, 17 + k * 16, `${l} m/s`, { 'font-size': 10.5, fill: SLATE }); });
+}
+
+export async function initPlume() {
+  const d = (await data2()).plume, R = d.results, o = R.overcast;
+  set('pl', 'q', `${fmt(d.q_allow.governing, 0)} g/s`);
+  set('pl', 'max24', `${fmt(o.max24, 2)} µg/m³`);
+  set('pl', 'calm', pct(d.calm_share, 0));
+  set('pl', 'stable', pct((o.classes['4.0'] || 0) + (o.classes['5.0'] || 0), 0));
+  $('pl-kpi-note').textContent = `Chaminé hipotética de ${fmt(d.stack.h, 0)} m, Ø${fmt(d.stack.d, 1)} m, gases a ${fmt(d.stack.v, 0)} m/s e ${fmt(d.stack.Ts - 273.15, 0)} °C, emitindo 1 g/s de MP10; tempo real de Taubaté (INMET A728), ${fmt(d.valid, 0)} horas válidas de ${d.years[0]} a ${d.years[d.years.length - 1]}. A primeira métrica é a maior emissão que mantém a máxima média de 24 h e a média anual em qualquer receptor abaixo dos valores-guia da OMS de 2021 (${d.who['24h']} e ${d.who.annual} µg/m³), sem contar a concentração de fundo. Depois, a pior média de 24 h por g/s, a fração de horas de calmaria (< 1 m/s) e a fração de horas estáveis (classes E e F).`;
+  windRose($('pl-rose'), d.rose, d.rose_bins);
+  polarField($('pl-field'), o.annual, d.dirs, d.xs, { max: o.annual_max });
+  $('pl-field-note').textContent = `Média anual ao nível do solo por g/s emitido, receptores a cada 10° entre 100 m e 10 km. Máximo de ${fmt(o.annual_max, 2)} µg/m³ a ${fmt(o.annual_at[1], 0)} m na direção ${fmt(o.annual_at[0], 0)}° a partir da chaminé; a pior média de 24 h (${fmt(o.max24, 2)} µg/m³, ${o.days} dias com pelo menos 18 h válidas) cai a ${fmt(o.max24_at[1], 0)} m na direção ${fmt(o.max24_at[0], 0)}°. Altura efetiva mediana da pluma: ${fmt(o.H_median, 0)} m.`;
+  const C = d.centerline, cols = { A: RED, B: AMBER, C: GREEN, D: BLUE, E: INK, F: GREY };
+  chart($('pl-center'), Object.entries(C).map(([k, v]) => ({ x: d.xs.map(x => x / 1000), y: v.c, color: cols[k], width: 1.6, label: `${k} (H = ${fmt(v.H, 0)} m)` })),
+    { height: 280, xLabel: 'distância a favor do vento (km), vento de 2 m/s a 10 m', yLabel: 'µg/m³ por g/s no eixo', xFmt: v => fmt(v, 1), yFmt: v => fmt(v, 1) });
+  table('pl-night', ['Hipótese para a noite', 'Classes E + F', 'Máxima média anual', 'Máxima média de 24 h', 'Percentil 98 das médias de 24 h'],
+    [['Nublado (≥ 4/8): classes D e E', R.overcast, 'overcast'], ['Céu limpo (≤ 3/8): classes E e F', R.clear, 'clear']].map(([n, r]) =>
+      [n, pct((r.classes['4.0'] || 0) + (r.classes['5.0'] || 0), 0), fmt(r.annual_max, 3), fmt(r.max24, 2), fmt(r.p98_24_max, 2)]));
+  $('pl-night-note').textContent = `A estação não registra nebulosidade, então a classe noturna é incerta. As duas hipóteses extremas mudam pouco as máximas, porque elas acontecem perto da fonte com o ar instável do dia, quando a pluma desce rápido; a noite estável leva a pluma longe e diluída. Emissão compatível com a média de 24 h: ${fmt(d.q_allow.by_24h, 1)} g/s; com a média anual: ${fmt(d.q_allow.by_annual, 1)} g/s.`;
+  $('pl-status').textContent = '';
+}

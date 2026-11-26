@@ -1,0 +1,53 @@
+{
+  "source": "INMET — Banco de Dados Meteorológicos (BDMEP), dados históricos horários das estações automáticas, arquivos anuais",
+  "canonical_url": "https://portal.inmet.gov.br/dadoshistoricos",
+  "station": {
+    "id": "A728",
+    "name": "TAUBATE"
+  },
+  "archives": {
+    "2022": {
+      "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2022.zip",
+      "sha256": "292d997e0589486404827055f887327732f11d0bed9b5507952e6cad9bea286b",
+      "bytes": 90362801,
+      "member": "INMET_SE_SP_A728_TAUBATE_01-01-2022_A_31-12-2022.CSV"
+    },
+    "2023": {
+      "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2023.zip",
+      "sha256": "b17391392cc1219151977cc2c46a7ab24368d821fd780311da9fff62a627bfd8",
+      "bytes": 107069252,
+      "member": "INMET_SE_SP_A728_TAUBATE_01-01-2023_A_31-12-2023.CSV"
+    },
+    "2024": {
+      "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2024.zip",
+      "sha256": "0a7f89de57427f79b6f82943b2f7f2e932202d9253e34bf25629ed088d108ae7",
+      "bytes": 102772199,
+      "member": "INMET_SE_SP_A728_TAUBATE_01-01-2024_A_31-12-2024.CSV"
+    },
+    "2025": {
+      "url": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2025.zip",
+      "sha256": "14988d0b736ba969b48881589f602f3a6d7e97b95bd1de934456851fdac2cb89",
+      "bytes": 90898634,
+      "member": "2025/INMET_SE_SP_A728_TAUBATE_01-01-2025_A_31-12-2025.CSV"
+    }
+  },
+  "files": {
+    "A728_2022.csv.gz": {
+      "sha256_raw": "ff016c34301ac00e8b1dd15db7c29d9733145a2194e550899bb332409915ca83",
+      "bytes_raw": 779367
+    },
+    "A728_2023.csv.gz": {
+      "sha256_raw": "b1fc9b3457fc49a68fadec252146b4b6130504dd734a70c61b0b17331a2df0d7",
+      "bytes_raw": 813615
+    },
+    "A728_2024.csv.gz": {
+      "sha256_raw": "ca90b6e5359406983dbe981b75f687c55fdca63a2643e6eb002d6416592c02ba",
+      "bytes_raw": 685606
+    },
+    "A728_2025.csv.gz": {
+      "sha256_raw": "f4fc1baa75b39eca79f16b9d904f45759ec7e27926e799594f82243371dc8516",
+      "bytes_raw": 809119
+    }
+  },
+  "note": "Baixado diretamente do portal do INMET em 26/11/2026; cada arquivo é o membro da estação A728 do zip anual, sem alteração (latin-1, ';', vírgula decimal). Radiação em branco à noite."
+}

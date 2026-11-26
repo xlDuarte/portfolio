@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/timeseries/">Séries temporais</a></li><li aria-current="page">#069</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,21 +26,68 @@
   <p class="kicker">Industrial · Séries temporais · Projeto #069</p>
   <h1>Monitoramento e Previsão de Emissões Atmosféricas (ESG)</h1>
   <p class="lede">Projeção de indicadores ambientais e material particulado para conformidade regulatória.</p>
-  <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
+  <div class="note"><strong>Dados reais e sintéticos, separados.</strong> A dispersão usa o tempo horário real de Taubaté (INMET); a chaminé é hipotética. A previsão original, mais abaixo, usa série e alvos 100% sintéticos.</div>
 </section>
+<div class="wrap"><div class="ls" id="pl" data-state="loading">
+<section class="ls-section" aria-labelledby="pl-title">
+  <h2 id="pl-title">Dispersão de uma chaminé com o tempo real do Vale do Paraíba</h2>
+  <p class="ls-lede">Projetar emissões com uma série temporal não diz onde elas vão parar. Um modelo de pluma gaussiana, o mesmo princípio dos modelos regulatórios de triagem, leva cada hora de vento, radiação e temperatura medida em Taubaté a uma concentração no solo ao redor da fonte. A chaminé é hipotética; o tempo, hora a hora, é o registrado pelo INMET de 2022 a 2025.</p>
+  <dl class="ls-kpis">
+    <div><dt>Emissão máxima compatível com a OMS</dt><dd data-k="q">—</dd></div>
+    <div><dt>Pior média de 24 h por g/s</dt><dd data-k="max24">—</dd></div>
+    <div><dt>Horas de calmaria</dt><dd data-k="calm">—</dd></div>
+    <div><dt>Horas estáveis (noite nublada)</dt><dd data-k="stable">—</dd></div>
+  </dl>
+  <p class="ls-note" id="pl-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="pl-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="pl-map-title">
+  <h2 id="pl-map-title">Para onde a pluma vai</h2>
+    <figure class="ls-chart"><svg id="pl-rose" viewBox="0 0 420 420" style="max-width:460px" role="img" aria-labelledby="pl-rose-cap"></svg>
+      <figcaption id="pl-rose-cap">Rosa dos ventos de Taubaté: direção de onde o vento sopra, por faixa de velocidade.</figcaption></figure>
+    <figure class="ls-chart"><svg id="pl-field" viewBox="0 0 520 520" style="max-width:560px" role="img" aria-labelledby="pl-field-cap"></svg>
+      <figcaption id="pl-field-cap">Média anual ao nível do solo por g/s, escala logarítmica de distância; mais escuro = mais concentração.</figcaption></figure>
+  <p class="ls-note" id="pl-field-note"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="pl-stab-title">
+  <h2 id="pl-stab-title">Estabilidade da atmosfera</h2>
+  <figure class="ls-chart"><svg id="pl-center" viewBox="0 0 760 280" role="img" aria-labelledby="pl-center-cap"></svg>
+    <figcaption id="pl-center-cap">Concentração no eixo da pluma por classe de Pasquill–Gifford, de A (muito instável) a F (estável), com a elevação da pluma de Briggs.</figcaption></figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Hipótese noturna"><table class="ls-table" id="pl-night"><caption>Máximas por g/s emitido (µg/m³) nas duas hipóteses de nebulosidade noturna</caption></table></div>
+  <p class="ls-note" id="pl-night-note"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="pl-method-title">
+  <h2 id="pl-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Tempo: arquivos horários anuais do INMET (BDMEP), estação automática A728, baixados do portal oficial com SHA-256 no manifesto; horas sem vento, direção ou temperatura ficam de fora; radiação em branco à noite vale zero, e o dia é definido pela elevação do Sol calculada.</li>
+    <li>Estabilidade de Pasquill–Gifford pelo método de Turner: de dia, vento e insolação (forte acima de 600 W/m², moderada de 300 a 600, fraca abaixo); à noite, vento e nebulosidade, que a estação não mede, por isso as duas hipóteses extremas. Classes intermediárias pela média geométrica dos σ.</li>
+    <li>σ_y e σ_z de Briggs (1973) para campo aberto; vento na altura da chaminé por lei de potência com os expoentes rurais do ISC3; calmaria tratada como 1 m/s; elevação de Briggs por empuxo, final, com gradiente de 0,020 K/m (E) e 0,035 K/m (F).</li>
+    <li>Sem camada de mistura, relevo, edificações ou deposição; concentração de fundo não incluída. É uma triagem: o Vale do Paraíba tem relevo e inversões que um modelo como AERMOD ou CALPUFF trataria. Valores-guia da OMS de 2021 para MP10 (45 µg/m³ em 24 h, 15 µg/m³ no ano), que a Resolução CONAMA 506/2024 adota como padrão final.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_tariff_plume_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/plume.py">thermal/plume.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/data/inmet_hourly/manifest.json">Manifesto INMET horário</a> · <a href="/data/tariff_plume.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="pl-old-title">
+  <h2 id="pl-old-title">Previsão original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a previsão da primeira versão, com série e alvos 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --save
 python projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #069</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #069</li><li>Séries temporais</li><li>Exercício técnico</li><li>Tempo real (INMET horário) + chaminé hipotética + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/07-timeseries/069-industrial-esg-emissions-forecasting">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/069-industrial-esg-emissions-forecasting/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/069-industrial-esg-emissions-forecasting/README.md">Metodologia e limitações</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/timeseries/068/"><span class="small muted">Anterior</span>#068 Análise de Volatilidade Cambial em Importação de Insumos</a><a class="next" href="/cases/timeseries/070/"><span class="small muted">Próximo</span>#070 Previsão de Taxa de Consumo (Burn-Rate) de Insumos Químicos</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

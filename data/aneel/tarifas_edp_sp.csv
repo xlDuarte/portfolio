@@ -1,0 +1,281 @@
+sigla;reh;vigencia_inicio;vigencia_fim;subgrupo;modalidade;classe;subclasse;detalhe;acessante;posto;unidade;vlr_tusd;vlr_te;vlr_total
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;425.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;425.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;8852.0;30215.0;39067.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;8852.0;30215.0;39067.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;8852.0;3931.0;12783.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;8852.0;3931.0;12783.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;425.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;425.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;8852.0;48195.0;57047.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;8852.0;48195.0;57047.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;8852.0;3931.0;12783.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;8852.0;3931.0;12783.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Fora ponta;R$/kW;979.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Não se aplica;R$/MWh;1.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Não se aplica;R$/MWh;1.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Não se aplica;R$/MWh;1.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Não se aplica;R$/MWh;1.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Enel SP;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Ponta;R$/kW;1958.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Geração;Não se aplica;Não se aplica;Não se aplica;NOVO GERADOR;Não se aplica;R$/kW;499.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Geração;Não se aplica;Não se aplica;Não se aplica;NOVO GERADOR;Não se aplica;R$/kW;499.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Geração;Não se aplica;Não se aplica;Não se aplica;PCH LAVRINHAS;Não se aplica;R$/kW;655.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Geração;Não se aplica;Não se aplica;Não se aplica;PCH LAVRINHAS;Não se aplica;R$/kW;655.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Geração;Não se aplica;Não se aplica;Não se aplica;PCH QUELUZ;Não se aplica;R$/kW;655.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Geração;Não se aplica;Não se aplica;Não se aplica;PCH QUELUZ;Não se aplica;R$/kW;655.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Geração;Não se aplica;Não se aplica;Não se aplica;UHE JAGUARI;Não se aplica;R$/kW;203.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Geração;Não se aplica;Não se aplica;Não se aplica;UHE JAGUARI;Não se aplica;R$/kW;203.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A2;Geração;Não se aplica;Não se aplica;Não se aplica;UHE SANTA BRANCA;Não se aplica;R$/kW;494.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A2;Geração;Não se aplica;Não se aplica;Não se aplica;UHE SANTA BRANCA;Não se aplica;R$/kW;494.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;14205.0;48903.0;63108.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;14205.0;48903.0;63108.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Distribuição;Não se aplica;Não se aplica;Não se aplica;Neoenergia Elektro;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Geração;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;411.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Geração;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;411.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;120206.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;120206.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;132563.0;48903.0;181466.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;132563.0;48903.0;181466.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A3a;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;132563.0;4639.0;137202.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A3a;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;132563.0;4639.0;137202.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/kW;4865.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;14205.0;48903.0;63108.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;14205.0;48903.0;63108.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Azul;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Fora ponta;R$/kW;948.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Não se aplica;R$/MWh;792.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;Cedrap;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Distribuição;Não se aplica;Não se aplica;Não se aplica;CERMC;Ponta;R$/kW;3103.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Geração;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;411.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Geração;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;411.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Fora ponta;R$/MWh;1847.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;14205.0;30923.0;45128.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;14205.0;4639.0;18844.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/kW;1202.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;120206.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;APE;Não se aplica;Ponta;R$/MWh;120206.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;132563.0;48903.0;181466.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;132563.0;48903.0;181466.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;A4;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;132563.0;4639.0;137202.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;A4;Verde;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;132563.0;4639.0;137202.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B;Geração;Não se aplica;Não se aplica;TIPO 01;Não se aplica;Não se aplica;R$/kW;317.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B;Geração;Não se aplica;Não se aplica;TIPO 01;Não se aplica;Não se aplica;R$/kW;317.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B;Geração;Não se aplica;Não se aplica;TIPO 02;Não se aplica;Não se aplica;R$/kW;861.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B;Geração;Não se aplica;Não se aplica;TIPO 02;Não se aplica;Não se aplica;R$/kW;861.0;;
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Fora ponta;R$/MWh;33398.0;31504.0;64902.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Fora ponta;R$/MWh;33398.0;31504.0;64902.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Fora ponta;R$/MWh;33398.0;522.0;33920.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Fora ponta;R$/MWh;33398.0;522.0;33920.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Intermediário;R$/MWh;5998.0;31504.0;37502.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Intermediário;R$/MWh;5998.0;31504.0;37502.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Intermediário;R$/MWh;5998.0;522.0;6520.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Intermediário;R$/MWh;5998.0;522.0;6520.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Ponta;R$/MWh;86563.0;49484.0;136047.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;Não se aplica;Não se aplica;Ponta;R$/MWh;86563.0;49484.0;136047.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Ponta;R$/MWh;86563.0;522.0;87085.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Branca;Residencial;Residencial;SCEE;Não se aplica;Ponta;R$/MWh;86563.0;522.0;87085.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Baixa Renda;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Baixa Renda;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Baixa Renda;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Baixa Renda;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Desconto Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;31629.0;30475.0;62104.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Desconto Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;31629.0;2692.0;34321.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Desconto Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Desconto Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;2906.0;5914.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;2906.0;5914.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional;Residencial;Residencial Tarifa Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Baixa Renda;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Baixa Renda;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Baixa Renda;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Baixa Renda;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Desconto Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;31629.0;30475.0;62104.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Desconto Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;31629.0;2692.0;34321.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Desconto Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Desconto Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;2906.0;5914.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 01;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 01;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;2906.0;5914.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 02;Não se aplica;Não se aplica;Não se aplica;R$/MWh;3008.0;30475.0;33483.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B1;Convencional pré-pagamento;Residencial;Residencial Tarifa Social – faixa 02;SCEE;Não se aplica;Não se aplica;R$/MWh;3008.0;2692.0;5700.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Fora ponta;R$/MWh;35954.0;31504.0;67458.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Fora ponta;R$/MWh;35954.0;522.0;36476.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Intermediário;R$/MWh;67648.0;31504.0;99152.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Intermediário;R$/MWh;67648.0;522.0;68170.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Ponta;R$/MWh;99343.0;49484.0;148827.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Branca;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Ponta;R$/MWh;99343.0;522.0;99865.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Cooperativa de eletrificação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Cooperativa de eletrificação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Serviço público de irrigação rural;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B2;Convencional pré-pagamento;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B2;Convencional pré-pagamento;Rural;Serviço público de irrigação rural;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;36976.0;31504.0;68480.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Fora ponta;R$/MWh;36976.0;31504.0;68480.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;36976.0;522.0;37498.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Fora ponta;R$/MWh;36976.0;522.0;37498.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Intermediário;R$/MWh;70716.0;31504.0;102220.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Intermediário;R$/MWh;70716.0;31504.0;102220.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Intermediário;R$/MWh;70716.0;522.0;71238.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Intermediário;R$/MWh;70716.0;522.0;71238.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;104455.0;49484.0;153939.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Ponta;R$/MWh;104455.0;49484.0;153939.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;104455.0;522.0;104977.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Branca;Não se aplica;Não se aplica;SCEE;Não se aplica;Ponta;R$/MWh;104455.0;522.0;104977.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Convencional;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Convencional;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Convencional;Não se aplica;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Convencional;Não se aplica;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Convencional pré-pagamento;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Convencional pré-pagamento;Não se aplica;Não se aplica;Não se aplica;Não se aplica;Não se aplica;R$/MWh;45667.0;33003.0;78670.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B3;Convencional pré-pagamento;Não se aplica;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B3;Convencional pré-pagamento;Não se aplica;Não se aplica;SCEE;Não se aplica;Não se aplica;R$/MWh;45667.0;522.0;46189.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B4;Convencional;Iluminação pública;Iluminação pública – B4a;Não se aplica;Não se aplica;Não se aplica;R$/MWh;25117.0;18152.0;43269.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B4;Convencional;Iluminação pública;Iluminação pública – B4a;Não se aplica;Não se aplica;Não se aplica;R$/MWh;25117.0;18152.0;43269.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B4;Convencional;Iluminação pública;Iluminação pública – B4a;SCEE;Não se aplica;Não se aplica;R$/MWh;25117.0;522.0;25639.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B4;Convencional;Iluminação pública;Iluminação pública – B4a;SCEE;Não se aplica;Não se aplica;R$/MWh;25117.0;522.0;25639.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B4;Convencional;Iluminação pública;Iluminação pública – B4b;Não se aplica;Não se aplica;Não se aplica;R$/MWh;274.0;19802.0;20076.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B4;Convencional;Iluminação pública;Iluminação pública – B4b;Não se aplica;Não se aplica;Não se aplica;R$/MWh;274.0;19802.0;20076.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2025-10-23;2025-12-31;B4;Convencional;Iluminação pública;Iluminação pública – B4b;SCEE;Não se aplica;Não se aplica;R$/MWh;274.0;522.0;796.0
+EDP SP;REH Nº 3.541, DE 14 DE OUTUBRO DE 2025;2026-01-01;2026-10-22;B4;Convencional;Iluminação pública;Iluminação pública – B4b;SCEE;Não se aplica;Não se aplica;R$/MWh;274.0;522.0;796.0

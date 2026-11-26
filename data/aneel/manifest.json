@@ -1,0 +1,28 @@
+{
+  "source": "ANEEL, dados abertos: dataset tarifas-distribuidoras-energia-eletrica (Tarifas Homologadas das Distribuidoras de Energia Elétrica)",
+  "canonical_url": "https://dadosabertos.aneel.gov.br/dataset/tarifas-distribuidoras-energia-eletrica",
+  "note": "O servidor da ANEEL recusa conexões de IPs de data center (o próprio ambiente de build recebeu 'connection reset' com o domínio liberado); os dois espelhos abaixo foram extraídos por pessoas físicas e são independentes.",
+  "mirror": {
+    "repo": "diogoobs/tarifas-aneel",
+    "commit": "ceab633",
+    "path": "data/tarifas_aneel.csv",
+    "sha256": "c6cc16dbb179fb4e10c57187145e26624fc603b4645e48d177da8f16df390e66",
+    "bytes": 2278870
+  },
+  "subset": {
+    "file": "tarifas_edp_sp.csv",
+    "filter": "sigla == 'EDP SP'",
+    "rows": 280,
+    "sha256": "7038f801517a7d2c55043a4ca4829cdf37cd2806d89d1d31ba148868ad9717f6"
+  },
+  "scale_note": "Os valores do espelho perderam a vírgula decimal (ex.: 1202 para 12,02 R$/kW). A escala 1/100 é conferida contra o segundo espelho, que traz o componente Fio B com decimais, sempre menor que a TUSD correspondente.",
+  "cross_check": {
+    "repo": "lucascastro1412/monitor-tarifas-aneel",
+    "commit": "ed492eb",
+    "path": "data/fiob_grupo_a.csv",
+    "sha256": "078cf7c6f9943f709ed282e0c925f4e55956c00d1cd55b77bdd0f604eae30bc4",
+    "subset": "fiob_edp_sp.csv",
+    "subset_sha256": "b59cd2157f03e826d86db8b1aa6950ee3fe4925b675015b637d4d21d3fe524ab"
+  },
+  "license": "Dados abertos da ANEEL (licença declarada no portal de dados abertos; atribuição à ANEEL)"
+}
