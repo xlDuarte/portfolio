@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5b):** balanço de massa do banho químico (decomposição e arraste de primeira ordem, reação por área tratada), estimação por mínimos quadrados sobre a solução exata e política de reposição (s, S) por simulação. Com uma faixa estreita de concentração arraste e reação não se separam (correlação −0,998), mas o consumo total sai com ±0,15 %; ignorar a variância do prazo do fornecedor derruba o serviço de 99 % para 86 %. Dados sintéticos. Método em [docs/physics/THERMAL.md](../../../docs/physics/THERMAL.md).
+
 # #70 — Consumables Burn-Rate Forecasting
 
 **Status:** motor de previsão executável; observações são 100% sintéticas, métricas não constituem acurácia de produção.

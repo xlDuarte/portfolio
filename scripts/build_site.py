@@ -991,6 +991,16 @@ REAL_SECTIONS = {
                 "(SE/CO, 2019–2025) e a temperatura real do INMET. A análise original de utilidades, mais abaixo, usa DADOS 100% "
                 "SINTÉTICOS e serve de teste do pipeline.",
         "fact": "Dados reais (ONS + INMET) + pipeline sintético"},
+    29: {"fragment": ROOT / "scripts" / "fragments" / "029-furnace.html",
+         "note": "<strong>Física com dados publicados, planta hipotética.</strong> O balanço do forno e a energia de corte usam "
+                 "normas e medições publicadas (EN 1993-1-2, VDI 3323, ETH Zürich); forno, carga e torno são hipotéticos. "
+                 "A regressão original, mais abaixo, usa DADOS 100% SINTÉTICOS.",
+         "fact": "Física com dados publicados + planta hipotética + pipeline sintético"},
+    70: {"fragment": ROOT / "scripts" / "fragments" / "070-bath.html",
+         "note": "<strong>Modelo físico com dados sintéticos.</strong> O balanço do banho e a política de reposição usam "
+                 "titulações e demanda simuladas, com os parâmetros declarados. A previsão original, mais abaixo, usa série "
+                 "e alvos 100% sintéticos.",
+         "fact": "Balanço de massa + simulação de estoque, dados 100% sintéticos"},
     63: {"fragment": ROOT / "scripts" / "fragments" / "063-climate.html",
          "note": "<strong>Dados reais e sintéticos, separados.</strong> O clima é real (INMET, Taubaté e São Paulo); o galpão "
                  "simulado é hipotético. O modelo original, mais abaixo, usa série e alvos 100% sintéticos.",

@@ -1,0 +1,44 @@
+<div class="ls" id="bh" data-state="loading">
+<section class="ls-section" aria-labelledby="bh-title">
+  <h2 id="bh-title">Do banho químico à compra de concentrado</h2>
+  <p class="ls-lede">Prever o consumo de insumo por série temporal ignora o que gasta o banho. Um balanço de massa separa três mecanismos: decomposição espontânea e arraste nas peças, ambos proporcionais à concentração, e reação na superfície tratada, que não depende dela. Com os parâmetros estimados das titulações, a demanda de concentrado vira entrada de uma política de reposição (s, S) testada por simulação. Banho, produção e titulações são sintéticos; o objetivo é mostrar o que dá e o que não dá para identificar.</p>
+  <dl class="ls-kpis">
+    <div><dt>Concentrado por dia útil, IC 95 %</dt><dd data-k="demand">—</dd></div>
+    <div><dt>Correlação arraste × reação: uma faixa → duas</dt><dd data-k="corr">—</dd></div>
+    <div><dt>Serviço da regra clássica: prazo fixo → variável</dt><dd data-k="svc">—</dd></div>
+    <div><dt>Custo anual da política ótima (R$)</dt><dd data-k="cost">—</dd></div>
+  </dl>
+  <p class="ls-note" id="bh-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="bh-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="bh-kin-title">
+  <h2 id="bh-kin-title">Cinética do banho</h2>
+  <figure class="ls-chart"><svg id="bh-series" viewBox="0 0 760 280" role="img" aria-labelledby="bh-series-cap"></svg>
+    <figcaption id="bh-series-cap">Concentração do ativo, limite de ação (vermelho) e valor após a adição (verde). Produção em dois turnos de segunda a sexta.</figcaption></figure>
+  <p class="ls-note" id="bh-series-note"></p>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Estimativas"><table class="ls-table" id="bh-fits"><caption>Mínimos quadrados não lineares sobre a solução exata do balanço; ± erro-padrão pela matriz jacobiana</caption></table></div>
+  <p class="ls-note" id="bh-fit-note"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="bh-inv-title">
+  <h2 id="bh-inv-title">Reposição do concentrado</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Políticas de reposição"><table class="ls-table" id="bh-policies"><caption>Revisão diária, 20 anos simulados; meta de 99 % de ciclos de reposição sem falta</caption></table></div>
+  <p class="ls-note" id="bh-policy-note"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="bh-method-title">
+  <h2 id="bh-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Balanço: V dC/dt = −k_d V C − q C − r a(t) + adições, resolvido exatamente hora a hora; produção de 60 m²/h com variação gama de 15 % hora a hora; adição até 30 g/L quando a titulação passa de 26 g/L.</li>
+    <li>Estimação: três parâmetros por mínimos quadrados limitados (trust region reflective) sobre a solução exata; erros-padrão pela jacobiana; bootstrap paramétrico com 200 réplicas para o consumo total.</li>
+    <li>Reposição: demanda diária da decomposição, do arraste a 28 g/L e da reação sobre a área do dia (gama, CV 25 %); prazo de entrega sorteado entre 4, 5, 7 e 10 dias; regra clássica com σ_L² = E[L]σ_d² + μ_d²Var[L] e lote econômico; ótimo por busca em grade de s e S na simulação.</li>
+    <li>Limites: banho, custos e prazos são hipotéticos. A demanda diária é tratada como independente de um dia para outro na regra clássica; a simulação mantém o padrão semanal.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_thermal_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/bath.py">thermal/bath.py</a> · <a href="/data/thermal.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="bh-old-title">
+  <h2 id="bh-old-title">Previsão original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a previsão da primeira versão, com série e alvos 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>
