@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5b):** balanço de energia de um forno elétrico de tratamento térmico (paredes com condução não linear, convecção natural de Churchill–Chu e radiação; porta com fator de forma e troca de ar de Linden; carga com calor específico da EN 1993-1-2) e energia de corte por Kienzle e Gutowski, com coeficientes da VDI 3323 e de medições da ETH Zürich. 199 kWh/t (faixa de 90 %: 193 a 208), 84 % da energia na carga; o tratamento térmico de um metro de barra gasta 6,8 vezes a energia de um passe de desbaste. Forno, carga e torno são hipotéticos. Método em [docs/physics/THERMAL.md](../../../docs/physics/THERMAL.md).
+
 # #029 — Furnace & Machining Power Consumption
 
 **Status:** implementation of a real regression training/evaluation workflow on a fully **SYNTHETIC** deterministic fixture; no industrial, financial, medical, educational or customer data were observed.

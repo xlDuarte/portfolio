@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/timeseries/">Séries temporais</a></li><li aria-current="page">#070</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,21 +26,66 @@
   <p class="kicker">Industrial · Séries temporais · Projeto #070</p>
   <h1>Previsão de Taxa de Consumo (Burn-Rate) de Insumos Químicos</h1>
   <p class="lede">Previsão semanal de consumo de fluidos de corte, gases industriais e refratários.</p>
-  <div class="note"><strong>Limite:</strong> série e alvos 100% sintéticos. Nenhuma métrica industrial ou benefício financeiro foi observado. Intervalos não calibrados em dados reais.</div>
+  <div class="note"><strong>Modelo físico com dados sintéticos.</strong> O balanço do banho e a política de reposição usam titulações e demanda simuladas, com os parâmetros declarados. A previsão original, mais abaixo, usa série e alvos 100% sintéticos.</div>
 </section>
+<div class="wrap"><div class="ls" id="bh" data-state="loading">
+<section class="ls-section" aria-labelledby="bh-title">
+  <h2 id="bh-title">Do banho químico à compra de concentrado</h2>
+  <p class="ls-lede">Prever o consumo de insumo por série temporal ignora o que gasta o banho. Um balanço de massa separa três mecanismos: decomposição espontânea e arraste nas peças, ambos proporcionais à concentração, e reação na superfície tratada, que não depende dela. Com os parâmetros estimados das titulações, a demanda de concentrado vira entrada de uma política de reposição (s, S) testada por simulação. Banho, produção e titulações são sintéticos; o objetivo é mostrar o que dá e o que não dá para identificar.</p>
+  <dl class="ls-kpis">
+    <div><dt>Concentrado por dia útil, IC 95 %</dt><dd data-k="demand">—</dd></div>
+    <div><dt>Correlação arraste × reação: uma faixa → duas</dt><dd data-k="corr">—</dd></div>
+    <div><dt>Serviço da regra clássica: prazo fixo → variável</dt><dd data-k="svc">—</dd></div>
+    <div><dt>Custo anual da política ótima (R$)</dt><dd data-k="cost">—</dd></div>
+  </dl>
+  <p class="ls-note" id="bh-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="bh-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="bh-kin-title">
+  <h2 id="bh-kin-title">Cinética do banho</h2>
+  <figure class="ls-chart"><svg id="bh-series" viewBox="0 0 760 280" role="img" aria-labelledby="bh-series-cap"></svg>
+    <figcaption id="bh-series-cap">Concentração do ativo, limite de ação (vermelho) e valor após a adição (verde). Produção em dois turnos de segunda a sexta.</figcaption></figure>
+  <p class="ls-note" id="bh-series-note"></p>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Estimativas"><table class="ls-table" id="bh-fits"><caption>Mínimos quadrados não lineares sobre a solução exata do balanço; ± erro-padrão pela matriz jacobiana</caption></table></div>
+  <p class="ls-note" id="bh-fit-note"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="bh-inv-title">
+  <h2 id="bh-inv-title">Reposição do concentrado</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Políticas de reposição"><table class="ls-table" id="bh-policies"><caption>Revisão diária, 20 anos simulados; meta de 99 % de ciclos de reposição sem falta</caption></table></div>
+  <p class="ls-note" id="bh-policy-note"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="bh-method-title">
+  <h2 id="bh-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Balanço: V dC/dt = −k_d V C − q C − r a(t) + adições, resolvido exatamente hora a hora; produção de 60 m²/h com variação gama de 15 % hora a hora; adição até 30 g/L quando a titulação passa de 26 g/L.</li>
+    <li>Estimação: três parâmetros por mínimos quadrados limitados (trust region reflective) sobre a solução exata; erros-padrão pela jacobiana; bootstrap paramétrico com 200 réplicas para o consumo total.</li>
+    <li>Reposição: demanda diária da decomposição, do arraste a 28 g/L e da reação sobre a área do dia (gama, CV 25 %); prazo de entrega sorteado entre 4, 5, 7 e 10 dias; regra clássica com σ_L² = E[L]σ_d² + μ_d²Var[L] e lote econômico; ótimo por busca em grade de s e S na simulação.</li>
+    <li>Limites: banho, custos e prazos são hipotéticos. A demanda diária é tratada como independente de um dia para outro na regra clássica; a simulação mantém o padrão semanal.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_thermal_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/bath.py">thermal/bath.py</a> · <a href="/data/thermal.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="bh-old-title">
+  <h2 id="bh-old-title">Previsão original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a previsão da primeira versão, com série e alvos 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><h2>Treino e validação</h2><p>240 semanas artificiais; três janelas walk-forward, 8 semanas por origem. Baseline sazonal e Statsmodels ETS com seleção apenas por validação; Prophet treinado de fato como diagnóstico separado no teste. Gráficos em Plotly exportados localmente. Métricas MAE, RMSE, sMAPE, MAPE e WAPE.</p><h2>Execução reproduzível</h2><pre tabindex="0">python -m pip install -r requirements/timeseries.txt
 python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --save
 python projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py --future --save</pre><footer>Sem generalização validada para dados não sintéticos; seleção de modelos usa validação temporal, nunca o teste final.</footer></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #070</li><li>Séries temporais</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #070</li><li>Séries temporais</li><li>Exercício técnico</li><li>Balanço de massa + simulação de estoque, dados 100% sintéticos</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/07-timeseries/070-consumables-burn-rate-forecasting">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/070-consumables-burn-rate-forecasting/main.py">Código Python</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/07-timeseries/070-consumables-burn-rate-forecasting/README.md">Metodologia e limitações</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/timeseries/069/"><span class="small muted">Anterior</span>#069 Monitoramento e Previsão de Emissões Atmosféricas (ESG)</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>

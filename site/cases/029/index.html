@@ -17,7 +17,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/ds.css">
-<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style></head>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;border-top:1px solid var(--rule);padding-top:20px}.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;font-weight:600}.pager a.next{text-align:right}.case-body img{border:1px solid var(--rule);border-radius:6px;background:#fff}.case-body>h2:first-child,.case-body>section:first-child>h2{margin-top:0}.page-head .note{margin-top:20px}.scene{margin:0 0 20px}.scene img{width:240px;image-rendering:pixelated}</style><link rel="stylesheet" href="/motorsport/lap-simulator/lapsim.css"></head>
 <body data-niche="industrial">
 <!-- ds:header --><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header"><div class="wrap"><a class="brand" href="/">Gabriel Reis Duarte</a><nav class="nav" aria-label="Principal"><a href="/industrial/" class="nav-ind" data-section-current>Industrial</a><a href="/automotivo/" class="nav-auto">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a></nav></div></header><nav class="crumbs wrap" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/industrial/">Industrial</a></li><li><a href="/cases/regression/">Regressão</a></li><li aria-current="page">#029</li></ol></nav><!-- /ds:header -->
 <main id="conteudo">
@@ -26,19 +26,95 @@
   <p class="kicker">Industrial · Regressão · Projeto #029</p>
   <h1>Predição de Consumo Elétrico em Fornos e Usinagem</h1>
   <p class="lede">Regressão multivariada para prever MWh por lote produtivo e evitar ultrapassagem de tarifa ponta.</p>
-  <div class="note"><strong>Dados 100% sintéticos:</strong> Modelos realmente ajustados e avaliados em datasets artificiais versionados. Resultados não demonstram acurácia em dados empresariais, custo evitado ou ROI real.</div>
+  <div class="note"><strong>Física com dados publicados, planta hipotética.</strong> O balanço do forno e a energia de corte usam normas e medições publicadas (EN 1993-1-2, VDI 3323, ETH Zürich); forno, carga e torno são hipotéticos. A regressão original, mais abaixo, usa DADOS 100% SINTÉTICOS.</div>
 </section>
+<div class="wrap"><div class="ls" id="fu" data-state="loading">
+<section class="ls-section" aria-labelledby="fu-title">
+  <h2 id="fu-title">Para onde vai a energia de um forno de tratamento térmico</h2>
+  <p class="ls-lede">Prever o consumo de um forno por regressão funciona até a primeira mudança de carga, de porta ou de isolamento. Um balanço de energia responde por que o consumo é o que é: quanto vai para o aço, quanto atravessa as paredes, quanto sai pela porta. Aqui o forno é hipotético, mas cada parcela vem de física com dados publicados: calor específico e condutividade do aço da EN 1993-1-2, correlações de convecção natural, fator de forma de uma abertura e o fluxo de troca de ar por uma porta.</p>
+  <dl class="ls-kpis">
+    <div><dt>Energia por tonelada tratada</dt><dd data-k="kwht">—</dd></div>
+    <div><dt>Fração que chega ao aço</dt><dd data-k="eff">—</dd></div>
+    <div><dt>Duração do ciclo</dt><dd data-k="cycle">—</dd></div>
+    <div><dt>Forno contra torno, por metro de barra</dt><dd data-k="ratio">—</dd></div>
+  </dl>
+  <p class="ls-note" id="fu-kpi-note">Carregando a análise…</p>
+  <p class="ls-note" id="fu-status" role="status"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="fu-cycle-title">
+  <h2 id="fu-cycle-title">Um ciclo de aquecimento</h2>
+  <figure class="ls-chart"><svg id="fu-cycle" viewBox="0 0 760 300" role="img" aria-labelledby="fu-cycle-cap"></svg>
+    <figcaption id="fu-cycle-cap">Condução radial nas barras por diferenças finitas implícitas, com radiação e convecção na superfície e propriedades do aço que variam com a temperatura.</figcaption></figure>
+  <figure class="ls-chart"><svg id="fu-power" viewBox="0 0 760 220" role="img" aria-labelledby="fu-power-cap"></svg>
+    <figcaption id="fu-power-cap">Potência elétrica pedida ao quadro; a linha vermelha é a potência instalada.</figcaption></figure>
+  <p class="ls-note" id="fu-power-note"></p>
+  <figure class="ls-chart"><svg id="fu-sankey" viewBox="0 0 760 200" role="img" aria-labelledby="fu-sankey-cap"></svg>
+    <figcaption id="fu-sankey-cap">Destino da energia de um ciclo, em fração do total.</figcaption></figure>
+  <p class="ls-note" id="fu-closure"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="fu-wall-title">
+  <h2 id="fu-wall-title">Paredes e porta</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Perdas pelas faces"><table class="ls-table" id="fu-walls"><caption>Condução em regime permanente pelas três camadas, convecção natural e radiação na carcaça</caption></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Camadas do revestimento"><table class="ls-table" id="fu-layers"><caption>Condutividade de cada camada nas suas duas faces (W/m·K) e temperatura contra o limite de serviço, parede lateral</caption></table></div>
+  <p class="ls-note" id="fu-door"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="fu-mc-title">
+  <h2 id="fu-mc-title">Quanto os números dependem das hipóteses</h2>
+  <figure class="ls-chart"><svg id="fu-mc" viewBox="0 0 760 240" role="img" aria-labelledby="fu-mc-cap"></svg>
+    <figcaption id="fu-mc-cap">Monte Carlo sobre condutividades, emissividades, exposição da carga, coeficiente de descarga, tempo de porta aberta e coeficiente interno de convecção.</figcaption></figure>
+  <figure class="ls-chart"><svg id="fu-srrc" viewBox="0 0 760 260" role="img" aria-labelledby="fu-srrc-cap"></svg>
+    <figcaption id="fu-srrc-cap">Sensibilidade de cada parâmetro.</figcaption></figure>
+  <p class="ls-note" id="fu-srrc-note"></p>
+</section>
+
+<section class="ls-section" aria-labelledby="fu-we-title">
+  <h2 id="fu-we-title">Desligar no fim de semana compensa?</h2>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Manter quente ou desligar"><table class="ls-table" id="fu-weekend"><caption>Condução transitória no revestimento; as duas opções entregam o forno pronto no fim da parada e são contadas até 72 h depois, para cobrar do desligamento o calor que o revestimento ainda absorve</caption></table></div>
+  <p class="ls-note">O forno fica pronto quando a face quente volta ao ponto de ajuste e o revestimento absorve no máximo 1,5 vez a perda de regime. Desligar economiza, mas bem menos do que o consumo de manter quente sugere: a maior parte do calor acumulado nas paredes precisa ser reposta, e o reaquecimento tem de começar horas antes da produção. Num revestimento leve de fibra cerâmica, com menos massa térmica, a conta pende mais para desligar.</p>
+</section>
+
+<section class="ls-section" aria-labelledby="fu-cut-title">
+  <h2 id="fu-cut-title">Usinagem: energia específica de corte</h2>
+  <figure class="ls-chart"><svg id="fu-kienzle" viewBox="0 0 760 280" role="img" aria-labelledby="fu-kienzle-cap"></svg>
+    <figcaption id="fu-kienzle-cap">Kienzle: u = k_c1.1 · h^(−m_c). Cavacos mais grossos custam menos energia por mm³.</figcaption></figure>
+  <figure class="ls-chart"><svg id="fu-gutowski" viewBox="0 0 760 280" role="img" aria-labelledby="fu-gutowski-cap"></svg>
+    <figcaption id="fu-gutowski-cap">Gutowski: e = P₀/ṽ + u/η. Com pouca remoção, a energia vai para manter a máquina ligada.</figcaption></figure>
+  <p class="ls-note" id="fu-machining-note"></p>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Coeficientes de catálogo"><table class="ls-table" id="fu-vdi"><caption>Coeficientes de Kienzle por grupo de material, tabela da ISCAR segundo VDI 3323 (ângulo de saída 0°)</caption></table></div>
+  <p class="ls-note" id="fu-eth"></p>
+</section>
+
+<section class="ls-section ls-method" aria-labelledby="fu-method-title">
+  <h2 id="fu-method-title">Método e limites</h2>
+  <ul class="ls-checks">
+    <li>Paredes: condução 1D com k = k₀ + k₁T por camada, exata por integração (q·L = ∫k dT); convecção natural de Churchill e Chu nas faces verticais, correlações de placa aquecida voltada para cima e para baixo no teto e na base, propriedades do ar pela lei de Sutherland; radiação da carcaça. Área de cada face pela média entre as áreas interna e externa, sem correção de cantos.</li>
+    <li>Revestimento hipotético: tijolo isolante classe 26 (230 mm), placa de silicato de cálcio (100 mm) e carcaça de aço; condutividades, densidades e calores específicos de ordem de grandeza de catálogo, variadas em ±20 % no Monte Carlo.</li>
+    <li>Porta: radiação de cavidade pela abertura com batentes rerradiantes, fator (1 + F₁₂)/2 com F₁₂ de retângulos paralelos alinhados; troca de ar V̇ = (C_d W/3)√(g′H³) de Linden (1999), fora da aproximação de Boussinesq a 835 K de diferença, e gás da câmara bem misturado aquecido pelo revestimento com h_in entre 8 e 25 W/m²K; mais a purga do gás quente a cada abertura.</li>
+    <li>Carga: barras redondas, 21 nós radiais, passo de 10 s, calor específico e condutividade do aço carbono da EN 1993-1-2 (incluindo o pico em 735 °C), emissividade 0,7 e fator de exposição de 0,6 para o empilhamento. A câmara é tratada como isotérmica; com potência insuficiente, sua temperatura é a raiz do balanço a cada passo.</li>
+    <li>Torno: Kienzle com coeficientes da tabela VDI 3323 e das medições de Klippel et al. (ETH Zürich, 2022, arXiv:2209.04197, corte ortogonal a seco de Ck45); modelo de Gutowski et al. (2006) com P₀ = 4 kW e rendimento de 80 % hipotéticos.</li>
+  </ul>
+  <details><summary>Reproduzir</summary><pre>python scripts/build_thermal_data.py</pre><a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/furnace.py">thermal/furnace.py</a> · <a href="https://github.com/xlDuarte/portfolio/blob/main/thermal/machining.py">thermal/machining.py</a> · <a href="/data/thermal.json">Resultados em JSON</a></details>
+</section>
+<section class="ls-section" aria-labelledby="fu-old-title">
+  <h2 id="fu-old-title">Modelo original com dados sintéticos</h2>
+  <p class="ls-note">Abaixo fica a regressão da primeira versão, com dados 100% sintéticos, mantida como teste do pipeline.</p>
+</section>
+</div>
+</div>
 <div class="wrap cols">
   <article class="case-body prose"><dl class="metrics"><div><dt>Baseline · MAE</dt><dd>2.027</dd></div><div><dt>XGBoost · MAE</dt><dd>476,2</dd></div><div><dt>R² (holdout)</dt><dd>0,940</dd></div><div><dt>Unidade de saída</dt><dd>kWh/day</dd></div></dl><h2>Método e evidências</h2><p>Divisão temporal forward 60/20/20 com treino, calibração e teste independentes. Pré-processamento ajustado somente aos dados de treino. Modelos: DummyRegressor, Ridge e XGBRegressor (quando disponível).</p><div class="table-wrap"><table><tbody><tr><th>Train rows</th><td>252</td></tr><tr><th>Calibration rows</th><td>84</td></tr><tr><th>Test rows</th><td>84</td></tr><tr><th>Baseline mae</th><td class="r num">2,03</td></tr><tr><th>Ridge mae</th><td class="r num">572,1</td></tr><tr><th>Xgboost mae</th><td class="r num">476,2</td></tr><tr><th>Xgboost rmse</th><td class="r num">612,3</td></tr><tr><th>Xgboost r2</th><td class="r num">0,940</td></tr><tr><th>Xgboost wape pct</th><td class="r num">7,09</td></tr><tr><th>Interval empirical coverage</th><td class="r num">0,929</td></tr><tr><th>Interval width</th><td class="r num">2,44</td></tr></tbody></table></div><h2>Variáveis preditoras</h2><ul><li><code>planned_furnace_hours</code></li><li><code>planned_machine_hours</code></li><li><code>planned_tonnage</code></li><li><code>ambient_temp_c</code></li><li><code>furnace_load_pct</code></li><li><code>tariff_period_index</code></li><li><code>process</code></li></ul><figure><img alt="Dispersão observado versus previsto e análise de resíduos, calculados no holdout sintético" loading="lazy" src="/assets/regression/029.svg"/><figcaption>Diagnóstico da avaliação holdout e dos resíduos: valores sintéticos.</figcaption></figure><h2>Código, dados e reprodução</h2><div class="buttons"><a href="/assets/regression/029.csv">Baixar CSV de demonstração</a></div><h2>Limitações e próximos passos</h2><p>Para uso industrial: coletar séries e eventos reais com consentimento/licença, validar schema e identificadores, conferir vieses, monitorar drift, realizar backtesting e controlar versões. Não usar as estimativas publicadas em decisões operacionais ou financeiras reais.</p><div class="footer">© 2026 Gabriel Duarte · Estudo de caso demonstrativo verificável.</div></article>
   <aside class="aside">
     <h2>Ficha</h2>
-    <ul><li>Projeto #029</li><li>Regressão</li><li>Exercício técnico</li><li>Dados sintéticos com semente fixa</li></ul>
+    <ul><li>Projeto #029</li><li>Regressão</li><li>Exercício técnico</li><li>Física com dados publicados + planta hipotética + pipeline sintético</li></ul>
     <h2>Código</h2>
     <ul class="ext"><li><a href="https://github.com/xlDuarte/portfolio/tree/main/projetos/03-regression/029-furnace-machining-power-consumption">Pasta do projeto no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/projetos/03-regression/029-furnace-machining-power-consumption/main.py">Código Python no GitHub</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/regression_batch/data/029.csv">CSV sintético</a></li><li><a href="https://github.com/xlDuarte/portfolio/blob/main/regression_batch/notebooks/029.ipynb">Notebook</a></li></ul>
   </aside>
 </div>
 <div class="wrap"><nav class="pager" aria-label="Projetos do mesmo grupo"><a href="/cases/028/"><span class="small muted">Anterior</span>#028 Dimensionamento de Custo de Hardware Industrial / Edge</a><a class="next" href="/cases/030/"><span class="small muted">Próximo</span>#030 Estimativa de Lead-Time de Entrega Logística (ETA)</a></nav></div>
 </main>
-<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer -->
+<!-- ds:footer --><footer class="site-footer"><div class="wrap"><p>Gabriel Reis Duarte · Dados e engenharia para a indústria e o automobilismo de desempenho.<br>Cada projeto informa se usa dados reais ou sintéticos.</p><nav aria-label="Rodapé"><a href="/industrial/">Industrial</a><a href="/automotivo/">Automotivo</a><a href="/laboratorio/">Laboratório</a><a href="/sobre/">Sobre</a><a href="https://github.com/xlDuarte/portfolio">GitHub</a><a href="https://www.linkedin.com/in/gabrielrduarte">LinkedIn</a></nav></div></footer><!-- /ds:footer --><script type="module" src="/assets/js/science.js"></script>
 </body>
 </html>
