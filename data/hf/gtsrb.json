@@ -1,7 +1,9 @@
 {
   "repo_id": "tanganke/gtsrb",
   "title": "GTSRB — reconhecimento de placas de trânsito (43 classes), treino e teste limpos",
-  "projects": [77],
+  "projects": [
+    77
+  ],
   "license": "unspecified",
   "license_note": "O cartão do Hub não declara licença. Os termos da fonte original (INI, Ruhr-Universität Bochum) precisam ser conferidos antes de qualquer publicação de imagens; até lá, só métricas e figuras agregadas.",
   "redistribute": false,
@@ -9,6 +11,17 @@
     "original": "https://benchmark.ini.rub.de/gtsrb_dataset.html",
     "citation": "Stallkamp, J.; Schlipsing, M.; Salmen, J.; Igel, C. Man vs. computer: Benchmarking machine learning algorithms for traffic sign recognition. Neural Networks 32:323–332, 2012. doi:10.1016/j.neunet.2012.02.016"
   },
-  "expected": {"train": 26640, "test": 12630, "classes": 43},
-  "include": ["data/train-*.parquet", "data/test-*.parquet"]
+  "expected": {
+    "train": 26640,
+    "test": 12630,
+    "classes": 43
+  },
+  "include": [
+    "data/train-*.parquet",
+    "data/test-*.parquet"
+  ],
+  "revision": "ea889fff70dda7b09e94a4b207dded438deca549",
+  "tree_sha256": "0e67191fe49030ce6859624e63c3eec320c026eab7102f42ec2a238518b29086",
+  "n_files": 2,
+  "bytes": 333337737
 }
