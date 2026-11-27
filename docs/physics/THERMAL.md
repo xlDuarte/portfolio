@@ -1,13 +1,15 @@
 # Balanços térmicos e de massa: forno, usinagem e banho químico
 
-Fase 5b do [plano científico](../PLANO-CIENTIFICO.md), primeira parte: projetos #029 e #070. Os projetos #090 (tarifa horossazonal) e #069 (pluma gaussiana) dependem de dados oficiais da ANEEL e do INMET que o ambiente de build ainda não alcança.
+Fase 5b do [plano científico](../PLANO-CIENTIFICO.md): projetos #029, #070, #090 e #069.
 
 | Projeto | Base | Página |
 |---|---|---|
 | #029 Fornos e usinagem | Física com dados publicados (EN 1993-1-2, Churchill–Chu, Linden, VDI 3323, medições da ETH Zürich); forno, carga e torno hipotéticos | [/cases/029/](https://gabriel-automotive-industrial-lab.vercel.app/cases/029/) |
 | #070 Insumos químicos | Balanço de massa e simulação de estoque; banho, titulações e demanda sintéticos | [/cases/timeseries/070/](https://gabriel-automotive-industrial-lab.vercel.app/cases/timeseries/070/) |
+| #090 Custos e tarifa | Curva de carga real de siderúrgica (UCI 851) e tarifas reais da EDP SP (ANEEL, REH 3.541/2025) | [/cases/business/090/](https://gabriel-automotive-industrial-lab.vercel.app/cases/business/090/) |
+| #069 Emissões | Tempo horário real de Taubaté (INMET A728, 2022–2025); chaminé hipotética | [/cases/timeseries/069/](https://gabriel-automotive-industrial-lab.vercel.app/cases/timeseries/069/) |
 
-Código: [`thermal/`](../../thermal/). Dados do site: `python scripts/build_thermal_data.py` (≈ 2 min, determinístico) → `site/data/thermal.json`. Navegador: [`frontend/science/thermal.js`](../../frontend/science/thermal.js). Testes: `tests/test_thermal.py`.
+Código: [`thermal/`](../../thermal/). Dados do site: `python scripts/build_thermal_data.py` (≈ 2 min) → `site/data/thermal.json` e `python scripts/build_tariff_plume_data.py` (≈ 1,5 min) → `site/data/tariff_plume.json`, ambos determinísticos. Navegador: [`frontend/science/thermal.js`](../../frontend/science/thermal.js). Testes: `tests/test_thermal.py` e `tests/test_tariff_plume.py`.
 
 ---
 
@@ -81,9 +83,37 @@ Dentro de 26–30 g/L, qC é quase constante e se confunde com r·a. O consumo t
 
 A regra clássica com σ_L² = E[L]σ_d² + μ_d²Var[L] chega perto do ótimo; ignorar a variância do prazo é o erro caro.
 
+## 4. #090 — modalidade, contrato e deslocamento de carga
+
+**Dados.** Carga: 35.040 intervalos de 15 min de 2018 da DAEWOO Steel (Gwangyang, Coreia do Sul), UCI 851, CC BY 4.0; dois espelhos no GitHub com conteúdo idêntico após normalizar CRLF. O intervalo que termina à meia-noite vem datado com o dia que se encerra (NSM = 0) e foi movido para o dia seguinte. 960 MWh no ano, pico de 629 kW, fator de carga 17 %.
+
+Tarifas: dados abertos da ANEEL, EDP SP, REH nº 3.541/2025 (vigência de 23/10/2025 a 22/10/2026), tarifa de aplicação A4. O servidor da ANEEL derruba a conexão TLS de IPs de data center, inclusive deste ambiente com o domínio liberado; os valores vêm de um espelho (diogoobs/tarifas-aneel, commit ceab633) que perdeu a vírgula decimal. A escala 1/100 é conferida contra o componente Fio B de um segundo espelho independente (lucascastro1412/monitor-tarifas-aneel, commit ed492eb), que precisa ser menor que a TUSD e é a maior parte dela.
+
+| A4, EDP SP | Demanda ponta (R$/kW) | Demanda fora ponta (R$/kW) | Energia ponta (R$/MWh) | Energia fora ponta (R$/MWh) |
+|---|---|---|---|---|
+| Verde | 12.02 (única) | — | 1814.66 | 451.28 |
+| Azul | 48.65 | 12.02 | 631.08 | 451.28 |
+
+**Regras.** REN 1.000/2021: ponta de 3 h em dias úteis (17h30–20h30 na EDP SP, por fonte secundária), feriados nacionais fora da ponta, demanda faturada = max(contratada, medida), ultrapassagem acima de 5 % cobrada em dobro. Sem tributos nem bandeiras.
+
+**Resultado.** Com o contrato ótimo (busca em grade; a tolerância torna o custo não convexo): Verde, 585 kW, R$ 719 mil/ano; Azul, 525/585 kW, R$ 863 mil/ano. A Verde ganha em todos os meses. O empate acontece quando cada kW de ponta é usado 41 h/mês (de 63 h de ponta); a planta usa de 17 a 33 h. Com a ponta das 18 h às 21 h, as conclusões não mudam (R$ 720 mil e R$ 863 mil).
+
+**Deslocamento (PL).** Por mês, variáveis s_i (redução em cada intervalo de ponta, 0 ≤ s_i ≤ αL_i), u_j (aumento fora da ponta), D_p e D_fp; energia conservada dia a dia; objetivo = energia + demanda; HiGHS. Na Verde a economia é linear em α, R$ 1363 por MWh deslocado, porque a demanda fora da ponta não precisa subir: com α = 0,3, 43.8 MWh e R$ 60 mil/ano. Na Azul, mesmo com α = 0,5 o custo (R$ 692 mil) fica acima do da Verde.
+
+## 5. #069 — pluma gaussiana com tempo horário real
+
+**Tempo.** Arquivos horários anuais do INMET (BDMEP), baixados do portal oficial, estação A728 (Taubaté), 2022–2025: 35064 horas, 31829 válidas para vento, direção e temperatura. Radiação global em kJ/m² por hora (em branco à noite); a hora de cada registro é o fim do período, e o dia é definido pela elevação do Sol no meio da hora. Vento médio de 1.87 m/s, 29 % das horas abaixo de 1 m/s.
+
+**Modelo.** Pluma gaussiana com reflexão no solo, σ_y e σ_z de Briggs (1973) para campo aberto, vento na altura da chaminé por lei de potência (expoentes rurais do ISC3), elevação de Briggs por empuxo (F_b ≈ 20 m⁴/s³ com o ar a 20 °C, para a chaminé hipotética de 40 m, Ø1,5 m, 12 m/s, 147 °C). Classe de Pasquill–Gifford pelo método de Turner; à noite, sem nebulosidade medida, duas hipóteses extremas. Receptores a cada 10° entre 100 m e 10 km; médias de 24 h só com ≥ 18 h válidas.
+
+**Resultado (por g/s de MP10).** Máxima média anual de 0.397 µg/m³ a 662 m na direção 220°; pior média de 24 h de 1.67 µg/m³ a 588 m. As duas hipóteses noturnas dão máximas praticamente iguais, porque os máximos vêm do dia instável perto da fonte. Com os valores-guia da OMS de 2021 para MP10 (45 µg/m³ em 24 h, 15 µg/m³ no ano), que a CONAMA 506/2024 adota como padrão final, a emissão máxima sem concentração de fundo é 27 g/s, limitada pela média de 24 h.
+
+**Limites.** Triagem: sem camada de mistura, relevo, edificações, deposição nem fundo. O Vale do Paraíba tem relevo e inversões térmicas que exigiriam AERMOD ou CALPUFF.
+
 ---
 
 ## Reprodução
 
     python scripts/build_thermal_data.py
-    python -m unittest tests.test_thermal
+    python scripts/build_tariff_plume_data.py
+    python -m unittest tests.test_thermal tests.test_tariff_plume

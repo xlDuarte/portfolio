@@ -1,0 +1,25 @@
+{
+  "source": "UCI Machine Learning Repository, dataset 851 'Steel Industry Energy Consumption' (DAEWOO Steel Co., Gwangyang, Coreia do Sul, 2018)",
+  "canonical_url": "https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption",
+  "license": "CC BY 4.0",
+  "citation": "V E, S.; Shin, C.; Cho, Y. Efficient energy consumption prediction model for a data analytic-enabled industry building in a smart city. Building Research & Information 49(1):127–143, 2021.",
+  "mirror": {
+    "repo": "adalciohugo/steel-energy-consumption-prediction",
+    "commit": "cfe2020",
+    "path": "Steel_industry_data.csv",
+    "git_blob": "58ea056a2c351289ae270f29ad437ce261978ee3",
+    "bytes": 2731389
+  },
+  "cross_check": {
+    "repo": "GoveiaDev/c6-energia-horario-ponta",
+    "commit": "f7afdc3",
+    "path": "dados/Steel_industry_data.csv",
+    "git_blob": "81b8195e56d0990e0823f9ec300641bb6b564f3c",
+    "result": "conteúdo idêntico depois de normalizar CRLF para LF"
+  },
+  "files": {
+    "Steel_industry_data.csv": "22b56aec08df4d0d2a4e18203e86c680b414c7aa46b3bbde5030e9db625f51cb"
+  },
+  "rows": 35040,
+  "interval": "15 min, kWh por intervalo"
+}

@@ -15,6 +15,8 @@ const pages = [
   ['cl', () => import('./energy.js').then(m => ({ init: m.initClimate }))],
   ['fu', () => import('./thermal.js').then(m => ({ init: m.initFurnace }))],
   ['bh', () => import('./thermal.js').then(m => ({ init: m.initBath }))],
+  ['tf', () => import('./thermal.js').then(m => ({ init: m.initTariff }))],
+  ['pl', () => import('./thermal.js').then(m => ({ init: m.initPlume }))],
 ];
 for (const [id, load] of pages) {
   const root = document.getElementById(id);

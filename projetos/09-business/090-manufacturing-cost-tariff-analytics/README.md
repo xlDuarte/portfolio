@@ -1,3 +1,5 @@
+> **Atualização científica (fase 5b):** tarifa horossazonal com dados reais: curva de 15 min de uma siderúrgica (UCI 851) e tarifas da EDP SP homologadas pela ANEEL (REH 3.541/2025, A4). Verde R$ 719 mil/ano contra Azul R$ 863 mil com contrato ótimo; programa linear de deslocamento de carga para fora da ponta: R$ 1,36 por kWh deslocado. Método em [docs/physics/THERMAL.md](../../../docs/physics/THERMAL.md).
+
 # #90 — Manufacturing Cost & Tariff Analytics
 
 **Status:** análise de negócio funcional com dados industriais inteiramente sintéticos. Sem acesso a sistemas SAP/Ariba e sem medição financeira corporativa.

@@ -1001,6 +1001,15 @@ REAL_SECTIONS = {
                  "titulações e demanda simuladas, com os parâmetros declarados. A previsão original, mais abaixo, usa série "
                  "e alvos 100% sintéticos.",
          "fact": "Balanço de massa + simulação de estoque, dados 100% sintéticos"},
+    90: {"fragment": ROOT / "scripts" / "fragments" / "090-tariff.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A análise de tarifa usa a curva de carga real de uma "
+                 "siderúrgica (UCI) e as tarifas homologadas pela ANEEL para a EDP SP; a ligação da planta à EDP é hipotética. "
+                 "A análise original, mais abaixo, usa DADOS 100% SINTÉTICOS.",
+         "fact": "Carga real (UCI) + tarifa real (ANEEL) + pipeline sintético"},
+    69: {"fragment": ROOT / "scripts" / "fragments" / "069-plume.html",
+         "note": "<strong>Dados reais e sintéticos, separados.</strong> A dispersão usa o tempo horário real de Taubaté (INMET); "
+                 "a chaminé é hipotética. A previsão original, mais abaixo, usa série e alvos 100% sintéticos.",
+         "fact": "Tempo real (INMET horário) + chaminé hipotética + pipeline sintético"},
     63: {"fragment": ROOT / "scripts" / "fragments" / "063-climate.html",
          "note": "<strong>Dados reais e sintéticos, separados.</strong> O clima é real (INMET, Taubaté e São Paulo); o galpão "
                  "simulado é hipotético. O modelo original, mais abaixo, usa série e alvos 100% sintéticos.",

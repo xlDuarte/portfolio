@@ -194,7 +194,7 @@ Legenda de prioridade: **A** = fenômeno físico com dado real disponível; **B*
 | 4a ✔ | Rolamentos com vibração real | #004, #104, #052 (feito) | 40 registros reais do CWRU com integridade verificada ([método](physics/BEARINGS.md)) |
 | 4b ✔ | Degradação e confiabilidade | #097, #036, #037 (feito) | RUL com NASA C-MAPSS; bomba e óleo com o banco hidráulico real da ZeMA ([método](physics/DEGRADATION.md)) |
 | 5a ✔ | Energia e clima com dado público | #008, #064, #063 (feito) | Carga horária real do ONS e clima real do INMET: linha de base ASHRAE Guideline 14, previsão probabilística do pico e galpão térmico 1R1C ([método](physics/ENERGY.md)) |
-| 5b | Balanços térmicos e tarifa | #029, #070 (feito); #090, #069 pendentes | Forno, usinagem e banho com balanços de energia e massa ([método](physics/THERMAL.md)); tarifa horossazonal (PL) e pluma gaussiana aguardam acesso aos dados da ANEEL e do INMET |
+| 5b ✔ | Balanços térmicos, tarifa e dispersão | #029, #070, #090, #069 (feito) | Forno, usinagem e banho com balanços de energia e massa; tarifa real da ANEEL com curva real de carga e PL; pluma gaussiana com tempo horário real do INMET ([método](physics/THERMAL.md)) |
 | 6 | Materiais e visão física | #076, #080, #105, #073, #079, #074, #077, #075 | Geração física de imagem (Beer–Lambert, microestrutura) |
 | 7 | Operações e cadeia de suprimentos | #002, #010, #013, #016, #019, #020, #059, #060, #066, #067, #094, #096 | Filas, estoque e simulação de eventos discretos |
 | 8 | Séries temporais e finanças com dado real | #018, #061, #062, #065, #068, #027 | Previsão probabilística e risco |
